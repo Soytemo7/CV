@@ -58,7 +58,7 @@ export default function SEO() {
 
       <meta
         property="og:image"
-        content="https://soytemo7.github.io/CV/img/foto-perfil.jpg"
+        content="https://soytemo7.github.io/CV/img/foto-perfil.jpeg"
       />
 
       <meta
@@ -95,7 +95,7 @@ export default function SEO() {
 
       <meta
         name="twitter:image"
-        content="https://soytemo7.github.io/CV/img/foto-perfil.jpg"
+        content="https://soytemo7.github.io/CV/img/foto-perfil.jpeg"
       />
 
       <meta
