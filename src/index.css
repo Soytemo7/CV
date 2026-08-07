@@ -1,0 +1,8 @@
+/* Estilos globales mínimos para React */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
