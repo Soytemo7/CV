@@ -11,7 +11,7 @@ export default function SEO() {
 
       <meta
         name="description"
-        content="Manuel Cuauhtémoc Parra Flores: Ingeniero en Computación, desarrollador de software, contador público, abogado fiscalista y docente universitario."
+        content="Manuel Cuauhtémoc Parra Flores: Ingeniero en Computación, Desarrollador de software, Contador público, Abogado fiscalista y Docente universitario."
       />
 
       <meta
@@ -42,65 +42,6 @@ export default function SEO() {
       <link
         rel="canonical"
         href="https://soytemo7.github.io/CV/"
-      />
-
-      {/* Open Graph */}
-
-      <meta
-        property="og:title"
-        content="Manuel Cuauhtémoc Parra Flores | Software, Tecnología, Derecho y Finanzas"
-      />
-
-      <meta
-        property="og:description"
-        content="Perfil profesional de Manuel Cuauhtémoc Parra Flores: Ingeniero en Computación, desarrollador de software, contador público, abogado fiscalista y docente universitario."
-      />
-
-      <meta
-        property="og:image"
-        content="https://soytemo7.github.io/CV/img/foto-perfil.jpeg"
-      />
-
-      <meta
-        property="og:url"
-        content="https://soytemo7.github.io/CV/"
-      />
-
-      <meta
-        property="og:type"
-        content="profile"
-      />
-
-      <meta
-        property="og:locale"
-        content="es_MX"
-      />
-
-      {/* Twitter */}
-
-      <meta
-        name="twitter:card"
-        content="summary_large_image"
-      />
-
-      <meta
-        name="twitter:title"
-        content="Manuel Cuauhtémoc Parra Flores | Software, Tecnología y Derecho"
-      />
-
-      <meta
-        name="twitter:description"
-        content="Trayectoria profesional en desarrollo de software, sistemas computacionales, tecnología, derecho fiscal, contabilidad, finanzas y docencia."
-      />
-
-      <meta
-        name="twitter:image"
-        content="https://soytemo7.github.io/CV/img/foto-perfil.jpeg"
-      />
-
-      <meta
-        name="twitter:url"
-        content="https://soytemo7.github.io/CV/"
       />
 
       {/* Schema.org */}
