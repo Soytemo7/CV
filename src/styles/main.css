@@ -2007,3 +2007,144 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/*--------------------------------------------------------------
+# Theme Toggle - Futuristic
+--------------------------------------------------------------*/
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9998;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 14px 8px 8px;
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--accent-color),
+    transparent 35%
+  );
+
+  border-radius: 50px;
+
+  background: color-mix(
+    in srgb,
+    var(--surface-color),
+    transparent 15%
+  );
+
+  color: var(--default-color);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 0 10px color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 75%
+    );
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+
+.theme-toggle:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 0 18px color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 45%
+    );
+}
+
+
+.theme-toggle-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--accent-color);
+
+  color: var(--contrast-color);
+
+  font-size: 16px;
+
+  box-shadow:
+    0 0 12px color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 45%
+    );
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+
+.theme-toggle:hover .theme-toggle-icon {
+  transform: rotate(20deg);
+
+  box-shadow:
+    0 0 18px color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 25%
+    );
+}
+
+
+.theme-toggle-label {
+  font-family: var(--nav-font);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+
+@media (max-width: 1199px) {
+
+  .theme-toggle {
+    top: 15px;
+    right: 70px;
+  }
+
+}
+
+
+@media (max-width: 576px) {
+
+  .theme-toggle {
+    padding: 7px;
+  }
+
+  .theme-toggle-label {
+    display: none;
+  }
+
+  .theme-toggle-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+}

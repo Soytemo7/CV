@@ -2,8 +2,7 @@ import HeaderToggle from "./common/HeaderToggle";
 import useActiveSection from "../hooks/useActiveSection";
 
 
-function Header() {
-
+function Header({ isDark, setIsDark }) {
 
   const sections = [
     "hero",
@@ -24,10 +23,12 @@ function Header() {
   return (
     <header
       id="header"
-      className="header d-flex flex-column justify-content-center"
+      className={`header d-flex flex-column justify-content-center ${
+        isDark ? "dark-background" : "light-background"
+      }`}
     >
 
-      <HeaderToggle />
+      <HeaderToggle isDark={isDark} setIsDark={setIsDark} />
 
 
       <nav id="navmenu" className="navmenu">

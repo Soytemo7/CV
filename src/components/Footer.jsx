@@ -1,8 +1,12 @@
-function Footer() {
+function Footer({ isDark }) {
   return (
     <footer
       id="footer"
-      className="footer position-relative light-background"
+      className={`footer ${
+        isDark
+          ? "dark-background"
+          : "light-background"
+      }`}
     >
 
       <div className="container">
@@ -42,9 +46,7 @@ function Footer() {
         </div>
 
 
-
         <div className="container">
-
 
           <div className="copyright">
 
@@ -62,10 +64,7 @@ function Footer() {
               Todos los derechos reservados
             </span>
 
-
           </div>
-
-
 
 
           <div className="credits">
@@ -102,19 +101,15 @@ function Footer() {
               Manuel Parra
             </strong>
 
-
           </div>
-
 
         </div>
 
-
       </div>
-
 
     </footer>
   );
 }
 
-
 export default Footer;
+

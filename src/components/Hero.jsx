@@ -7,7 +7,7 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="hero section light-background"
+      className="hero section"
     >
 
       <img
