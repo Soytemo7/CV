@@ -14,6 +14,9 @@ function MainLayout({ children, isDark, setIsDark }) {
 
   return (
     <>
+
+      <SEO/>
+      
       <Header
         isDark={isDark}
         setIsDark={setIsDark}
