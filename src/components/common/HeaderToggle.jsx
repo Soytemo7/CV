@@ -6,10 +6,21 @@ function HeaderToggle({ isDark, setIsDark }) {
 
 
   useEffect(() => {
+
     const header = document.querySelector("#header");
 
-    header?.classList.remove("header-show");
-    setOpen(false);
+    if (header) {
+      header.classList.remove("header-show");
+    }
+
+    const timer = setTimeout(() => {
+      setOpen(false);
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+    };
+
   }, [isDark]);
 
 
@@ -17,15 +28,24 @@ function HeaderToggle({ isDark, setIsDark }) {
 
     const header = document.querySelector("#header");
 
+    if (!header) return;
+
     const isCurrentlyOpen =
       header.classList.contains("header-show");
 
+
     if (isCurrentlyOpen) {
+
       header.classList.remove("header-show");
+
       setOpen(false);
+
     } else {
+
       header.classList.add("header-show");
+
       setOpen(true);
+
     }
 
   };
@@ -39,8 +59,7 @@ function HeaderToggle({ isDark, setIsDark }) {
 
 
   return (
-    <div className="header-controls">
-
+    <>
       <i
         className={`header-toggle d-xl-none bi ${
           open ? "bi-x" : "bi-list"
@@ -73,8 +92,7 @@ function HeaderToggle({ isDark, setIsDark }) {
         </i>
 
       </button>
-
-    </div>
+    </>
   );
 }
 
