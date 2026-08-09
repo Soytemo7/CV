@@ -2013,67 +2013,523 @@ section,
 --------------------------------------------------------------*/
 
 .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9998;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9998;
 
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-  padding: 8px 14px 8px 8px;
+    padding: 8px 14px 8px 8px;
 
-  border: 1px solid color-mix(
-    in srgb,
-    var(--accent-color),
-    transparent 35%
-  );
+    border: 1px solid rgba(5, 99, 187, 0.35);
 
-  border-radius: 50px;
+    border-radius: 50px;
 
-  background: color-mix(
-    in srgb,
-    var(--surface-color),
-    transparent 15%
-  );
+    cursor: pointer;
 
-  color: var(--default-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+    isolation: isolate;
+    overflow: hidden;
 
-  box-shadow:
-    0 0 10px color-mix(
-      in srgb,
-      var(--accent-color),
-      transparent 75%
-    );
-
-  cursor: pointer;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    background-color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
+/*--------------------------------------------------------------
+# Theme Toggle - Light Mode
+--------------------------------------------------------------*/
+
+.theme-toggle.light {
+    background: rgba(255, 255, 255, 0.92);
+
+    color: #0563bb;
+
+    border-color: rgba(5, 99, 187, 0.35);
+
+    box-shadow:
+        0 0 0 5px rgba(5, 99, 187, 0.12),
+        0 0 10px rgba(5, 99, 187, 0.35);
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle - Dark Mode
+--------------------------------------------------------------*/
+
+.theme-toggle.dark {
+    background: rgba(37, 37, 37, 0.92);
+
+    color: #ffffff;
+
+    border-color: rgba(5, 99, 187, 0.40);
+
+    box-shadow:
+        0 0 0 5px rgba(5, 99, 187, 0.12),
+        0 0 12px rgba(5, 99, 187, 0.50);
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle - Hover
+--------------------------------------------------------------*/
 
 .theme-toggle:hover {
-  transform: scale(1.06);
+    transform: scale(1.06);
 
-  box-shadow:
-    0 0 18px color-mix(
-      in srgb,
-      var(--accent-color),
-      transparent 45%
-    );
+    border-color: var(--accent-color);
+
+    box-shadow:
+        0 0 0 5px rgba(5, 99, 187, 0.22),
+        0 0 18px rgba(5, 99, 187, 0.65);
 }
 
+/*--------------------------------------------------------------
+# Theme Toggle - Reflection
+--------------------------------------------------------------*/
+
+.theme-toggle::before {
+    content: "";
+
+    position: absolute;
+    top: 3px;
+    left: 8%;
+
+    width: 84%;
+    height: 42%;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.30),
+        rgba(255, 255, 255, 0.03)
+    );
+
+    filter: blur(3px);
+
+    opacity: 0;
+
+    pointer-events: none;
+    z-index: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle::after {
+    content: "";
+
+    position: absolute;
+    top: -80%;
+    left: -120%;
+
+    width: 80%;
+    height: 260%;
+
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 45%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(255, 255, 255, 0.25) 55%,
+        transparent 70%
+    );
+
+    transform: skewX(-20deg) rotate(10deg);
+
+    filter: blur(5px);
+
+    opacity: 0;
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.theme-toggle-icon,
+.theme-toggle-label {
+    position: relative;
+    z-index: 2;
+}
+
+.theme-toggle:hover::before {
+    opacity: 1;
+}
+
+.theme-toggle:hover::after {
+    opacity: 1;
+
+    animation:
+        themeButtonShine
+        1.1s
+        cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes themeButtonShine {
+
+    0% {
+        left: -120%;
+    }
+
+    100% {
+        left: 180%;
+    }
+
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle Icon
+--------------------------------------------------------------*/
 
 .theme-toggle-icon {
-  width: 34px;
-  height: 34px;
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--accent-color);
+
+    color: var(--contrast-color);
+
+    font-size: 16px;
+
+    box-shadow:
+        0 0 12px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 45%
+        );
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+    transform: rotate(20deg);
+
+    box-shadow:
+        0 0 18px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 25%
+        );
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle Label
+--------------------------------------------------------------*/
+
+.theme-toggle-label {
+    font-family: var(--nav-font);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle - Mobile
+--------------------------------------------------------------*/
+
+@media (max-width: 1199px) {
+
+    .theme-toggle {
+        top: 15px;
+        right: 70px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .theme-toggle {
+        padding: 7px;
+    }
+
+    .theme-toggle-label {
+        display: none;
+    }
+
+    .theme-toggle-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+}
+
+/*--------------------------------------------------------------
+# Futuristic Controls - Header & Scroll
+--------------------------------------------------------------*/
+
+.header .header-toggle,
+.scroll-top {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 25%
+    );
+
+    background: color-mix(
+        in srgb,
+        var(--surface-color),
+        transparent 12%
+    );
+
+    color: var(--accent-color);
+
+    box-shadow:
+        0 0 0 5px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 88%
+        ),
+        0 0 10px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 60%
+        );
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+/*--------------------------------------------------------------
+# Hamburger
+--------------------------------------------------------------*/
+
+.header .header-toggle {
+    font-size: 21px;
+    cursor: pointer;
+}
+
+/*--------------------------------------------------------------
+# Hamburger - Liquid Glass Reflection
+--------------------------------------------------------------*/
+
+.header .header-toggle {
+    position: fixed;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.header .header-toggle::after {
+    content: "";
+
+    position: absolute;
+    top: 3px;
+    left: 10%;
+
+    width: 80%;
+    height: 45%;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.30),
+        rgba(255, 255, 255, 0.03)
+    );
+
+    filter: blur(3px);
+
+    opacity: 0;
+
+    pointer-events: none;
+    z-index: 1;
+
+    transition: opacity 0.3s ease;
+}
+
+.header .header-toggle span {
+    position: relative;
+    z-index: 2;
+}
+
+.header .header-toggle i {
+    position: relative;
+    z-index: 2;
+}
+
+/*--------------------------------------------------------------
+# Hamburger - Light Sweep
+--------------------------------------------------------------*/
+
+.header .header-toggle::before {
+    content: "";
+
+    position: absolute;
+    top: -80%;
+    left: -120%;
+
+    width: 80%;
+    height: 260%;
+
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 45%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(255, 255, 255, 0.25) 55%,
+        transparent 70%
+    );
+
+    transform: skewX(-20deg) rotate(10deg);
+
+    filter: blur(5px);
+
+    opacity: 0;
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header .header-toggle:hover::after {
+    opacity: 1;
+}
+
+.header .header-toggle:hover::before {
+    opacity: 1;
+
+    animation:
+        hamburgerButtonShine
+        1.1s
+        cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes hamburgerButtonShine {
+
+    0% {
+        left: -120%;
+    }
+
+    100% {
+        left: 180%;
+    }
+
+}
+
+/*--------------------------------------------------------------
+# Hamburger - Light Mode
+--------------------------------------------------------------*/
+
+.light-background .header-toggle {
+    background: color-mix(
+        in srgb,
+        var(--accent-color),
+        white 88%
+    );
+
+    color: var(--accent-color);
+
+    border-color: color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 15%
+    );
+
+    box-shadow:
+        0 0 0 5px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 88%
+        ),
+        0 0 10px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 55%
+        );
+}
+
+/*--------------------------------------------------------------
+# Hamburger - Dark Mode
+--------------------------------------------------------------*/
+
+.dark-background .header-toggle {
+    background: color-mix(
+        in srgb,
+        var(--surface-color),
+        transparent 5%
+    );
+
+    color: var(--contrast-color);
+
+    border-color: color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 20%
+    );
+
+    box-shadow:
+        0 0 0 5px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 88%
+        ),
+        0 0 12px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 50%
+        );
+}
+
+/*--------------------------------------------------------------
+# Hamburger - Hover
+--------------------------------------------------------------*/
+
+.header .header-toggle:hover {
+    transform: scale(1.05);
+
+    border-color: var(--accent-color);
+
+    box-shadow:
+        0 0 0 5px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 78%
+        ),
+        0 0 18px color-mix(
+            in srgb,
+            var(--accent-color),
+            transparent 35%
+        );
+}
+
+/*--------------------------------------------------------------
+# Scroll Top
+--------------------------------------------------------------*/
+
+.scroll-top {
+  right: 20px;
+  bottom: 15px;
+
+  width: 44px;
+  height: 44px;
 
   display: flex;
   align-items: center;
@@ -2081,70 +2537,291 @@ section,
 
   border-radius: 50%;
 
-  background: var(--accent-color);
+  font-size: 20px;
 
-  color: var(--contrast-color);
+  cursor: pointer;
 
-  font-size: 16px;
+  position: fixed;
 
-  box-shadow:
-    0 0 12px color-mix(
-      in srgb,
-      var(--accent-color),
-      transparent 45%
-    );
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(10px);
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--accent-color),
+    transparent 25%
+  );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  isolation: isolate;
+  overflow: hidden;
 
   transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
-.theme-toggle:hover .theme-toggle-icon {
-  transform: rotate(20deg);
+/*--------------------------------------------------------------
+# Scroll Top - Active
+--------------------------------------------------------------*/
+
+.scroll-top.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Light Mode
+--------------------------------------------------------------*/
+
+.scroll-top.light {
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #0563bb;
+
+  border-color: rgba(5, 99, 187, 0.35);
 
   box-shadow:
+    0 0 0 5px rgba(5, 99, 187, 0.12),
+    0 0 10px rgba(5, 99, 187, 0.35);
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Dark Mode
+--------------------------------------------------------------*/
+
+.scroll-top.dark {
+  background: rgba(37, 37, 37, 0.92);
+
+  color: #ffffff;
+
+  border-color: rgba(5, 99, 187, 0.40);
+
+  box-shadow:
+    0 0 0 5px rgba(5, 99, 187, 0.12),
+    0 0 12px rgba(5, 99, 187, 0.50);
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Reflection
+--------------------------------------------------------------*/
+
+.scroll-top::before {
+  content: "";
+
+  position: absolute;
+  top: 3px;
+  left: 8%;
+
+  width: 84%;
+  height: 42%;
+
+  border-radius: 50px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.30),
+    rgba(255, 255, 255, 0.03)
+  );
+
+  filter: blur(3px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  transition: opacity 0.3s ease;
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Light Sweep
+--------------------------------------------------------------*/
+
+.scroll-top::after {
+  content: "";
+
+  position: absolute;
+  top: -80%;
+  left: -120%;
+
+  width: 80%;
+  height: 260%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg) rotate(10deg);
+
+  filter: blur(5px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Icon
+--------------------------------------------------------------*/
+
+.scroll-top .futuristic-control-icon {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-top i {
+  position: relative;
+
+  z-index: 2;
+
+  color: inherit;
+
+  font-size: 20px;
+
+  line-height: 0;
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Hover
+--------------------------------------------------------------*/
+
+.scroll-top:hover {
+  transform: translateY(0) scale(1.05);
+
+  border-color: var(--accent-color);
+
+  box-shadow:
+    0 0 0 5px color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 78%
+    ),
     0 0 18px color-mix(
       in srgb,
       var(--accent-color),
-      transparent 25%
+      transparent 35%
     );
 }
 
 
-.theme-toggle-label {
-  font-family: var(--nav-font);
+/*--------------------------------------------------------------
+# Scroll Top - Hover Reflection
+--------------------------------------------------------------*/
 
-  font-size: 11px;
-  font-weight: 700;
-
-  letter-spacing: 1.5px;
+.scroll-top:hover::before {
+  opacity: 1;
 }
 
 
-@media (max-width: 1199px) {
+/*--------------------------------------------------------------
+# Scroll Top - Hover Light Sweep
+--------------------------------------------------------------*/
 
-  .theme-toggle {
-    top: 15px;
-    right: 70px;
+.scroll-top:hover::after {
+  opacity: 1;
+
+  animation:
+    scrollButtonShine
+    1.1s
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/*--------------------------------------------------------------
+# Scroll Top - Shine Animation
+--------------------------------------------------------------*/
+
+@keyframes scrollButtonShine {
+
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 180%;
   }
 
 }
 
+
+/*--------------------------------------------------------------
+# Mobile - Scroll Top
+--------------------------------------------------------------*/
 
 @media (max-width: 576px) {
 
-  .theme-toggle {
-    padding: 7px;
+  .scroll-top {
+    width: 44px;
+    height: 44px;
+
+    right: 15px;
+    bottom: 15px;
   }
 
-  .theme-toggle-label {
-    display: none;
-  }
+}
 
-  .theme-toggle-icon {
-    width: 36px;
-    height: 36px;
-  }
+/*--------------------------------------------------------------
+# Mobile
+--------------------------------------------------------------*/
+
+@media (max-width: 1199px) {
+
+    .header .header-toggle {
+        width: 44px;
+        height: 44px;
+
+        top: 15px;
+        right: 15px;
+    }
+
+}
+
+/*--------------------------------------------------------------
+# Mobile - Controls
+--------------------------------------------------------------*/
+
+@media (max-width: 576px) {
+
+    .header .header-toggle,
+    .scroll-top {
+        width: 44px;
+        height: 44px;
+    }
 
 }

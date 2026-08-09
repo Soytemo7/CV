@@ -4,7 +4,6 @@ function HeaderToggle({ isDark, setIsDark }) {
 
   const [open, setOpen] = useState(false);
 
-
   useEffect(() => {
 
     const header = document.querySelector("#header");
@@ -33,7 +32,6 @@ function HeaderToggle({ isDark, setIsDark }) {
     const isCurrentlyOpen =
       header.classList.contains("header-show");
 
-
     if (isCurrentlyOpen) {
 
       header.classList.remove("header-show");
@@ -60,18 +58,30 @@ function HeaderToggle({ isDark, setIsDark }) {
 
   return (
     <>
+
+      {/* Botón hamburguesa */}
+
       <i
-        className={`header-toggle d-xl-none bi ${
-          open ? "bi-x" : "bi-list"
+        className={`header-toggle futuristic-control d-xl-none ${
+          open ? "open" : ""
         }`}
         onClick={toggleMenu}
       >
+        <span className="futuristic-control-icon">
+          <i
+            className={`bi ${
+              open ? "bi-x" : "bi-list"
+            }`}
+          ></i>
+        </span>
       </i>
 
 
+      {/* Botón de tema */}
+
       <button
         type="button"
-        className={`theme-toggle ${
+        className={`theme-toggle futuristic-control ${
           isDark ? "dark" : "light"
         }`}
         onClick={toggleTheme}
@@ -82,16 +92,18 @@ function HeaderToggle({ isDark, setIsDark }) {
         }
       >
 
-        <i
-          className={`bi ${
-            isDark
-              ? "bi-sun-fill"
-              : "bi-moon-stars-fill"
-          }`}
-        >
-        </i>
+        <span className="theme-toggle-icon">
+          <i
+            className={`bi ${
+              isDark
+                ? "bi-sun-fill"
+                : "bi-moon-stars-fill"
+            }`}
+          ></i>
+        </span>
 
       </button>
+
     </>
   );
 }

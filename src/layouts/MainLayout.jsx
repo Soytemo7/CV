@@ -7,18 +7,17 @@ import ThemeToggle from "../components/common/ThemeToggle";
 import useAOS from "../hooks/useAOS";
 import usePureCounter from "../hooks/usePureCounter";
 
-
 function MainLayout({ children, isDark, setIsDark }) {
 
   useAOS();
   usePureCounter();
 
-
   return (
     <>
-      <SEO />
-
-      <Header isDark={isDark} setIsDark={setIsDark} />
+      <Header
+        isDark={isDark}
+        setIsDark={setIsDark}
+      />
 
       <ThemeToggle
         isDark={isDark}
@@ -37,10 +36,9 @@ function MainLayout({ children, isDark, setIsDark }) {
 
       <Footer isDark={isDark} />
 
-      <ScrollTop />
+      <ScrollTop isDark={isDark} />
     </>
   );
 }
-
 
 export default MainLayout;
