@@ -260,21 +260,141 @@ h6 {
 .navmenu a:hover,
 .navmenu .active,
 .navmenu .active:focus,
-.navmenu li:hover>a {
+.navmenu li:hover > a {
   color: var(--contrast-color);
   background: var(--nav-hover-color);
 }
 
 .navmenu a:hover,
-.navmenu li:hover>a {
+.navmenu li:hover > a {
   max-width: 100%;
   color: var(--contrast-color);
 }
 
 .navmenu a:hover span,
-.navmenu li:hover>a span {
+.navmenu li:hover > a span {
   display: block;
 }
+
+
+/*--------------------------------------------------------------
+# Navigation Menu - Liquid Glass Reflection
+--------------------------------------------------------------*/
+
+.navmenu a {
+  position: relative;
+  isolation: isolate;
+  transform-origin: center;
+  transition:
+    0.3s,
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+/* Reflejo superior del cristal */
+
+.navmenu a::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 10%;
+  width: 80%;
+  height: 45%;
+  border-radius: 50px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.03)
+  );
+
+  filter: blur(3px);
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+
+/* Franja luminosa */
+
+.navmenu a::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 80%;
+  height: 260%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.35) 55%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg) rotate(10deg);
+  filter: blur(5px);
+
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* Iconos y texto por encima de los reflejos */
+
+.navmenu a i,
+.navmenu a span {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* Pequeño crecimiento al pasar el mouse */
+
+.navmenu a:hover,
+.navmenu li:hover > a {
+  transform: scale(1.05);
+}
+
+
+/* Activar reflejo superior */
+
+.navmenu a:hover::before,
+.navmenu li:hover > a::before {
+  opacity: 1;
+}
+
+
+/* Activar franja luminosa */
+
+.navmenu a:hover::after,
+.navmenu li:hover > a::after {
+  opacity: 1;
+  animation: navLiquidShine 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Movimiento de la luz */
+
+@keyframes navLiquidShine {
+
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 180%;
+  }
+
+}
+
 
 /*--------------------------------------------------------------
 # Global Footer
@@ -594,6 +714,7 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+
 .about .content h2 {
   font-weight: 700;
   font-size: 24px;
@@ -620,6 +741,113 @@ section,
   color: var(--accent-color);
   line-height: 0;
 }
+
+
+/*--------------------------------------------------------------
+# About - Profile Image
+--------------------------------------------------------------*/
+
+.about .row > .col-lg-4 {
+  position: relative;
+  overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+# About Profile - Liquid Glass Reflection
+--------------------------------------------------------------*/
+
+.about .row > .col-lg-4 {
+  isolation: isolate;
+}
+
+
+/* Reflejo superior */
+
+.about .row > .col-lg-4::before {
+  content: "";
+  position: absolute;
+  top: 3%;
+  left: 10%;
+  width: 80%;
+  height: 35%;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.30),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  filter: blur(6px);
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 2;
+
+  transition: opacity 0.3s ease;
+}
+
+
+/* Franja luminosa */
+
+.about .row > .col-lg-4::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 60%;
+  height: 260%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.20) 45%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.20) 55%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg) rotate(10deg);
+  filter: blur(8px);
+
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+/* Activar reflejo */
+
+.about .row > .col-lg-4:hover::before {
+  opacity: 1;
+}
+
+
+/* Activar franja luminosa */
+
+.about .row > .col-lg-4:hover::after {
+  opacity: 1;
+  animation: aboutProfileShine 1.3s
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Movimiento de la luz */
+
+@keyframes aboutProfileShine {
+
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 180%;
+  }
+
+}
+
 
 /*--------------------------------------------------------------
 # Stats Section
@@ -759,6 +987,7 @@ section,
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
+
 .portfolio .portfolio-filters {
   padding: 0;
   margin: 0 auto 20px auto;
@@ -855,6 +1084,103 @@ section,
 .portfolio .portfolio-item:hover .portfolio-info {
   opacity: 1;
   bottom: 0;
+}
+
+
+/*--------------------------------------------------------------
+# Academic - Liquid Glass Reflection
+--------------------------------------------------------------*/
+
+.portfolio .portfolio-item {
+  isolation: isolate;
+}
+
+
+/* Reflejo superior */
+
+.portfolio .portfolio-item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 8%;
+  width: 84%;
+  height: 35%;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.30),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  filter: blur(5px);
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 4;
+
+  transition: opacity 0.35s ease;
+}
+
+
+/* Franja luminosa */
+
+.portfolio .portfolio-item::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 70%;
+  height: 260%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg) rotate(10deg);
+  filter: blur(7px);
+
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 5;
+}
+
+
+/* Activar reflejo */
+
+.portfolio .portfolio-item:hover::before {
+  opacity: 1;
+}
+
+
+/* Activar franja luminosa */
+
+.portfolio .portfolio-item:hover::after {
+  opacity: 1;
+  animation: academicPortfolioShine 1.2s
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Movimiento de la luz */
+
+@keyframes academicPortfolioShine {
+
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 180%;
+  }
+
 }
 
 /*--------------------------------------------------------------
@@ -986,9 +1312,11 @@ section,
   fill: #f3268c;
 }
 
+
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
+
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {
   overflow: hidden;
@@ -1067,10 +1395,134 @@ section,
   background-color: var(--accent-color);
 }
 
+
 /*--------------------------------------------------------------
+# Books - Liquid Glass Reflection
+--------------------------------------------------------------*/
+
+.testimonials .testimonial-item .testimonial-img {
+  position: relative;
+  isolation: isolate;
+  transition: 0.3s ease;
+}
+
+
+/* Contenedor de la portada */
+
+.testimonials .testimonial-item .testimonial-img {
+  filter: brightness(1);
+}
+
+
+/* Reflejo superior */
+
+.testimonials .testimonial-item .testimonial-img:hover {
+  filter: brightness(1.08);
+}
+
+/*--------------------------------------------------------------
+# Books - Liquid Glass Shine
+--------------------------------------------------------------*/
+
+.testimonials .testimonial-item > .row > div:last-child > a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+
+/* Reflejo superior */
+
+.testimonials .testimonial-item > .row > div:last-child > a::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 10%;
+  width: 80%;
+  height: 40%;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.03)
+  );
+
+  filter: blur(3px);
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 2;
+
+  transition: opacity 0.3s ease;
+}
+
+
+/* Franja luminosa */
+
+.testimonials .testimonial-item > .row > div:last-child > a::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 70%;
+  height: 260%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg) rotate(10deg);
+  filter: blur(6px);
+
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+/* Activar reflejo */
+
+.testimonials .testimonial-item > .row > div:last-child > a:hover::before {
+  opacity: 1;
+}
+
+
+/* Activar franja */
+
+.testimonials .testimonial-item > .row > div:last-child > a:hover::after {
+  opacity: 1;
+  animation: bookCoverShine 1.2s
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Movimiento de la luz */
+
+@keyframes bookCoverShine {
+
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 180%;
+  }
+
+}
+
+ /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
-.contact .info-item+.info-item {
+
+.contact .info-item + .info-item {
   margin-top: 40px;
 }
 
@@ -1144,7 +1596,105 @@ section,
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 25%);
+  background: color-mix(
+    in srgb,
+    var(--accent-color),
+    transparent 25%
+  );
+}
+
+/*--------------------------------------------------------------
+# Contact Button - Liquid Glass Reflection
+--------------------------------------------------------------*/
+
+.contact .php-email-form button[type=submit] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+
+/* Reflejo superior */
+
+.contact .php-email-form button[type=submit]::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 10%;
+  width: 80%;
+  height: 45%;
+  border-radius: 50px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.03)
+  );
+
+  filter: blur(3px);
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+
+/* Franja luminosa */
+
+.contact .php-email-form button[type=submit]::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 80%;
+  height: 260%;
+
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.35) 55%,
+    transparent 70%
+  );
+
+  transform: skewX(-20deg) rotate(10deg);
+  filter: blur(5px);
+
+  opacity: 0;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* Activar reflejo */
+
+.contact .php-email-form button[type=submit]:hover::before {
+  opacity: 1;
+}
+
+
+/* Activar franja luminosa */
+
+.contact .php-email-form button[type=submit]:hover::after {
+  opacity: 1;
+  animation: contactButtonShine 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Movimiento de la luz */
+
+@keyframes contactButtonShine {
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 180%;
+  }
 }
 
 /*--------------------------------------------------------------
