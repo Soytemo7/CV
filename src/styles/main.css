@@ -1095,6 +1095,7 @@ section,
 /*--------------------------------------------------------------
 # Resume Section
 --------------------------------------------------------------*/
+
 .resume .resume-title {
   color: var(--heading-color);
   font-size: 26px;
@@ -1106,8 +1107,14 @@ section,
 .resume .resume-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
+
   border-left: 2px solid var(--accent-color);
+
   position: relative;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .resume .resume-item h4 {
@@ -1115,8 +1122,17 @@ section,
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+
+  color: color-mix(
+    in srgb,
+    var(--default-color),
+    transparent 20%
+  );
+
   margin-bottom: 10px;
+
+  transition:
+    color 0.35s ease;
 }
 
 .resume .resume-item h5 {
@@ -1125,6 +1141,10 @@ section,
   display: inline-block;
   font-weight: 600;
   margin-bottom: 10px;
+
+  transition:
+    color 0.35s ease,
+    transform 0.35s ease;
 }
 
 .resume .resume-item ul {
@@ -1139,16 +1159,178 @@ section,
   padding-bottom: 0;
 }
 
+
+/*--------------------------------------------------------------
+# Resume - Timeline Node
+--------------------------------------------------------------*/
+
 .resume .resume-item::before {
   content: "";
+
   position: absolute;
+
   width: 16px;
   height: 16px;
-  border-radius: 50px;
+
+  border-radius: 50%;
+
   left: -9px;
   top: 0;
+
   background: var(--background-color);
+
   border: 2px solid var(--accent-color);
+
+  z-index: 2;
+
+  transition:
+    transform 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/*--------------------------------------------------------------
+# Resume - Timeline Glow
+--------------------------------------------------------------*/
+
+.resume .resume-item::after {
+  content: "";
+
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+
+  left: -16px;
+  top: -7px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 55%
+    ),
+    transparent 70%
+  );
+
+  opacity: 0;
+
+  transform: scale(0.4);
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+/*--------------------------------------------------------------
+# Resume - Hover
+--------------------------------------------------------------*/
+
+.resume .resume-item:hover {
+  transform: translateX(5px);
+}
+
+.resume .resume-item:hover::before {
+  background: var(--accent-color);
+
+  transform: scale(1.2);
+
+  box-shadow:
+    0 0 12px
+    color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 20%
+    );
+}
+
+.resume .resume-item:hover::after {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+.resume .resume-item:hover h4 {
+  color: var(--accent-color);
+}
+
+.resume .resume-item:hover h5 {
+  color: var(--accent-color);
+
+  transform: translateX(3px);
+}
+
+/*--------------------------------------------------------------
+# Resume - Timeline Pulse
+--------------------------------------------------------------*/
+
+.resume .resume-item::before {
+  animation: resumeNodePulse 2.2s ease-in-out infinite;
+}
+
+.resume .resume-item:nth-child(2)::before {
+  animation-delay: 0.4s;
+}
+
+.resume .resume-item:nth-child(3)::before {
+  animation-delay: 0.8s;
+}
+
+.resume .resume-item:nth-child(4)::before {
+  animation-delay: 1.2s;
+}
+
+.resume .resume-item:nth-child(5)::before {
+  animation-delay: 1.6s;
+}
+
+@keyframes resumeNodePulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      0 0 0 0
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 100%
+      );
+  }
+
+  45% {
+    transform: scale(1.35);
+
+    box-shadow:
+      0 0 10px 4px
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 35%
+      );
+  }
+
+  65% {
+    transform: scale(1.1);
+
+    box-shadow:
+      0 0 18px 7px
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 70%
+      );
+  }
 }
 
 /*--------------------------------------------------------------
