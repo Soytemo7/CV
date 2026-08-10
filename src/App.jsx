@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import MainLayout from "./layouts/MainLayout";
-
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Stats from "./components/Stats";
@@ -12,9 +10,15 @@ import Services from "./components/Services";
 import Books from "./components/Books";
 import Contact from "./components/Contact";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { useScrollSpy } from "./hooks/useScrollSpy";
 import useVisitCounter from "./hooks/useVisitCounter";
 
+import MainLayout from "./layouts/MainLayout";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
 
@@ -24,10 +28,8 @@ function App() {
     return savedTheme === "dark";
   });
 
-
   useScrollSpy();
   useVisitCounter();
-
 
   useEffect(() => {
     localStorage.setItem(
@@ -36,26 +38,52 @@ function App() {
     );
   }, [isDark]);
 
-
   return (
-    <MainLayout
-      isDark={isDark}
-      setIsDark={setIsDark}
-    >
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <Routes>
 
-      <Hero />
-      <About />
-      <Stats />
-      <Skills />
-      <Resume />
-      <Academic />
-      <Services />
-      <Books />
-      <Contact />
+        {/* CV — SPA actual */}
+        <Route
+          path="/"
+          element={
+            <MainLayout
+              isDark={isDark}
+              setIsDark={setIsDark}
+            >
+              <Hero />
+              <About />
+              <Stats />
+              <Skills />
+              <Resume />
+              <Academic />
+              <Services />
+              <Books />
+              <Contact />
+            </MainLayout>
+          }
+        />
 
-    </MainLayout>
+        {/* Login */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        {/* Registro */}
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 
 export default App;
