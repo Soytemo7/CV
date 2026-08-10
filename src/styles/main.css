@@ -389,6 +389,7 @@ h6 {
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
+
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -407,7 +408,7 @@ h6 {
 }
 
 .footer p {
-  font-size: 15;
+  font-size: 15px;
   font-style: italic;
   padding: 0;
   margin: 0 0 30px 0;
@@ -422,25 +423,99 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: var(--accent-color);
   color: var(--contrast-color);
+
   line-height: 1;
   margin: 0 4px;
+
   border-radius: 50%;
   text-align: center;
+
   width: 36px;
   height: 36px;
+
   transition: 0.3s;
+
+  /* Necesario para el brillo */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
+/* Icono por encima del brillo */
+
+.footer .social-links a i {
+  position: relative;
+  z-index: 2;
+}
+
+/*--------------------------------------------------------------
+# Footer - Liquid Shine
+--------------------------------------------------------------*/
+
+.footer .social-links a::after {
+  content: "";
+  position: absolute;
+
+  top: -60%;
+  left: -80%;
+
+  width: 45%;
+  height: 220%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.75),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  filter: blur(1px);
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  animation: footerSocialShine 2.5s ease-in-out infinite;
+}
+
+@keyframes footerSocialShine {
+
+  0% {
+    left: -80%;
+  }
+
+  100% {
+    left: 140%;
+  }
+
+}
+
+/*--------------------------------------------------------------
+# Footer - Hover
+--------------------------------------------------------------*/
+
 .footer .social-links a:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  background: color-mix(
+    in srgb,
+    var(--accent-color),
+    transparent 20%
+  );
+
   text-decoration: none;
 }
 
 .footer .copyright {
   padding-top: 25px;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-top: 1px solid color-mix(
+    in srgb,
+    var(--default-color),
+    transparent 90%
+  );
 }
 
 .footer .credits {
