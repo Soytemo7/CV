@@ -16,6 +16,7 @@ import { useScrollSpy } from "./hooks/useScrollSpy";
 import useVisitCounter from "./hooks/useVisitCounter";
 
 import MainLayout from "./layouts/MainLayout";
+import PrivateLayout from "./layouts/PrivateLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -78,7 +79,7 @@ function App() {
         {/* Dashboard */}
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+           element={<PrivateLayout><Dashboard /></PrivateLayout>}
         />
 
         {/* Cualquier ruta inexistente */}
