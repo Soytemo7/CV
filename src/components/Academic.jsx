@@ -1,5 +1,6 @@
 import useIsotope from "../hooks/useIsotope";
 import useGLightbox from "../hooks/useGLightbox";
+import GravityGallery from "./GravityGallery";
 
 function Academic() {
 
@@ -148,6 +149,8 @@ function Academic() {
         </div>
 
       </div>
+
+      <GravityGallery />
 
     </section>
   );

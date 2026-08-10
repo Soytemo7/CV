@@ -17,6 +17,7 @@
     "glightbox": "^3.3.1",
     "imagesloaded": "^5.0.0",
     "isotope-layout": "^3.0.6",
+    "matter-js": "^0.20.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-helmet-async": "^3.0.0",
