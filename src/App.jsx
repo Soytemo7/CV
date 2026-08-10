@@ -10,7 +10,7 @@ import Services from "./components/Services";
 import Books from "./components/Books";
 import Contact from "./components/Contact";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { useScrollSpy } from "./hooks/useScrollSpy";
 import useVisitCounter from "./hooks/useVisitCounter";
@@ -80,6 +80,9 @@ function App() {
           path="/dashboard"
           element={<Dashboard />}
         />
+
+        {/* Cualquier ruta inexistente */}
+        <Route path="*" element={<Navigate to="/" replace />} />
 
       </Routes>
     </BrowserRouter>
