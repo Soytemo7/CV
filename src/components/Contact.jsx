@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { showMessage } from "../utils/toast";
-
+import { useNotification } from "../hooks/useNotification";
 
 function Contact() {
 
+  const notification = useNotification();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,8 +14,6 @@ function Contact() {
 
 
   const [sending, setSending] = useState(false);
-
-
 
   const handleChange = (e) => {
 
@@ -61,9 +59,17 @@ function Contact() {
       if (response.ok) {
 
 
-        showMessage(
-          "¡Su mensaje ha sido enviado correctamente!"
-        );
+        notification.success({
+          title: "¡Mensaje enviado!",
+          description:
+            "Su mensaje ha sido enviado correctamente.",
+          placement: "bottomRight",
+          duration: 8,
+          showProgress: true,
+          pauseOnHover: true,
+          closable: true,
+          className: "welcome-notification",
+        });
 
 
         setFormData({
@@ -79,10 +85,17 @@ function Contact() {
       } else {
 
 
-        showMessage(
-          "Ocurrió un error al enviar el mensaje.",
-          "error"
-        );
+        notification.error({
+          title: "Error al enviar",
+          description:
+            "Ocurrió un error al enviar el mensaje.",
+          placement: "bottomRight",
+          duration: 8,
+          showProgress: true,
+          pauseOnHover: true,
+          closable: true,
+          className: "welcome-notification",
+        });
 
 
       }
@@ -95,10 +108,17 @@ function Contact() {
       console.error(error);
 
 
-      showMessage(
-        "No fue posible conectar con el servidor.",
-        "error"
-      );
+      notification.error({
+        title: "Error de conexión",
+        description:
+          "No fue posible conectar con el servidor.",
+        placement: "bottomRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
 
 
     }

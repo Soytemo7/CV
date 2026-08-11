@@ -1,0 +1,50 @@
+/*--------------------------------------------------------------
+# Welcome Notification — Light Sweep
+--------------------------------------------------------------*/
+
+.welcome-notification {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Capa de luz */
+.welcome-notification::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 45%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+
+  pointer-events: none;
+
+  z-index: 10;
+
+  animation: welcome-light-sweep 3s linear 3;
+}
+
+@keyframes welcome-light-sweep {
+
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+
+}

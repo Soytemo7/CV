@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@srexi/purecounterjs": "^1.5.0",
+    "antd": "^6.6.0",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
@@ -23,7 +24,6 @@
     "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.18.2",
     "swiper": "^14.0.7",
-    "toastify-js": "^1.12.0",
     "typed.js": "^3.0.0"
   },
   "devDependencies": {

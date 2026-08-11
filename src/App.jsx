@@ -9,6 +9,8 @@ import Academic from "./components/Academic";
 import Services from "./components/Services";
 import Books from "./components/Books";
 import Contact from "./components/Contact";
+import WelcomeNotification from "./components/WelcomeNotification";
+import NotificationProvider from "./components/NotificationProvider";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -41,51 +43,55 @@ function App() {
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <Routes>
+      <NotificationProvider>
+        <WelcomeNotification />
 
-        {/* CV — SPA actual */}
-        <Route
-          path="/"
-          element={
-            <MainLayout
+        <Routes>
+
+          {/* CV — SPA actual */}
+          <Route
+            path="/"
+            element={
+              <MainLayout
               isDark={isDark}
               setIsDark={setIsDark}
-            >
-              <Hero />
-              <About />
-              <Stats />
-              <Skills />
-              <Resume />
-              <Academic />
-              <Services />
-              <Books />
-              <Contact />
-            </MainLayout>
-          }
-        />
+              >
+                <Hero />
+                <About />
+                <Stats />
+                <Skills />
+                <Resume />
+                <Academic />
+                <Services />
+                <Books />
+                <Contact />
+              </MainLayout>
+            }
+            />
 
-        {/* Login */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+          {/* Login */}
+          <Route
+            path="/login"
+            element={<Login />}
+            />
 
-        {/* Registro */}
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+          {/* Registro */}
+          <Route
+            path="/register"
+            element={<Register />}
+            />
 
-        {/* Dashboard */}
-        <Route
-          path="/dashboard"
-           element={<PrivateLayout><Dashboard /></PrivateLayout>}
-        />
+          {/* Dashboard */}
+          <Route
+            path="/dashboard"
+            element={<PrivateLayout><Dashboard /></PrivateLayout>}
+            />
 
-        {/* Cualquier ruta inexistente */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Cualquier ruta inexistente */}
+          <Route path="*" element={<Navigate to="/" replace />} />
 
-      </Routes>
+        </Routes>
+      </NotificationProvider>
     </BrowserRouter>
   );
 }
