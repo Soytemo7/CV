@@ -5,7 +5,7 @@ import "../styles/welcome-notification.css";
 
 function WelcomeNotification() {
   const [api, contextHolder] = notification.useNotification();
-  const location = useLocation();
+  const location = useLocation(); 
 
   useEffect(() => {
     const notifications = {
@@ -49,7 +49,10 @@ function WelcomeNotification() {
       description:
         currentNotification.description,
 
-      placement: "bottomRight",
+      placement:
+        window.innerWidth <= 576
+          ? "bottom"
+          : "bottomRight",
 
       duration: 8,
 
