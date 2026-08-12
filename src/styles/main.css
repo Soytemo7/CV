@@ -910,6 +910,7 @@ section,
 
 .stats i::after {
   content: "";
+
   position: absolute;
 
   top: -50%;
@@ -948,6 +949,11 @@ section,
 
 }
 
+
+/*--------------------------------------------------------------
+# Stats Counter
+--------------------------------------------------------------*/
+
 .stats .stats-item {
   margin-top: 10px;
   width: 100%;
@@ -956,12 +962,50 @@ section,
   z-index: 0;
 }
 
-.stats .stats-item span {
+.stats .stats-counter {
   font-size: 36px;
   display: block;
   font-weight: 700;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
+
+  transform: scale(1);
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
 }
+
+
+/*--------------------------------------------------------------
+# Stats Counter - Llegada
+--------------------------------------------------------------*/
+
+.stats .stats-counter-finished {
+  animation: statsCounterArrival 0.5s ease-out;
+}
+
+@keyframes statsCounterArrival {
+
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  45% {
+    transform: scale(1.25);
+    filter: brightness(1.7);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+}
+
+
+/*--------------------------------------------------------------
+# Stats Text
+--------------------------------------------------------------*/
 
 .stats .stats-item p {
   padding: 0;
