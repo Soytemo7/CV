@@ -2049,6 +2049,11 @@ section,
   border-radius: 50px;
   transition: all 0.3s ease-in-out;
   margin-right: 15px;
+
+  /* Necesario para el brillo */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .contact .info-item h3 {
@@ -2206,6 +2211,106 @@ section,
   100% {
     left: 180%;
   }
+}
+
+/*--------------------------------------------------------------
+# Contact Icons - Liquid Shine
+--------------------------------------------------------------*/
+
+.contact .info-item i::after {
+  content: "";
+
+  position: absolute;
+
+  top: -60%;
+  left: -80%;
+
+  width: 45%;
+  height: 220%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.75),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  filter: blur(1px);
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  animation: contactIconShine 2.5s ease-in-out infinite;
+}
+
+@keyframes contactIconShine {
+
+  0% {
+    left: -80%;
+  }
+
+  100% {
+    left: 140%;
+  }
+
+}
+
+/*--------------------------------------------------------------
+# Contact Form - Moving Shine
+--------------------------------------------------------------*/
+
+.contact-field {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-field .form-control {
+  position: relative;
+  z-index: 1;
+}
+
+/* Línea brillante */
+
+.contact-field-shine {
+  position: absolute;
+
+  left: -40%;
+  bottom: 0;
+
+  width: 40%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 70, 160, 0.4),
+    rgba(0, 70, 160, 1),
+    rgba(0, 70, 160, 0.4),
+    transparent
+  );
+
+  filter: blur(0.5px);
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  animation: contactFieldShine 3.5s ease-in-out infinite;
+}
+
+@keyframes contactFieldShine {
+
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 100%;
+  }
+
 }
 
 /*--------------------------------------------------------------

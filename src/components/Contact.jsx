@@ -263,129 +263,95 @@ function Contact() {
 
 
                 <div className="col-md-6">
-
-                  <input
-
-                    type="text"
-
-                    name="name"
-
-                    className="form-control"
-
-                    placeholder="Tu nombre"
-
-                    value={formData.name}
-
-                    onChange={handleChange}
-
-                    required
-
-                  />
-
+                  <div className="contact-field">
+                    <input
+                      type="text"
+                      name="name"
+                      className="form-control"
+                      placeholder="Tu nombre"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className="contact-field-shine"></span>
+                  </div>
                 </div>
-
-
-
-
 
                 <div className="col-md-6">
 
-                  <input
+                  <div className="contact-field">
 
-                    type="email"
+                    <input
+                      type="email"
+                      name="email"
+                      className="form-control"
+                      placeholder="Tu correo electrónico"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
 
-                    name="email"
+                    <span className="contact-field-shine"></span>
 
-                    className="form-control"
-
-                    placeholder="Tu correo electrónico"
-
-                    value={formData.email}
-
-                    onChange={handleChange}
-
-                    required
-
-                  />
+                  </div>
 
                 </div>
-
-
-
-
 
                 <div className="col-md-12">
 
-                  <input
+                  <div className="contact-field">
 
-                    type="text"
+                    <input
+                      type="text"
+                      name="subject"
+                      className="form-control"
+                      placeholder="Asunto"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                    />
 
-                    name="subject"
+                    <span className="contact-field-shine"></span>
 
-                    className="form-control"
+                  </div>
 
-                    placeholder="Asunto"
-
-                    value={formData.subject}
-
-                    onChange={handleChange}
-
-                    required
-
-                  />
-
-                </div>
-
-
-
-
+                </div>         
 
                 <div className="col-md-12">
 
-                  <textarea
+                  <div className="contact-field">
 
-                    name="message"
+                    <textarea
+                      name="message"
+                      className="form-control"
+                      rows="6"
+                      placeholder="Mensaje"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    ></textarea>
 
-                    className="form-control"
+                    <span className="contact-field-shine"></span>
 
-                    rows="6"
+                  </div>
 
-                    placeholder="Mensaje"
+                </div>           
 
-                    value={formData.message}
+                <div className="col-md-12">
+                  <div className="contact-field">
+                    <textarea
+                      name="message"
+                      className="form-control"
+                      rows="6"
+                      placeholder="Mensaje"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    ></textarea>
 
-                    onChange={handleChange}
-
-                    required
-
-                  ></textarea>
-
+                    <span className="contact-field-shine"></span>
+                  </div>
                 </div>
-
-
-
-
-
-                <div className="col-md-12 text-center">
-
-
-                  <button
-
-                    type="submit"
-
-                    disabled={sending}
-
-                  >
-
-                    {sending ? "Enviando..." : "Enviar mensaje"}
-
-
-                  </button>
-
-
-                </div>
-
-
 
               </div>
 
