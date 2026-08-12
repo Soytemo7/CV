@@ -776,6 +776,7 @@ section,
   }
 }
 
+
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
@@ -809,108 +810,68 @@ section,
 
 
 /*--------------------------------------------------------------
-# About - Profile Image
+# About - Profile Card Position
 --------------------------------------------------------------*/
 
 .about .row > .col-lg-4 {
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
+
 
 /*--------------------------------------------------------------
-# About Profile - Liquid Glass Reflection
+# About - Mobile
 --------------------------------------------------------------*/
 
-.about .row > .col-lg-4 {
-  isolation: isolate;
-}
+@media (max-width: 991px) {
 
-
-/* Reflejo superior */
-
-.about .row > .col-lg-4::before {
-  content: "";
-  position: absolute;
-  top: 3%;
-  left: 10%;
-  width: 80%;
-  height: 35%;
-
-  border-radius: 50%;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.30),
-    rgba(255, 255, 255, 0.02)
-  );
-
-  filter: blur(6px);
-  opacity: 0;
-
-  pointer-events: none;
-  z-index: 2;
-
-  transition: opacity 0.3s ease;
-}
-
-
-/* Franja luminosa */
-
-.about .row > .col-lg-4::after {
-  content: "";
-  position: absolute;
-  top: -80%;
-  left: -120%;
-  width: 60%;
-  height: 260%;
-
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.20) 45%,
-    rgba(255, 255, 255, 0.75) 50%,
-    rgba(255, 255, 255, 0.20) 55%,
-    transparent 70%
-  );
-
-  transform: skewX(-20deg) rotate(10deg);
-  filter: blur(8px);
-
-  opacity: 0;
-
-  pointer-events: none;
-  z-index: 3;
-}
-
-
-/* Activar reflejo */
-
-.about .row > .col-lg-4:hover::before {
-  opacity: 1;
-}
-
-
-/* Activar franja luminosa */
-
-.about .row > .col-lg-4:hover::after {
-  opacity: 1;
-  animation: aboutProfileShine 1.3s
-    cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-
-/* Movimiento de la luz */
-
-@keyframes aboutProfileShine {
-
-  0% {
-    left: -120%;
+  .about .row {
+    justify-content: center;
   }
 
-  100% {
-    left: 180%;
+  .about .row > .col-lg-4 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
 
+  .about .row > .content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about .content ul {
+    text-align: left;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# About - Small Mobile
+--------------------------------------------------------------*/
+
+@media (max-width: 576px) {
+
+  .about .container {
+    width: 100%;
+  }
+
+  .about .row {
+    justify-content: center;
+  }
+
+  .about .row > .col-lg-4 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about .row > .content {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /*--------------------------------------------------------------

@@ -1,3 +1,5 @@
+import ProfileCard from "./ProfileCard";
+
 function About() {
   
     const website =
@@ -22,10 +24,22 @@ function About() {
         <div className="row gy-4 justify-content-center">
 
           <div className="col-lg-4">
-            <img
-              src={`${import.meta.env.BASE_URL}img/profile-img.png`}
-              className="img-fluid"
-              alt=""
+            <ProfileCard
+              name="Manuel Parra"
+              title="Dr. en Derecho Fiscal"
+              handle="manuelparra"
+              status="Disponible"
+              contactText="Contactar"
+              avatarUrl={`${import.meta.env.BASE_URL}img/profile-img.jpg`}
+              showUserInfo={false}
+              enableTilt={true}
+              enableMobileTilt={true}
+              onContactClick={() => console.log("Contact clicked")}
+              behindGlowColor="rgba(125, 190, 255, 0.67)"
+              iconUrl={`${import.meta.env.BASE_URL}img/iconpattern.png`}
+              behindGlowEnabled={true}
+              innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+              grainUrl={`${import.meta.env.BASE_URL}img/grain.webp`}
             />
           </div>
 
