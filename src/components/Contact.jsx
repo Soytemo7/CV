@@ -12,7 +12,6 @@ function Contact() {
     message: ""
   });
 
-
   const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
@@ -25,8 +24,6 @@ function Contact() {
   };
 
 
-
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
@@ -36,14 +33,12 @@ function Contact() {
 
     try {
 
-
       const data = new FormData();
 
       data.append("name", formData.name);
       data.append("email", formData.email);
       data.append("subject", formData.subject);
       data.append("message", formData.message);
-
 
 
       const response = await fetch(
@@ -55,9 +50,7 @@ function Contact() {
       );
 
 
-
       if (response.ok) {
-
 
         notification.success({
           title: "¡Mensaje enviado!",
@@ -73,17 +66,14 @@ function Contact() {
 
 
         setFormData({
-
           name: "",
           email: "",
           subject: "",
           message: ""
-
         });
 
 
       } else {
-
 
         notification.error({
           title: "Error al enviar",
@@ -97,13 +87,10 @@ function Contact() {
           className: "welcome-notification",
         });
 
-
       }
 
 
-
     } catch (error) {
-
 
       console.error(error);
 
@@ -120,16 +107,12 @@ function Contact() {
         className: "welcome-notification",
       });
 
-
     }
-
 
 
     setSending(false);
 
-
   };
-
 
 
   return (
@@ -149,7 +132,6 @@ function Contact() {
       </div>
 
 
-
       <div
         className="container"
         data-aos="fade"
@@ -158,7 +140,6 @@ function Contact() {
 
 
         <div className="row gy-4">
-
 
 
           <div className="col-lg-4">
@@ -185,8 +166,6 @@ function Contact() {
             </div>
 
 
-
-
             <div
               className="info-item d-flex"
               data-aos="fade-up"
@@ -206,8 +185,6 @@ function Contact() {
               </div>
 
             </div>
-
-
 
 
             <div
@@ -236,34 +213,25 @@ function Contact() {
           </div>
 
 
-
-
-
-
           <div className="col-lg-8">
 
 
             <form
-
               id="contact-form"
-
               className="php-email-form"
-
               onSubmit={handleSubmit}
-
               data-aos="fade-up"
-
               data-aos-delay="200"
-
             >
 
 
               <div className="row gy-4">
 
 
-
                 <div className="col-md-6">
+
                   <div className="contact-field">
+
                     <input
                       type="text"
                       name="name"
@@ -273,9 +241,13 @@ function Contact() {
                       onChange={handleChange}
                       required
                     />
+
                     <span className="contact-field-shine"></span>
+
                   </div>
+
                 </div>
+
 
                 <div className="col-md-6">
 
@@ -297,6 +269,7 @@ function Contact() {
 
                 </div>
 
+
                 <div className="col-md-12">
 
                   <div className="contact-field">
@@ -315,43 +288,46 @@ function Contact() {
 
                   </div>
 
-                </div>         
-
-                <div className="col-md-12">
-
-                  <div className="contact-field">
-
-                    <textarea
-                      name="message"
-                      className="form-control"
-                      rows="6"
-                      placeholder="Mensaje"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                    ></textarea>
-
-                    <span className="contact-field-shine"></span>
-
-                  </div>
-
-                </div>           
-
-                <div className="col-md-12">
-                  <div className="contact-field">
-                    <textarea
-                      name="message"
-                      className="form-control"
-                      rows="6"
-                      placeholder="Mensaje"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                    ></textarea>
-
-                    <span className="contact-field-shine"></span>
-                  </div>
                 </div>
+
+
+                <div className="col-md-12">
+
+                  <div className="contact-field">
+
+                    <textarea
+                      name="message"
+                      className="form-control"
+                      rows="6"
+                      placeholder="Mensaje"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    ></textarea>
+
+                    <span className="contact-field-shine"></span>
+
+                  </div>
+
+                </div>
+
+
+                <div className="col-md-12 text-center">
+
+                  <button
+                    type="submit"
+                    disabled={sending}
+                  >
+
+                    {sending
+                      ? "Enviando..."
+                      : "Enviar mensaje"
+                    }
+
+                  </button>
+
+                </div>
+
 
               </div>
 
@@ -373,6 +349,5 @@ function Contact() {
   );
 
 }
-
 
 export default Contact;
