@@ -9,10 +9,12 @@ import {
 
 const AuthContext = createContext(null);
 
-function AuthProvider({ children }) {
+
+function AuthProvider({ children, checkOnMount = false }) {
 
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(checkOnMount);
+
 
   const checkSession = async () => {
 
@@ -34,32 +36,23 @@ function AuthProvider({ children }) {
 
   };
 
+
   useEffect(() => {
 
-  const initializeAuth = async () => {
+    if (!checkOnMount) {
+      return;
+    }
 
-      try {
+    const initializeAuth = async () => {
 
-        const data = await getCurrentUser();
-
-        setUser(data.user);
-
-      } catch {
-
-        setUser(null);
-
-      } finally {
-
-        setLoading(false);
-
-      }
+      await checkSession();
 
     };
 
     initializeAuth();
 
-  }, []);
-  
+  }, [checkOnMount]);
+
 
   const login = async (email, password) => {
 
@@ -70,6 +63,7 @@ function AuthProvider({ children }) {
     return data;
 
   };
+
 
   const register = async (name, email, password) => {
 
@@ -83,6 +77,7 @@ function AuthProvider({ children }) {
 
   };
 
+
   const logout = async () => {
 
     await logoutRequest();
@@ -90,6 +85,7 @@ function AuthProvider({ children }) {
     setUser(null);
 
   };
+
 
   return (
     <AuthContext.Provider
@@ -107,5 +103,6 @@ function AuthProvider({ children }) {
   );
 
 }
+
 
 export { AuthContext, AuthProvider };
