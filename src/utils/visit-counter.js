@@ -1,4 +1,4 @@
-const API_URL = "https://cv-backend-api.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function registerVisit() {
 
@@ -8,15 +8,21 @@ export async function registerVisit() {
       `${API_URL}/api/visit`,
       {
         method: "POST",
+        credentials: "include",
         keepalive: true
       }
     );
 
+    const data = await response.json();
 
     if (!response.ok) {
-      throw new Error("No fue posible registrar la visita.");
+      throw new Error(
+        data.error ||
+        "No fue posible registrar la visita."
+      );
     }
 
+    return data;
 
   } catch (error) {
 
