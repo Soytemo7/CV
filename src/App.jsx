@@ -23,6 +23,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 
+import { AuthProvider } from "./context/AuthContext.jsx";
+
 function App() {
 
   const [isDark, setIsDark] = useState(() => {
@@ -44,53 +46,56 @@ function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <NotificationProvider>
+        <AuthProvider>
+
         <WelcomeNotification />
 
-        <Routes>
+          <Routes>
 
-          {/* CV — SPA actual */}
-          <Route
-            path="/"
-            element={
-              <MainLayout
-              isDark={isDark}
-              setIsDark={setIsDark}
-              >
-                <Hero />
-                <About />
-                <Stats />
-                <Skills />
-                <Resume />
-                <Academic />
-                <Services />
-                <Books />
-                <Contact />
-              </MainLayout>
-            }
-            />
+            {/* CV — SPA actual */}
+            <Route
+              path="/"
+              element={
+                <MainLayout
+                isDark={isDark}
+                setIsDark={setIsDark}
+                >
+                  <Hero />
+                  <About />
+                  <Stats />
+                  <Skills />
+                  <Resume />
+                  <Academic />
+                  <Services />
+                  <Books />
+                  <Contact />
+                </MainLayout>
+              }
+              />
 
-          {/* Login */}
-          <Route
-            path="/login"
-            element={<Login />}
-            />
+            {/* Login */}
+            <Route
+              path="/login"
+              element={<Login />}
+              />
 
-          {/* Registro */}
-          <Route
-            path="/register"
-            element={<Register />}
-            />
+            {/* Registro */}
+            <Route
+              path="/register"
+              element={<Register />}
+              />
 
-          {/* Dashboard */}
-          <Route
-            path="/dashboard"
-            element={<PrivateLayout><Dashboard /></PrivateLayout>}
-            />
+            {/* Dashboard */}
+            <Route
+              path="/dashboard"
+              element={<PrivateLayout><Dashboard /></PrivateLayout>}
+              />
 
-          {/* Cualquier ruta inexistente */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+            {/* Cualquier ruta inexistente */}
+            <Route path="*" element={<Navigate to="/" replace />} />
 
-        </Routes>
+          </Routes>
+        </AuthProvider>
       </NotificationProvider>
     </BrowserRouter>
   );

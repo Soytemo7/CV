@@ -56,7 +56,7 @@ function Contact() {
           title: "¡Mensaje enviado!",
           description:
             "Su mensaje ha sido enviado correctamente.",
-          placement: "bottomRight",
+          placement: "topRight",
           duration: 8,
           showProgress: true,
           pauseOnHover: true,
@@ -79,7 +79,7 @@ function Contact() {
           title: "Error al enviar",
           description:
             "Ocurrió un error al enviar el mensaje.",
-          placement: "bottomRight",
+          placement: "topRight",
           duration: 8,
           showProgress: true,
           pauseOnHover: true,
@@ -99,7 +99,7 @@ function Contact() {
         title: "Error de conexión",
         description:
           "No fue posible conectar con el servidor.",
-        placement: "bottomRight",
+        placement: "topRight",
         duration: 8,
         showProgress: true,
         pauseOnHover: true,
