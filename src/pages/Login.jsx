@@ -1,14 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNotification } from "../hooks/useNotification";
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
+import ThemeToggle from "../components/common/ThemeToggle";
 
 function Login() {
+
+  console.log("URL:", window.location.origin);
+  console.log("localStorage:", { ...localStorage });
 
   const { login } = useContext(AuthContext);
   const notification = useNotification();
   const navigate = useNavigate();
+
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   const [formData, setFormData] = useState({
     email: "",
@@ -16,6 +24,25 @@ function Login() {
   });
 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+
+    localStorage.setItem(
+      "theme",
+      isDark ? "dark" : "light"
+    );
+
+    document.body.classList.toggle(
+      "dark-background",
+      isDark
+    );
+
+    document.body.classList.toggle(
+      "light-background",
+      !isDark
+    );
+
+  }, [isDark]);
 
   const handleChange = (event) => {
 
@@ -36,6 +63,7 @@ function Login() {
     const password = formData.password;
 
     if (!email || !password) {
+
       notification.error({
         title: "Datos incompletos",
         description: "Correo y contraseña son obligatorios.",
@@ -51,6 +79,7 @@ function Login() {
     }
 
     if (password.length < 8 || password.length > 128) {
+
       notification.error({
         title: "Credenciales no válidas",
         description: "Las credenciales proporcionadas no son válidas.",
@@ -115,7 +144,12 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
+    <div className={`login-page ${isDark ? "dark" : "light"}`}>
+
+      <ThemeToggle
+        isDark={isDark}
+        setIsDark={setIsDark}
+      />
 
       <div className="login-container">
 
