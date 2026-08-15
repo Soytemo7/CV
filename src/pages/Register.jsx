@@ -764,6 +764,7 @@ function Register() {
         ----------------------------------------------------------*/}
 
         <div
+          className="password-rules"
           style={{
             position: "absolute",
             left: "50%",
