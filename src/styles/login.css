@@ -1,3 +1,7 @@
+/*==============================================================
+# LOGIN PAGE
+==============================================================*/
+
 .login-page {
   width: 100%;
   min-height: 100vh;
@@ -7,16 +11,71 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  gap: 18px;
 
   overflow: hidden;
-
   position: relative;
 }
 
 
-/*--------------------------------------------------------------
-# Login Container
---------------------------------------------------------------*/
+/*==============================================================
+# LOGIN STEPS
+==============================================================*/
+
+.login-steps {
+  width: min(480px, calc(100vw - 40px));
+
+  position: relative;
+  z-index: 20;
+
+  padding: 0 4px;
+
+  flex-shrink: 0;
+}
+
+.login-page .login-steps .ant-steps {
+  width: 100%;
+}
+
+.login-page .login-steps .ant-steps-item {
+  transition: opacity 0.3s ease;
+}
+
+.login-page .login-steps .ant-steps-item-title {
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.login-page .login-steps .ant-steps-item-icon {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.login-page .login-steps .ant-steps-item-tail {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.login-page .login-steps .ant-steps-item-tail::after {
+  transition:
+    background-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+
+/*==============================================================
+# LOGIN CONTAINER
+==============================================================*/
 
 .login-container {
   --form-width: 315px;
@@ -27,15 +86,15 @@
   --button-color: rgba(255, 255, 255, 0.065);
   --footer-color: rgba(255, 255, 255, 0.48);
 
+  width: calc(var(--form-width) + 1px);
+  height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: relative;
   overflow: hidden;
-
-  width: calc(var(--form-width) + 1px);
-  height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
 
   background: var(--login-box-color);
 
@@ -50,15 +109,14 @@
 }
 
 
-/*--------------------------------------------------------------
-# Animated Border
---------------------------------------------------------------*/
+/*==============================================================
+# ANIMATED BORDER
+==============================================================*/
 
 .login-container::before {
   content: "";
 
   position: absolute;
-
   inset: -60px;
 
   z-index: -2;
@@ -75,15 +133,15 @@
 }
 
 @keyframes login-spin {
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
 
 
-/*--------------------------------------------------------------
-# Login Box
---------------------------------------------------------------*/
+/*==============================================================
+# LOGIN BOX
+==============================================================*/
 
 .login-box {
   position: absolute;
@@ -121,9 +179,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Form
---------------------------------------------------------------*/
+/*==============================================================
+# FORM
+==============================================================*/
 
 .login-form {
   width: 100%;
@@ -138,9 +196,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Security Icon
---------------------------------------------------------------*/
+/*==============================================================
+# SECURITY ICON
+==============================================================*/
 
 .login-logo {
   width: 65px;
@@ -179,9 +237,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Security Icon Light
---------------------------------------------------------------*/
+/*==============================================================
+# SECURITY ICON LIGHT
+==============================================================*/
 
 .login-logo::before {
   content: "";
@@ -213,9 +271,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Shield
---------------------------------------------------------------*/
+/*==============================================================
+# SHIELD
+==============================================================*/
 
 .login-shield {
   position: relative;
@@ -255,15 +313,14 @@
 }
 
 
-/*--------------------------------------------------------------
-# Shield Interior
---------------------------------------------------------------*/
+/*==============================================================
+# SHIELD INTERIOR
+==============================================================*/
 
 .login-shield::before {
   content: "";
 
   position: absolute;
-
   inset: 2px;
 
   background:
@@ -275,14 +332,13 @@
 
   clip-path: inherit;
 
-  transition:
-    background 0.45s ease;
+  transition: background 0.45s ease;
 }
 
 
-/*--------------------------------------------------------------
-# Shield Check
---------------------------------------------------------------*/
+/*==============================================================
+# SHIELD CHECK
+==============================================================*/
 
 .login-shield-check {
   position: absolute;
@@ -301,9 +357,7 @@
   transform: rotate(-45deg);
 
   filter:
-    drop-shadow(
-      0 0 4px rgba(255, 255, 255, 0.35)
-    );
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.35));
 
   transition:
     border-color 0.3s ease,
@@ -312,9 +366,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Shield Pulse
---------------------------------------------------------------*/
+/*==============================================================
+# SHIELD PULSE
+==============================================================*/
 
 @keyframes login-shield-pulse {
 
@@ -337,9 +391,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Shield Hover
---------------------------------------------------------------*/
+/*==============================================================
+# SHIELD HOVER
+==============================================================*/
 
 .login-logo:hover {
   transform: translateY(-2px);
@@ -352,7 +406,6 @@
     0 0 22px rgba(255, 255, 255, 0.08);
 }
 
-
 .login-logo:hover::before {
   opacity: 1;
 
@@ -360,7 +413,6 @@
     blur(1px)
     brightness(1.6);
 }
-
 
 .login-logo:hover .login-shield {
   transform:
@@ -373,7 +425,6 @@
     drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45));
 }
 
-
 .login-logo:hover .login-shield::before {
   background:
     linear-gradient(
@@ -382,7 +433,6 @@
       rgba(7, 7, 9, 0.9)
     );
 }
-
 
 .login-logo:hover .login-shield-check {
   border-color: #fff;
@@ -396,13 +446,12 @@
 }
 
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+/*==============================================================
+# HEADER
+==============================================================*/
 
 .login-header {
   width: 100%;
-
   padding: 6px;
 
   display: flex;
@@ -423,9 +472,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Inputs
---------------------------------------------------------------*/
+/*==============================================================
+# INPUTS
+==============================================================*/
 
 .login-input {
   width: 100%;
@@ -435,7 +484,6 @@
   padding: 10px 12px;
 
   border: 1px solid rgba(255, 255, 255, 0.055);
-
   border-radius: 12px;
 
   outline: none;
@@ -480,9 +528,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Buttons
---------------------------------------------------------------*/
+/*==============================================================
+# BUTTONS
+==============================================================*/
 
 .login-button {
   width: 100%;
@@ -491,17 +539,17 @@
   border: 1px solid rgba(255, 255, 255, 0.055);
   border-radius: 20px;
 
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-
   display: grid;
   place-content: center;
 
   gap: 10px;
 
   color: rgba(255, 255, 255, 0.92);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
 
   background:
     linear-gradient(
@@ -530,6 +578,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   gap: 10px;
 }
 
@@ -562,9 +611,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Google Icon
---------------------------------------------------------------*/
+/*==============================================================
+# GOOGLE ICON
+==============================================================*/
 
 .login-google-icon {
   width: 16px;
@@ -572,9 +621,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+/*==============================================================
+# FOOTER
+==============================================================*/
 
 .login-footer {
   width: 100%;
@@ -586,7 +635,6 @@
   text-align: left;
 
   font-size: 12px;
-
   line-height: 1.5;
 }
 
@@ -629,27 +677,656 @@
 }
 
 
+/*==============================================================
+# STEPS - COMMON
+==============================================================*/
+
+.login-page .login-steps .ant-steps-item-tail {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.login-page .login-steps .ant-steps-item-tail::after {
+  display: block !important;
+
+  height: 1px !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+/*==============================================================
+# STEPS - DARK MODE
+==============================================================*/
+
+.login-page.dark .login-steps .ant-steps {
+  color: #fff !important;
+}
+
+
 /*--------------------------------------------------------------
-# Mobile
+# Dark - Base
 --------------------------------------------------------------*/
 
-@media (max-width: 480px) {
+.login-page.dark .login-steps .ant-steps-item-icon {
+  background: rgba(255, 255, 255, 0.08) !important;
 
-  .login-container {
-    --form-width: min(315px, calc(100vw - 32px));
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
 
-    width: calc(var(--form-width) + 1px);
-    height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
-  }
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 10px rgba(255, 255, 255, 0.04) !important;
+}
 
-  .login-box {
-    padding: 28px;
+.login-page.dark .login-steps .ant-steps-item-icon .ant-steps-icon,
+.login-page.dark .login-steps .ant-steps-item-icon .anticon {
+  color: #fff !important;
+}
+
+.login-page.dark .login-steps .ant-steps-item-title {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.login-page.dark .login-steps .ant-steps-item-tail::after {
+  background-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+
+/*--------------------------------------------------------------
+# Dark - Process
+--------------------------------------------------------------*/
+
+.login-page.dark .login-steps .ant-steps-item-process .ant-steps-item-icon {
+  background: rgba(22, 119, 255, 0.12) !important;
+
+  border-color: #1677ff !important;
+
+  box-shadow:
+    0 0 14px rgba(22, 119, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-process
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-process
+.ant-steps-item-icon
+.anticon {
+  color: #1677ff !important;
+
+  filter:
+    drop-shadow(0 0 4px rgba(22, 119, 255, 0.45));
+}
+
+.login-page.dark .login-steps .ant-steps-item-process .ant-steps-item-title {
+  color: #fff !important;
+}
+
+
+/*--------------------------------------------------------------
+# Dark - Finish
+--------------------------------------------------------------*/
+
+.login-page.dark .login-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background: rgba(22, 119, 255, 0.12) !important;
+
+  border-color: #1677ff !important;
+
+  box-shadow:
+    0 0 14px rgba(22, 119, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-finish
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-finish
+.ant-steps-item-icon
+.anticon {
+  color: #1677ff !important;
+
+  filter:
+    drop-shadow(0 0 4px rgba(22, 119, 255, 0.45));
+}
+
+.login-page.dark .login-steps .ant-steps-item-finish .ant-steps-item-title {
+  color: #fff !important;
+}
+
+.login-page.dark .login-steps .ant-steps-item-finish .ant-steps-item-tail::after {
+  background-color: #1677ff !important;
+}
+
+
+/*--------------------------------------------------------------
+# Dark - Wait
+--------------------------------------------------------------*/
+
+.login-page.dark .login-steps .ant-steps-item-wait .ant-steps-item-icon {
+  background: rgba(255, 255, 255, 0.055) !important;
+
+  border-color: rgba(255, 255, 255, 0.5) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-wait
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-wait
+.ant-steps-item-icon
+.anticon {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.login-page.dark .login-steps .ant-steps-item-wait .ant-steps-item-title {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+
+/*--------------------------------------------------------------
+# Dark - Error
+--------------------------------------------------------------*/
+
+.login-page.dark .login-steps .ant-steps-item-error .ant-steps-item-icon {
+  background: rgba(255, 77, 79, 0.12) !important;
+
+  border-color: #ff4d4f !important;
+
+  box-shadow:
+    0 0 14px rgba(255, 77, 79, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-error
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-error
+.ant-steps-item-icon
+.anticon {
+  color: #ff4d4f !important;
+
+  filter:
+    drop-shadow(0 0 5px rgba(255, 77, 79, 0.55));
+}
+
+.login-page.dark .login-steps .ant-steps-item-error .ant-steps-item-title {
+  color: #ff4d4f !important;
+}
+
+.login-page.dark .login-steps .ant-steps-item-error .ant-steps-item-tail::after {
+  background-color: rgba(255, 77, 79, 0.5) !important;
+}
+
+
+/*==============================================================
+# STEPS - LIGHT MODE
+==============================================================*/
+
+.login-page.light .login-steps .ant-steps-item-icon {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-icon
+.anticon {
+  color: rgba(0, 0, 0, 0.48) !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-title {
+  color: rgba(0, 0, 0, 0.48) !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-tail::after {
+  background-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+
+/*--------------------------------------------------------------
+# Light - Process
+--------------------------------------------------------------*/
+
+.login-page.light .login-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: rgba(22, 119, 255, 0.08) !important;
+
+  border-color: #1677ff !important;
+
+  box-shadow:
+    0 0 12px rgba(22, 119, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-process
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-process
+.ant-steps-item-icon
+.anticon {
+  color: #1677ff !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-process .ant-steps-item-title {
+  color: #1677ff !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-process .ant-steps-item-tail::after {
+  background-color: rgba(22, 119, 255, 0.35) !important;
+}
+
+
+/*--------------------------------------------------------------
+# Light - Finish
+--------------------------------------------------------------*/
+
+.login-page.light .login-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: rgba(22, 119, 255, 0.08) !important;
+
+  border-color: #1677ff !important;
+
+  box-shadow:
+    0 0 10px rgba(22, 119, 255, 0.08) !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-finish
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-finish
+.ant-steps-item-icon
+.anticon {
+  color: #1677ff !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-finish .ant-steps-item-title {
+  color: #1677ff !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-finish .ant-steps-item-tail::after {
+  background-color: #1677ff !important;
+}
+
+
+/*--------------------------------------------------------------
+# Light - Wait
+--------------------------------------------------------------*/
+
+.login-page.light .login-steps .ant-steps-item-wait .ant-steps-item-icon {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+
+  border-color: rgba(0, 0, 0, 0.16) !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-wait
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-wait
+.ant-steps-item-icon
+.anticon {
+  color: rgba(0, 0, 0, 0.48) !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-wait .ant-steps-item-title {
+  color: rgba(0, 0, 0, 0.48) !important;
+}
+
+
+/*--------------------------------------------------------------
+# Light - Error
+--------------------------------------------------------------*/
+
+.login-page.light .login-steps .ant-steps-item-error .ant-steps-item-icon {
+  background-color: rgba(255, 77, 79, 0.08) !important;
+
+  border-color: #ff4d4f !important;
+
+  box-shadow:
+    0 0 12px rgba(255, 77, 79, 0.1) !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-error
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-error
+.ant-steps-item-icon
+.anticon {
+  color: #ff4d4f !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-error .ant-steps-item-title {
+  color: #ff4d4f !important;
+}
+
+.login-page.light .login-steps .ant-steps-item-error .ant-steps-item-tail::after {
+  background-color: rgba(255, 77, 79, 0.35) !important;
+}
+
+
+/*==============================================================
+# STEPS - HOVER
+==============================================================*/
+
+.login-page .login-steps .ant-steps-item:hover .ant-steps-item-icon {
+  transform: translateY(-1px);
+}
+
+
+/*--------------------------------------------------------------
+# Dark Hover
+--------------------------------------------------------------*/
+
+.login-page.dark .login-steps .ant-steps-item:hover .ant-steps-item-icon {
+  border-color: rgba(255, 255, 255, 0.95) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.045),
+    0 0 14px rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+}
+
+.login-page.dark .login-steps .ant-steps-item:hover .ant-steps-item-title {
+  color: #fff !important;
+
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.14);
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-process:hover
+.ant-steps-item-icon {
+  background: rgba(22, 119, 255, 0.2) !important;
+
+  border-color: #4096ff !important;
+
+  box-shadow:
+    0 0 0 3px rgba(22, 119, 255, 0.08),
+    0 0 18px rgba(22, 119, 255, 0.38),
+    0 0 30px rgba(22, 119, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-process:hover
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-process:hover
+.ant-steps-item-icon
+.anticon {
+  color: #1677ff !important;
+
+  filter:
+    drop-shadow(0 0 5px rgba(22, 119, 255, 0.65));
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-finish:hover
+.ant-steps-item-icon {
+  background: rgba(22, 119, 255, 0.18) !important;
+
+  border-color: #4096ff !important;
+
+  box-shadow:
+    0 0 0 3px rgba(22, 119, 255, 0.08),
+    0 0 18px rgba(22, 119, 255, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-finish:hover
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-finish:hover
+.ant-steps-item-icon
+.anticon {
+  color: #4096ff !important;
+
+  filter:
+    drop-shadow(0 0 6px rgba(64, 150, 255, 0.65));
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-wait:hover
+.ant-steps-item-icon {
+  background: rgba(255, 255, 255, 0.09) !important;
+
+  border-color: rgba(255, 255, 255, 0.85) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.04),
+    0 0 16px rgba(255, 255, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-error:hover
+.ant-steps-item-icon {
+  background: rgba(255, 77, 79, 0.2) !important;
+
+  border-color: #ff7875 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 77, 79, 0.08),
+    0 0 18px rgba(255, 77, 79, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.dark
+.login-steps
+.ant-steps-item-error:hover
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.dark
+.login-steps
+.ant-steps-item-error:hover
+.ant-steps-item-icon
+.anticon {
+  color: #ff7875 !important;
+
+  filter:
+    drop-shadow(0 0 6px rgba(255, 77, 79, 0.7));
+}
+
+
+/*--------------------------------------------------------------
+# Light Hover
+--------------------------------------------------------------*/
+
+.login-page.light .login-steps .ant-steps-item:hover .ant-steps-item-icon {
+  border-color: rgba(0, 0, 0, 0.4) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.025),
+    0 0 14px rgba(0, 0, 0, 0.08) !important;
+}
+
+.login-page.light .login-steps .ant-steps-item:hover .ant-steps-item-title {
+  color: #111 !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-process:hover
+.ant-steps-item-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-finish:hover
+.ant-steps-item-icon {
+  background-color: rgba(22, 119, 255, 0.14) !important;
+
+  border-color: #4096ff !important;
+
+  box-shadow:
+    0 0 0 3px rgba(22, 119, 255, 0.06),
+    0 0 18px rgba(22, 119, 255, 0.2) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-process:hover
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-process:hover
+.ant-steps-item-icon
+.anticon {
+  color: #1677ff !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-finish:hover
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-finish:hover
+.ant-steps-item-icon
+.anticon {
+  color: #4096ff !important;
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-wait:hover
+.ant-steps-item-icon {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+
+  border-color: rgba(0, 0, 0, 0.4) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.025),
+    0 0 16px rgba(0, 0, 0, 0.08) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-error:hover
+.ant-steps-item-icon {
+  background-color: rgba(255, 77, 79, 0.14) !important;
+
+  border-color: #ff7875 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 77, 79, 0.05),
+    0 0 16px rgba(255, 77, 79, 0.18) !important;
+
+  transform:
+    translateY(-1px)
+    scale(1.04);
+}
+
+.login-page.light
+.login-steps
+.ant-steps-item-error:hover
+.ant-steps-item-icon
+.ant-steps-icon,
+.login-page.light
+.login-steps
+.ant-steps-item-error:hover
+.ant-steps-item-icon
+.anticon {
+  color: #ff4d4f !important;
+}
+
+
+/*==============================================================
+# STEPS - LOADING
+==============================================================*/
+
+.login-page
+.login-steps
+.ant-steps-item-process
+.anticon-loading {
+  animation: login-steps-loading 1s linear infinite;
+}
+
+@keyframes login-steps-loading {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-/*--------------------------------------------------------------
-# Light Mode
---------------------------------------------------------------*/
+
+/*==============================================================
+# LIGHT MODE - LOGIN
+==============================================================*/
 
 .login-page.light {
   background: #f4f4f5;
@@ -668,9 +1345,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Login Box
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - LOGIN BOX
+==============================================================*/
 
 .login-page.light .login-box {
   background:
@@ -692,9 +1369,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Animated Border
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - ANIMATED BORDER
+==============================================================*/
 
 .login-page.light .login-container::before {
   background: conic-gradient(
@@ -707,9 +1384,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Security Icon
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - SECURITY ICON
+==============================================================*/
 
 .login-page.light .login-logo {
   background:
@@ -738,9 +1415,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Shield
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - SHIELD
+==============================================================*/
 
 .login-page.light .login-shield {
   background:
@@ -772,9 +1449,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Shield Hover
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - SHIELD HOVER
+==============================================================*/
 
 .login-page.light .login-logo:hover {
   border-color: rgba(0, 0, 0, 0.25);
@@ -815,20 +1492,21 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Header
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - HEADER
+==============================================================*/
 
 .login-page.light .login-header {
   color: #111;
+
   text-shadow:
     0 0 18px rgba(0, 0, 0, 0.06);
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Inputs
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - INPUTS
+==============================================================*/
 
 .login-page.light .login-input {
   border-color: rgba(0, 0, 0, 0.08);
@@ -866,9 +1544,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Buttons
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - BUTTONS
+==============================================================*/
 
 .login-page.light .login-button {
   border-color: rgba(0, 0, 0, 0.08);
@@ -905,9 +1583,9 @@
 }
 
 
-/*--------------------------------------------------------------
-# Light Mode - Footer
---------------------------------------------------------------*/
+/*==============================================================
+# LIGHT MODE - FOOTER
+==============================================================*/
 
 .login-page.light .login-footer {
   color: rgba(0, 0, 0, 0.48);
@@ -921,9 +1599,10 @@
   color: #000;
 }
 
-/*--------------------------------------------------------------
-# Autofill
---------------------------------------------------------------*/
+
+/*==============================================================
+# AUTOFILL
+==============================================================*/
 
 .login-input:-webkit-autofill,
 .login-input:-webkit-autofill:hover,
@@ -955,9 +1634,10 @@
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-/*--------------------------------------------------------------
-# Theme Toggle - Login Mobile
---------------------------------------------------------------*/
+
+/*==============================================================
+# MOBILE
+==============================================================*/
 
 @media (max-width: 1199px) {
 
@@ -971,10 +1651,50 @@
 
 @media (max-width: 480px) {
 
+  .login-page {
+    gap: 14px;
+  }
+
+  .login-steps {
+    width: calc(100vw - 32px);
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-page .login-steps .ant-steps-vertical {
+    width: fit-content;
+    min-width: 220px;
+  }
+
   .login-page .theme-toggle {
     right: 16px;
     left: auto;
   }
 
+  .login-container {
+    --form-width: min(315px, calc(100vw - 32px));
+
+    width: calc(var(--form-width) + 1px);
+    height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+  }
+
+  .login-box {
+    padding: 28px;
+  }
+
 }
 
+@media (min-width: 481px) and (max-width: 575px) {
+
+  .login-steps {
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-page .login-steps .ant-steps-vertical {
+    width: fit-content;
+    min-width: 220px;
+  }
+
+}

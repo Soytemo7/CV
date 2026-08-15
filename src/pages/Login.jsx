@@ -4,6 +4,13 @@ import { useNotification } from "../hooks/useNotification";
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
 import ThemeToggle from "../components/common/ThemeToggle";
+import { Steps } from "antd";
+import {
+  UserOutlined,
+  SafetyOutlined,
+  LoginOutlined,
+  LoadingOutlined
+} from "@ant-design/icons";
 
 function Login() {
 
@@ -25,6 +32,25 @@ function Login() {
 
   const [loading, setLoading] = useState(false);
 
+  /*
+   * 0 = Credenciales
+   * 1 = Verificando
+   * 2 = Acceso
+   */
+  const [currentStep, setCurrentStep] = useState(0);
+
+  /*
+   * process = proceso
+   * finish  = correcto
+   * error   = error
+   */
+  const [stepStatus, setStepStatus] = useState("process");
+
+
+  /*==============================================================
+  # Theme
+  ==============================================================*/
+
   useEffect(() => {
 
     localStorage.setItem(
@@ -44,6 +70,11 @@ function Login() {
 
   }, [isDark]);
 
+
+  /*==============================================================
+  # Input Change
+  ==============================================================*/
+
   const handleChange = (event) => {
 
     const { name, value } = event.target;
@@ -53,16 +84,47 @@ function Login() {
       [name]: value
     }));
 
+    /*
+     * Si el usuario empieza nuevamente a escribir
+     * después de un error, regresamos manualmente
+     * al primer paso.
+     *
+     * NO existe ningún reset automático por tiempo.
+     */
+    if (stepStatus === "error") {
+
+      setCurrentStep(0);
+      setStepStatus("process");
+
+    }
+
   };
+
+
+  /*==============================================================
+  # Login
+  ==============================================================*/
 
   const handleSubmit = async (event) => {
 
     event.preventDefault();
 
+    if (loading) {
+      return;
+    }
+
     const email = formData.email.trim().toLowerCase();
     const password = formData.password;
 
+
+    /*--------------------------------------------------------------
+    # Validación - Datos incompletos
+    --------------------------------------------------------------*/
+
     if (!email || !password) {
+
+      setCurrentStep(0);
+      setStepStatus("process");
 
       notification.error({
         title: "Datos incompletos",
@@ -78,7 +140,15 @@ function Login() {
       return;
     }
 
+
+    /*--------------------------------------------------------------
+    # Validación - Contraseña
+    --------------------------------------------------------------*/
+
     if (password.length < 8 || password.length > 128) {
+
+      setCurrentStep(0);
+      setStepStatus("process");
 
       notification.error({
         title: "Credenciales no válidas",
@@ -94,13 +164,35 @@ function Login() {
       return;
     }
 
+
+    /*--------------------------------------------------------------
+    # Login
+    --------------------------------------------------------------*/
+
     try {
 
       setLoading(true);
 
+      /*
+       * PASO 2
+       *
+       * Inicia la verificación.
+       */
+      setCurrentStep(1);
+      setStepStatus("process");
+
       const data = await login(email, password);
 
       console.log("✅ Login correcto:", data);
+
+
+      /*
+       * PASO 3
+       *
+       * Acceso correcto.
+       */
+      setCurrentStep(2);
+      setStepStatus("finish");
 
       notification.success({
         title: "Inicio de sesión correcto",
@@ -113,15 +205,37 @@ function Login() {
         className: "welcome-notification",
       });
 
-      navigate("/dashboard");
+
+      /*
+       * Solamente navegamos al dashboard.
+       *
+       * NO reseteamos los Steps.
+       */
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 700);
 
     } catch (error) {
 
       console.error("❌ Error login:", error);
 
+
+      /*------------------------------------------------------------
+      # Error - Paso 2
+      ------------------------------------------------------------*/
+
+      /*
+       * El paso 2 queda permanentemente en ERROR
+       * hasta que el usuario vuelva a interactuar.
+       */
+      setCurrentStep(1);
+      setStepStatus("error");
+
       notification.error({
         title: "Error al iniciar sesión",
-        description: error.message,
+        description:
+          error?.message ||
+          "No fue posible iniciar sesión. Verifica tus credenciales.",
         placement: "topRight",
         duration: 8,
         showProgress: true,
@@ -130,6 +244,11 @@ function Login() {
         className: "welcome-notification",
       });
 
+      /*
+       * Limpiamos los campos.
+       *
+       * El Stepper NO se modifica.
+       */
       setFormData({
         email: "",
         password: ""
@@ -137,19 +256,66 @@ function Login() {
 
     } finally {
 
+      /*
+       * loading solamente controla
+       * el estado de los botones/campos.
+       *
+       * NO modifica el Stepper.
+       */
       setLoading(false);
 
     }
 
   };
 
+
+  /*==============================================================
+  # Render
+  ==============================================================*/
+
   return (
+
     <div className={`login-page ${isDark ? "dark" : "light"}`}>
 
       <ThemeToggle
         isDark={isDark}
         setIsDark={setIsDark}
       />
+
+
+      {/*------------------------------------------------------------
+      # Login Steps
+      ------------------------------------------------------------*/}
+
+      <div className="login-steps">
+
+        <Steps
+          current={currentStep}
+          status={stepStatus}
+          items={[
+            {
+              title: "Credenciales",
+              icon: <UserOutlined />
+            },
+            {
+              title: "Verificando",
+              icon: loading
+                ? <LoadingOutlined />
+                : <SafetyOutlined />
+            },
+            {
+              title: "Acceso",
+              icon: <LoginOutlined />
+            }
+          ]}
+        />
+
+      </div>
+
+
+      {/*------------------------------------------------------------
+      # Login Container
+      ------------------------------------------------------------*/}
 
       <div className="login-container">
 
@@ -160,17 +326,34 @@ function Login() {
             onSubmit={handleSubmit}
           >
 
+
+            {/*--------------------------------------------------------
+            # Security Icon
+            --------------------------------------------------------*/}
+
             <div className="login-logo">
 
               <div className="login-shield">
+
                 <span className="login-shield-check"></span>
+
               </div>
 
             </div>
 
+
+            {/*--------------------------------------------------------
+            # Header
+            --------------------------------------------------------*/}
+
             <span className="login-header">
               ¡Bienvenido!
             </span>
+
+
+            {/*--------------------------------------------------------
+            # Email
+            --------------------------------------------------------*/}
 
             <input
               id="email"
@@ -184,6 +367,11 @@ function Login() {
               disabled={loading}
             />
 
+
+            {/*--------------------------------------------------------
+            # Password
+            --------------------------------------------------------*/}
+
             <input
               id="password"
               name="password"
@@ -196,16 +384,28 @@ function Login() {
               disabled={loading}
             />
 
+
+            {/*--------------------------------------------------------
+            # Login Button
+            --------------------------------------------------------*/}
+
             <button
               type="submit"
               className="login-button login-sign-in"
               disabled={loading}
             >
+
               {loading
-                ? "Iniciando sesión..."
+                ? "Verificando..."
                 : "Iniciar sesión"
               }
+
             </button>
+
+
+            {/*--------------------------------------------------------
+            # Google Login
+            --------------------------------------------------------*/}
 
             <button
               type="button"
@@ -217,7 +417,7 @@ function Login() {
                 className="login-google-icon"
                 viewBox="-3 0 262 262"
                 xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="xMidYMid"
+                preserveAspectRatio="xMidYMid meet"
               >
 
                 <path
@@ -248,6 +448,11 @@ function Login() {
 
             </button>
 
+
+            {/*--------------------------------------------------------
+            # Footer
+            --------------------------------------------------------*/}
+
             <p className="login-footer">
 
               ¿No tienes una cuenta?
@@ -256,8 +461,11 @@ function Login() {
                 href="#"
                 className="login-link"
                 onClick={(event) => {
+
                   event.preventDefault();
+
                   navigate("/register");
+
                 }}
               >
                 ¡Regístrate, es gratis!
@@ -281,7 +489,9 @@ function Login() {
       </div>
 
     </div>
+
   );
+
 }
 
 export default Login;
