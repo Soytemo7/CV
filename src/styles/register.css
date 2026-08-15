@@ -14,15 +14,18 @@
 
 /*
  * Register tiene un campo adicional respecto a Login.
- * Se aumenta únicamente la altura de las capas contenedoras.
  *
- * Los elementos internos conservan completamente
- * las dimensiones definidas en login.css.
+ * IMPORTANTE:
+ * No se modifican las dimensiones internas definidas
+ * en login.css.
+ *
+ * Únicamente se aumenta la altura de las capas externas
+ * para permitir que el formulario tenga más espacio vertical.
  */
 
 .register-page .login-container {
   height: calc(
-    var(--form-width) * var(--aspect-ratio) + 80px
+    var(--form-width) * var(--aspect-ratio) + 145px
   );
 }
 
@@ -33,7 +36,7 @@
 
 .register-page .login-box {
   height: calc(
-    var(--form-width) * var(--aspect-ratio) + 80px
+    var(--form-width) * var(--aspect-ratio) + 145px
   );
 }
 
@@ -46,14 +49,15 @@
 
   .register-page .login-container {
     height: calc(
-      var(--form-width) * var(--aspect-ratio) + 80px
+      var(--form-width) * var(--aspect-ratio) + 145px
     );
   }
 
   .register-page .login-box {
     height: calc(
-      var(--form-width) * var(--aspect-ratio) + 80px
+      var(--form-width) * var(--aspect-ratio) + 145px
     );
   }
 
 }
+
