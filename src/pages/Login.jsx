@@ -291,7 +291,6 @@ function Login() {
 
         <Steps
           current={currentStep}
-          status={stepStatus}
           items={[
             {
               title: "Credenciales",
@@ -299,12 +298,17 @@ function Login() {
             },
             {
               title: "Verificando",
-              icon: loading
-                ? <LoadingOutlined />
-                : <SafetyOutlined />
+              status: stepStatus === "error" ? "error" : undefined,
+              icon:
+                stepStatus === "error"
+                  ? <SafetyOutlined />
+                  : loading
+                    ? <LoadingOutlined />
+                    : <SafetyOutlined />
             },
             {
               title: "Acceso",
+              status: stepStatus === "finish" ? "finish" : undefined,
               icon: <LoginOutlined />
             }
           ]}
