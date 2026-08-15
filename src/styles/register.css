@@ -45,7 +45,7 @@
 ==============================================================*/
 
 .register-page .login-steps {
-  transform: translateY(-50px);
+  transform: translateY(-5px);
 }
 
 
@@ -68,9 +68,9 @@
   ------------------------------------------------------------*/
 
   .register-page .login-steps {
-    transform: translateY(-20px);
+    transform: translateY(-5px);
     width: 100%;
-    padding: 0 18px;
+    padding: 0 5px;
     box-sizing: border-box;
   }
 
