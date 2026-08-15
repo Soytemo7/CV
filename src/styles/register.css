@@ -1,26 +1,29 @@
 /*==============================================================
 # REGISTER PAGE
+# Ajustes exclusivos para Register
 ==============================================================*/
 
-/*
- * Este archivo NO modifica login.css.
- *
- * Login conserva sus dimensiones originales.
- * Register solamente aumenta la altura necesaria para
- * acomodar sus cuatro campos.
- */
+.register-page {
+  min-height: 100vh;
+}
 
 
 /*==============================================================
 # REGISTER CONTAINER
 ==============================================================*/
 
-.register-container {
-  --form-width: 315px;
-  --aspect-ratio: 1.58;
+/*
+ * Register tiene un campo adicional respecto a Login.
+ * Se aumenta únicamente la altura de las capas contenedoras.
+ *
+ * Los elementos internos conservan completamente
+ * las dimensiones definidas en login.css.
+ */
 
-  width: calc(var(--form-width) + 1px);
-  height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+.register-page .login-container {
+  height: calc(
+    var(--form-width) * var(--aspect-ratio) + 80px
+  );
 }
 
 
@@ -28,37 +31,29 @@
 # REGISTER BOX
 ==============================================================*/
 
-.register-box {
-  width: var(--form-width);
-  height: calc(var(--form-width) * var(--aspect-ratio));
+.register-page .login-box {
+  height: calc(
+    var(--form-width) * var(--aspect-ratio) + 80px
+  );
 }
 
 
 /*==============================================================
-# REGISTER FORM
-==============================================================*/
-
-.register-form {
-  gap: 10px;
-}
-
-
-/*==============================================================
-# MOBILE
+# REGISTER MOBILE
 ==============================================================*/
 
 @media (max-width: 480px) {
 
-  .register-container {
-    --form-width: min(315px, calc(100vw - 32px));
-
-    width: calc(var(--form-width) + 1px);
-    height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+  .register-page .login-container {
+    height: calc(
+      var(--form-width) * var(--aspect-ratio) + 80px
+    );
   }
 
-  .register-box {
-    width: var(--form-width);
-    height: calc(var(--form-width) * var(--aspect-ratio));
+  .register-page .login-box {
+    height: calc(
+      var(--form-width) * var(--aspect-ratio) + 80px
+    );
   }
 
 }

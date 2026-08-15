@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNotification } from "../hooks/useNotification";
 import "../styles/login.css";
+import "../styles/register.css";
 import ThemeToggle from "../components/common/ThemeToggle";
 import { Steps } from "antd";
 import {
@@ -35,7 +36,8 @@ function Register() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -94,7 +96,6 @@ function Register() {
       [name]: value
     }));
 
-
     /*
      * Si el registro anterior terminó en error
      * y el usuario vuelve a escribir,
@@ -124,17 +125,22 @@ function Register() {
       return;
     }
 
-
     const name = formData.name.trim();
     const email = formData.email.trim().toLowerCase();
     const password = formData.password;
+    const confirmPassword = formData.confirmPassword;
 
 
     /*--------------------------------------------------------------
     # Validación - Datos incompletos
     --------------------------------------------------------------*/
 
-    if (!name || !email || !password) {
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !confirmPassword
+    ) {
 
       setCurrentStep(1);
       setStepStatus("error");
@@ -142,7 +148,7 @@ function Register() {
       notification.error({
         title: "Datos incompletos",
         description:
-          "Nombre, correo y contraseña son obligatorios.",
+          "Nombre, correo, contraseña y confirmación de contraseña son obligatorios.",
         placement: "topRight",
         duration: 8,
         showProgress: true,
@@ -233,6 +239,31 @@ function Register() {
 
 
     /*--------------------------------------------------------------
+    # Validación - Confirmación de contraseña
+    --------------------------------------------------------------*/
+
+    if (password !== confirmPassword) {
+
+      setCurrentStep(1);
+      setStepStatus("error");
+
+      notification.error({
+        title: "Contraseñas no coinciden",
+        description:
+          "La contraseña y su confirmación deben ser exactamente iguales.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+      return;
+    }
+
+
+    /*--------------------------------------------------------------
     # Registro
     --------------------------------------------------------------*/
 
@@ -240,16 +271,8 @@ function Register() {
 
       setLoading(true);
 
-
-      /*
-       * PASO 2
-       *
-       * Inicia la verificación/creación
-       * de la cuenta.
-       */
       setCurrentStep(1);
       setStepStatus("process");
-
 
       const data = await register(
         name,
@@ -259,12 +282,6 @@ function Register() {
 
       console.log("✅ Registro correcto:", data);
 
-
-      /*
-       * PASO 3
-       *
-       * Cuenta creada correctamente.
-       */
       setCurrentStep(2);
       setStepStatus("finish");
 
@@ -293,7 +310,8 @@ function Register() {
       setFormData({
         name: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
       });
 
 
@@ -301,11 +319,6 @@ function Register() {
       # Redirección automática
       ------------------------------------------------------------*/
 
-      /*
-       * Esperamos 1 segundo para que el usuario pueda
-       * visualizar el paso "Cuenta creada" antes de
-       * ser enviado al Login.
-       */
       setTimeout(() => {
         navigate("/login");
       }, 1000);
@@ -315,18 +328,8 @@ function Register() {
 
       console.error("❌ Error registro:", error);
 
-
-      /*------------------------------------------------------------
-      # Error - Paso 2
-      ------------------------------------------------------------*/
-
-      /*
-       * El paso de verificación queda permanentemente
-       * en ERROR hasta que el usuario vuelva a interactuar.
-       */
       setCurrentStep(1);
       setStepStatus("error");
-
 
       notification.error({
         title: "Error en el registro",
@@ -341,27 +344,16 @@ function Register() {
         className: "welcome-notification",
       });
 
-
-      /*
-       * Limpiamos los campos.
-       *
-       * El Stepper NO se modifica.
-       */
       setFormData({
         name: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
       });
 
 
     } finally {
 
-      /*
-       * loading solamente controla
-       * el estado de los botones/campos.
-       *
-       * NO modifica el Stepper.
-       */
       setLoading(false);
 
     }
@@ -375,8 +367,7 @@ function Register() {
 
   return (
 
-    <div className={`login-page ${isDark ? "dark" : "light"}`}>
-
+    <div className={`login-page register-page ${isDark ? "dark" : "light"}`}>
 
       <ThemeToggle
         isDark={isDark}
@@ -497,6 +488,23 @@ function Register() {
               placeholder="Contraseña"
               className="login-input"
               value={formData.password}
+              onChange={handleChange}
+              autoComplete="new-password"
+              disabled={loading}
+            />
+
+
+            {/*--------------------------------------------------------
+            # Confirm Password
+            --------------------------------------------------------*/}
+
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirmar contraseña"
+              className="login-input"
+              value={formData.confirmPassword}
               onChange={handleChange}
               autoComplete="new-password"
               disabled={loading}
