@@ -68,7 +68,7 @@
   ------------------------------------------------------------*/
 
   .register-page .login-steps {
-    transform: translateY(-20);
+    transform: translateY(-20px);
     width: 100%;
     padding: 0 18px;
     box-sizing: border-box;
