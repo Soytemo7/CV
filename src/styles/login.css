@@ -1642,8 +1642,8 @@
 @media (max-width: 1199px) {
 
   .login-page .theme-toggle {
-    right: 20px;
-    left: auto;
+    left: 20px;
+    right: auto;
   }
 
 }
@@ -1668,8 +1668,8 @@
   }
 
   .login-page .theme-toggle {
-    right: 16px;
-    left: auto;
+    left: 16px;
+    right: auto;
   }
 
   .login-container {
@@ -1684,6 +1684,7 @@
   }
 
 }
+
 
 @media (min-width: 481px) and (max-width: 575px) {
 

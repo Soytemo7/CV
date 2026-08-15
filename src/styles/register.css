@@ -1,0 +1,64 @@
+/*==============================================================
+# REGISTER PAGE
+==============================================================*/
+
+/*
+ * Este archivo NO modifica login.css.
+ *
+ * Login conserva sus dimensiones originales.
+ * Register solamente aumenta la altura necesaria para
+ * acomodar sus cuatro campos.
+ */
+
+
+/*==============================================================
+# REGISTER CONTAINER
+==============================================================*/
+
+.register-container {
+  --form-width: 315px;
+  --aspect-ratio: 1.58;
+
+  width: calc(var(--form-width) + 1px);
+  height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+}
+
+
+/*==============================================================
+# REGISTER BOX
+==============================================================*/
+
+.register-box {
+  width: var(--form-width);
+  height: calc(var(--form-width) * var(--aspect-ratio));
+}
+
+
+/*==============================================================
+# REGISTER FORM
+==============================================================*/
+
+.register-form {
+  gap: 10px;
+}
+
+
+/*==============================================================
+# MOBILE
+==============================================================*/
+
+@media (max-width: 480px) {
+
+  .register-container {
+    --form-width: min(315px, calc(100vw - 32px));
+
+    width: calc(var(--form-width) + 1px);
+    height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+  }
+
+  .register-box {
+    width: var(--form-width);
+    height: calc(var(--form-width) * var(--aspect-ratio));
+  }
+
+}
