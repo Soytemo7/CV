@@ -123,8 +123,8 @@ function Login() {
 
     if (!email || !password) {
 
-      setCurrentStep(0);
-      setStepStatus("process");
+      setCurrentStep(1);
+      setStepStatus("error");
 
       notification.error({
         title: "Datos incompletos",
@@ -147,8 +147,8 @@ function Login() {
 
     if (password.length < 8 || password.length > 128) {
 
-      setCurrentStep(0);
-      setStepStatus("process");
+      setCurrentStep(1);
+      setStepStatus("error");
 
       notification.error({
         title: "Credenciales no válidas",
