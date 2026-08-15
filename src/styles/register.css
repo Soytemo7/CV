@@ -45,7 +45,7 @@
 ==============================================================*/
 
 .register-page .login-steps {
-  transform: translateY(-5px);
+  transform: translateY(-0px);
 }
 
 
@@ -68,7 +68,7 @@
   ------------------------------------------------------------*/
 
   .register-page .login-steps {
-    transform: translateY(-5px);
+    transform: translateY(-0px);
     width: 100%;
     padding: 0 5px;
     box-sizing: border-box;
@@ -82,7 +82,7 @@
   ------------------------------------------------------------*/
 
   .register-page > div > .login-container {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
   }
 
 
