@@ -553,7 +553,7 @@ function Register() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          transform: "translateY(-50px)"
+          transform: "translateY(5px)"
         }}
       >
 
