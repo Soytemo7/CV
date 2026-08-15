@@ -45,8 +45,9 @@
 ==============================================================*/
 
 .register-page .login-steps {
-  transform: translateY(-60px);
+  transform: translateY(-50px);
 }
+
 
 /*==============================================================
 # REGISTER MOBILE
@@ -54,16 +55,72 @@
 
 @media (max-width: 480px) {
 
+  .register-page {
+    min-height: 100dvh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+
+  /*------------------------------------------------------------
+  # STEPS
+  ------------------------------------------------------------*/
+
+  .register-page .login-steps {
+    transform: translateY(-20);
+    width: 100%;
+    padding: 0 18px;
+    box-sizing: border-box;
+  }
+
+
+  /*------------------------------------------------------------
+  # REGISTER LAYOUT
+  # El contenedor que actualmente tiene translateY(-50px)
+  # se reposiciona para dejar espacio a Steps y reglas.
+  ------------------------------------------------------------*/
+
+  .register-page > div > .login-container {
+    margin-bottom: 10px;
+  }
+
+
+  /*------------------------------------------------------------
+  # REGISTER CONTAINER
+  ------------------------------------------------------------*/
+
   .register-page .login-container {
     height: calc(
       var(--form-width) * var(--aspect-ratio) + 145px
     );
   }
 
+
+  /*------------------------------------------------------------
+  # REGISTER BOX
+  ------------------------------------------------------------*/
+
   .register-page .login-box {
     height: calc(
       var(--form-width) * var(--aspect-ratio) + 145px
     );
+  }
+
+
+  /*------------------------------------------------------------
+  # PASSWORD RULES
+  # Centrada debajo del formulario
+  #------------------------------------------------------------*/
+
+  .register-page .password-rules {
+    top: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(220px, calc(100vw - 40px));
+
+    box-sizing: border-box;
   }
 
 }

@@ -547,6 +547,7 @@ function Register() {
       ------------------------------------------------------------*/}
 
       <div
+        className="register-layout"
         style={{
           position: "relative",
           display: "flex",
