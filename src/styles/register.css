@@ -209,3 +209,29 @@
     background-position: 100% 0;
   }
 }
+
+/*==============================================================
+# LIGHT MODE
+# Luz negra recorriendo el borde
+==============================================================*/
+
+.register-page.light .password-rules::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 36%,
+      rgba(0, 0, 0, 0.25) 43%,
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(0, 0, 0, 0.25) 57%,
+      transparent 64%,
+      transparent 100%
+    );
+
+  background-size: 300% 100%;
+
+  opacity: 1;
+
+  padding: 1px;
+}
+
