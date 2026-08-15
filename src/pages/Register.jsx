@@ -214,10 +214,10 @@ function Register() {
 
 
     /*--------------------------------------------------------------
-    # Validación - Contraseña
+    # Validación - Longitud de contraseña
     --------------------------------------------------------------*/
 
-    if (password.length < 8 || password.length > 128) {
+    if (password.length < 8 || password.length > 4096) {
 
       setCurrentStep(1);
       setStepStatus("error");
@@ -225,7 +225,107 @@ function Register() {
       notification.error({
         title: "Contraseña no válida",
         description:
-          "La contraseña debe tener entre 8 y 128 caracteres.",
+          "La contraseña debe tener entre 8 y 4096 caracteres.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+      return;
+    }
+
+
+    /*--------------------------------------------------------------
+    # Validación - Mayúscula
+    --------------------------------------------------------------*/
+
+    if (!/[A-Z]/.test(password)) {
+
+      setCurrentStep(1);
+      setStepStatus("error");
+
+      notification.error({
+        title: "Contraseña no válida",
+        description:
+          "La contraseña debe contener al menos una letra mayúscula.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+      return;
+    }
+
+
+    /*--------------------------------------------------------------
+    # Validación - Minúscula
+    --------------------------------------------------------------*/
+
+    if (!/[a-z]/.test(password)) {
+
+      setCurrentStep(1);
+      setStepStatus("error");
+
+      notification.error({
+        title: "Contraseña no válida",
+        description:
+          "La contraseña debe contener al menos una letra minúscula.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+      return;
+    }
+
+
+    /*--------------------------------------------------------------
+    # Validación - Número
+    --------------------------------------------------------------*/
+
+    if (!/[0-9]/.test(password)) {
+
+      setCurrentStep(1);
+      setStepStatus("error");
+
+      notification.error({
+        title: "Contraseña no válida",
+        description:
+          "La contraseña debe contener al menos un número.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+      return;
+    }
+
+
+    /*--------------------------------------------------------------
+    # Validación - Carácter especial
+    --------------------------------------------------------------*/
+
+    if (!/[^A-Za-z0-9]/.test(password)) {
+
+      setCurrentStep(1);
+      setStepStatus("error");
+
+      notification.error({
+        title: "Contraseña no válida",
+        description:
+          "La contraseña debe contener al menos un carácter especial.",
         placement: "topRight",
         duration: 8,
         showProgress: true,
@@ -344,12 +444,11 @@ function Register() {
         className: "welcome-notification",
       });
 
-      setFormData({
-        name: "",
-        email: "",
+      setFormData((previous) => ({
+        ...previous,
         password: "",
         confirmPassword: ""
-      });
+      }));
 
 
     } finally {
