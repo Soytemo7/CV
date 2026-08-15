@@ -551,7 +551,8 @@ function Register() {
           position: "relative",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          transform: "translateY(-50px)"
         }}
       >
 
@@ -765,9 +766,9 @@ function Register() {
         <div
           style={{
             position: "absolute",
-            left: "calc(100% + 18px)",
-            top: "50%",
-            transform: "translateY(-50%)",
+            left: "50%",
+            top: "calc(100% + 18px)",
+            transform: "translateX(-50%)",
             width: "220px",
             padding: "14px 16px",
             boxSizing: "border-box",
