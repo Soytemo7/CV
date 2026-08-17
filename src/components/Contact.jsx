@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNotification } from "../hooks/useNotification";
+import ContactTechMarquee from "../components/ContactTechMarquee";
 
 function Contact() {
 
@@ -343,6 +344,7 @@ function Contact() {
 
       </div>
 
+      <ContactTechMarquee />
 
     </section>
 
