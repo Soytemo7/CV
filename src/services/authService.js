@@ -25,6 +25,17 @@ export const register = async (name, email, password) => {
 
 };
 
+export const loginWithGoogle = async (credential) => {
+
+  return await api("/api/auth/google", {
+    method: "POST",
+    body: JSON.stringify({
+      credential
+    })
+  });
+
+};
+
 export const getCurrentUser = async () => {
 
   return await api("/api/auth/me");

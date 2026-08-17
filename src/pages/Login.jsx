@@ -11,26 +11,37 @@ import {
   LoginOutlined,
   LoadingOutlined
 } from "@ant-design/icons";
+import { GoogleLogin } from "@react-oauth/google";
+
 
 function Login() {
 
   console.log("URL:", window.location.origin);
   console.log("localStorage:", { ...localStorage });
 
-  const { login } = useContext(AuthContext);
+
+  const {
+    login,
+    loginWithGoogle
+  } = useContext(AuthContext);
+
   const notification = useNotification();
   const navigate = useNavigate();
+
 
   const [isDark, setIsDark] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
+
 
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
 
+
   const [loading, setLoading] = useState(false);
+
 
   /*
    * 0 = Credenciales
@@ -38,6 +49,7 @@ function Login() {
    * 2 = Acceso
    */
   const [currentStep, setCurrentStep] = useState(0);
+
 
   /*
    * process = proceso
@@ -58,15 +70,18 @@ function Login() {
       isDark ? "dark" : "light"
     );
 
+
     document.body.classList.toggle(
       "dark-background",
       isDark
     );
 
+
     document.body.classList.toggle(
       "light-background",
       !isDark
     );
+
 
   }, [isDark]);
 
@@ -79,10 +94,12 @@ function Login() {
 
     const { name, value } = event.target;
 
+
     setFormData((previous) => ({
       ...previous,
       [name]: value
     }));
+
 
     /*
      * Si el usuario empieza nuevamente a escribir
@@ -109,9 +126,11 @@ function Login() {
 
     event.preventDefault();
 
+
     if (loading) {
       return;
     }
+
 
     const email = formData.email.trim().toLowerCase();
     const password = formData.password;
@@ -126,6 +145,7 @@ function Login() {
       setCurrentStep(1);
       setStepStatus("error");
 
+
       notification.error({
         title: "Datos incompletos",
         description: "Correo y contraseña son obligatorios.",
@@ -136,6 +156,7 @@ function Login() {
         closable: true,
         className: "welcome-notification",
       });
+
 
       return;
     }
@@ -150,6 +171,7 @@ function Login() {
       setCurrentStep(1);
       setStepStatus("error");
 
+
       notification.error({
         title: "Credenciales no válidas",
         description: "Las credenciales proporcionadas no son válidas.",
@@ -160,6 +182,7 @@ function Login() {
         closable: true,
         className: "welcome-notification",
       });
+
 
       return;
     }
@@ -173,6 +196,7 @@ function Login() {
 
       setLoading(true);
 
+
       /*
        * PASO 2
        *
@@ -181,7 +205,9 @@ function Login() {
       setCurrentStep(1);
       setStepStatus("process");
 
+
       const data = await login(email, password);
+
 
       console.log("✅ Login correcto:", data);
 
@@ -193,6 +219,7 @@ function Login() {
        */
       setCurrentStep(2);
       setStepStatus("finish");
+
 
       notification.success({
         title: "Inicio de sesión correcto",
@@ -215,6 +242,7 @@ function Login() {
         navigate("/dashboard");
       }, 700);
 
+
     } catch (error) {
 
       console.error("❌ Error login:", error);
@@ -231,6 +259,7 @@ function Login() {
       setCurrentStep(1);
       setStepStatus("error");
 
+
       notification.error({
         title: "Error al iniciar sesión",
         description:
@@ -244,6 +273,7 @@ function Login() {
         className: "welcome-notification",
       });
 
+
       /*
        * Limpiamos los campos.
        *
@@ -253,6 +283,7 @@ function Login() {
         email: "",
         password: ""
       });
+
 
     } finally {
 
@@ -270,12 +301,132 @@ function Login() {
 
 
   /*==============================================================
+  # Login con Google
+  ==============================================================*/
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+
+    if (loading) {
+      return;
+    }
+
+
+    try {
+
+      setLoading(true);
+
+
+      /*
+       * PASO 2
+       *
+       * Inicia la verificación con Google.
+       */
+      setCurrentStep(1);
+      setStepStatus("process");
+
+
+      const data = await loginWithGoogle(
+        credentialResponse.credential
+      );
+
+
+      console.log("✅ Google correcto:", data);
+
+
+      /*
+       * PASO 3
+       *
+       * Acceso correcto.
+       */
+      setCurrentStep(2);
+      setStepStatus("finish");
+
+
+      notification.success({
+        title: "Inicio de sesión correcto",
+        description: "Has iniciado sesión correctamente con Google.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 700);
+
+
+    } catch (error) {
+
+      console.error("❌ Error Google:", error);
+
+
+      /*
+       * El backend puede devolver 409 cuando
+       * el correo ya existe con contraseña.
+       */
+      setCurrentStep(1);
+      setStepStatus("error");
+
+
+      notification.error({
+        title: "Error con Google",
+        description:
+          error?.message ||
+          "No fue posible iniciar sesión con Google.",
+        placement: "topRight",
+        duration: 8,
+        showProgress: true,
+        pauseOnHover: true,
+        closable: true,
+        className: "welcome-notification",
+      });
+
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
+
+
+  /*==============================================================
+  # Error Google
+  ==============================================================*/
+
+  const handleGoogleError = () => {
+
+    setCurrentStep(1);
+    setStepStatus("error");
+
+
+    notification.error({
+      title: "Error con Google",
+      description: "No fue posible iniciar sesión con Google.",
+      placement: "topRight",
+      duration: 8,
+      showProgress: true,
+      pauseOnHover: true,
+      closable: true,
+      className: "welcome-notification",
+    });
+
+  };
+
+
+  /*==============================================================
   # Render
   ==============================================================*/
 
   return (
 
     <div className={`login-page ${isDark ? "dark" : "light"}`}>
+
 
       <ThemeToggle
         isDark={isDark}
@@ -411,46 +562,16 @@ function Login() {
             # Google Login
             --------------------------------------------------------*/}
 
-            <button
-              type="button"
-              className="login-button login-google"
-              disabled={loading}
-            >
-
-              <svg
-                className="login-google-icon"
-                viewBox="-3 0 262 262"
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="xMidYMid meet"
-              >
-
-                <path
-                  d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
-                  fill="#4285F4"
-                />
-
-                <path
-                  d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
-                  fill="#34A853"
-                />
-
-                <path
-                  d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
-                  fill="#FBBC05"
-                />
-
-                <path
-                  d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
-                  fill="#EB4335"
-                />
-
-              </svg>
-
-              <span>
-                Iniciar sesión con Google
-              </span>
-
-            </button>
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme={isDark ? "filled_black" : "outline"}
+              size="large"
+              text="continue_with"
+              shape="rectangular"
+              width="250"
+              useOneTap={false}
+            />
 
 
             {/*--------------------------------------------------------
@@ -460,6 +581,7 @@ function Login() {
             <p className="login-footer">
 
               ¿No tienes una cuenta?
+
 
               <a
                 href="#"
@@ -472,19 +594,26 @@ function Login() {
 
                 }}
               >
+
                 ¡Regístrate, es gratis!
+
               </a>
 
+
               <br />
+
 
               <a
                 href="#"
                 className="login-link"
               >
+
                 ¿Olvidaste tu contraseña?
+
               </a>
 
             </p>
+
 
           </form>
 
@@ -497,5 +626,6 @@ function Login() {
   );
 
 }
+
 
 export default Login;

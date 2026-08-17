@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import {
   login as loginRequest,
   register as registerRequest,
+  loginWithGoogle as loginWithGoogleRequest,
   getCurrentUser,
   logout as logoutRequest
 } from "../services/authService.js";
@@ -82,6 +83,23 @@ function AuthProvider({ children, checkOnMount = false }) {
 
   };
 
+  const loginWithGoogle = async (credential) => {
+
+    const data = await loginWithGoogleRequest(
+      credential
+    );
+
+    const currentUser = await getCurrentUser();
+
+    setUser(currentUser.user);
+
+    return {
+      ...data,
+      user: currentUser.user
+    };
+
+  };
+
 
   const logout = async () => {
 
@@ -99,6 +117,7 @@ function AuthProvider({ children, checkOnMount = false }) {
         loading,
         login,
         register,
+        loginWithGoogle,
         logout,
         checkSession
       }}
