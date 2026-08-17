@@ -1,6 +1,7 @@
 import useIsotope from "../hooks/useIsotope";
 import useGLightbox from "../hooks/useGLightbox";
 import GravityGallery from "./GravityGallery";
+import ParticleText from "./ParticleText";
 
 function Academic() {
 
@@ -12,7 +13,22 @@ function Academic() {
 
       <div className="container section-title" data-aos="fade-up">
 
-        <h2>Producción Académica</h2>
+        <ParticleText
+          text="Producción Académica"
+          particleSize={2.1}
+          density={3}
+          scatter={95}
+          gatherDuration={1400}
+          stagger={280}
+          pointerRepel={32}
+          repelRadius={105}
+          idleDrift={0.35}
+          trigger="mount"
+          fontSize="clamp(2.2rem, 5vw, 3.5rem)"
+          fontWeight={700}
+          fontFamily="inherit"
+          glow
+        />
 
         <p>
           En esta sección se presentan algunos de mis principales logros académicos,
