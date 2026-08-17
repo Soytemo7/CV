@@ -53,16 +53,21 @@ function AuthProvider({ children, checkOnMount = false }) {
 
   }, [checkOnMount]);
 
-
   const login = async (email, password) => {
 
     const data = await loginRequest(email, password);
 
-    setUser(data.user);
+    const currentUser = await getCurrentUser();
 
-    return data;
+    setUser(currentUser.user);
+
+    return {
+      ...data,
+      user: currentUser.user
+    };
 
   };
+
 
 
   const register = async (name, email, password) => {
