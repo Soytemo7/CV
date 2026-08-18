@@ -201,22 +201,22 @@ useEffect(() => {
               {
                 link: "https://www.sat.gob.mx/",
                 text: "SAT",
-                image: "/img/authorities/sat.jpg"
+                image: `${import.meta.env.BASE_URL}img/authorities/sat.jpg`
               },
               {
                 link: "https://www.imss.gob.mx/",
                 text: "IMSS",
-                image: "/img/authorities/imss.jpg"
+                image: `${import.meta.env.BASE_URL}img/authorities/imss.jpg`
               },
               {
                 link: "https://www.tfja.gob.mx/",
                 text: "TFJA",
-                image: "/img/authorities/tfja.jpg"
+                image: `${import.meta.env.BASE_URL}img/authorities/tfja.jpg`
               },
               {
                 link: "https://portalmx.infonavit.org.mx/",
                 text: "INFONAVIT",
-                image: "/img/authorities/infonavit.png"
+                image: `${import.meta.env.BASE_URL}img/authorities/infonavit.png`
               }
             ]}
 

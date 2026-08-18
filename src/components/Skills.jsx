@@ -1,4 +1,5 @@
 import useSkillsAnimation from "../hooks/useSkillsAnimation";
+import RippleDistortion from "../components/RippleDistortion";
 
 function Skills() {
 
@@ -139,6 +140,47 @@ function Skills() {
             </div>
 
           </div>
+
+        </div>
+
+      </div>
+
+            <div
+        className="container"
+        data-aos="fade-up"
+        data-aos-delay="100"
+          style={{
+          marginTop: "80px"
+        }}
+      >
+
+        <div
+          style={{
+            width: "100%",
+            height: "600px"
+          }}
+        >
+
+          <RippleDistortion
+            src={`${import.meta.env.BASE_URL}img/principal.jpg`}
+            brushSize={150}
+            strength={0.2}
+            swirl={1}
+            rings={4}
+            grayscale
+            spread={5}
+            fade={3}
+            spacing={15}
+            dispersion={0}
+            glint={0}
+            tint="#0066ff"
+            tintAmount={0.1}
+            highlightColor="#ffffff"
+            trigger="hover"
+            clickStrength={2}
+            quality="low"
+            enabled
+          />
 
         </div>
 

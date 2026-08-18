@@ -3,36 +3,67 @@ import ChromaGrid from "../components/ChromaGrid";
 function Services() {
   
   const chromaItems = [
+
     {
-      image: "/img/professional/1.jpg",
+
+      image: `${import.meta.env.BASE_URL}img/professional/1.jpg`,
+
       borderColor: "#0dcaf0",
+
       gradient: "linear-gradient(145deg, #0dcaf0, #000)"
+
     },
+
     {
-      image: "/img/professional/2.jpg",
+
+      image: `${import.meta.env.BASE_URL}img/professional/2.jpg`,
+
       borderColor: "#fd7e14",
+
       gradient: "linear-gradient(145deg, #fd7e14, #000)"
+
     },
+
     {
-      image: "/img/professional/3.jpg",
+
+      image: `${import.meta.env.BASE_URL}img/professional/3.jpg`,
+
       borderColor: "#20c997",
+
       gradient: "linear-gradient(145deg, #20c997, #000)"
+
     },
+
     {
-      image: "/img/professional/4.jpg",
+
+      image: `${import.meta.env.BASE_URL}img/professional/4.jpg`,
+
       borderColor: "#dc3545",
+
       gradient: "linear-gradient(145deg, #dc3545, #000)"
+
     },
+
     {
-      image: "/img/professional/5.jpg",
+
+      image: `${import.meta.env.BASE_URL}img/professional/5.jpg`,
+
       borderColor: "#6610f2",
+
       gradient: "linear-gradient(145deg, #6610f2, #000)"
+
     },
+
     {
-      image: "/img/professional/6.jpg",
+
+      image: `${import.meta.env.BASE_URL}img/professional/6.jpg`,
+
       borderColor: "#d63384",
+
       gradient: "linear-gradient(145deg, #d63384, #000)"
+
     }
+
   ];
   
 
