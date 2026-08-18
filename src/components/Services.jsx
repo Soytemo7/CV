@@ -1,4 +1,41 @@
+import ChromaGrid from "../components/ChromaGrid";
+
 function Services() {
+  
+  const chromaItems = [
+    {
+      image: "/img/professional/1.jpg",
+      borderColor: "#0dcaf0",
+      gradient: "linear-gradient(145deg, #0dcaf0, #000)"
+    },
+    {
+      image: "/img/professional/2.jpg",
+      borderColor: "#fd7e14",
+      gradient: "linear-gradient(145deg, #fd7e14, #000)"
+    },
+    {
+      image: "/img/professional/3.jpg",
+      borderColor: "#20c997",
+      gradient: "linear-gradient(145deg, #20c997, #000)"
+    },
+    {
+      image: "/img/professional/4.jpg",
+      borderColor: "#dc3545",
+      gradient: "linear-gradient(145deg, #dc3545, #000)"
+    },
+    {
+      image: "/img/professional/5.jpg",
+      borderColor: "#6610f2",
+      gradient: "linear-gradient(145deg, #6610f2, #000)"
+    },
+    {
+      image: "/img/professional/6.jpg",
+      borderColor: "#d63384",
+      gradient: "linear-gradient(145deg, #d63384, #000)"
+    }
+  ];
+  
+
   return (
     <section id="services" className="services section">
 
@@ -10,6 +47,8 @@ function Services() {
           Contaduría, Administración, Sistemas Computacionales y Docencia Universitaria.
         </p>
       </div>
+
+      
 
 
       <div className="container">
@@ -85,6 +124,26 @@ function Services() {
 
         </div>
 
+      </div>
+
+      <div
+        className="container"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div className="chroma-grid-container" >
+
+          <ChromaGrid
+            items={chromaItems}
+            radius={300}
+            columns={3}
+            rows={2}
+            damping={0.45}
+            fadeOut={0.6}
+            ease="power3.out"
+          />
+
+        </div>
       </div>
 
     </section>
