@@ -27,6 +27,18 @@ function WelcomeNotification() {
           "Regístrate para acceder al sistema.",
       },
 
+      "/forgot-password": {
+        title: "Recuperar contraseña",
+        description:
+          "Solicita un enlace para recuperar el acceso a tu cuenta.",
+      },
+
+      "/reset-password": {
+        title: "Restablecer contraseña",
+        description:
+          "Establece una nueva contraseña para tu cuenta.",
+      },
+
       "/dashboard": {
         title: "Panel de control",
         description:

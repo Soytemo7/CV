@@ -606,6 +606,13 @@ function Login() {
               <a
                 href="#"
                 className="login-link"
+                onClick={(event) => {
+
+                  event.preventDefault();
+
+                  navigate("/forgot-password");
+
+                }}
               >
 
                 ¿Olvidaste tu contraseña?

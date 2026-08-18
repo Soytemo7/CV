@@ -25,6 +25,45 @@ export const register = async (name, email, password) => {
 
 };
 
+// ============================================================
+// RECUPERACIÓN DE CONTRASEÑA
+// ============================================================
+
+export const forgotPassword = async (email) => {
+
+  return await api("/api/auth/forgot-password", {
+
+    method: "POST",
+
+    body: JSON.stringify({
+
+      email
+
+    })
+
+  });
+
+};
+
+
+export const resetPassword = async (oobCode, newPassword) => {
+
+  return await api("/api/auth/reset-password", {
+
+    method: "POST",
+
+    body: JSON.stringify({
+
+      oobCode,
+
+      newPassword
+
+    })
+
+  });
+
+};
+
 export const loginWithGoogle = async (credential) => {
 
   return await api("/api/auth/google", {
@@ -49,3 +88,4 @@ export const logout = async () => {
   });
 
 };
+

@@ -26,6 +26,8 @@ import MainLayout from "./layouts/MainLayout";
 import PrivateLayout from "./layouts/PrivateLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 
 import { AuthProvider } from "./context/AuthContext.jsx";
@@ -109,6 +111,21 @@ function App() {
                 <Register />
               </AuthProvider>
             }
+          />
+
+          {/* Recuperación de contraseña */}
+
+          <Route
+            path="/forgot-password"
+            element={<ForgotPassword />}
+          />
+
+
+          {/* Restablecer contraseña */}
+
+          <Route
+            path="/reset-password"
+            element={<ResetPassword />}
           />
 
 
