@@ -1,10 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNotification } from "../hooks/useNotification";
 import ContactTechMarquee from "../components/ContactTechMarquee";
+import FlowingMenu from "../components/FlowingMenu";
 
 function Contact() {
 
   const notification = useNotification();
+
+  /* ============================================================
+  # THEME
+  ============================================================ */
+
+  const [isDark, setIsDark] = useState(
+  localStorage.getItem("theme") === "dark"
+);
+
+useEffect(() => {
+
+  const updateTheme = () => {
+
+    setIsDark(
+      localStorage.getItem("theme") === "dark"
+    );
+
+  };
+
+  window.addEventListener(
+    "themechange",
+    updateTheme
+  );
+
+  return () => {
+
+    window.removeEventListener(
+      "themechange",
+      updateTheme
+    );
+
+  };
+
+}, []);
+
+
+  /* ============================================================
+  # CONTACT FORM
+  ============================================================ */
 
   const [formData, setFormData] = useState({
     name: "",
@@ -13,7 +53,9 @@ function Contact() {
     message: ""
   });
 
+
   const [sending, setSending] = useState(false);
+
 
   const handleChange = (e) => {
 
@@ -116,13 +158,85 @@ function Contact() {
   };
 
 
+  /* ============================================================
+  # RENDER
+  ============================================================ */
+
   return (
 
-    <section id="contact" className="contact section">
+    <section className="contact section">
 
 
-      <div className="container section-title" data-aos="fade-up">
+      {/* ========================================================
+      # AUTORIDADES FISCALES
+      ======================================================== */}
 
+      <div
+        className="container section-title"
+        data-aos="fade-up"
+      >
+
+        <div className="section-title">
+
+          <h2>Autoridades Fiscales</h2>
+
+          <p>
+            Organismos e instituciones relacionados con el ámbito
+            fiscal, tributario y administrativo.
+          </p>
+
+        </div>
+
+
+        <div
+          style={{
+            height: "420px",
+            position: "relative",
+            marginBottom: "60px"
+          }}
+        >
+
+          <FlowingMenu
+            items={[
+              {
+                link: "https://www.sat.gob.mx/",
+                text: "SAT",
+                image: "/img/authorities/sat.jpg"
+              },
+              {
+                link: "https://www.imss.gob.mx/",
+                text: "IMSS",
+                image: "/img/authorities/imss.jpg"
+              },
+              {
+                link: "https://www.tfja.gob.mx/",
+                text: "TFJA",
+                image: "/img/authorities/tfja.jpg"
+              },
+              {
+                link: "https://portalmx.infonavit.org.mx/",
+                text: "INFONAVIT",
+                image: "/img/authorities/infonavit.png"
+              }
+            ]}
+
+            speed={15}
+            textColor={isDark ? "#ffffff" : "#000000"}
+            bgColor={isDark ? "#000000" : "#ffffff"}
+            marqueeBgColor={isDark ? "#ffffff" : "#000000"}
+            marqueeTextColor={isDark ? "#000000" : "#ffffff"}
+            borderColor={isDark ? "#ffffff" : "#000000"}
+
+          />
+
+        </div>
+
+
+        {/* ======================================================
+        # CONTACTO
+        ====================================================== */}
+
+        <div id="contact"></div>
         <h2>Contacto</h2>
 
         <p>
@@ -133,15 +247,22 @@ function Contact() {
       </div>
 
 
+      {/* ========================================================
+      # CONTACT INFORMATION + FORM
+      ======================================================== */}
+
       <div
         className="container"
         data-aos="fade"
         data-aos-delay="100"
       >
 
-
         <div className="row gy-4">
 
+
+          {/* ====================================================
+          # CONTACT INFORMATION
+          ==================================================== */}
 
           <div className="col-lg-4">
 
@@ -214,6 +335,10 @@ function Contact() {
           </div>
 
 
+          {/* ====================================================
+          # CONTACT FORM
+          ==================================================== */}
+
           <div className="col-lg-8">
 
 
@@ -224,7 +349,6 @@ function Contact() {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-
 
               <div className="row gy-4">
 
@@ -332,17 +456,18 @@ function Contact() {
 
               </div>
 
-
             </form>
-
 
           </div>
 
-
         </div>
 
-
       </div>
+
+
+      {/* ========================================================
+      # TECHNOLOGIES
+      ======================================================== */}
 
       <ContactTechMarquee />
 
@@ -351,5 +476,6 @@ function Contact() {
   );
 
 }
+
 
 export default Contact;

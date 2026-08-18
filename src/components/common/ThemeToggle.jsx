@@ -1,7 +1,20 @@
 function ThemeToggle({ isDark, setIsDark }) {
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
+
+    const newTheme = !isDark;
+
+    setIsDark(newTheme);
+
+    localStorage.setItem(
+      "theme",
+      newTheme ? "dark" : "light"
+    );
+
+    window.dispatchEvent(
+      new Event("themechange")
+    );
+
   };
 
 
@@ -18,6 +31,7 @@ function ThemeToggle({ isDark, setIsDark }) {
     >
 
       <span className="theme-toggle-icon">
+
         <i
           className={`bi ${
             isDark
@@ -25,10 +39,17 @@ function ThemeToggle({ isDark, setIsDark }) {
               : "bi-sun-fill"
           }`}
         ></i>
+
       </span>
 
+
       <span className="theme-toggle-label">
-        {isDark ? "DARK" : "LIGHT"}
+
+        {isDark
+          ? "DARK"
+          : "LIGHT"
+        }
+
       </span>
 
     </button>
