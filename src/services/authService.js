@@ -110,3 +110,15 @@ export const logout = async () => {
   });
 
 };
+
+// ============================================================
+// LOGOUT DE TODAS LAS SESIONES
+// ============================================================
+
+export const logoutAll = async () => {
+
+  return await api("/api/auth/logout-all", {
+    method: "POST"
+  });
+
+};

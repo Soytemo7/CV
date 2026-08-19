@@ -4,7 +4,8 @@ import {
   register as registerRequest,
   loginWithGoogle as loginWithGoogleRequest,
   getCurrentUser,
-  logout as logoutRequest
+  logout as logoutRequest,
+  logoutAll as logoutAllRequest
 } from "../services/authService.js";
 
 
@@ -109,6 +110,14 @@ function AuthProvider({ children, checkOnMount = false }) {
 
   };
 
+  const logoutAll = async () => {
+
+    await logoutAllRequest();
+
+    setUser(null);
+
+  };
+
 
   return (
     <AuthContext.Provider
@@ -119,6 +128,7 @@ function AuthProvider({ children, checkOnMount = false }) {
         register,
         loginWithGoogle,
         logout,
+        logoutAll,
         checkSession
       }}
     >
