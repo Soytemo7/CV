@@ -243,47 +243,35 @@ function Login() {
       }, 700);
 
 
-    } catch (error) {
+    } catch (error) {     
+      
+        console.error("❌ Error login:", error);
 
-      console.error("❌ Error login:", error);
+        setCurrentStep(1);
+        setStepStatus("error");
 
+        notification.error({
+          title:
+            error?.status === 403
+              ? "Correo no verificado"
+              : "Error al iniciar sesión",
 
-      /*------------------------------------------------------------
-      # Error - Paso 2
-      ------------------------------------------------------------*/
+          description:
+            error?.message ||
+            "No fue posible iniciar sesión. Verifica tus credenciales.",
 
-      /*
-       * El paso 2 queda permanentemente en ERROR
-       * hasta que el usuario vuelva a interactuar.
-       */
-      setCurrentStep(1);
-      setStepStatus("error");
+          placement: "topRight",
+          duration: 8,
+          showProgress: true,
+          pauseOnHover: true,
+          closable: true,
+          className: "welcome-notification",
+        });
 
-
-      notification.error({
-        title: "Error al iniciar sesión",
-        description:
-          error?.message ||
-          "No fue posible iniciar sesión. Verifica tus credenciales.",
-        placement: "topRight",
-        duration: 8,
-        showProgress: true,
-        pauseOnHover: true,
-        closable: true,
-        className: "welcome-notification",
-      });
-
-
-      /*
-       * Limpiamos los campos.
-       *
-       * El Stepper NO se modifica.
-       */
-      setFormData({
-        email: "",
-        password: ""
-      });
-
+        setFormData({
+          email: "",
+          password: ""
+        });
 
     } finally {
 

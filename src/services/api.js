@@ -14,9 +14,14 @@ const api = async (endpoint, options = {}) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(
+
+    const error = new Error(
       data.error || "Ocurrió un error en la solicitud."
     );
+
+    error.status = response.status;
+
+    throw error;
   }
 
   return data;

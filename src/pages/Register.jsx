@@ -463,8 +463,8 @@ function Register() {
       ------------------------------------------------------------*/
 
       setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
+        navigate("/login");
+      }, 1800);
 
 
     } catch (error) {
@@ -530,9 +530,9 @@ function Register() {
       setStepStatus("finish");
 
       notification.success({
-        title: "Registro con Google exitoso",
+         title: "Registro exitoso",
         description:
-          "Tu cuenta ha sido creada correctamente.",
+          "Tu cuenta ha sido creada. Revisa tu correo electrónico para verificarla antes de iniciar sesión.",
         placement: "topRight",
         duration: 8,
         showProgress: true,
