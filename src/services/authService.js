@@ -1,5 +1,6 @@
 import api from "./api.js";
 
+
 export const login = async (email, password) => {
 
   return await api("/api/auth/login", {
@@ -59,7 +60,10 @@ export const forgotPassword = async (email) => {
 };
 
 
-export const resetPassword = async (oobCode, newPassword) => {
+export const resetPassword = async (
+  oobCode,
+  newPassword
+) => {
 
   return await api("/api/auth/reset-password", {
     method: "POST",
@@ -111,6 +115,7 @@ export const logout = async () => {
 
 };
 
+
 // ============================================================
 // LOGOUT DE TODAS LAS SESIONES
 // ============================================================
@@ -120,5 +125,34 @@ export const logoutAll = async () => {
   return await api("/api/auth/logout-all", {
     method: "POST"
   });
+
+};
+
+
+// ============================================================
+// SESIONES ACTIVAS
+// ============================================================
+
+export const getActiveSessions = async () => {
+
+  return await api("/api/auth/sessions");
+
+};
+
+
+// ============================================================
+// CERRAR UNA SESIÓN ESPECÍFICA
+// ============================================================
+
+export const logoutSession = async (
+  sessionId
+) => {
+
+  return await api(
+    `/api/auth/sessions/${sessionId}/logout`,
+    {
+      method: "POST"
+    }
+  );
 
 };

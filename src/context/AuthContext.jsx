@@ -1,30 +1,56 @@
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState
+} from "react";
+
 import {
   login as loginRequest,
   register as registerRequest,
   loginWithGoogle as loginWithGoogleRequest,
   getCurrentUser,
   logout as logoutRequest,
-  logoutAll as logoutAllRequest
+  logoutAll as logoutAllRequest,
+  getActiveSessions as getActiveSessionsRequest,
+  logoutSession as logoutSessionRequest
 } from "../services/authService.js";
 
 
 const AuthContext = createContext(null);
 
 
-function AuthProvider({ children, checkOnMount = false }) {
+function AuthProvider({
+  children,
+  checkOnMount = false
+}) {
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(checkOnMount);
+  const [
+    user,
+    setUser
+  ] = useState(null);
 
+
+  const [
+    loading,
+    setLoading
+  ] = useState(checkOnMount);
+
+
+  // ============================================================
+  // COMPROBAR SESIÓN
+  // ============================================================
 
   const checkSession = async () => {
 
     try {
 
-      const data = await getCurrentUser();
+      const data =
+        await getCurrentUser();
 
-      setUser(data.user);
+
+      setUser(
+        data.user
+      );
 
     } catch {
 
@@ -39,11 +65,18 @@ function AuthProvider({ children, checkOnMount = false }) {
   };
 
 
+  // ============================================================
+  // INICIALIZAR AUTENTICACIÓN
+  // ============================================================
+
   useEffect(() => {
 
     if (!checkOnMount) {
+
       return;
+
     }
+
 
     const initializeAuth = async () => {
 
@@ -51,92 +84,215 @@ function AuthProvider({ children, checkOnMount = false }) {
 
     };
 
+
     initializeAuth();
 
   }, [checkOnMount]);
 
-  const login = async (email, password) => {
 
-    const data = await loginRequest(email, password);
+  // ============================================================
+  // LOGIN
+  // ============================================================
 
-    const currentUser = await getCurrentUser();
+  const login = async (
+    email,
+    password
+  ) => {
 
-    setUser(currentUser.user);
+    const data =
+      await loginRequest(
+        email,
+        password
+      );
+
+
+    const currentUser =
+      await getCurrentUser();
+
+
+    setUser(
+      currentUser.user
+    );
+
 
     return {
+
       ...data,
-      user: currentUser.user
+
+      user:
+        currentUser.user
+
     };
 
   };
 
 
+  // ============================================================
+  // REGISTRO
+  // ============================================================
 
-  const register = async (name, email, password) => {
+  const register = async (
+    name,
+    email,
+    password
+  ) => {
 
-    const data = await registerRequest(
-      name,
-      email,
-      password
-    );
+    const data =
+      await registerRequest(
+        name,
+        email,
+        password
+      );
+
 
     return data;
 
   };
 
-  const loginWithGoogle = async (credential) => {
 
-    const data = await loginWithGoogleRequest(
-      credential
+  // ============================================================
+  // LOGIN CON GOOGLE
+  // ============================================================
+
+  const loginWithGoogle = async (
+    credential
+  ) => {
+
+    const data =
+      await loginWithGoogleRequest(
+        credential
+      );
+
+
+    const currentUser =
+      await getCurrentUser();
+
+
+    setUser(
+      currentUser.user
     );
 
-    const currentUser = await getCurrentUser();
-
-    setUser(currentUser.user);
 
     return {
+
       ...data,
-      user: currentUser.user
+
+      user:
+        currentUser.user
+
     };
 
   };
 
 
+  // ============================================================
+  // LOGOUT
+  // ============================================================
+
   const logout = async () => {
 
     await logoutRequest();
 
+
     setUser(null);
 
   };
+
+
+  // ============================================================
+  // LOGOUT DE TODAS LAS SESIONES
+  // ============================================================
 
   const logoutAll = async () => {
 
     await logoutAllRequest();
 
+
     setUser(null);
 
   };
 
 
+  // ============================================================
+  // OBTENER SESIONES ACTIVAS
+  // ============================================================
+
+  const getActiveSessions = async () => {
+
+    const data =
+      await getActiveSessionsRequest();
+
+
+    return data.sessions || [];
+
+  };
+
+
+  // ============================================================
+  // CERRAR UNA SESIÓN ESPECÍFICA
+  // ============================================================
+
+  const logoutSession = async (
+    sessionId
+  ) => {
+
+    const data =
+      await logoutSessionRequest(
+        sessionId
+      );
+
+
+    return data;
+
+  };
+
+
+  // ============================================================
+  // PROVIDER
+  // ============================================================
+
   return (
+
     <AuthContext.Provider
       value={{
+
         user,
+
         loading,
+
+
         login,
+
         register,
+
         loginWithGoogle,
+
+
         logout,
+
         logoutAll,
+
+
+        getActiveSessions,
+
+        logoutSession,
+
+
         checkSession
+
       }}
     >
+
       {children}
+
     </AuthContext.Provider>
+
   );
 
 }
 
 
-export { AuthContext, AuthProvider };
+export {
+  AuthContext,
+  AuthProvider
+};
