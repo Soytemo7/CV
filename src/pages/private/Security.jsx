@@ -59,7 +59,9 @@ function Security() {
         setLoadingSessions(true);
         setError(null);
 
-        console.log("🔵 Security: cargando sesiones");
+        console.log(
+          "🔵 Security: cargando sesiones"
+        );
 
 
         const data =
@@ -196,12 +198,87 @@ function Security() {
 
 
   // ============================================================
+  // ICONO DEL DISPOSITIVO
+  // ============================================================
+
+  const getDeviceIcon = (
+    operatingSystem
+  ) => {
+
+    if (!operatingSystem) {
+
+      return "bi bi-device-unknown";
+
+    }
+
+
+    const system =
+      operatingSystem.toLowerCase();
+
+
+    if (
+      system.includes("android")
+    ) {
+
+      return "bi bi-phone";
+
+    }
+
+
+    if (
+      system.includes("ios") ||
+      system.includes("iphone") ||
+      system.includes("ipad")
+    ) {
+
+      return "bi bi-phone";
+
+    }
+
+
+    if (
+      system.includes("mac")
+    ) {
+
+      return "bi bi-laptop";
+
+    }
+
+
+    if (
+      system.includes("windows")
+    ) {
+
+      return "bi bi-pc-display";
+
+    }
+
+
+    if (
+      system.includes("linux")
+    ) {
+
+      return "bi bi-pc-display";
+
+    }
+
+
+    return "bi bi-laptop";
+
+  };
+
+
+  // ============================================================
   // RENDER
   // ============================================================
 
   return (
 
     <div className="private-page-container">
+
+      {/* ========================================================
+          ENCABEZADO
+          ======================================================== */}
 
       <div className="private-page-header">
 
@@ -246,8 +323,8 @@ function Security() {
 
 
             <p>
-              Administra las sesiones actualmente
-              asociadas a tu cuenta.
+              Revisa dónde está iniciada tu cuenta
+              y cierra cualquier sesión que no reconozcas.
             </p>
 
           </div>
@@ -300,7 +377,11 @@ function Security() {
 
           <div className="private-security-empty">
 
-            <i className="bi bi-shield-check" />
+            <div className="private-security-empty-icon">
+
+              <i className="bi bi-shield-check" />
+
+            </div>
 
 
             <strong>
@@ -326,45 +407,56 @@ function Security() {
             {sessions.map(
               session => (
 
-                <div
+                <article
                   key={session.sessionId}
                   className="private-session-item"
                 >
 
-                  {/* ==================================================
-                      ICONO DEL DISPOSITIVO
-                      ================================================== */}
+                  {/* ==========================================
+                      ICONO
+                      ========================================== */}
 
                   <div className="private-session-icon">
 
                     <i
-                      className={
-                        session.operatingSystem === "Desconocido"
-                          ? "bi bi-device-unknown"
-                          : "bi bi-laptop"
-                      }
+                      className={getDeviceIcon(
+                        session.operatingSystem
+                      )}
                     />
 
                   </div>
 
 
-                  {/* ==================================================
-                      INFORMACIÓN
-                      ================================================== */}
+                  {/* ==========================================
+                      INFORMACIÓN PRINCIPAL
+                      ========================================== */}
 
                   <div className="private-session-info">
 
-                    <strong>
+                    <div className="private-session-title">
 
-                      {session.browser !== "Desconocido"
-                        ? session.browser
-                        : "Dispositivo"
-                      }
+                      <strong>
 
-                    </strong>
+                        {session.browser !== "Desconocido"
+                          ? session.browser
+                          : "Dispositivo desconocido"
+                        }
+
+                      </strong>
 
 
-                    <span>
+                      <span className="private-session-status">
+
+                        <span className="private-session-status-dot" />
+
+                        Activa
+
+                      </span>
+
+                    </div>
+
+
+                    <span className="private-session-device">
 
                       {session.operatingSystem !== "Desconocido"
                         ? session.operatingSystem
@@ -374,31 +466,56 @@ function Security() {
                     </span>
 
 
-                    <small>
+                    {/* ========================================
+                        METADATOS
+                        ======================================== */}
 
-                      Última actividad:{" "}
+                    <div className="private-session-meta">
 
-                      {formatDate(
-                        session.lastActivityAt
-                      )}
+                      <span>
 
-                    </small>
+                        <i className="bi bi-globe2" />
+
+                        {session.ip ||
+                          "IP desconocida"
+                        }
+
+                      </span>
 
 
-                    <small>
+                      <span>
 
-                      IP:{" "}
+                        <i className="bi bi-clock" />
 
-                      {session.ip || "Desconocida"}
+                        Última actividad:{" "}
 
-                    </small>
+                        {formatDate(
+                          session.lastActivityAt
+                        )}
+
+                      </span>
+
+
+                      <span>
+
+                        <i className="bi bi-calendar3" />
+
+                        Inicio:{" "}
+
+                        {formatDate(
+                          session.createdAt
+                        )}
+
+                      </span>
+
+                    </div>
 
                   </div>
 
 
-                  {/* ==================================================
-                      ACCIONES
-                      ================================================== */}
+                  {/* ==========================================
+                      ACCIÓN
+                      ========================================== */}
 
                   <div className="private-session-actions">
 
@@ -436,7 +553,7 @@ function Security() {
 
                   </div>
 
-                </div>
+                </article>
 
               )
             )}

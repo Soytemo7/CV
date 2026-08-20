@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useEffect,
   useState
 } from "react";
@@ -40,7 +41,7 @@ function AuthProvider({
   // COMPROBAR SESIÓN
   // ============================================================
 
-  const checkSession = async () => {
+  const checkSession = useCallback(async () => {
 
     try {
 
@@ -62,7 +63,7 @@ function AuthProvider({
 
     }
 
-  };
+  }, []);
 
 
   // ============================================================
@@ -87,7 +88,10 @@ function AuthProvider({
 
     initializeAuth();
 
-  }, [checkOnMount]);
+  }, [
+    checkOnMount,
+    checkSession
+  ]);
 
 
   // ============================================================
@@ -217,7 +221,7 @@ function AuthProvider({
   // OBTENER SESIONES ACTIVAS
   // ============================================================
 
-  const getActiveSessions = async () => {
+  const getActiveSessions = useCallback(async () => {
 
     const data =
       await getActiveSessionsRequest();
@@ -225,14 +229,14 @@ function AuthProvider({
 
     return data.sessions || [];
 
-  };
+  }, []);
 
 
   // ============================================================
   // CERRAR UNA SESIÓN ESPECÍFICA
   // ============================================================
 
-  const logoutSession = async (
+  const logoutSession = useCallback(async (
     sessionId
   ) => {
 
@@ -244,7 +248,7 @@ function AuthProvider({
 
     return data;
 
-  };
+  }, []);
 
 
   // ============================================================

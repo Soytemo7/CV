@@ -1,5 +1,6 @@
 import {
-  Navigate
+  Navigate,
+  useLocation
 } from "react-router-dom";
 
 import {
@@ -26,9 +27,38 @@ function PrivateContent({ children }) {
 
   const {
     user,
-    loading
+    loading,
+    checkSession
   } = useContext(AuthContext);
 
+
+  const location =
+    useLocation();
+
+
+  // ============================================================
+  // VALIDAR SESIÓN AL CAMBIAR DE RUTA PRIVADA
+  // ============================================================
+
+  useEffect(() => {
+
+    if (loading) {
+
+      return;
+
+    }
+
+
+    checkSession();
+
+  }, [
+    location.pathname
+  ]);
+
+
+  // ============================================================
+  // ESTADO DE CARGA
+  // ============================================================
 
   if (loading) {
 
@@ -36,6 +66,10 @@ function PrivateContent({ children }) {
 
   }
 
+
+  // ============================================================
+  // SESIÓN NO VÁLIDA
+  // ============================================================
 
   if (!user) {
 

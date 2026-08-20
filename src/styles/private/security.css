@@ -214,6 +214,564 @@
 
 
 /* ============================================================
+   SESIONES ACTIVAS
+   ============================================================ */
+
+.private-sessions-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+}
+
+
+/* ============================================================
+   SESIÓN
+   ============================================================ */
+
+.private-session-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  color: inherit;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+
+}
+
+
+/* ============================================================
+   SESIÓN — CLARO
+   ============================================================ */
+
+.private-light .private-session-item {
+
+  background:
+    rgba(0, 0, 0, 0.025);
+
+  border:
+    1px solid rgba(0, 0, 0, 0.05);
+
+}
+
+
+/* ============================================================
+   SESIÓN — OSCURO
+   ============================================================ */
+
+.private-dark .private-session-item {
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+
+}
+
+
+/* ============================================================
+   HOVER SESIÓN
+   ============================================================ */
+
+.private-light .private-session-item:hover {
+
+  background:
+    rgba(0, 0, 0, 0.04);
+
+  border-color:
+    rgba(0, 0, 0, 0.08);
+
+  transform:
+    translateY(-1px);
+
+}
+
+
+.private-dark .private-session-item:hover {
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  border-color:
+    rgba(255, 255, 255, 0.1);
+
+  transform:
+    translateY(-1px);
+
+}
+
+
+/* ============================================================
+   ICONO DEL DISPOSITIVO
+   ============================================================ */
+
+.private-session-icon {
+
+  width: 48px;
+
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    rgba(22, 119, 255, 0.1);
+
+  color: #1677ff;
+
+}
+
+
+.private-session-icon i {
+
+  font-size: 22px;
+
+}
+
+
+/* ============================================================
+   INFORMACIÓN DE SESIÓN
+   ============================================================ */
+
+.private-session-info {
+
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+
+/* ============================================================
+   TÍTULO
+   ============================================================ */
+
+.private-session-title {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+}
+
+
+.private-session-title strong {
+
+  color: inherit;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+}
+
+
+/* ============================================================
+   ESTADO
+   ============================================================ */
+
+.private-session-status {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding:
+    3px 8px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(25, 135, 84, 0.1);
+
+  color:
+    #198754;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+}
+
+
+.private-session-status-dot {
+
+  width: 6px;
+
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    #198754;
+
+}
+
+
+/* ============================================================
+   DISPOSITIVO / SISTEMA OPERATIVO
+   ============================================================ */
+
+.private-session-device {
+
+  color: inherit;
+
+  font-size: 12px;
+
+  opacity: 0.6;
+
+}
+
+
+/* ============================================================
+   METADATOS
+   ============================================================ */
+
+.private-session-meta {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 6px 18px;
+
+  margin-top: 6px;
+
+}
+
+
+.private-session-meta span {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: inherit;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  opacity: 0.5;
+
+}
+
+
+.private-session-meta i {
+
+  font-size: 12px;
+
+  opacity: 0.8;
+
+}
+
+
+/* ============================================================
+   ACCIONES DE SESIÓN
+   ============================================================ */
+
+.private-session-actions {
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+
+/* ============================================================
+   BOTÓN PELIGRO
+   ============================================================ */
+
+.private-danger-button {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border:
+    1px solid rgba(220, 53, 69, 0.3);
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #dc3545;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+}
+
+
+.private-danger-button:hover:not(:disabled) {
+
+  background:
+    rgba(220, 53, 69, 0.08);
+
+  border-color:
+    rgba(220, 53, 69, 0.5);
+
+  transform:
+    translateY(-1px);
+
+}
+
+
+.private-danger-button:disabled {
+
+  cursor: not-allowed;
+
+  opacity: 0.55;
+
+}
+
+
+.private-danger-button i {
+
+  font-size: 14px;
+
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.private-security-loading {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 120px;
+
+  color: inherit;
+
+  font-size: 13px;
+
+  opacity: 0.6;
+
+}
+
+
+.private-security-loading i {
+
+  font-size: 17px;
+
+  animation:
+    private-security-spin 1s linear infinite;
+
+}
+
+
+@keyframes private-security-spin {
+
+  from {
+
+    transform:
+      rotate(0deg);
+
+  }
+
+  to {
+
+    transform:
+      rotate(360deg);
+
+  }
+
+}
+
+
+/* ============================================================
+   SIN SESIONES
+   ============================================================ */
+
+.private-security-empty {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 180px;
+
+  padding: 30px;
+
+  text-align: center;
+
+}
+
+
+.private-security-empty-icon {
+
+  width: 52px;
+
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(25, 135, 84, 0.1);
+
+  color:
+    #198754;
+
+}
+
+
+.private-security-empty-icon i {
+
+  font-size: 23px;
+
+}
+
+
+.private-security-empty strong {
+
+  color: inherit;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+}
+
+
+.private-security-empty span {
+
+  max-width: 420px;
+
+  margin-top: 6px;
+
+  color: inherit;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+  opacity: 0.55;
+
+}
+
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.private-security-error {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 16px;
+
+  padding: 12px 14px;
+
+  border:
+    1px solid rgba(220, 53, 69, 0.2);
+
+  border-radius: 10px;
+
+  background:
+    rgba(220, 53, 69, 0.06);
+
+  color:
+    #dc3545;
+
+  font-size: 12px;
+
+}
+
+
+.private-security-error i {
+
+  flex-shrink: 0;
+
+  font-size: 15px;
+
+}
+
+
+/* ============================================================
    OPCIONES DE SEGURIDAD
    ============================================================ */
 
@@ -375,83 +933,6 @@
 
 
 /* ============================================================
-   ACCIÓN
-   ============================================================ */
-
-.private-security-action {
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  margin-top: 24px;
-
-}
-
-
-/* ============================================================
-   BOTÓN PELIGRO
-   ============================================================ */
-
-.private-danger-button {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 8px;
-
-  padding: 10px 16px;
-
-  border:
-    1px solid rgba(220, 53, 69, 0.3);
-
-  border-radius: 9px;
-
-  background: transparent;
-
-  color: #dc3545;
-
-  cursor: pointer;
-
-  font-family: inherit;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-
-}
-
-
-.private-danger-button:hover {
-
-  background:
-    rgba(220, 53, 69, 0.08);
-
-  border-color:
-    rgba(220, 53, 69, 0.5);
-
-  transform:
-    translateY(-1px);
-
-}
-
-
-.private-danger-button i {
-
-  font-size: 14px;
-
-}
-
-
-/* ============================================================
    RESPONSIVE
    ============================================================ */
 
@@ -491,13 +972,33 @@
   }
 
 
-  .private-security-action {
+  .private-session-item {
 
-    justify-content: stretch;
+    align-items: flex-start;
+
+    flex-wrap: wrap;
 
   }
 
 
+  .private-session-info {
+
+    min-width:
+      calc(100% - 66px);
+
+  }
+
+
+  .private-session-actions {
+
+    width: 100%;
+
+    margin-top: 4px;
+
+  }
+
+
+  .private-session-actions
   .private-danger-button {
 
     width: 100%;
@@ -531,6 +1032,58 @@
   .private-card-header {
 
     align-items: flex-start;
+
+  }
+
+
+  .private-session-item {
+
+    gap: 14px;
+
+    padding: 15px;
+
+  }
+
+
+  .private-session-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+  }
+
+
+  .private-session-icon i {
+
+    font-size: 19px;
+
+  }
+
+
+  .private-session-info {
+
+    min-width:
+      calc(100% - 56px);
+
+  }
+
+
+  .private-session-meta {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 4px;
+
+  }
+
+
+  .private-security-empty {
+
+    padding:
+      24px 12px;
 
   }
 
