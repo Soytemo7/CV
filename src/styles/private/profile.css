@@ -823,3 +823,62 @@
   }
 
 }
+
+/* ============================================================
+   HOVER — INFORMACIÓN
+   ============================================================ */
+
+.private-info-item {
+
+  border:
+    1px solid transparent;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+
+/* ============================================================
+   HOVER — INFORMACIÓN — CLARO
+   ============================================================ */
+
+.private-light .private-info-item:hover {
+
+  background:
+    rgba(22, 119, 255, 0.045);
+
+  border-color:
+    rgba(22, 119, 255, 0.18);
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(22, 119, 255, 0.08);
+
+}
+
+
+/* ============================================================
+   HOVER — INFORMACIÓN — OSCURO
+   ============================================================ */
+
+.private-dark .private-info-item:hover {
+
+  background:
+    rgba(22, 119, 255, 0.07);
+
+  border-color:
+    rgba(22, 119, 255, 0.22);
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(22, 119, 255, 0.10);
+
+}
