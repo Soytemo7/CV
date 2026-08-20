@@ -1,0 +1,527 @@
+/* ============================================================
+   PROFILE DROPDOWN
+   ============================================================ */
+
+.profile-dropdown {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   TRIGGER
+   ============================================================ */
+
+.profile-dropdown-trigger {
+
+  width: auto;
+
+  min-width: 210px;
+
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 6px 10px;
+
+  margin: 0;
+
+  box-sizing: border-box;
+
+  border: 1px solid transparent;
+
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: #222222;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  text-align: left;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+}
+
+
+/* ============================================================
+   TRIGGER — CLARO
+   ============================================================ */
+
+.private-light .profile-dropdown-trigger {
+
+  color: #222222;
+
+}
+
+
+.private-light .profile-dropdown-trigger:hover,
+.private-light .profile-dropdown-trigger.active {
+
+  background:
+    rgba(0, 0, 0, 0.045);
+
+  border-color:
+    rgba(0, 0, 0, 0.08);
+
+}
+
+
+/* ============================================================
+   TRIGGER — OSCURO
+   ============================================================ */
+
+.private-dark .profile-dropdown-trigger {
+
+  color: #ffffff;
+
+}
+
+
+.private-dark .profile-dropdown-trigger:hover,
+.private-dark .profile-dropdown-trigger.active {
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  border-color:
+    rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* ============================================================
+   AVATAR
+   ============================================================ */
+
+.profile-dropdown-avatar {
+
+  width: 38px;
+
+  height: 38px;
+
+  min-width: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #1677ff;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+}
+
+
+.profile-dropdown-avatar-image {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+}
+
+
+.profile-dropdown-avatar-letter {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+/* ============================================================
+   DATOS DEL USUARIO
+   ============================================================ */
+
+.profile-dropdown-user {
+
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+
+.profile-dropdown-name {
+
+  width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+
+}
+
+
+.profile-dropdown-email {
+
+  width: 100%;
+
+  margin-top: 2px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: inherit;
+
+  font-size: 11px;
+
+  line-height: 1.3;
+
+  opacity: 0.55;
+
+}
+
+
+/* ============================================================
+   FLECHA
+   ============================================================ */
+
+.profile-dropdown-arrow {
+
+  flex-shrink: 0;
+
+  margin-left: 2px;
+
+  color: inherit;
+
+  font-size: 11px;
+
+  opacity: 0.55;
+
+}
+
+
+/* ============================================================
+   MENÚ
+   ============================================================ */
+
+.profile-dropdown-menu {
+
+  position: absolute;
+
+  top: calc(100% + 10px);
+
+  right: 0;
+
+  z-index: 1100;
+
+  width: 280px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  color: #222222;
+
+  border:
+    1px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.12);
+
+  animation:
+    profile-dropdown-in 0.16s ease;
+
+}
+
+
+/* ============================================================
+   MENÚ — OSCURO
+   ============================================================ */
+
+.private-dark .profile-dropdown-menu {
+
+  background: #181818;
+
+  color: #ffffff;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.35);
+
+}
+
+
+/* ============================================================
+   OPCIONES
+   ============================================================ */
+
+.profile-dropdown-item {
+
+  width: 100%;
+
+  min-height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 10px 11px;
+
+  margin: 0;
+
+  box-sizing: border-box;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: inherit;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  line-height: 1.3;
+
+  text-align: left;
+
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+
+}
+
+
+.profile-dropdown-item i {
+
+  width: 18px;
+
+  flex-shrink: 0;
+
+  color: inherit;
+
+  font-size: 15px;
+
+  text-align: center;
+
+  opacity: 0.7;
+
+}
+
+
+/* ============================================================
+   HOVER — CLARO
+   ============================================================ */
+
+.private-light .profile-dropdown-item:hover {
+
+  background:
+    rgba(0, 0, 0, 0.045);
+
+}
+
+
+/* ============================================================
+   HOVER — OSCURO
+   ============================================================ */
+
+.private-dark .profile-dropdown-item:hover {
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+}
+
+
+/* ============================================================
+   OPCIONES DE PELIGRO
+   ============================================================ */
+
+.profile-dropdown-item.danger {
+
+  color: #dc3545;
+
+}
+
+
+.profile-dropdown-item.danger:hover {
+
+  background:
+    rgba(220, 53, 69, 0.08);
+
+}
+
+
+/* ============================================================
+   DIVISOR
+   ============================================================ */
+
+.profile-dropdown-divider {
+
+  width: calc(100% - 8px);
+
+  height: 1px;
+
+  margin: 6px 4px;
+
+  background:
+    rgba(0, 0, 0, 0.08);
+
+}
+
+
+.private-dark .profile-dropdown-divider {
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN
+   ============================================================ */
+
+@keyframes profile-dropdown-in {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(-5px)
+      scale(0.98);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .profile-dropdown-trigger {
+
+    min-width: auto;
+
+    width: 52px;
+
+    height: 52px;
+
+    justify-content: center;
+
+    padding: 6px;
+
+  }
+
+
+  .profile-dropdown-user {
+
+    display: none;
+
+  }
+
+
+  .profile-dropdown-arrow {
+
+    display: none;
+
+  }
+
+
+  .profile-dropdown-menu {
+
+    width:
+      min(
+        280px,
+        calc(100vw - 32px)
+      );
+
+  }
+
+}

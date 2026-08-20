@@ -44,6 +44,19 @@ function WelcomeNotification() {
         description:
           "Bienvenido a tu panel de control.",
       },
+
+      "/dashboard/profile": {
+        title: "Mi perfil",
+        description:
+          "Consulta la información asociada a tu cuenta.",
+      },
+
+
+      "/dashboard/security": {
+        title: "Seguridad",
+        description:
+          "Administra los dispositivos, accesos y sesiones asociadas a tu cuenta.",
+      },
     };
 
     const currentNotification =

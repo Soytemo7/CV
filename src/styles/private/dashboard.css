@@ -1,0 +1,58 @@
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+.dashboard-container {
+
+  width:
+    min(
+      1100px,
+      calc(100% - 48px)
+    );
+
+  min-height:
+    calc(100vh - 72px);
+
+  margin: 0 auto;
+
+  padding: 48px 0 64px;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .dashboard-container {
+
+    width:
+      min(
+        calc(100% - 32px),
+        600px
+      );
+
+    min-height:
+      calc(100vh - 64px);
+
+    padding-top: 32px;
+
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .dashboard-container {
+
+    width:
+      calc(100% - 24px);
+
+  }
+
+}

@@ -1,0 +1,337 @@
+/* ============================================================
+   LAYOUT PRIVADO
+   ============================================================ */
+
+.private-layout {
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  background: #ffffff;
+
+  color: #222222;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+}
+
+
+/* ============================================================
+   TEMA CLARO
+   ============================================================ */
+
+.private-layout.private-light {
+
+  background: #ffffff;
+
+  color: #222222;
+
+}
+
+
+/* ============================================================
+   TEMA OSCURO
+   ============================================================ */
+
+.private-layout.private-dark {
+
+  background: #111111;
+
+  color: #ffffff;
+
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.private-header {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  width: 100%;
+
+  min-height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  padding: 10px 32px;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(255, 255, 255, 0.94);
+
+  border-bottom:
+    1px solid rgba(0, 0, 0, 0.08);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+
+}
+
+
+/* ============================================================
+   HEADER — OSCURO
+   ============================================================ */
+
+.private-dark .private-header {
+
+  background:
+    rgba(17, 17, 17, 0.94);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* ============================================================
+   CONTENEDOR DE CONTROLES
+   ============================================================ */
+
+.private-header-right {
+
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  width: auto;
+
+  height: 52px;
+
+  flex-wrap: nowrap;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   CONTENEDORES PROFILE + THEME
+   ============================================================ */
+
+.private-profile-container,
+.private-theme-container {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: auto;
+
+  height: 52px;
+
+  margin: 0;
+
+  padding: 0;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   PROFILE DROPDOWN
+   ============================================================ */
+
+.private-profile-container .profile-dropdown {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: auto;
+
+  height: 52px;
+
+  margin: 0;
+
+  padding: 0;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+
+/*
+   El ThemeToggle original utiliza position: fixed.
+   Aquí lo sobrescribimos solamente cuando está dentro
+   del layout privado para que vuelva a formar parte del
+   flex del header.
+*/
+
+.private-theme-container .theme-toggle {
+
+  position: relative;
+
+  top: auto;
+
+  right: auto;
+
+  bottom: auto;
+
+  left: auto;
+
+  z-index: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: auto;
+
+  height: 52px;
+
+  margin: 0;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   CONTENIDO PRIVADO
+   ============================================================ */
+
+.private-main {
+
+  width: 100%;
+
+  min-height:
+    calc(100vh - 72px);
+
+  background: inherit;
+
+  color: inherit;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .private-header {
+
+    min-height: 64px;
+
+    padding:
+      6px 16px;
+
+  }
+
+
+  .private-header-right {
+
+    gap: 8px;
+
+    height: 52px;
+
+  }
+
+
+  .private-profile-container,
+  .private-theme-container {
+
+    height: 52px;
+
+  }
+
+
+  .private-profile-container .profile-dropdown {
+
+    height: 52px;
+
+  }
+
+
+  .private-theme-container .theme-toggle {
+
+    height: 52px;
+
+  }
+
+
+  .private-main {
+
+    min-height:
+      calc(100vh - 64px);
+
+  }
+
+}
+
+
+/* ============================================================
+   MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .private-header {
+
+    padding:
+      6px 12px;
+
+  }
+
+
+  .private-header-right {
+
+    gap: 6px;
+
+  }
+
+}

@@ -30,6 +30,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/private/Profile";
+import Security from "./pages/private/Security";
 
 import { AuthProvider } from "./context/AuthContext.jsx";
 
@@ -137,13 +139,33 @@ function App() {
           />
 
 
-          {/* Dashboard privado */}
+            {/* =========================================================
+            ZONA PRIVADA
+            ========================================================= */}
 
           <Route
             path="/dashboard"
             element={
               <PrivateLayout>
                 <Dashboard />
+              </PrivateLayout>
+            }
+          />
+
+          <Route
+            path="/dashboard/profile"
+            element={
+              <PrivateLayout>
+                <Profile />
+              </PrivateLayout>
+            }
+          />
+
+          <Route
+            path="/dashboard/security"
+            element={
+              <PrivateLayout>
+                <Security />
               </PrivateLayout>
             }
           />
