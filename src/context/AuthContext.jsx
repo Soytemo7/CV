@@ -41,7 +41,16 @@ function AuthProvider({
   // COMPROBAR SESIÓN
   // ============================================================
 
-  const checkSession = useCallback(async () => {
+  const checkSession = useCallback(async (
+    showLoading = false
+  ) => {
+
+    if (showLoading) {
+
+      setLoading(true);
+
+    }
+
 
     try {
 
@@ -53,13 +62,19 @@ function AuthProvider({
         data.user
       );
 
+
     } catch {
 
       setUser(null);
 
+
     } finally {
 
-      setLoading(false);
+      if (showLoading) {
+
+        setLoading(false);
+
+      }
 
     }
 
@@ -81,12 +96,94 @@ function AuthProvider({
 
     const initializeAuth = async () => {
 
-      await checkSession();
+      await checkSession(true);
 
     };
 
 
     initializeAuth();
+
+  }, [
+    checkOnMount,
+    checkSession
+  ]);
+
+
+  // ============================================================
+  // COMPROBACIÓN AUTOMÁTICA DE SESIÓN
+  // ============================================================
+
+  useEffect(() => {
+
+    if (!checkOnMount) {
+
+      return;
+
+    }
+
+
+    const intervalId =
+      setInterval(() => {
+
+        checkSession(false);
+
+      }, 5 * 60 * 1000);
+
+
+    return () => {
+
+      clearInterval(
+        intervalId
+      );
+
+    };
+
+  }, [
+    checkOnMount,
+    checkSession
+  ]);
+
+
+  // ============================================================
+  // COMPROBAR SESIÓN AL VOLVER A LA PESTAÑA
+  // ============================================================
+
+  useEffect(() => {
+
+    if (!checkOnMount) {
+
+      return;
+
+    }
+
+
+    const handleVisibilityChange = () => {
+
+      if (
+        document.visibilityState === "visible"
+      ) {
+
+        checkSession(false);
+
+      }
+
+    };
+
+
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
+
+
+    return () => {
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+
+    };
 
   }, [
     checkOnMount,

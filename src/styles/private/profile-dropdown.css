@@ -21,6 +21,8 @@
 
 .profile-dropdown-trigger {
 
+  position: relative;
+
   width: auto;
 
   min-width: 210px;
@@ -55,10 +57,16 @@
 
   text-align: left;
 
+  isolation: isolate;
+
+  overflow: hidden;
+
   transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 
 }
 
@@ -110,10 +118,151 @@
 
 
 /* ============================================================
+   TRIGGER — REFLEXIÓN
+   ============================================================ */
+
+.profile-dropdown-trigger::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 3px;
+
+  left: 8%;
+
+  width: 84%;
+
+  height: 42%;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.02)
+    );
+
+  filter:
+    blur(3px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  transition:
+    opacity 0.3s ease;
+
+}
+
+
+/* ============================================================
+   TRIGGER — BRILLO
+   ============================================================ */
+
+.profile-dropdown-trigger::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -80%;
+
+  left: -120%;
+
+  width: 55%;
+
+  height: 260%;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.18) 45%,
+      rgba(255, 255, 255, 0.60) 50%,
+      rgba(255, 255, 255, 0.18) 55%,
+      transparent 70%
+    );
+
+  transform:
+    skewX(-20deg)
+    rotate(10deg);
+
+  filter:
+    blur(5px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+}
+
+
+.profile-dropdown-trigger:hover {
+
+  transform:
+    scale(1.03);
+
+  border-color:
+    var(--accent-color);
+
+  box-shadow:
+    0 0 0 5px rgba(5, 99, 187, 0.16),
+    0 0 16px rgba(5, 99, 187, 0.50);
+
+}
+
+
+.profile-dropdown-trigger:hover::before {
+
+  opacity: 1;
+
+}
+
+
+.profile-dropdown-trigger:hover::after {
+
+  opacity: 1;
+
+  animation:
+    profileButtonShine
+    1.8s
+    cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+@keyframes profileButtonShine {
+
+  0% {
+
+    left: -120%;
+
+  }
+
+  100% {
+
+    left: 180%;
+
+  }
+
+}
+
+
+/* ============================================================
    AVATAR
    ============================================================ */
 
 .profile-dropdown-avatar {
+
+  position: relative;
+
+  z-index: 3;
 
   width: 38px;
 
@@ -140,6 +289,25 @@
   font-size: 15px;
 
   font-weight: 700;
+
+  box-shadow:
+    0 0 10px rgba(22, 119, 255, 0.25);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+}
+
+
+.profile-dropdown-trigger:hover
+.profile-dropdown-avatar {
+
+  transform:
+    scale(1.05);
+
+  box-shadow:
+    0 0 14px rgba(22, 119, 255, 0.45);
 
 }
 
@@ -177,6 +345,10 @@
    ============================================================ */
 
 .profile-dropdown-user {
+
+  position: relative;
+
+  z-index: 3;
 
   min-width: 0;
 
@@ -245,6 +417,10 @@
 
 .profile-dropdown-arrow {
 
+  position: relative;
+
+  z-index: 3;
+
   flex-shrink: 0;
 
   margin-left: 2px;
@@ -254,6 +430,18 @@
   font-size: 11px;
 
   opacity: 0.55;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+}
+
+
+.profile-dropdown-trigger:hover
+.profile-dropdown-arrow {
+
+  opacity: 1;
 
 }
 
@@ -274,13 +462,14 @@
 
   width: 280px;
 
-  padding: 8px;
+  padding: 9px;
 
   box-sizing: border-box;
 
-  border-radius: 14px;
+  border-radius: 16px;
 
-  background: #ffffff;
+  background:
+    rgba(255, 255, 255, 0.96);
 
   color: #222222;
 
@@ -288,10 +477,19 @@
     1px solid rgba(0, 0, 0, 0.08);
 
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.12);
+    0 18px 50px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(5, 99, 187, 0.03);
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
 
   animation:
-    profile-dropdown-in 0.16s ease;
+    profile-dropdown-in
+    0.16s
+    ease;
 
 }
 
@@ -302,7 +500,8 @@
 
 .private-dark .profile-dropdown-menu {
 
-  background: #181818;
+  background:
+    rgba(24, 24, 24, 0.96);
 
   color: #ffffff;
 
@@ -310,7 +509,8 @@
     1px solid rgba(255, 255, 255, 0.08);
 
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.35);
+    0 18px 50px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(5, 99, 187, 0.05);
 
 }
 
@@ -321,9 +521,11 @@
 
 .profile-dropdown-item {
 
+  position: relative;
+
   width: 100%;
 
-  min-height: 40px;
+  min-height: 44px;
 
   display: flex;
 
@@ -333,15 +535,21 @@
 
   padding: 10px 11px;
 
-  margin: 0;
+  margin: 2px 0;
 
   box-sizing: border-box;
 
-  border: 0;
+  border:
+    1px solid rgba(5, 99, 187, 0.055);
 
-  border-radius: 9px;
+  border-radius: 10px;
 
-  background: transparent;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 99, 187, 0.035),
+      rgba(5, 99, 187, 0.012)
+    );
 
   color: inherit;
 
@@ -357,26 +565,319 @@
 
   text-align: left;
 
+  isolation: isolate;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 0 12px rgba(5, 99, 187, 0.025);
+
   transition:
-    background-color 0.18s ease,
-    color 0.18s ease;
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
 }
 
 
+/* ============================================================
+   OPCIONES — REFLEJO
+   ============================================================ */
+
+.profile-dropdown-item::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 55%;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.03) 45%,
+      rgba(255, 255, 255, 0.18) 50%,
+      rgba(255, 255, 255, 0.03) 55%,
+      transparent 80%
+    );
+
+  transform:
+    skewX(-20deg);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+}
+
+
+/* ============================================================
+   OPCIONES — LÍNEA LATERAL
+   ============================================================ */
+
+.profile-dropdown-item::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 50%;
+
+  width: 2px;
+
+  height: 0;
+
+  border-radius: 4px;
+
+  background:
+    var(--accent-color);
+
+  box-shadow:
+    0 0 8px var(--accent-color),
+    0 0 14px rgba(5, 99, 187, 0.45);
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0;
+
+  transition:
+    height 0.25s ease,
+    opacity 0.25s ease;
+
+  z-index: 2;
+
+}
+
+
+/* ============================================================
+   CONTENIDO
+   ============================================================ */
+
+.profile-dropdown-item i,
+.profile-dropdown-item span {
+
+  position: relative;
+
+  z-index: 3;
+
+}
+
+
+/* ============================================================
+   ICONO — FUTURISTA
+   ============================================================ */
+
 .profile-dropdown-item i {
+
+  position: relative;
 
   width: 18px;
 
+  height: 18px;
+
   flex-shrink: 0;
 
-  color: inherit;
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color:
+    var(--accent-color);
 
   font-size: 15px;
 
   text-align: center;
 
-  opacity: 0.7;
+  opacity: 0.88;
+
+  filter:
+    drop-shadow(
+      0 0 3px
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 55%
+      )
+    );
+
+  text-shadow:
+    0 0 5px
+    color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 50%
+    );
+
+  animation:
+    profileIconPulse
+    3.8s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
+
+}
+
+
+/* ============================================================
+   ICONO — HALO
+   ============================================================ */
+
+.profile-dropdown-item i::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 22px;
+
+  height: 22px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 82%
+    );
+
+  box-shadow:
+    0 0 6px
+    color-mix(
+      in srgb,
+      var(--accent-color),
+      transparent 82%
+    );
+
+  opacity: 0.45;
+
+  pointer-events: none;
+
+  animation:
+    profileIconHalo
+    3.8s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN — PULSO DEL ICONO
+   ============================================================ */
+
+@keyframes profileIconPulse {
+
+  0%,
+  100% {
+
+    opacity: 0.78;
+
+    filter:
+      drop-shadow(
+        0 0 2px
+        color-mix(
+          in srgb,
+          var(--accent-color),
+          transparent 70%
+        )
+      );
+
+    text-shadow:
+      0 0 3px
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 70%
+      );
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+    filter:
+      drop-shadow(
+        0 0 6px
+        color-mix(
+          in srgb,
+          var(--accent-color),
+          transparent 35%
+        )
+      );
+
+    text-shadow:
+      0 0 8px
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 35%
+      );
+
+  }
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN — HALO DEL ICONO
+   ============================================================ */
+
+@keyframes profileIconHalo {
+
+  0%,
+  100% {
+
+    transform:
+      scale(0.88);
+
+    opacity: 0.20;
+
+  }
+
+  50% {
+
+    transform:
+      scale(1.12);
+
+    opacity: 0.55;
+
+  }
+
+}
+
+
+/* ============================================================
+   TEXTO
+   ============================================================ */
+
+.profile-dropdown-item span {
+
+  transition:
+    transform 0.25s ease,
+    letter-spacing 0.25s ease;
 
 }
 
@@ -388,7 +889,22 @@
 .private-light .profile-dropdown-item:hover {
 
   background:
-    rgba(0, 0, 0, 0.045);
+    linear-gradient(
+      90deg,
+      rgba(5, 99, 187, 0.09),
+      rgba(5, 99, 187, 0.025),
+      transparent
+    );
+
+  border-color:
+    rgba(5, 99, 187, 0.18);
+
+  box-shadow:
+    inset 0 0 18px rgba(5, 99, 187, 0.04),
+    0 0 12px rgba(5, 99, 187, 0.06);
+
+  transform:
+    translateX(3px);
 
 }
 
@@ -400,7 +916,108 @@
 .private-dark .profile-dropdown-item:hover {
 
   background:
-    rgba(255, 255, 255, 0.06);
+    linear-gradient(
+      90deg,
+      rgba(5, 99, 187, 0.16),
+      rgba(5, 99, 187, 0.05),
+      transparent
+    );
+
+  border-color:
+    rgba(5, 99, 187, 0.25);
+
+  box-shadow:
+    inset 0 0 18px rgba(5, 99, 187, 0.08),
+    0 0 14px rgba(5, 99, 187, 0.08);
+
+  transform:
+    translateX(3px);
+
+}
+
+
+/* ============================================================
+   HOVER — LÍNEA LATERAL
+   ============================================================ */
+
+.profile-dropdown-item:hover::after {
+
+  height: 65%;
+
+  opacity: 1;
+
+}
+
+
+/* ============================================================
+   HOVER — ICONO
+   ============================================================ */
+
+.profile-dropdown-item:hover i {
+
+  transform:
+    translateX(2px)
+    scale(1.12);
+
+  opacity: 1;
+
+  filter:
+    drop-shadow(
+      0 0 6px
+      color-mix(
+        in srgb,
+        var(--accent-color),
+        transparent 15%
+      )
+    );
+
+}
+
+
+/* ============================================================
+   HOVER — TEXTO
+   ============================================================ */
+
+.profile-dropdown-item:hover span {
+
+  transform:
+    translateX(2px);
+
+  letter-spacing:
+    0.15px;
+
+}
+
+
+/* ============================================================
+   HOVER — BARRIDO DE LUZ
+   ============================================================ */
+
+.profile-dropdown-item:hover::before {
+
+  opacity: 1;
+
+  animation:
+    profileItemShine
+    1.4s
+    cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+@keyframes profileItemShine {
+
+  0% {
+
+    left: -100%;
+
+  }
+
+  100% {
+
+    left: 160%;
+
+  }
 
 }
 
@@ -411,15 +1028,126 @@
 
 .profile-dropdown-item.danger {
 
-  color: #dc3545;
+  color:
+    #dc3545;
+
+  border-color:
+    rgba(220, 53, 69, 0.07);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(220, 53, 69, 0.035),
+      rgba(220, 53, 69, 0.012)
+    );
 
 }
 
 
-.profile-dropdown-item.danger:hover {
+/* ============================================================
+   DANGER — ICONO
+   ============================================================ */
+
+.profile-dropdown-item.danger i {
+
+  color:
+    #dc3545;
+
+  filter:
+    drop-shadow(
+      0 0 3px
+      rgba(220, 53, 69, 0.30)
+    );
+
+  text-shadow:
+    0 0 5px
+    rgba(220, 53, 69, 0.25);
+
+}
+
+
+/* ============================================================
+   DANGER — HALO
+   ============================================================ */
+
+.profile-dropdown-item.danger i::after {
+
+  border-color:
+    rgba(220, 53, 69, 0.18);
+
+  box-shadow:
+    0 0 6px
+    rgba(220, 53, 69, 0.18);
+
+}
+
+
+/* ============================================================
+   DANGER — LÍNEA
+   ============================================================ */
+
+.profile-dropdown-item.danger::after {
 
   background:
-    rgba(220, 53, 69, 0.08);
+    #dc3545;
+
+  box-shadow:
+    0 0 8px rgba(220, 53, 69, 0.75),
+    0 0 14px rgba(220, 53, 69, 0.35);
+
+}
+
+
+/* ============================================================
+   DANGER — HOVER CLARO
+   ============================================================ */
+
+.private-light .profile-dropdown-item.danger:hover {
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(220, 53, 69, 0.10),
+      rgba(220, 53, 69, 0.025),
+      transparent
+    );
+
+  border-color:
+    rgba(220, 53, 69, 0.18);
+
+}
+
+
+/* ============================================================
+   DANGER — HOVER OSCURO
+   ============================================================ */
+
+.private-dark .profile-dropdown-item.danger:hover {
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(220, 53, 69, 0.16),
+      rgba(220, 53, 69, 0.04),
+      transparent
+    );
+
+  border-color:
+    rgba(220, 53, 69, 0.25);
+
+}
+
+
+/* ============================================================
+   DANGER — ICONO HOVER
+   ============================================================ */
+
+.profile-dropdown-item.danger:hover i {
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(220, 53, 69, 0.65)
+    );
 
 }
 
@@ -434,10 +1162,15 @@
 
   height: 1px;
 
-  margin: 6px 4px;
+  margin: 7px 4px;
 
   background:
-    rgba(0, 0, 0, 0.08);
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(5, 99, 187, 0.18),
+      transparent
+    );
 
 }
 
@@ -445,13 +1178,18 @@
 .private-dark .profile-dropdown-divider {
 
   background:
-    rgba(255, 255, 255, 0.08);
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.12),
+      transparent
+    );
 
 }
 
 
 /* ============================================================
-   ANIMACIÓN
+   ANIMACIÓN DEL MENÚ
    ============================================================ */
 
 @keyframes profile-dropdown-in {
@@ -473,6 +1211,23 @@
     transform:
       translateY(0)
       scale(1);
+
+  }
+
+}
+
+
+/* ============================================================
+   REDUCIR MOVIMIENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .profile-dropdown-item i,
+  .profile-dropdown-item i::after {
+
+    animation:
+      none;
 
   }
 

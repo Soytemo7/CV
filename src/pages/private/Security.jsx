@@ -444,6 +444,17 @@ function Security() {
 
                       </strong>
 
+                       {session.isCurrent && (
+
+                        <span className="private-session-current">
+
+                          Este dispositivo
+
+                        </span>
+
+                      )}
+
+
 
                       <span className="private-session-status">
 
@@ -562,127 +573,7 @@ function Security() {
 
         )}
 
-      </section>
-
-
-      {/* ========================================================
-          OTRAS OPCIONES DE SEGURIDAD
-          ======================================================== */}
-
-      <section className="private-card">
-
-        <div className="private-card-header">
-
-          <div className="private-card-icon">
-
-            <i className="bi bi-shield-lock" />
-
-          </div>
-
-
-          <div>
-
-            <h2>
-              Opciones de seguridad
-            </h2>
-
-
-            <p>
-              Consulta y administra otros aspectos
-              relacionados con la seguridad de tu cuenta.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div className="private-security-grid">
-
-          <div className="private-security-item">
-
-            <i className="bi bi-laptop" />
-
-            <div>
-
-              <strong>
-                Dispositivos
-              </strong>
-
-
-              <span>
-                Consulta los dispositivos desde los
-                que has iniciado sesión.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div className="private-security-item">
-
-            <i className="bi bi-clock-history" />
-
-            <div>
-
-              <strong>
-                Historial de accesos
-              </strong>
-
-
-              <span>
-                Consulta los últimos accesos registrados.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div className="private-security-item">
-
-            <i className="bi bi-bell" />
-
-            <div>
-
-              <strong>
-                Alertas de seguridad
-              </strong>
-
-
-              <span>
-                Consulta las alertas generadas por
-                nuevos dispositivos.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div className="private-security-item">
-
-            <i className="bi bi-shield-lock" />
-
-            <div>
-
-              <strong>
-                Sesiones activas
-              </strong>
-
-
-              <span>
-                Administra las sesiones activas de tu cuenta.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+      </section>     
 
     </div>
 

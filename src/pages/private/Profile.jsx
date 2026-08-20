@@ -38,7 +38,9 @@ function Profile() {
         <div className="private-card-header">
 
           <div className="private-card-icon">
+
             <i className="bi bi-person-circle" />
+
           </div>
 
           <div>
@@ -104,8 +106,11 @@ function Profile() {
             </span>
 
             <strong className="private-status">
+
               <i className="bi bi-check-circle-fill" />
+
               Cuenta activa
+
             </strong>
 
           </div>

@@ -89,6 +89,8 @@
 
 .private-card {
 
+  position: relative;
+
   margin-bottom: 24px;
 
   padding: 26px;
@@ -96,6 +98,8 @@
   border-radius: 16px;
 
   color: inherit;
+
+  isolation: isolate;
 
   transition:
     background-color 0.3s ease,
@@ -106,10 +110,103 @@
 
 
 /* ============================================================
+   BORDE ANIMADO — BASE
+   ============================================================ */
+
+.private-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  padding: 1px;
+
+  border-radius: inherit;
+
+  background:
+    conic-gradient(
+      from var(--security-card-angle),
+      transparent 0deg,
+      transparent 285deg,
+      rgba(22, 119, 255, 0.05) 300deg,
+      rgba(22, 119, 255, 0.95) 325deg,
+      rgba(22, 119, 255, 0.05) 350deg,
+      transparent 360deg
+    );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  pointer-events: none;
+
+  z-index: 3;
+
+  animation:
+    securityCardBorderRun
+    6s
+    linear
+    infinite;
+
+}
+
+
+/* ============================================================
+   ÁNGULO DEL BORDE
+   ============================================================ */
+
+@property --security-card-angle {
+
+  syntax: "<angle>";
+
+  inherits: false;
+
+  initial-value: 0deg;
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN — RECORRIDO DEL BORDE
+   ============================================================ */
+
+@keyframes securityCardBorderRun {
+
+  from {
+
+    --security-card-angle:
+      0deg;
+
+  }
+
+  to {
+
+    --security-card-angle:
+      360deg;
+
+  }
+
+}
+
+
+/* ============================================================
    TARJETA — CLARO
    ============================================================ */
 
 .private-light .private-card {
+
+  --security-card-border:
+    rgba(0, 0, 0, 0.08);
 
   background: #ffffff;
 
@@ -127,6 +224,9 @@
    ============================================================ */
 
 .private-dark .private-card {
+
+  --security-card-border:
+    rgba(255, 255, 255, 0.08);
 
   background: #181818;
 
@@ -156,7 +256,13 @@
 }
 
 
+/* ============================================================
+   ICONO DE TARJETA
+   ============================================================ */
+
 .private-card-icon {
+
+  position: relative;
 
   width: 44px;
 
@@ -177,15 +283,325 @@
 
   color: #1677ff;
 
+  overflow: hidden;
+
+  isolation: isolate;
+
+  cursor: default;
+
+  box-shadow:
+    0 0 0 1px rgba(22, 119, 255, 0.08),
+    0 0 12px rgba(22, 119, 255, 0.08);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
+
 }
 
+
+/* ============================================================
+   ICONO DE TARJETA — HALO
+   ============================================================ */
+
+.private-card-icon::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 4px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid rgba(22, 119, 255, 0.22);
+
+  box-shadow:
+    inset 0 0 10px rgba(22, 119, 255, 0.08),
+    0 0 10px rgba(22, 119, 255, 0.08);
+
+  opacity: 0.7;
+
+  animation:
+    securityIconPulse
+    2.8s
+    ease-in-out
+    infinite;
+
+  transition:
+    opacity 0.35s ease,
+    box-shadow 0.35s ease;
+
+}
+
+
+/* ============================================================
+   ICONO DE TARJETA — ESCANEO
+   ============================================================ */
+
+.private-card-icon::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: -20%;
+
+  top: 0;
+
+  width: 140%;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(22, 119, 255, 0.15),
+      rgba(22, 119, 255, 0.75),
+      rgba(22, 119, 255, 0.15),
+      transparent
+    );
+
+  box-shadow:
+    0 0 8px rgba(22, 119, 255, 0.55);
+
+  opacity: 0;
+
+  z-index: 2;
+
+  animation:
+    securityIconScan
+    3.2s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* ============================================================
+   ICONO DE TARJETA — ICONO
+   ============================================================ */
 
 .private-card-icon i {
 
+  position: relative;
+
+  z-index: 3;
+
   font-size: 21px;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(22, 119, 255, 0.45)
+    );
+
+  animation:
+    securityCardIconFloat
+    3s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
 
 }
 
+
+/* ============================================================
+   HOVER — ICONO DE TARJETA
+   ============================================================ */
+
+.private-card-icon:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  background:
+    rgba(22, 119, 255, 0.15);
+
+  box-shadow:
+    0 0 0 1px rgba(22, 119, 255, 0.18),
+    0 0 18px rgba(22, 119, 255, 0.22),
+    0 0 32px rgba(22, 119, 255, 0.10);
+
+}
+
+
+.private-card-icon:hover::before {
+
+  opacity: 1;
+
+  box-shadow:
+    inset 0 0 14px rgba(22, 119, 255, 0.14),
+    0 0 16px rgba(22, 119, 255, 0.18);
+
+}
+
+
+.private-card-icon:hover i {
+
+  transform:
+    scale(1.16);
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(22, 119, 255, 0.8)
+    );
+
+}
+
+
+.private-card-icon:hover::after {
+
+  opacity: 1;
+
+  animation:
+    securityIconScanHover
+    1.2s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* ============================================================
+   ANIMACIONES — ICONO TARJETA
+   ============================================================ */
+
+@keyframes securityCardIconFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-1px)
+      scale(1.06);
+
+  }
+
+}
+
+
+@keyframes securityIconPulse {
+
+  0%,
+  100% {
+
+    opacity: 0.45;
+
+    transform:
+      scale(0.96);
+
+  }
+
+  50% {
+
+    opacity: 0.9;
+
+    transform:
+      scale(1);
+
+  }
+
+}
+
+
+@keyframes securityIconScan {
+
+  0% {
+
+    top: -10%;
+
+    opacity: 0;
+
+  }
+
+  15% {
+
+    opacity: 0.9;
+
+  }
+
+  50% {
+
+    opacity: 0.75;
+
+  }
+
+  85% {
+
+    opacity: 0.9;
+
+  }
+
+  100% {
+
+    top: 110%;
+
+    opacity: 0;
+
+  }
+
+}
+
+
+@keyframes securityIconScanHover {
+
+  0% {
+
+    top: -10%;
+
+    opacity: 0;
+
+  }
+
+  20% {
+
+    opacity: 1;
+
+  }
+
+  50% {
+
+    opacity: 0.9;
+
+  }
+
+  80% {
+
+    opacity: 1;
+
+  }
+
+  100% {
+
+    top: 110%;
+
+    opacity: 0;
+
+  }
+
+}
+
+
+/* ============================================================
+   HEADER DE TARJETA — TEXTO
+   ============================================================ */
 
 .private-card-header h2 {
 
@@ -384,6 +800,25 @@
   .private-card-header {
 
     align-items: flex-start;
+
+  }
+
+}
+
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .private-card::before,
+  .private-card-icon::before,
+  .private-card-icon::after,
+  .private-card-icon i {
+
+    animation:
+      none;
 
   }
 
