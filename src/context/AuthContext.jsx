@@ -195,37 +195,67 @@ function AuthProvider({
   // LOGIN
   // ============================================================
 
-  const login = async (
-    email,
-    password
-  ) => {
-
-    const data =
-      await loginRequest(
+      const login = async (
         email,
         password
-      );
+      ) => {
+
+        const data =
+          await loginRequest(
+            email,
+            password
+          );
 
 
-    const currentUser =
-      await getCurrentUser();
+        // ==========================================================
+        // 2FA REQUERIDO
+        // ==========================================================
+
+        if (
+          data?.requiresTwoFactor
+        ) {
+
+          return {
+
+            ...data,
+
+            requiresTwoFactor:
+              true,
+
+            challenge:
+              data.challenge
+
+          };
+
+        }
 
 
-    setUser(
-      currentUser.user
-    );
+        // ==========================================================
+        // LOGIN NORMAL
+        // ==========================================================
+
+        const currentUser =
+          await getCurrentUser();
 
 
-    return {
+        setUser(
+          currentUser.user
+        );
 
-      ...data,
 
-      user:
-        currentUser.user
+        return {
 
-    };
+          ...data,
 
-  };
+          user:
+            currentUser.user,
+
+          requiresTwoFactor:
+            false
+
+        };
+
+      };
 
 
   // ============================================================
@@ -255,35 +285,65 @@ function AuthProvider({
   // LOGIN CON GOOGLE
   // ============================================================
 
-  const loginWithGoogle = async (
-    credential
-  ) => {
+    const loginWithGoogle = async (
+      credential
+    ) => {
 
-    const data =
-      await loginWithGoogleRequest(
-        credential
+      const data =
+        await loginWithGoogleRequest(
+          credential
+        );
+
+
+      // ==========================================================
+      // 2FA REQUERIDO
+      // ==========================================================
+
+      if (
+        data?.requiresTwoFactor
+      ) {
+
+        return {
+
+          ...data,
+
+          requiresTwoFactor:
+            true,
+
+          challenge:
+            data.challenge
+
+        };
+
+      }
+
+
+      // ==========================================================
+      // LOGIN NORMAL
+      // ==========================================================
+
+      const currentUser =
+        await getCurrentUser();
+
+
+      setUser(
+        currentUser.user
       );
 
 
-    const currentUser =
-      await getCurrentUser();
+      return {
 
+        ...data,
 
-    setUser(
-      currentUser.user
-    );
+        user:
+          currentUser.user,
 
+        requiresTwoFactor:
+          false
 
-    return {
-
-      ...data,
-
-      user:
-        currentUser.user
+      };
 
     };
-
-  };
 
 
   // ============================================================

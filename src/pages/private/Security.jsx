@@ -9,6 +9,8 @@ import {
 } from "../../context/AuthContext.jsx";
 
 import "../../styles/private/security.css";
+import TwoFactorCard
+  from "../../components/private/security/TwoFactorCard.jsx";
 
 
 function Security() {
@@ -574,6 +576,8 @@ function Security() {
         )}
 
       </section>     
+
+       <TwoFactorCard />
 
     </div>
 

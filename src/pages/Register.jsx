@@ -436,7 +436,7 @@ function Register() {
       notification.success({
         title: "Registro exitoso",
         description:
-          "Tu cuenta ha sido creada correctamente.",
+          "Tu cuenta ha sido creada correctamente. Revisa tu correo electrónico para confirmar tu cuenta antes de iniciar sesión.",
         placement: "topRight",
         duration: 8,
         showProgress: true,
@@ -532,7 +532,7 @@ function Register() {
       notification.success({
          title: "Registro exitoso",
         description:
-          "Tu cuenta ha sido creada. Revisa tu correo electrónico para verificarla antes de iniciar sesión.",
+          "Tu cuenta ha sido creada correctamente mediante Google.",
         placement: "topRight",
         duration: 8,
         showProgress: true,

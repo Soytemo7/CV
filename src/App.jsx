@@ -32,6 +32,8 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/private/Profile";
 import Security from "./pages/private/Security";
+import TwoFactorLogin
+  from "./pages/TwoFactorLogin";
 
 import { AuthProvider } from "./context/AuthContext.jsx";
 
@@ -103,6 +105,13 @@ function App() {
               </AuthProvider>
             }
           />
+
+          <Route
+          path="/two-factor"
+          element={
+            <TwoFactorLogin />
+          }
+        />
 
 
           {/* Registro */}

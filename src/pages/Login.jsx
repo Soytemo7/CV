@@ -211,6 +211,25 @@ function Login() {
 
       console.log("✅ Login correcto:", data);
 
+            if (
+        data?.requiresTwoFactor &&
+        data?.challenge
+      ) {
+
+        navigate(
+          "/two-factor",
+          {
+            state: {
+              challenge:
+                data.challenge
+            }
+          }
+        );
+
+        return;
+
+      }
+
 
       /*
        * PASO 3
@@ -319,6 +338,25 @@ function Login() {
 
 
       console.log("✅ Google correcto:", data);
+
+            if (
+        data?.requiresTwoFactor &&
+        data?.challenge
+      ) {
+
+        navigate(
+          "/two-factor",
+          {
+            state: {
+              challenge:
+                data.challenge
+            }
+          }
+        );
+
+        return;
+
+      }
 
 
       /*
