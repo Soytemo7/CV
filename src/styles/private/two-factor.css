@@ -620,7 +620,7 @@
   transition:
     background-color 0.25s ease,
     border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.35s ease;
 
 }
 
@@ -631,21 +631,35 @@
 
 .two-factor-recovery-summary > i {
 
-  position: relative;
+  position:
+    relative;
 
-  width: 38px;
+  width:
+    38px;
 
-  height: 38px;
+  height:
+    38px;
 
-  flex-shrink: 0;
+  flex:
+    0 0 38px;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  border-radius: 10px;
+  border-radius:
+    10px;
+
+  overflow:
+    hidden;
+
+  isolation:
+    isolate;
 
   background:
     rgba(22, 119, 255, 0.10);
@@ -657,14 +671,81 @@
     18px;
 
   box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.08),
-    0 0 12px rgba(22, 119, 255, 0.08);
+    0 0 0 1px rgba(22, 119, 255, 0.10),
+    0 0 12px rgba(22, 119, 255, 0.10),
+    inset 0 0 8px rgba(22, 119, 255, 0.04);
 
   filter:
     drop-shadow(
       0 0 4px
-      rgba(22, 119, 255, 0.35)
+      rgba(22, 119, 255, 0.30)
     );
+
+  animation:
+    twoFactorRecoveryKeyFloat
+    3.2s
+    ease-in-out
+    infinite;
+
+  transition:
+    transform 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
+
+}
+
+
+/* ============================================================
+   RECUPERACIÓN — BARRIDO PERMANENTE
+   ============================================================ */
+
+.two-factor-recovery-summary > i::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    -30%;
+
+  top:
+    -20%;
+
+  width:
+    160%;
+
+  height:
+    2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      currentColor,
+      transparent
+    );
+
+  box-shadow:
+    0 0 7px currentColor,
+    0 0 12px currentColor;
+
+  opacity:
+    0.65;
+
+  z-index:
+    2;
+
+  pointer-events:
+    none;
+
+  animation:
+    twoFactorRecoveryKeyScan
+    3.4s
+    ease-in-out
+    infinite;
 
 }
 
@@ -675,11 +756,14 @@
 
 .two-factor-recovery-summary div {
 
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
 
-  gap: 3px;
+  gap:
+    3px;
 
 }
 
@@ -713,20 +797,223 @@
 
 
 /* ============================================================
+   RECUPERACIÓN — HOVER CONTENEDOR
+   ============================================================ */
+
+.two-factor-recovery-summary:hover {
+
+  background:
+    rgba(22, 119, 255, 0.085);
+
+  border-color:
+    rgba(22, 119, 255, 0.18);
+
+  box-shadow:
+    0 0 0 3px rgba(22, 119, 255, 0.04),
+    0 0 16px rgba(22, 119, 255, 0.08);
+
+}
+
+
+/* ============================================================
+   RECUPERACIÓN — HOVER ICONO
+   ============================================================ */
+
+.two-factor-recovery-summary:hover > i {
+
+  animation:
+    none;
+
+  transform:
+    translateY(-4px)
+    scale(1.10)
+    rotate(-3deg);
+
+  background:
+    rgba(22, 119, 255, 0.14);
+
+  box-shadow:
+    0 0 0 1px rgba(22, 119, 255, 0.14),
+    0 0 18px rgba(22, 119, 255, 0.20),
+    inset 0 0 10px rgba(22, 119, 255, 0.06);
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(22, 119, 255, 0.50)
+    );
+
+}
+
+
+.two-factor-recovery-summary:hover > i::after {
+
+  opacity:
+    1;
+
+  animation:
+    twoFactorRecoveryKeyScanHover
+    1.1s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN — LLAVE
+   ============================================================ */
+
+@keyframes twoFactorRecoveryKeyFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+  35% {
+
+    transform:
+      translateY(-2px)
+      scale(1.04);
+
+  }
+
+  65% {
+
+    transform:
+      translateY(2px)
+      scale(1.06);
+
+  }
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN — BARRIDO
+   ============================================================ */
+
+@keyframes twoFactorRecoveryKeyScan {
+
+  0% {
+
+    top:
+      -10%;
+
+    opacity:
+      0;
+
+  }
+
+  15% {
+
+    opacity:
+      0.75;
+
+  }
+
+  50% {
+
+    opacity:
+      0.65;
+
+  }
+
+  85% {
+
+    opacity:
+      0.75;
+
+  }
+
+  100% {
+
+    top:
+      110%;
+
+    opacity:
+      0;
+
+  }
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN — BARRIDO HOVER
+   ============================================================ */
+
+@keyframes twoFactorRecoveryKeyScanHover {
+
+  0% {
+
+    top:
+      -10%;
+
+    opacity:
+      0;
+
+  }
+
+  20% {
+
+    opacity:
+      1;
+
+  }
+
+  50% {
+
+    opacity:
+      0.9;
+
+  }
+
+  80% {
+
+    opacity:
+      1;
+
+  }
+
+  100% {
+
+    top:
+      110%;
+
+    opacity:
+      0;
+
+  }
+
+}
+
+
+/* ============================================================
    BOTÓN PRIMARIO
    ============================================================ */
 
 .private-primary-button {
 
-  position: relative;
+  position:
+    relative;
 
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  gap: 8px;
+  gap:
+    8px;
 
   min-height:
     42px;
@@ -780,17 +1067,23 @@
 
 .private-primary-button::before {
 
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  top: 3px;
+  top:
+    3px;
 
-  left: 8%;
+  left:
+    8%;
 
-  width: 84%;
+  width:
+    84%;
 
-  height: 42%;
+  height:
+    42%;
 
   border-radius:
     9px;
@@ -826,17 +1119,23 @@
 
 .private-primary-button::after {
 
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  top: -80%;
+  top:
+    -80%;
 
-  left: -120%;
+  left:
+    -120%;
 
-  width: 80%;
+  width:
+    80%;
 
-  height: 260%;
+  height:
+    260%;
 
   background:
     linear-gradient(
@@ -1341,6 +1640,9 @@
 
 .two-factor-recovery-codes code {
 
+  position:
+    relative;
+
   padding:
     11px;
 
@@ -1365,6 +1667,16 @@
   letter-spacing:
     0.08rem;
 
+  cursor:
+    default;
+
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
+
 }
 
 
@@ -1375,6 +1687,78 @@
 
   border-color:
     rgba(255, 255, 255, 0.08);
+
+}
+
+
+.two-factor-recovery-codes code:hover {
+
+  transform:
+    translateY(-2px)
+    scale(1.02);
+
+  background:
+    rgba(22, 119, 255, 0.07);
+
+  border-color:
+    rgba(22, 119, 255, 0.28);
+
+  color:
+    #1677ff;
+
+  box-shadow:
+    0 0 0 3px rgba(22, 119, 255, 0.04),
+    0 0 14px rgba(22, 119, 255, 0.12);
+
+}
+
+
+.two-factor-recovery-codes code::before {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    2px;
+
+  left:
+    10%;
+
+  width:
+    80%;
+
+  height:
+    35%;
+
+  border-radius:
+    6px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.20),
+      rgba(255, 255, 255, 0)
+    );
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  transition:
+    opacity 0.25s ease;
+
+}
+
+
+.two-factor-recovery-codes code:hover::before {
+
+  opacity:
+    1;
 
 }
 
@@ -1617,10 +2001,6 @@
 }
 
 
-/* ============================================================
-   DISABLED
-   ============================================================ */
-
 .private-secondary-button:disabled {
 
   cursor:
@@ -1630,6 +2010,7 @@
     0.55;
 
 }
+
 
 /* ============================================================
    ACCIONES CONFIGURACIÓN 2FA
@@ -1647,144 +2028,6 @@
     12px;
 
 }
-
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-@media (max-width: 768px) {
-
-  .two-factor-status {
-
-    align-items:
-      flex-start;
-
-    flex-wrap:
-      wrap;
-
-  }
-
-
-  .two-factor-status-info {
-
-    min-width:
-      calc(100% - 64px);
-
-  }
-
-
-  .two-factor-badge {
-
-    margin-left:
-      64px;
-
-  }
-
-}
-
-
-@media (max-width: 480px) {
-
-  .two-factor-status {
-
-    gap:
-      12px;
-
-    padding:
-      14px;
-
-  }
-
-
-  .two-factor-status-icon {
-
-    width:
-      42px;
-
-    height:
-      42px;
-
-    flex-basis:
-      42px;
-
-  }
-
-
-  .two-factor-status-icon i {
-
-    font-size:
-      19px;
-
-  }
-
-
-  .two-factor-status-info {
-
-    min-width:
-      calc(100% - 54px);
-
-  }
-
-
-  .two-factor-badge {
-
-    margin-left:
-      54px;
-
-  }
-
-
-  .two-factor-recovery-codes {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .two-factor-methods {
-
-    flex-direction:
-      column;
-
-  }
-
-
-  .two-factor-qr img {
-
-    width:
-      min(220px, 100%);
-
-    height:
-      auto;
-
-    aspect-ratio:
-      1;
-
-  }
-
-}
-
-
-/* ============================================================
-   ACCESIBILIDAD
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .two-factor-status-icon::before,
-  .two-factor-status-icon::after,
-  .two-factor-status-icon i,
-  .private-primary-button::after {
-
-    animation:
-      none;
-
-  }
-
-}
-
 
 
 /* ============================================================
@@ -1887,6 +2130,12 @@
       rgba(255, 193, 7, 0.25)
     );
 
+  animation:
+    twoFactorRecoveryWarningFloat
+    3.2s
+    ease-in-out
+    infinite;
+
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
@@ -1895,10 +2144,6 @@
 
 }
 
-
-/* ============================================================
-   ANILLO DEL ICONO
-   ============================================================ */
 
 .two-factor-recovery-warning > i::before {
 
@@ -1935,10 +2180,6 @@
 
 }
 
-
-/* ============================================================
-   BRILLO / ESCANEO
-   ============================================================ */
 
 .two-factor-recovery-warning > i::after {
 
@@ -1990,25 +2231,6 @@
 }
 
 
-/* ============================================================
-   ICONO REAL
-   ============================================================ */
-
-.two-factor-recovery-warning > i {
-
-  animation:
-    twoFactorRecoveryWarningFloat
-    3.2s
-    ease-in-out
-    infinite;
-
-}
-
-
-/* ============================================================
-   TEXTO
-   ============================================================ */
-
 .two-factor-recovery-warning span {
 
   flex:
@@ -2041,10 +2263,6 @@
 }
 
 
-/* ============================================================
-   HOVER — CONTENEDOR
-   ============================================================ */
-
 .two-factor-recovery-warning:hover {
 
   background:
@@ -2062,10 +2280,6 @@
 
 }
 
-
-/* ============================================================
-   HOVER — ICONO
-   ============================================================ */
 
 .two-factor-recovery-warning:hover > i {
 
@@ -2089,10 +2303,6 @@
 }
 
 
-/* ============================================================
-   HOVER — ANILLO
-   ============================================================ */
-
 .two-factor-recovery-warning:hover > i::before {
 
   opacity:
@@ -2104,10 +2314,6 @@
 
 }
 
-
-/* ============================================================
-   HOVER — ESCANEO
-   ============================================================ */
 
 .two-factor-recovery-warning:hover > i::after {
 
@@ -2124,7 +2330,7 @@
 
 
 /* ============================================================
-   ANIMACIONES
+   ANIMACIONES — AVISO
    ============================================================ */
 
 @keyframes twoFactorRecoveryWarningFloat {
@@ -2292,278 +2498,6 @@
 
 
 /* ============================================================
-   ACCESIBILIDAD
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .two-factor-recovery-warning > i,
-  .two-factor-recovery-warning > i::before,
-  .two-factor-recovery-warning > i::after {
-
-    animation:
-      none;
-
-  }
-
-}
-
-/* ============================================================
-   RECOVERY CODES — HOVER
-   ============================================================ */
-
-.two-factor-recovery-codes code {
-
-  position:
-    relative;
-
-  cursor:
-    default;
-
-  transition:
-    transform 0.25s ease,
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    color 0.25s ease;
-
-}
-
-
-/* ============================================================
-   RECOVERY CODE — HOVER
-   ============================================================ */
-
-.two-factor-recovery-codes code:hover {
-
-  transform:
-    translateY(-2px)
-    scale(1.02);
-
-  background:
-    rgba(22, 119, 255, 0.07);
-
-  border-color:
-    rgba(22, 119, 255, 0.28);
-
-  color:
-    #1677ff;
-
-  box-shadow:
-    0 0 0 3px rgba(22, 119, 255, 0.04),
-    0 0 14px rgba(22, 119, 255, 0.12);
-
-}
-
-/* ============================================================
-   RECOVERY CODE — REFLEJO
-   ============================================================ */
-
-.two-factor-recovery-codes code::before {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  top:
-    2px;
-
-  left:
-    10%;
-
-  width:
-    80%;
-
-  height:
-    35%;
-
-  border-radius:
-    6px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.20),
-      rgba(255, 255, 255, 0)
-    );
-
-  opacity:
-    0;
-
-  pointer-events:
-    none;
-
-  transition:
-    opacity 0.25s ease;
-
-}
-
-
-/* ============================================================
-   RECOVERY CODE — REFLEJO HOVER
-   ============================================================ */
-
-.two-factor-recovery-codes code:hover::before {
-
-  opacity:
-    1;
-
-}
-
-/* ============================================================
-   RECUPERACIÓN — LLAVE ANIMADA
-   ============================================================ */
-
-.two-factor-recovery-summary > i {
-
-  animation:
-    twoFactorRecoveryKeyFloat
-    3.2s
-    ease-in-out
-    infinite;
-
-  transition:
-    transform 0.35s ease,
-    background-color 0.35s ease,
-    box-shadow 0.35s ease,
-    filter 0.35s ease;
-
-}
-
-
-/* ============================================================
-   EFECTO PERMANENTE — LLAVE
-   ============================================================ */
-
-.two-factor-recovery-summary > i {
-
-  box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.10),
-    0 0 12px rgba(22, 119, 255, 0.10),
-    inset 0 0 8px rgba(22, 119, 255, 0.04);
-
-  filter:
-    drop-shadow(
-      0 0 4px
-      rgba(22, 119, 255, 0.30)
-    );
-
-}
-
-
-/* ============================================================
-   EFECTO PERMANENTE — CONTENEDOR
-   ============================================================ */
-
-.two-factor-recovery-summary {
-
-  transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.35s ease;
-
-}
-
-
-/* ============================================================
-   HOVER — CONTENEDOR
-   ============================================================ */
-
-.two-factor-recovery-summary:hover {
-
-  background:
-    rgba(22, 119, 255, 0.085);
-
-  border-color:
-    rgba(22, 119, 255, 0.18);
-
-  box-shadow:
-    0 0 0 3px rgba(22, 119, 255, 0.04),
-    0 0 16px rgba(22, 119, 255, 0.08);
-
-}
-
-
-/* ============================================================
-   HOVER — LLAVE
-   ============================================================ */
-
-.two-factor-recovery-summary:hover > i {
-
-  transform:
-    translateY(-2px)
-    scale(1.08)
-    rotate(-3deg);
-
-  background:
-    rgba(22, 119, 255, 0.14);
-
-  box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.14),
-    0 0 18px rgba(22, 119, 255, 0.20),
-    inset 0 0 10px rgba(22, 119, 255, 0.06);
-
-  filter:
-    drop-shadow(
-      0 0 8px
-      rgba(22, 119, 255, 0.50)
-    );
-
-}
-
-
-/* ============================================================
-   ANIMACIÓN — FLOTACIÓN
-   ============================================================ */
-
-@keyframes twoFactorRecoveryKeyFloat {
-
-  0%,
-  100% {
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
-
-  35% {
-
-    transform:
-      translateY(-1px)
-      scale(1.03);
-
-  }
-
-  65% {
-
-    transform:
-      translateY(1px)
-      scale(1.05);
-
-  }
-
-}
-
-
-/* ============================================================
-   ACCESIBILIDAD
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .two-factor-recovery-summary > i {
-
-    animation:
-      none;
-
-  }
-
-}
-
-/* ============================================================
    TWO FACTOR LOGIN
    ICONO PRINCIPAL
    ============================================================ */
@@ -2625,10 +2559,6 @@
 }
 
 
-/* ============================================================
-   ICONO — ANILLO
-   ============================================================ */
-
 .two-factor-panel .two-factor-panel-icon::before {
 
   content:
@@ -2664,10 +2594,6 @@
 
 }
 
-
-/* ============================================================
-   ICONO — BARRIDO
-   ============================================================ */
 
 .two-factor-panel .two-factor-panel-icon::after {
 
@@ -2719,10 +2645,6 @@
 }
 
 
-/* ============================================================
-   ICONO REAL
-   ============================================================ */
-
 .two-factor-panel .two-factor-panel-icon i {
 
   position:
@@ -2753,7 +2675,7 @@
 
 
 /* ============================================================
-   ICONO — HOVER
+   ICONO LOGIN — HOVER
    ============================================================ */
 
 .two-factor-panel .two-factor-panel-icon:hover {
@@ -2994,10 +2916,6 @@
 }
 
 
-/* ============================================================
-   BOTONES DE MÉTODO
-   ============================================================ */
-
 .two-factor-panel .two-factor-methods button {
 
   position:
@@ -3079,10 +2997,6 @@
 }
 
 
-/* ============================================================
-   BOTONES — OSCURO
-   ============================================================ */
-
 .private-dark
 .two-factor-panel
 .two-factor-methods
@@ -3093,10 +3007,6 @@ button {
 
 }
 
-
-/* ============================================================
-   BOTONES — ICONOS
-   ============================================================ */
 
 .two-factor-panel
 .two-factor-methods
@@ -3121,10 +3031,6 @@ button i {
 }
 
 
-/* ============================================================
-   BOTONES — CONTENIDO
-   ============================================================ */
-
 .two-factor-panel
 .two-factor-methods
 button span {
@@ -3140,10 +3046,6 @@ button span {
 
 }
 
-
-/* ============================================================
-   BOTONES — REFLEJO
-   ============================================================ */
 
 .two-factor-panel
 .two-factor-methods
@@ -3192,10 +3094,6 @@ button::before {
 }
 
 
-/* ============================================================
-   BOTONES — HOVER
-   ============================================================ */
-
 .two-factor-panel
 .two-factor-methods
 button:hover:not(:disabled) {
@@ -3231,7 +3129,8 @@ button:hover:not(:disabled)::before {
 
 .two-factor-panel
 .two-factor-methods
-button:hover:not(:disabled) i {
+button:hover:not(:disabled)
+i {
 
   transform:
     scale(1.12);
@@ -3244,10 +3143,6 @@ button:hover:not(:disabled) i {
 
 }
 
-
-/* ============================================================
-   BOTONES — ACTIVO
-   ============================================================ */
 
 .two-factor-panel
 .two-factor-methods
@@ -3269,10 +3164,6 @@ button.active {
 }
 
 
-/* ============================================================
-   BOTONES — DISABLED
-   ============================================================ */
-
 .two-factor-panel
 .two-factor-methods
 button:disabled {
@@ -3287,7 +3178,7 @@ button:disabled {
 
 
 /* ============================================================
-   FORMULARIO
+   FORMULARIO PANEL
    ============================================================ */
 
 .two-factor-panel .two-factor-form {
@@ -3313,10 +3204,6 @@ button:disabled {
 }
 
 
-/* ============================================================
-   CAMPO TOTP / RECOVERY
-   ============================================================ */
-
 .two-factor-panel .two-factor-token-input {
 
   display:
@@ -3334,14 +3221,6 @@ button:disabled {
 }
 
 
-/* ============================================================
-   BOTÓN PRINCIPAL
-   ============================================================ */
-
-/* ============================================================
-   BOTONES DEL PASO INICIAL
-   ============================================================ */
-
 .two-factor-panel .private-primary-button {
 
   width:
@@ -3355,10 +3234,6 @@ button:disabled {
 
 }
 
-
-/* ============================================================
-   BOTÓN SECUNDARIO
-   ============================================================ */
 
 .two-factor-panel .private-secondary-button {
 
@@ -3375,10 +3250,233 @@ button:disabled {
 
 
 /* ============================================================
+   LOGIN
+   ============================================================ */
+
+.login-container2 {
+
+  min-height:
+    600px;
+
+}
+
+
+.login-box2 {
+
+  width:
+    100%;
+
+  min-height:
+    600px;
+
+  padding:
+    10px;
+
+  box-sizing:
+    border-box;
+
+}
+
+
+/* ============================================================
+   BOTÓN ACTIVAR 2FA
+   ============================================================ */
+
+.two-factor-enable-button {
+
+  margin-top:
+    10px !important;
+
+}
+
+
+/* ============================================================
+   ACCIONES — DESACTIVAR 2FA
+   ============================================================ */
+
+.two-factor-disable-actions {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  width:
+    100%;
+
+}
+
+
+.two-factor-disable-actions
+.two-factor-disable-confirm {
+
+  flex:
+    1 1 auto;
+
+  width:
+    auto;
+
+  min-width:
+    0;
+
+  box-sizing:
+    border-box;
+
+}
+
+
+.two-factor-disable-actions
+.two-factor-disable-cancel {
+
+  flex:
+    0 0 auto;
+
+  width:
+    auto;
+
+  box-sizing:
+    border-box;
+
+  white-space:
+    nowrap;
+
+}
+
+
+/* ============================================================
+   BOTÓN DESACTIVAR 2FA
+   ============================================================ */
+
+.two-factor-disable-button2 {
+
+  width:
+    100%;
+
+  box-sizing:
+    border-box;
+
+}
+
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 
+@media (max-width: 768px) {
+
+  .two-factor-status {
+
+    align-items:
+      flex-start;
+
+    flex-wrap:
+      wrap;
+
+  }
+
+
+  .two-factor-status-info {
+
+    min-width:
+      calc(100% - 64px);
+
+  }
+
+
+  .two-factor-badge {
+
+    margin-left:
+      64px;
+
+  }
+
+}
+
+
 @media (max-width: 480px) {
+
+  .two-factor-status {
+
+    gap:
+      12px;
+
+    padding:
+      14px;
+
+  }
+
+
+  .two-factor-status-icon {
+
+    width:
+      42px;
+
+    height:
+      42px;
+
+    flex-basis:
+      42px;
+
+  }
+
+
+  .two-factor-status-icon i {
+
+    font-size:
+      19px;
+
+  }
+
+
+  .two-factor-status-info {
+
+    min-width:
+      calc(100% - 54px);
+
+  }
+
+
+  .two-factor-badge {
+
+    margin-left:
+      54px;
+
+  }
+
+
+  .two-factor-recovery-codes {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .two-factor-methods {
+
+    flex-direction:
+      column;
+
+  }
+
+
+  .two-factor-qr img {
+
+    width:
+      min(220px, 100%);
+
+    height:
+      auto;
+
+    aspect-ratio:
+      1;
+
+  }
+
 
   .two-factor-panel .two-factor-panel-icon {
 
@@ -3422,120 +3520,6 @@ button:disabled {
 
   }
 
-}
-
-
-/* ============================================================
-   ACCESIBILIDAD
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .two-factor-panel .two-factor-panel-icon,
-  .two-factor-panel .two-factor-panel-icon::before,
-  .two-factor-panel .two-factor-panel-icon::after,
-  .two-factor-panel .two-factor-panel-icon i {
-
-    animation:
-      none;
-
-  }
-
-}
-
-.login-container2 {  
-  min-height: 600px;
-}
-
-.login-box2 {
-  width: 100%;
-  min-height: 600px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-/* ============================================================
-   BOTÓN ACTIVAR 2FA
-   Separación respecto al código TOTP
-   ============================================================ */
-
-.two-factor-enable-button {
-
-  margin-top:
-    10px !important;
-
-}
-
-/* ============================================================
-   ACCIONES — DESACTIVAR 2FA
-   ============================================================ */
-
-.two-factor-disable-actions {
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    12px;
-
-  width:
-    100%;
-
-}
-
-
-/* ============================================================
-   CONFIRMAR DESACTIVACIÓN
-   ============================================================ */
-
-.two-factor-disable-actions
-.two-factor-disable-confirm {
-
-  flex:
-    1 1 auto;
-
-  width:
-    auto;
-
-  min-width:
-    0;
-
-  box-sizing:
-    border-box;
-
-}
-
-
-/* ============================================================
-   CANCELAR
-   ============================================================ */
-
-.two-factor-disable-actions
-.two-factor-disable-cancel {
-
-  flex:
-    0 0 auto;
-
-  width:
-    auto;
-
-  box-sizing:
-    border-box;
-
-  white-space:
-    nowrap;
-
-}
-
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-@media (max-width: 480px) {
 
   .two-factor-disable-actions {
 
@@ -3567,342 +3551,33 @@ button:disabled {
 
 }
 
-/* ============================================================
-   BOTÓN DESACTIVAR 2FA — ANCHO COMPLETO
-   ============================================================ */
-
-.two-factor-disable-button2 {
-
-  width:
-    100%;
-
-  box-sizing:
-    border-box;
-
-}
 
 /* ============================================================
-   ICONO — CÓDIGOS DE RECUPERACIÓN
-   ANIMACIÓN PERMANENTE
-   ============================================================ */
-
-.two-factor-recovery-summary > i {
-
-  animation:
-    twoFactorRecoveryKeyFloat
-    3.2s
-    ease-in-out
-    infinite;
-
-  transition:
-    transform 0.35s ease,
-    background-color 0.35s ease,
-    box-shadow 0.35s ease,
-    filter 0.35s ease;
-
-}
-
-
-/* ============================================================
-   ICONO — BRILLO PERMANENTE
-   ============================================================ */
-
-.two-factor-recovery-summary > i {
-
-  box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.10),
-    0 0 12px rgba(22, 119, 255, 0.10),
-    inset 0 0 8px rgba(22, 119, 255, 0.04);
-
-  filter:
-    drop-shadow(
-      0 0 4px
-      rgba(22, 119, 255, 0.30)
-    );
-
-}
-
-
-/* ============================================================
-   ANIMACIÓN — CÓDIGO DE RECUPERACIÓN
-   ============================================================ */
-
-@keyframes twoFactorRecoveryKeyFloat {
-
-  0%,
-  100% {
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
-
-  35% {
-
-    transform:
-      translateY(-2px)
-      scale(1.04);
-
-  }
-
-  65% {
-
-    transform:
-      translateY(2px)
-      scale(1.06);
-
-  }
-
-}
-
-
-/* ============================================================
-   REDUCCIÓN DE MOVIMIENTO
+   ACCESIBILIDAD
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
-  .two-factor-recovery-summary > i {
-
-    animation:
-      none;
-
-  }
-
-}
-
-/* ============================================================
-   ICONO RECUPERACIÓN — BARRIDO PERMANENTE
-   ============================================================ */
-
-.two-factor-recovery-summary > i {
-
-  position:
-    relative;
-
-  overflow:
-    hidden;
-
-  isolation:
-    isolate;
-
-}
-
-
-/* ============================================================
-   BARRIDO — SIN HOVER
-   ============================================================ */
-
-.two-factor-recovery-summary > i::after {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  left:
-    -30%;
-
-  top:
-    -20%;
-
-  width:
-    160%;
-
-  height:
-    2px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      currentColor,
-      transparent
-    );
-
-  box-shadow:
-    0 0 7px currentColor,
-    0 0 12px currentColor;
-
-  opacity:
-    0.65;
-
-  z-index:
-    2;
-
-  pointer-events:
-    none;
-
-  animation:
-    twoFactorRecoveryKeyScan
-    3.4s
-    ease-in-out
-    infinite;
-
-}
-
-
-/* ============================================================
-   ANIMACIÓN — BARRIDO ARRIBA → ABAJO
-   ============================================================ */
-
-@keyframes twoFactorRecoveryKeyScan {
-
-  0% {
-
-    top:
-      -10%;
-
-    opacity:
-      0;
-
-  }
-
-  15% {
-
-    opacity:
-      0.75;
-
-  }
-
-  50% {
-
-    opacity:
-      0.65;
-
-  }
-
-  85% {
-
-    opacity:
-      0.75;
-
-  }
-
-  100% {
-
-    top:
-      110%;
-
-    opacity:
-      0;
-
-  }
-
-}
-
-
-/* ============================================================
-   REDUCCIÓN DE MOVIMIENTO
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
+  .two-factor-status-icon::before,
+  .two-factor-status-icon::after,
+  .two-factor-status-icon i,
 
   .two-factor-recovery-summary > i,
-  .two-factor-recovery-summary > i::after {
+  .two-factor-recovery-summary > i::after,
+
+  .two-factor-recovery-warning > i,
+  .two-factor-recovery-warning > i::before,
+  .two-factor-recovery-warning > i::after,
+
+  .private-primary-button::after,
+
+  .two-factor-panel .two-factor-panel-icon,
+  .two-factor-panel .two-factor-panel-icon::before,
+  .two-factor-panel .two-factor-panel-icon::after,
+  .two-factor-panel .two-factor-panel-icon i {
 
     animation:
       none;
-
-  }
-
-}
-
-/* ============================================================
-   CÓDIGO DE RECUPERACIÓN — HOVER / LEVANTAMIENTO
-   ============================================================ */
-
-.two-factor-recovery-summary:hover > i {
-
-  animation:
-    none;
-
-  transform:
-    translateY(-4px)
-    scale(1.10)
-    rotate(-3deg);
-
-  background:
-    rgba(22, 119, 255, 0.14);
-
-  box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.14),
-    0 0 18px rgba(22, 119, 255, 0.20),
-    inset 0 0 10px rgba(22, 119, 255, 0.06);
-
-  filter:
-    drop-shadow(
-      0 0 8px
-      rgba(22, 119, 255, 0.50)
-    );
-
-}
-
-
-/* ============================================================
-   HOVER — BARRIDO MÁS RÁPIDO
-   ============================================================ */
-
-.two-factor-recovery-summary:hover > i::after {
-
-  opacity:
-    1;
-
-  animation:
-    twoFactorRecoveryKeyScanHover
-    1.1s
-    ease-in-out
-    infinite;
-
-}
-
-
-/* ============================================================
-   BARRIDO HOVER
-   ============================================================ */
-
-@keyframes twoFactorRecoveryKeyScanHover {
-
-  0% {
-
-    top:
-      -10%;
-
-    opacity:
-      0;
-
-  }
-
-  20% {
-
-    opacity:
-      1;
-
-  }
-
-  50% {
-
-    opacity:
-      0.9;
-
-  }
-
-  80% {
-
-    opacity:
-      1;
-
-  }
-
-  100% {
-
-    top:
-      110%;
-
-    opacity:
-      0;
 
   }
 
