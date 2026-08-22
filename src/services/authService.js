@@ -75,6 +75,66 @@ export const resetPassword = async (
 
 };
 
+// ============================================================
+// CAMBIO DE CONTRASEÑA
+// ============================================================
+
+export const changePassword = async (
+  currentPassword,
+  newPassword,
+  token,
+  recoveryCode
+) => {
+
+  const body = {
+    currentPassword,
+    newPassword
+  };
+
+
+  // ----------------------------------------------------------
+  // TOTP
+  // ----------------------------------------------------------
+
+  if (
+    token !== undefined &&
+    token !== null &&
+    token !== ""
+  ) {
+
+    body.token = token;
+
+  }
+
+
+  // ----------------------------------------------------------
+  // CÓDIGO DE RECUPERACIÓN
+  // ----------------------------------------------------------
+
+  if (
+    recoveryCode !== undefined &&
+    recoveryCode !== null &&
+    recoveryCode !== ""
+  ) {
+
+    body.recoveryCode =
+      recoveryCode;
+
+  }
+
+
+  return await api(
+    "/api/auth/change-password",
+    {
+      method: "POST",
+
+      body:
+        JSON.stringify(body)
+    }
+  );
+
+};
+
 
 // ============================================================
 // GOOGLE
