@@ -87,7 +87,9 @@
   --footer-color: rgba(255, 255, 255, 0.48);
 
   width: calc(var(--form-width) + 1px);
-  height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+  height: calc(
+      var(--form-width) * var(--aspect-ratio) + 50px
+    );
 
   display: flex;
   justify-content: center;
@@ -147,7 +149,9 @@
   position: absolute;
 
   width: var(--form-width);
-  height: calc(var(--form-width) * var(--aspect-ratio));
+  height: calc(
+      var(--form-width) * var(--aspect-ratio) + 45px
+    );
 
   padding: 28px;
 
@@ -1676,7 +1680,7 @@
     --form-width: min(315px, calc(100vw - 32px));
 
     width: calc(var(--form-width) + 1px);
-    height: calc(var(--form-width) * var(--aspect-ratio) + 1px);
+    height: calc(var(--form-width) * var(--aspect-ratio) + 50px);
   }
 
   .login-box {

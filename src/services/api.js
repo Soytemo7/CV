@@ -27,4 +27,121 @@ const api = async (endpoint, options = {}) => {
   return data;
 };
 
+// ============================================================
+// PASSKEY
+// ============================================================
+
+// ------------------------------------------------------------
+// Obtener opciones para registrar Passkey
+// ------------------------------------------------------------
+
+export const getPasskeyRegistrationOptions =
+  async () => {
+
+    return await api(
+      "/api/passkeys/register/options",
+      {
+        method: "GET"
+      }
+    );
+
+  };
+
+
+// ------------------------------------------------------------
+// Verificar registro Passkey
+// ------------------------------------------------------------
+
+export const verifyPasskeyRegistration =
+  async (
+    credential
+  ) => {
+
+    return await api(
+      "/api/passkeys/register/verify",
+      {
+        method: "POST",
+        body: JSON.stringify(
+          credential
+        )
+      }
+    );
+
+  };
+
+
+// ------------------------------------------------------------
+// Obtener opciones para login Passkey
+// ------------------------------------------------------------
+
+export const getPasskeyAuthenticationOptions =
+  async () => {
+
+    return await api(
+      "/api/passkeys/login/options",
+      {
+        method: "GET"
+      }
+    );
+
+  };
+
+
+// ------------------------------------------------------------
+// Verificar login Passkey
+// ------------------------------------------------------------
+
+export const verifyPasskeyAuthentication =
+  async (
+    credential
+  ) => {
+
+    return await api(
+      "/api/passkeys/login/verify",
+      {
+        method: "POST",
+        body: JSON.stringify(
+          credential
+        )
+      }
+    );
+
+  };
+
+
+// ------------------------------------------------------------
+// Obtener Passkeys del usuario
+// ------------------------------------------------------------
+
+export const getUserPasskeys =
+  async () => {
+
+    return await api(
+      "/api/passkeys",
+      {
+        method: "GET"
+      }
+    );
+
+  };
+
+
+// ------------------------------------------------------------
+// Eliminar Passkey
+// ------------------------------------------------------------
+
+export const deleteUserPasskey =
+  async (
+    credentialID
+  ) => {
+
+    return await api(
+      `/api/passkeys/${encodeURIComponent(credentialID)}`,
+      {
+        method: "DELETE"
+      }
+    );
+
+  };
+
 export default api;

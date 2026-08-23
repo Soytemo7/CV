@@ -12,6 +12,9 @@ import {
   LoadingOutlined
 } from "@ant-design/icons";
 import { GoogleLogin } from "@react-oauth/google";
+import {
+  KeyOutlined
+} from "@ant-design/icons";
 
 
 function Login() {
@@ -22,7 +25,8 @@ function Login() {
 
   const {
     login,
-    loginWithGoogle
+    loginWithGoogle,
+    loginWithPasskey
   } = useContext(AuthContext);
 
   const notification = useNotification();
@@ -56,7 +60,7 @@ function Login() {
    * finish  = correcto
    * error   = error
    */
-  const [stepStatus, setStepStatus] = useState("process");
+  const [stepStatus, setStepStatus] = useState("process"); 
 
 
   /*==============================================================
@@ -85,6 +89,139 @@ function Login() {
 
   }, [isDark]);
 
+
+  // ============================================================
+// PASSKEY LOGIN
+// ============================================================
+
+const handlePasskeyLogin =
+  async () => {
+
+    if (loading) {
+      return;
+    }
+
+    try {
+
+      setLoading(true);
+
+
+      const data =
+        await loginWithPasskey();
+
+
+      console.log(
+        "✅ Passkey correcto:",
+        data
+      );
+
+
+      notification.success({
+
+        title:
+          "Autenticación exitosa",
+
+        description:
+          "Has iniciado sesión correctamente mediante Passkey.",
+
+        placement:
+          "topRight",
+
+        duration:
+          6,
+
+        showProgress:
+          true,
+
+        pauseOnHover:
+          true,
+
+        closable:
+          true,
+
+        className:
+          "welcome-notification"
+
+      });
+
+
+      navigate(
+        "/dashboard"
+      );
+
+    } catch (error) {
+
+      console.error(
+        "❌ Error Passkey:",
+        error
+      );
+
+
+      let description =
+        error?.message ||
+        "No fue posible iniciar sesión mediante Passkey.";
+
+
+      // --------------------------------------------------------
+      // Mensajes amigables para WebAuthn
+      // --------------------------------------------------------
+
+      if (
+        error?.name ===
+        "NotAllowedError"
+      ) {
+
+        description =
+          "La autenticación mediante Passkey fue cancelada o no fue autorizada.";
+
+      }
+
+
+      if (
+        error?.name ===
+        "InvalidStateError"
+      ) {
+
+        description =
+          "La Passkey seleccionada no está disponible para esta cuenta.";
+
+      }
+
+
+      notification.error({
+
+        title:
+          "Error con Passkey",
+
+        description,
+
+        placement:
+          "topRight",
+
+        duration:
+          8,
+
+        showProgress:
+          true,
+
+        pauseOnHover:
+          true,
+
+        closable:
+          true,
+
+        className:
+          "welcome-notification"
+
+      });
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
 
   /*==============================================================
   # Input Change
@@ -582,6 +719,24 @@ function Login() {
               }
 
             </button>
+
+            <button
+              type="button"
+              className="login-button login-passkey"
+              onClick={handlePasskeyLogin}
+              disabled={loading}
+            >
+              <KeyOutlined />
+
+              <span>
+                {loading
+                  ? "Autenticando..."
+                  : "Iniciar sesión con Passkey"}
+              </span>
+            </button>
+            <div className="login-divider">
+              <span>o</span>
+            </div>
 
 
             {/*--------------------------------------------------------

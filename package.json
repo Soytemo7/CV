@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.13.5",
+    "@simplewebauthn/browser": "^13.3.0",
     "@srexi/purecounterjs": "^1.5.0",
     "antd": "^6.6.0",
     "aos": "^2.3.4",

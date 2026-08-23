@@ -20,6 +20,8 @@ import "../../styles/private/security.css";
 
 import TwoFactorCard
   from "../../components/private/security/TwoFactorCard.jsx";
+import PasskeyCard
+  from "../../components/private/security/PasskeyCard";
 
 
 function Security() {
@@ -1539,6 +1541,12 @@ function Security() {
           ======================================================== */}
 
       <TwoFactorCard />
+
+      {/* ============================================================
+          PASSKEY
+          ============================================================ */}
+
+      <PasskeyCard />
 
     </div>
 
