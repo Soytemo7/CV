@@ -22,6 +22,9 @@ import TwoFactorCard
   from "../../components/private/security/TwoFactorCard.jsx";
 import PasskeyCard
   from "../../components/private/security/PasskeyCard";
+import CertificateManager
+  from "../../components/security/CertificateManager.jsx";
+import "../../styles/certificate.css";
 
 
 function Security() {
@@ -1045,7 +1048,7 @@ function Security() {
 
         )}
 
-      </section>
+      </section>     
 
       {/* ========================================================
           CAMBIAR CONTRASEÑA
@@ -1535,6 +1538,8 @@ function Security() {
 
       </section>  
 
+       <CertificateManager />
+
 
       {/* ========================================================
           TOTP
@@ -1546,7 +1551,7 @@ function Security() {
           PASSKEY
           ============================================================ */}
 
-      <PasskeyCard />
+      <PasskeyCard />      
 
     </div>
 

@@ -1,26 +1,44 @@
 import { useContext, useEffect, useState } from "react";
+
 import { AuthContext } from "../context/AuthContext.jsx";
+
 import { useNotification } from "../hooks/useNotification";
+
 import "../styles/login.css";
+
 import { useNavigate } from "react-router-dom";
+
 import ThemeToggle from "../components/common/ThemeToggle";
+
 import { Steps } from "antd";
+
 import {
   UserOutlined,
   SafetyOutlined,
   LoginOutlined,
-  LoadingOutlined
+  LoadingOutlined,
+  KeyOutlined,
+  CloseOutlined,
+  SafetyCertificateOutlined
 } from "@ant-design/icons";
+
 import { GoogleLogin } from "@react-oauth/google";
-import {
-  KeyOutlined
-} from "@ant-design/icons";
+
+import CertificateLogin
+  from "../components/auth/CertificateLogin";
 
 
 function Login() {
 
-  console.log("URL:", window.location.origin);
-  console.log("localStorage:", { ...localStorage });
+  console.log(
+    "URL:",
+    window.location.origin
+  );
+
+  console.log(
+    "localStorage:",
+    { ...localStorage }
+  );
 
 
   const {
@@ -29,30 +47,68 @@ function Login() {
     loginWithPasskey
   } = useContext(AuthContext);
 
-  const notification = useNotification();
-  const navigate = useNavigate();
+
+  const notification =
+    useNotification();
 
 
-  const [isDark, setIsDark] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
+  const navigate =
+    useNavigate();
+
+
+  // ==========================================================
+  // THEME
+  // ==========================================================
+
+  const [
+    isDark,
+    setIsDark
+  ] = useState(() => {
+
+    return (
+      localStorage.getItem("theme") === "dark"
+    );
+
   });
 
 
-  const [formData, setFormData] = useState({
+  // ==========================================================
+  // FORMULARIO
+  // ==========================================================
+
+  const [
+    formData,
+    setFormData
+  ] = useState({
     email: "",
     password: ""
   });
 
 
-  const [loading, setLoading] = useState(false);
+  // ==========================================================
+  // LOADING
+  // ==========================================================
 
+  const [
+    loading,
+    setLoading
+  ] = useState(false);
+
+
+  // ==========================================================
+  // STEPS
+  // ==========================================================
 
   /*
    * 0 = Credenciales
    * 1 = Verificando
    * 2 = Acceso
    */
-  const [currentStep, setCurrentStep] = useState(0);
+
+  const [
+    currentStep,
+    setCurrentStep
+  ] = useState(0);
 
 
   /*
@@ -60,18 +116,34 @@ function Login() {
    * finish  = correcto
    * error   = error
    */
-  const [stepStatus, setStepStatus] = useState("process"); 
+
+  const [
+    stepStatus,
+    setStepStatus
+  ] = useState("process");
 
 
-  /*==============================================================
-  # Theme
-  ==============================================================*/
+  // ==========================================================
+  // CERTIFICADO
+  // ==========================================================
+
+  const [
+    certificateMode,
+    setCertificateMode
+  ] = useState(false);
+
+
+  // ==========================================================
+  // THEME EFFECT
+  // ==========================================================
 
   useEffect(() => {
 
     localStorage.setItem(
       "theme",
-      isDark ? "dark" : "light"
+      isDark
+        ? "dark"
+        : "light"
     );
 
 
@@ -86,114 +158,699 @@ function Login() {
       !isDark
     );
 
-
   }, [isDark]);
 
 
-  // ============================================================
-// PASSKEY LOGIN
-// ============================================================
+  // ==========================================================
+  // CERRAR MODAL CERTIFICADO
+  // ==========================================================
 
-const handlePasskeyLogin =
-  async () => {
+  const closeCertificateModal =
+    () => {
 
-    if (loading) {
-      return;
-    }
+      if (loading) {
+        return;
+      }
 
-    try {
+      setCertificateMode(false);
 
-      setLoading(true);
+    };
 
 
-      const data =
-        await loginWithPasskey();
+  // ==========================================================
+  // LOGIN CERTIFICADO
+  // ==========================================================
 
+  const handleCertificateSuccess =
+    (data) => {
 
       console.log(
-        "✅ Passkey correcto:",
+        "✅ Certificado correcto:",
         data
       );
 
 
-      notification.success({
+      /*
+       * Cerramos el modal antes de continuar.
+       */
 
-        title:
-          "Autenticación exitosa",
+      setCertificateMode(false);
 
-        description:
-          "Has iniciado sesión correctamente mediante Passkey.",
 
-        placement:
-          "topRight",
+      /*
+       * Si requiere 2FA,
+       * vamos al challenge.
+       */
 
-        duration:
-          6,
+      if (
+        data?.requiresTwoFactor &&
+        data?.challenge
+      ) {
 
-        showProgress:
-          true,
+        navigate(
+          "/two-factor",
+          {
+            state: {
+              challenge:
+                data.challenge
+            }
+          }
+        );
 
-        pauseOnHover:
-          true,
+        return;
+      }
 
-        closable:
-          true,
 
-        className:
-          "welcome-notification"
-
-      });
-
+      /*
+       * Login completado.
+       */
 
       navigate(
         "/dashboard"
       );
 
-    } catch (error) {
+    };
 
-      console.error(
-        "❌ Error Passkey:",
-        error
+
+  // ==========================================================
+  // PASSKEY LOGIN
+  // ==========================================================
+
+  const handlePasskeyLogin =
+    async () => {
+
+      if (loading) {
+        return;
+      }
+
+
+      try {
+
+        setLoading(true);
+
+
+        const data =
+          await loginWithPasskey();
+
+
+        console.log(
+          "✅ Passkey correcto:",
+          data
+        );
+
+
+        notification.success({
+
+          title:
+            "Autenticación exitosa",
+
+          description:
+            "Has iniciado sesión correctamente mediante Passkey.",
+
+          placement:
+            "topRight",
+
+          duration:
+            6,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+
+        navigate(
+          "/dashboard"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "❌ Error Passkey:",
+          error
+        );
+
+
+        let description =
+          error?.message ||
+          "No fue posible iniciar sesión mediante Passkey.";
+
+
+        if (
+          error?.name ===
+          "NotAllowedError"
+        ) {
+
+          description =
+            "La autenticación mediante Passkey fue cancelada o no fue autorizada.";
+
+        }
+
+
+        if (
+          error?.name ===
+          "InvalidStateError"
+        ) {
+
+          description =
+            "La Passkey seleccionada no está disponible para esta cuenta.";
+
+        }
+
+
+        notification.error({
+
+          title:
+            "Error con Passkey",
+
+          description,
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+
+  // ==========================================================
+  // INPUT CHANGE
+  // ==========================================================
+
+  const handleChange =
+    (event) => {
+
+      const {
+        name,
+        value
+      } = event.target;
+
+
+      setFormData(
+        previous => ({
+          ...previous,
+          [name]: value
+        })
       );
 
 
-      let description =
-        error?.message ||
-        "No fue posible iniciar sesión mediante Passkey.";
-
-
-      // --------------------------------------------------------
-      // Mensajes amigables para WebAuthn
-      // --------------------------------------------------------
-
       if (
-        error?.name ===
-        "NotAllowedError"
+        stepStatus ===
+        "error"
       ) {
 
-        description =
-          "La autenticación mediante Passkey fue cancelada o no fue autorizada.";
+        setCurrentStep(0);
+
+        setStepStatus(
+          "process"
+        );
 
       }
 
+    };
+
+
+  // ==========================================================
+  // LOGIN NORMAL
+  // ==========================================================
+
+  const handleSubmit =
+    async (event) => {
+
+      event.preventDefault();
+
+
+      if (loading) {
+        return;
+      }
+
+
+      const email =
+        formData.email
+          .trim()
+          .toLowerCase();
+
+
+      const password =
+        formData.password;
+
+
+      // --------------------------------------------------------
+      // VALIDACIÓN
+      // --------------------------------------------------------
 
       if (
-        error?.name ===
-        "InvalidStateError"
+        !email ||
+        !password
       ) {
 
-        description =
-          "La Passkey seleccionada no está disponible para esta cuenta.";
+        setCurrentStep(1);
+
+        setStepStatus(
+          "error"
+        );
+
+
+        notification.error({
+
+          title:
+            "Datos incompletos",
+
+          description:
+            "Correo y contraseña son obligatorios.",
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+
+        return;
+      }
+
+
+      // --------------------------------------------------------
+      // PASSWORD
+      // --------------------------------------------------------
+
+      if (
+        password.length < 8 ||
+        password.length > 128
+      ) {
+
+        setCurrentStep(1);
+
+        setStepStatus(
+          "error"
+        );
+
+
+        notification.error({
+
+          title:
+            "Credenciales no válidas",
+
+          description:
+            "Las credenciales proporcionadas no son válidas.",
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+
+        return;
+      }
+
+
+      // --------------------------------------------------------
+      // LOGIN
+      // --------------------------------------------------------
+
+      try {
+
+        setLoading(true);
+
+
+        setCurrentStep(1);
+
+        setStepStatus(
+          "process"
+        );
+
+
+        const data =
+          await login(
+            email,
+            password
+          );
+
+
+        console.log(
+          "✅ Login correcto:",
+          data
+        );
+
+
+        if (
+          data?.requiresTwoFactor &&
+          data?.challenge
+        ) {
+
+          navigate(
+            "/two-factor",
+            {
+              state: {
+                challenge:
+                  data.challenge
+              }
+            }
+          );
+
+          return;
+        }
+
+
+        setCurrentStep(2);
+
+        setStepStatus(
+          "finish"
+        );
+
+
+        notification.success({
+
+          title:
+            "Inicio de sesión correcto",
+
+          description:
+            "Has iniciado sesión correctamente.",
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+
+        setTimeout(() => {
+
+          navigate(
+            "/dashboard"
+          );
+
+        }, 700);
+
+
+      } catch (error) {
+
+        console.error(
+          "❌ Error login:",
+          error
+        );
+
+
+        setCurrentStep(1);
+
+        setStepStatus(
+          "error"
+        );
+
+
+        notification.error({
+
+          title:
+            error?.status === 403
+              ? "Correo no verificado"
+              : "Error al iniciar sesión",
+
+          description:
+            error?.message ||
+            "No fue posible iniciar sesión. Verifica tus credenciales.",
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+
+        setFormData({
+          email: "",
+          password: ""
+        });
+
+      } finally {
+
+        setLoading(false);
 
       }
+
+    };
+
+
+  // ==========================================================
+  // GOOGLE LOGIN
+  // ==========================================================
+
+  const handleGoogleSuccess =
+    async (credentialResponse) => {
+
+      if (loading) {
+        return;
+      }
+
+
+      try {
+
+        setLoading(true);
+
+
+        setCurrentStep(1);
+
+        setStepStatus(
+          "process"
+        );
+
+
+        const data =
+          await loginWithGoogle(
+            credentialResponse.credential
+          );
+
+
+        console.log(
+          "✅ Google correcto:",
+          data
+        );
+
+
+        if (
+          data?.requiresTwoFactor &&
+          data?.challenge
+        ) {
+
+          navigate(
+            "/two-factor",
+            {
+              state: {
+                challenge:
+                  data.challenge
+              }
+            }
+          );
+
+          return;
+        }
+
+
+        setCurrentStep(2);
+
+        setStepStatus(
+          "finish"
+        );
+
+
+        notification.success({
+
+          title:
+            "Inicio de sesión correcto",
+
+          description:
+            "Has iniciado sesión correctamente con Google.",
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+
+        setTimeout(() => {
+
+          navigate(
+            "/dashboard"
+          );
+
+        }, 700);
+
+
+      } catch (error) {
+
+        console.error(
+          "❌ Error Google:",
+          error
+        );
+
+
+        setCurrentStep(1);
+
+        setStepStatus(
+          "error"
+        );
+
+
+        notification.error({
+
+          title:
+            "Error con Google",
+
+          description:
+            error?.message ||
+            "No fue posible iniciar sesión con Google.",
+
+          placement:
+            "topRight",
+
+          duration:
+            8,
+
+          showProgress:
+            true,
+
+          pauseOnHover:
+            true,
+
+          closable:
+            true,
+
+          className:
+            "welcome-notification"
+
+        });
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+
+  // ==========================================================
+  // GOOGLE ERROR
+  // ==========================================================
+
+  const handleGoogleError =
+    () => {
+
+      setCurrentStep(1);
+
+      setStepStatus(
+        "error"
+      );
 
 
       notification.error({
 
         title:
-          "Error con Passkey",
+          "Error con Google",
 
-        description,
+        description:
+          "No fue posible iniciar sesión con Google.",
 
         placement:
           "topRight",
@@ -215,380 +872,22 @@ const handlePasskeyLogin =
 
       });
 
-    } finally {
+    };
 
-      setLoading(false);
 
-    }
-
-  };
-
-  /*==============================================================
-  # Input Change
-  ==============================================================*/
-
-  const handleChange = (event) => {
-
-    const { name, value } = event.target;
-
-
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value
-    }));
-
-
-    /*
-     * Si el usuario empieza nuevamente a escribir
-     * después de un error, regresamos manualmente
-     * al primer paso.
-     *
-     * NO existe ningún reset automático por tiempo.
-     */
-    if (stepStatus === "error") {
-
-      setCurrentStep(0);
-      setStepStatus("process");
-
-    }
-
-  };
-
-
-  /*==============================================================
-  # Login
-  ==============================================================*/
-
-  const handleSubmit = async (event) => {
-
-    event.preventDefault();
-
-
-    if (loading) {
-      return;
-    }
-
-
-    const email = formData.email.trim().toLowerCase();
-    const password = formData.password;
-
-
-    /*--------------------------------------------------------------
-    # Validación - Datos incompletos
-    --------------------------------------------------------------*/
-
-    if (!email || !password) {
-
-      setCurrentStep(1);
-      setStepStatus("error");
-
-
-      notification.error({
-        title: "Datos incompletos",
-        description: "Correo y contraseña son obligatorios.",
-        placement: "topRight",
-        duration: 8,
-        showProgress: true,
-        pauseOnHover: true,
-        closable: true,
-        className: "welcome-notification",
-      });
-
-
-      return;
-    }
-
-
-    /*--------------------------------------------------------------
-    # Validación - Contraseña
-    --------------------------------------------------------------*/
-
-    if (password.length < 8 || password.length > 128) {
-
-      setCurrentStep(1);
-      setStepStatus("error");
-
-
-      notification.error({
-        title: "Credenciales no válidas",
-        description: "Las credenciales proporcionadas no son válidas.",
-        placement: "topRight",
-        duration: 8,
-        showProgress: true,
-        pauseOnHover: true,
-        closable: true,
-        className: "welcome-notification",
-      });
-
-
-      return;
-    }
-
-
-    /*--------------------------------------------------------------
-    # Login
-    --------------------------------------------------------------*/
-
-    try {
-
-      setLoading(true);
-
-
-      /*
-       * PASO 2
-       *
-       * Inicia la verificación.
-       */
-      setCurrentStep(1);
-      setStepStatus("process");
-
-
-      const data = await login(email, password);
-
-
-      console.log("✅ Login correcto:", data);
-
-            if (
-        data?.requiresTwoFactor &&
-        data?.challenge
-      ) {
-
-        navigate(
-          "/two-factor",
-          {
-            state: {
-              challenge:
-                data.challenge
-            }
-          }
-        );
-
-        return;
-
-      }
-
-
-      /*
-       * PASO 3
-       *
-       * Acceso correcto.
-       */
-      setCurrentStep(2);
-      setStepStatus("finish");
-
-
-      notification.success({
-        title: "Inicio de sesión correcto",
-        description: "Has iniciado sesión correctamente.",
-        placement: "topRight",
-        duration: 8,
-        showProgress: true,
-        pauseOnHover: true,
-        closable: true,
-        className: "welcome-notification",
-      });
-
-
-      /*
-       * Solamente navegamos al dashboard.
-       *
-       * NO reseteamos los Steps.
-       */
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 700);
-
-
-    } catch (error) {     
-      
-        console.error("❌ Error login:", error);
-
-        setCurrentStep(1);
-        setStepStatus("error");
-
-        notification.error({
-          title:
-            error?.status === 403
-              ? "Correo no verificado"
-              : "Error al iniciar sesión",
-
-          description:
-            error?.message ||
-            "No fue posible iniciar sesión. Verifica tus credenciales.",
-
-          placement: "topRight",
-          duration: 8,
-          showProgress: true,
-          pauseOnHover: true,
-          closable: true,
-          className: "welcome-notification",
-        });
-
-        setFormData({
-          email: "",
-          password: ""
-        });
-
-    } finally {
-
-      /*
-       * loading solamente controla
-       * el estado de los botones/campos.
-       *
-       * NO modifica el Stepper.
-       */
-      setLoading(false);
-
-    }
-
-  };
-
-
-  /*==============================================================
-  # Login con Google
-  ==============================================================*/
-
-  const handleGoogleSuccess = async (credentialResponse) => {
-
-    if (loading) {
-      return;
-    }
-
-
-    try {
-
-      setLoading(true);
-
-
-      /*
-       * PASO 2
-       *
-       * Inicia la verificación con Google.
-       */
-      setCurrentStep(1);
-      setStepStatus("process");
-
-
-      const data = await loginWithGoogle(
-        credentialResponse.credential
-      );
-
-
-      console.log("✅ Google correcto:", data);
-
-            if (
-        data?.requiresTwoFactor &&
-        data?.challenge
-      ) {
-
-        navigate(
-          "/two-factor",
-          {
-            state: {
-              challenge:
-                data.challenge
-            }
-          }
-        );
-
-        return;
-
-      }
-
-
-      /*
-       * PASO 3
-       *
-       * Acceso correcto.
-       */
-      setCurrentStep(2);
-      setStepStatus("finish");
-
-
-      notification.success({
-        title: "Inicio de sesión correcto",
-        description: "Has iniciado sesión correctamente con Google.",
-        placement: "topRight",
-        duration: 8,
-        showProgress: true,
-        pauseOnHover: true,
-        closable: true,
-        className: "welcome-notification",
-      });
-
-
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 700);
-
-
-    } catch (error) {
-
-      console.error("❌ Error Google:", error);
-
-
-      /*
-       * El backend puede devolver 409 cuando
-       * el correo ya existe con contraseña.
-       */
-      setCurrentStep(1);
-      setStepStatus("error");
-
-
-      notification.error({
-        title: "Error con Google",
-        description:
-          error?.message ||
-          "No fue posible iniciar sesión con Google.",
-        placement: "topRight",
-        duration: 8,
-        showProgress: true,
-        pauseOnHover: true,
-        closable: true,
-        className: "welcome-notification",
-      });
-
-
-    } finally {
-
-      setLoading(false);
-
-    }
-
-  };
-
-
-  /*==============================================================
-  # Error Google
-  ==============================================================*/
-
-  const handleGoogleError = () => {
-
-    setCurrentStep(1);
-    setStepStatus("error");
-
-
-    notification.error({
-      title: "Error con Google",
-      description: "No fue posible iniciar sesión con Google.",
-      placement: "topRight",
-      duration: 8,
-      showProgress: true,
-      pauseOnHover: true,
-      closable: true,
-      className: "welcome-notification",
-    });
-
-  };
-
-
-  /*==============================================================
-  # Render
-  ==============================================================*/
+  // ==========================================================
+  // RENDER
+  // ==========================================================
 
   return (
 
-    <div className={`login-page ${isDark ? "dark" : "light"}`}>
+    <div
+      className={`login-page ${
+        isDark
+          ? "dark"
+          : "light"
+      }`}
+    >
 
 
       <ThemeToggle
@@ -597,43 +896,75 @@ const handlePasskeyLogin =
       />
 
 
-      {/*------------------------------------------------------------
-      # Login Steps
-      ------------------------------------------------------------*/}
+      {/* ======================================================
+          STEPS
+      ====================================================== */}
 
       <div className="login-steps">
 
         <Steps
-          current={currentStep}
+
+          current={
+            currentStep
+          }
+
           items={[
+
             {
-              title: "Credenciales",
-              icon: <UserOutlined />
+              title:
+                "Credenciales",
+
+              icon:
+                <UserOutlined />
+
             },
+
             {
-              title: "Verificando",
-              status: stepStatus === "error" ? "error" : undefined,
+              title:
+                "Verificando",
+
+              status:
+                stepStatus === "error"
+                  ? "error"
+                  : undefined,
+
               icon:
                 stepStatus === "error"
+
                   ? <SafetyOutlined />
+
                   : loading
+
                     ? <LoadingOutlined />
+
                     : <SafetyOutlined />
+
             },
+
             {
-              title: "Acceso",
-              status: stepStatus === "finish" ? "finish" : undefined,
-              icon: <LoginOutlined />
+              title:
+                "Acceso",
+
+              status:
+                stepStatus === "finish"
+                  ? "finish"
+                  : undefined,
+
+              icon:
+                <LoginOutlined />
+
             }
+
           ]}
+
         />
 
       </div>
 
 
-      {/*------------------------------------------------------------
-      # Login Container
-      ------------------------------------------------------------*/}
+      {/* ======================================================
+          LOGIN
+      ====================================================== */}
 
       <div className="login-container">
 
@@ -645,9 +976,9 @@ const handlePasskeyLogin =
           >
 
 
-            {/*--------------------------------------------------------
-            # Security Icon
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                LOGO
+            ================================================== */}
 
             <div className="login-logo">
 
@@ -660,104 +991,210 @@ const handlePasskeyLogin =
             </div>
 
 
-            {/*--------------------------------------------------------
-            # Header
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                HEADER
+            ================================================== */}
 
             <span className="login-header">
+
               ¡Bienvenido!
+
             </span>
 
 
-            {/*--------------------------------------------------------
-            # Email
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                EMAIL
+            ================================================== */}
 
             <input
+
               id="email"
+
               name="email"
+
               type="email"
+
               placeholder="Correo electrónico"
+
               className="login-input"
-              value={formData.email}
-              onChange={handleChange}
+
+              value={
+                formData.email
+              }
+
+              onChange={
+                handleChange
+              }
+
               autoComplete="email"
-              disabled={loading}
+
+              disabled={
+                loading
+              }
+
             />
 
 
-            {/*--------------------------------------------------------
-            # Password
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                PASSWORD
+            ================================================== */}
 
             <input
+
               id="password"
+
               name="password"
+
               type="password"
+
               placeholder="Contraseña"
+
               className="login-input"
-              value={formData.password}
-              onChange={handleChange}
+
+              value={
+                formData.password
+              }
+
+              onChange={
+                handleChange
+              }
+
               autoComplete="current-password"
-              disabled={loading}
+
+              disabled={
+                loading
+              }
+
             />
 
 
-            {/*--------------------------------------------------------
-            # Login Button
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                LOGIN NORMAL
+            ================================================== */}
 
             <button
+
               type="submit"
+
               className="login-button login-sign-in"
-              disabled={loading}
+
+              disabled={
+                loading
+              }
+
             >
 
-              {loading
-                ? "Verificando..."
-                : "Iniciar sesión"
+              {
+                loading
+                  ? "Verificando..."
+                  : "Iniciar sesión"
               }
 
             </button>
 
+
+            {/* ==================================================
+                PASSKEY
+            ================================================== */}
+
             <button
+
               type="button"
+
               className="login-button login-passkey"
-              onClick={handlePasskeyLogin}
-              disabled={loading}
+
+              onClick={
+                handlePasskeyLogin
+              }
+
+              disabled={
+                loading
+              }
+
             >
+
               <KeyOutlined />
 
               <span>
-                {loading
-                  ? "Autenticando..."
-                  : "Iniciar sesión con Passkey"}
+
+                {
+                  loading
+                    ? "Autenticando..."
+                    : "Iniciar sesión con Passkey"
+                }
+
               </span>
+
             </button>
-            <div className="login-divider">
-              <span>o</span>
-            </div>
 
 
-            {/*--------------------------------------------------------
-            # Google Login
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                CERTIFICADO
+            ================================================== */}
+
+            <button
+
+              type="button"
+
+              className="login-button login-passkey"
+
+              onClick={() =>
+                setCertificateMode(true)
+              }
+
+              disabled={
+                loading
+              }
+
+            >
+
+              <SafetyCertificateOutlined />
+
+              <span>
+
+                Iniciar sesión con certificado
+
+              </span>
+
+            </button>
+
+
+            {/* ==================================================
+                GOOGLE
+            ================================================== */}
 
             <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={handleGoogleError}
-              theme={isDark ? "filled_black" : "outline"}
+
+              onSuccess={
+                handleGoogleSuccess
+              }
+
+              onError={
+                handleGoogleError
+              }
+
+              theme={
+                isDark
+                  ? "filled_black"
+                  : "outline"
+              }
+
               size="large"
+
               text="continue_with"
+
               shape="rectangular"
+
               width="250"
+
               useOneTap={false}
+
             />
 
 
-            {/*--------------------------------------------------------
-            # Footer
-            --------------------------------------------------------*/}
+            {/* ==================================================
+                FOOTER
+            ================================================== */}
 
             <p className="login-footer">
 
@@ -765,15 +1202,21 @@ const handlePasskeyLogin =
 
 
               <a
+
                 href="#"
+
                 className="login-link"
+
                 onClick={(event) => {
 
                   event.preventDefault();
 
-                  navigate("/register");
+                  navigate(
+                    "/register"
+                  );
 
                 }}
+
               >
 
                 ¡Regístrate, es gratis!
@@ -785,15 +1228,21 @@ const handlePasskeyLogin =
 
 
               <a
+
                 href="#"
+
                 className="login-link"
+
                 onClick={(event) => {
 
                   event.preventDefault();
 
-                  navigate("/forgot-password");
+                  navigate(
+                    "/forgot-password"
+                  );
 
                 }}
+
               >
 
                 ¿Olvidaste tu contraseña?
@@ -808,6 +1257,134 @@ const handlePasskeyLogin =
         </div>
 
       </div>
+
+
+      {/* ======================================================
+          MODAL PERSONALIZADO — CERTIFICADO
+      ====================================================== */}
+
+      {certificateMode && (
+
+        <div
+
+          className="certificate-modal-overlay"
+
+          role="dialog"
+
+          aria-modal="true"
+
+          aria-labelledby="certificate-modal-title"
+
+          onMouseDown={(event) => {
+
+            if (
+              event.target ===
+              event.currentTarget
+            ) {
+
+              closeCertificateModal();
+
+            }
+
+          }}
+
+        >
+
+          <div
+            className={`certificate-modal ${
+              isDark
+                ? "dark"
+                : "light"
+            }`}
+          >
+
+
+            {/* ==================================================
+                HEADER MODAL
+            ================================================== */}
+
+            <div className="certificate-modal-header">
+
+              <div className="certificate-modal-title">
+
+                <div className="certificate-modal-icon">
+
+                  <SafetyCertificateOutlined />
+
+                </div>
+
+                <div>
+
+                  <h2
+                    id="certificate-modal-title"
+                  >
+
+                    Autenticación por certificado
+
+                  </h2>
+
+                  <p>
+
+                    Utiliza tu certificado Ed25519 para iniciar sesión.
+
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <button
+
+                type="button"
+
+                className="certificate-modal-close"
+
+                onClick={
+                  closeCertificateModal
+                }
+
+                disabled={
+                  loading
+                }
+
+                aria-label="Cerrar"
+
+              >
+
+                <CloseOutlined />
+
+              </button>
+
+            </div>
+
+
+            {/* ==================================================
+                CONTENIDO
+            ================================================== */}
+
+            <div className="certificate-modal-body">
+
+              <CertificateLogin
+
+                onSuccess={
+                  handleCertificateSuccess
+                }
+
+                onLoadingChange={
+                  setLoading
+                }
+
+              />
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
 

@@ -1,0 +1,263 @@
+/* ============================================================
+   ACCIONES DEL CERTIFICADO
+   ============================================================ */
+
+.private-session-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   BOTONES DE ACCIÓN
+   ============================================================ */
+
+.private-session-actions button {
+
+  min-height: 40px;
+
+  white-space: nowrap;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET / MÓVIL
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .private-session-actions {
+
+    width: 100%;
+
+    margin-top: 6px;
+
+    gap: 10px;
+
+  }
+
+
+  .private-session-actions button {
+
+    flex: 1;
+
+  }
+
+}
+
+
+/* ============================================================
+   MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .private-session-actions {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 9px;
+
+  }
+
+
+  .private-session-actions button {
+
+    width: 100%;
+
+    flex: none;
+
+  }
+
+}
+
+
+/* ============================================================
+   ACCIONES — CREAR CERTIFICADO
+   ============================================================ */
+
+.private-password-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  width: 100%;
+
+  margin-top: 4px;
+
+  margin-bottom: 16px;
+
+}
+
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
+.private-password-actions button {
+
+  min-height: 40px;
+
+  white-space: nowrap;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET / MÓVIL
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .private-password-actions {
+
+    justify-content: stretch;
+
+    gap: 10px;
+
+  }
+
+
+  .private-password-actions button {
+
+    flex: 1;
+
+  }
+
+}
+
+
+/* ============================================================
+   MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .private-password-actions {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 9px;
+
+  }
+
+
+  .private-password-actions button {
+
+    width: 100%;
+
+    flex: none;
+
+  }
+
+}
+
+
+/* ============================================================
+   METADATA DEL CERTIFICADO
+   ============================================================ */
+
+.private-session-meta {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 6px 18px;
+
+  margin-top: 6px;
+
+}
+
+
+/* ============================================================
+   DATOS DE METADATA
+   ============================================================ */
+
+.private-session-meta span {
+
+  display: inline-flex;
+
+  align-items: flex-start;
+
+  gap: 6px;
+
+  min-width: 0;
+
+  max-width: 100%;
+
+  color: inherit;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  opacity: 0.5;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+
+}
+
+
+/* ============================================================
+   ICONOS DE METADATA
+   ============================================================ */
+
+.private-session-meta i {
+
+  flex-shrink: 0;
+
+  font-size: 12px;
+
+  opacity: 0.8;
+
+}
+
+
+/* ============================================================
+   METADATA — MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .private-session-meta {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 5px;
+
+  }
+
+
+  .private-session-meta span {
+
+    width: 100%;
+
+  }
+
+}

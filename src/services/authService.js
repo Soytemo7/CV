@@ -216,3 +216,35 @@ export const logoutSession = async (
   );
 
 };
+
+export const loginWithCertificate =
+  async ({
+    certificateId,
+    challengeId,
+    challenge,
+    signature
+  }) => {
+
+    return await api(
+      "/api/certificates/verify",
+      {
+        method:
+          "POST",
+
+        body:
+          JSON.stringify({
+
+            certificateId,
+
+            challengeId,
+
+            challenge,
+
+            signature
+
+          })
+
+      }
+    );
+
+  };
