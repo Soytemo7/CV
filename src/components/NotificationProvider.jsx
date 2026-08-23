@@ -18,6 +18,7 @@ function NotificationProvider({ children }) {
             borderRadiusLG: 8,
             boxShadow:
               "0 8px 24px rgba(0, 0, 0, 0.35)",
+            zIndexPopup: 10000,
           },
         },
       }}
