@@ -2,7 +2,8 @@ function Dashboard() {
 
   return (
 
-    <div className="dashboard-container">
+    <div className="private-dashboard-icons">
+     
 
     </div>
 

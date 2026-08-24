@@ -1,0 +1,116 @@
+/* ============================================================
+   ANIMATED BORDER
+   ============================================================ */
+
+.animated-border {
+
+  --animated-border-angle: 0deg;
+
+  position: relative;
+
+  isolation: isolate;
+
+}
+
+
+/* ============================================================
+   BORDE ANIMADO
+   ============================================================ */
+
+.animated-border::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  padding: 1px;
+
+  border-radius: inherit;
+
+  background:
+    conic-gradient(
+      from var(--animated-border-angle),
+      transparent 0deg,
+      transparent 285deg,
+      rgba(22, 119, 255, 0.05) 300deg,
+      rgba(22, 119, 255, 0.95) 325deg,
+      rgba(22, 119, 255, 0.05) 350deg,
+      transparent 360deg
+    );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  pointer-events: none;
+
+  z-index: 10;
+
+  animation:
+    animatedBorderRun
+    var(--animated-border-duration, 6s)
+    linear
+    infinite;
+
+}
+
+
+/* ============================================================
+   ÁNGULO
+   ============================================================ */
+
+@property --animated-border-angle {
+
+  syntax: "<angle>";
+
+  inherits: false;
+
+  initial-value: 0deg;
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN
+   ============================================================ */
+
+@keyframes animatedBorderRun {
+
+  from {
+
+    --animated-border-angle: 0deg;
+
+  }
+
+  to {
+
+    --animated-border-angle: 360deg;
+
+  }
+
+}
+
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animated-border::before {
+
+    animation: none;
+
+  }
+
+}
