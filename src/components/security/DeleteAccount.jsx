@@ -139,7 +139,9 @@ const DeleteAccount = () => {
        */
 
       setTimeout(() => {
-        window.location.href = "/login";
+        window.location.href = import.meta.env.PROD
+          ? "/CV/login"
+          : "/login";
       }, 900);
 
     } catch (error) {
