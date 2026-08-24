@@ -948,6 +948,8 @@ function PasskeyCard() {
 
           type="primary"
 
+          className="private-primary-button passkey-add-button"
+
           icon={
             <PlusOutlined />
           }
@@ -1388,9 +1390,9 @@ function PasskeyCard() {
 
               <button
 
-                type="button"
+                type="primary"
 
-                className="passkey-modal-submit"
+                className="private-primary-button passkey-add-button"
 
                 onClick={
                   handleRegister

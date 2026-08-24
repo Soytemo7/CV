@@ -21,9 +21,7 @@
 
   border-radius: 16px;
 
-  color: inherit;
-
-  isolation: isolate;
+  color: inherit;  
 
   transition:
     background-color 0.3s ease,
@@ -2991,4 +2989,20 @@
 .passkey-delete-details strong,
 .passkey-delete-details small {
   display: block;
+}
+
+.passkey-card .passkey-add-button:hover:not(:disabled) {
+
+  background:
+    rgba(22, 119, 255, 0.08) !important;
+
+  border-color:
+    rgba(22, 119, 255, 0.35) !important;
+
+  color:
+    #1677ff !important;
+
+  transform:
+    translateY(-1px);
+
 }

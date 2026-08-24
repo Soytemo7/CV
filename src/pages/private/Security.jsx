@@ -25,6 +25,7 @@ import PasskeyCard
 import CertificateManager
   from "../../components/security/CertificateManager.jsx";
 import "../../styles/certificate.css";
+import DeleteAccount from "../../components/security/DeleteAccount";
 
 
 function Security() {
@@ -1552,6 +1553,10 @@ function Security() {
           ============================================================ */}
 
       <PasskeyCard />      
+      
+      <div>
+        <DeleteAccount />
+      </div>
 
     </div>
 
