@@ -19,7 +19,6 @@ import {
 
 import "../../../styles/private/two-factor.css";
 
-
 function TwoFactorCard() {
 
   const notification =
@@ -500,8 +499,10 @@ function TwoFactorCard() {
           Activar autenticación de dos factores
 
         </button>
+        
+        
 
-      )}
+      )}      
 
     </section>
 

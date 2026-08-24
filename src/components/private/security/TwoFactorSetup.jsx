@@ -13,6 +13,7 @@ import {
 
 import "../../../styles/private/two-factor.css";
 
+import Loading from "../../common/Loading.jsx";
 
 function TwoFactorSetup({
   onComplete,
@@ -533,6 +534,16 @@ function TwoFactorSetup({
             </button>
 
           </form>
+
+          {loading && (
+          <div className="two-factor-processing">
+            <Loading />
+
+            <span>
+              Verificando el código y generando tus códigos de recuperación...
+            </span>
+          </div>
+        )}
 
 
           <button

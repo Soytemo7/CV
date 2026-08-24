@@ -4014,3 +4014,51 @@ button:disabled {
   }
 
 }
+
+/* ============================================================
+   PROCESANDO ACTIVACIÓN 2FA
+   ============================================================ */
+
+.two-factor-processing {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+  padding: 12px 14px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  opacity: 0.75;
+
+}
+
+
+.two-factor-processing i {
+
+  font-size: 16px;
+
+  animation: two-factor-spin 1s linear infinite;
+
+}
+
+
+@keyframes two-factor-spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
