@@ -1,0 +1,364 @@
+/* ============================================================
+   SOCIAL TOOLTIP
+   ============================================================ */
+
+.social-tooltip {
+
+  position: relative;
+
+  width: 140px;
+
+  height: 140px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0 auto;
+
+  cursor: pointer;
+
+}
+
+
+/* ============================================================
+   BOTÓN CENTRAL
+   ============================================================ */
+
+.social-tooltip-center {
+
+  position: relative;
+
+  z-index: 10;
+
+  width: 48px;
+
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      138deg,
+      rgba(3, 169, 244, 1) 15%,
+      rgba(63, 180, 233, 1) 65%
+    );
+
+  color: #fff;
+
+  font-size: 20px;
+
+  box-shadow:
+    0 0.5rem 1rem
+    rgba(0, 0, 0, 0.1);
+
+  transition:
+    background 0.4s ease,
+    color 0.4s ease,
+    transform 0.3s ease;
+
+  overflow: hidden;
+
+}
+
+
+/* ============================================================
+   BARRIDO DE LUZ
+   ============================================================ */
+
+.social-tooltip-center::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -60%;
+
+  left: -100%;
+
+  width: 45%;
+
+  height: 220%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.75),
+      transparent
+    );
+
+  transform: rotate(25deg);
+
+  transition:
+    left 0.6s ease;
+
+}
+
+
+.social-tooltip:hover
+.social-tooltip-center::after {
+
+  left: 160%;
+
+}
+
+
+.social-tooltip:hover
+.social-tooltip-center {
+
+  transform:
+    scale(1.05);
+
+}
+
+
+/* ============================================================
+   BOTONES SOCIALES
+   ============================================================ */
+
+.social-tooltip-item {
+
+  position: absolute;
+
+  z-index: 5;
+
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  box-shadow:
+    0 2px 8px
+    rgba(0, 0, 0, 0.15);
+
+  font-size: 19px;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+}
+
+
+/* ============================================================
+   POSICIONES INICIALES
+   ============================================================ */
+
+.social-tooltip-facebook {
+
+  top: 50px;
+
+  left: 50px;
+
+  transform:
+    translate(0, 0)
+    scale(0.5);
+
+  color:
+    #0462df;
+
+}
+
+
+.social-tooltip-instagram {
+
+  top: 50px;
+
+  left: 50px;
+
+  transform:
+    translate(0, 0)
+    scale(0.5);
+
+  color:
+    #e1306c;
+
+}
+
+
+.social-tooltip-twitter {
+
+  top: 50px;
+
+  left: 50px;
+
+  transform:
+    translate(0, 0)
+    scale(0.5);
+
+  color:
+    #03a9f4;
+
+}
+
+
+.social-tooltip-github {
+
+  top: 50px;
+
+  left: 50px;
+
+  transform:
+    translate(0, 0)
+    scale(0.5);
+
+  color:
+    #000;
+
+}
+
+
+/* ============================================================
+   ABRIR — FACEBOOK
+   ============================================================ */
+
+.social-tooltip:hover
+.social-tooltip-facebook {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translate(0, -64px)
+    scale(1);
+
+}
+
+
+/* ============================================================
+   ABRIR — INSTAGRAM
+   ============================================================ */
+
+.social-tooltip:hover
+.social-tooltip-instagram {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translate(64px, 0)
+    scale(1);
+
+}
+
+
+/* ============================================================
+   ABRIR — TWITTER
+   ============================================================ */
+
+.social-tooltip:hover
+.social-tooltip-twitter {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translate(0, 64px)
+    scale(1);
+
+}
+
+
+/* ============================================================
+   ABRIR — GITHUB
+   ============================================================ */
+
+.social-tooltip:hover
+.social-tooltip-github {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translate(-64px, 0)
+    scale(1);
+
+}
+
+
+/* ============================================================
+   HOVER INDIVIDUAL
+   ============================================================ */
+
+.social-tooltip-facebook:hover {
+
+  background:
+    #0462df;
+
+  color:
+    #fff;
+
+}
+
+
+.social-tooltip-instagram:hover {
+
+  background:
+    #e1306c;
+
+  color:
+    #fff;
+
+}
+
+
+.social-tooltip-twitter:hover {
+
+  background:
+    #03a9f4;
+
+  color:
+    #fff;
+
+}
+
+
+.social-tooltip-github:hover {
+
+  background:
+    #000;
+
+  color:
+    #fff;
+
+}
+
+
+/* ============================================================
+   ICONOS
+   ============================================================ */
+
+.social-tooltip i {
+
+  line-height: 1;
+
+}

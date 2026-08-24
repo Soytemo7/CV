@@ -1,149 +1,49 @@
-import { Link } from "react-router-dom";
 import "../../styles/privateIconButton.css";
 
-
-/* ============================================================
-   PRIVATE ICON BUTTON
-   ============================================================ */
-
-export default function PrivateIconButton({
-
-  to,
-
+function PrivateIconButton({
+  children,
+  color = "blue",
   icon,
-
-  label,
-
-  ariaLabel,
-
-  onClick,
-
+  type = "button",
   disabled = false,
-
+  onClick,
+  onPointerDown,
+  className = "",
 }) {
 
-
-  /* ============================================================
-     CLASES
-     ============================================================ */
-
-  const className = [
-
+  const buttonClassName = [
     "private-icon-button",
-
-    disabled
-      ? "is-disabled"
-      : "",
-
+    `private-icon-button-${color}`,
+    disabled ? "is-disabled" : "",
+    className,
   ]
     .filter(Boolean)
     .join(" ");
 
-
-  /* ============================================================
-     CONTENIDO
-     ============================================================ */
-
-  const content = (
-
-    <>
-
-      {/* Efectos visuales */}
-
-      <span
-        className="private-icon-button-effect"
-        aria-hidden="true"
-      />
-
-
-      {/* Icono dinámico */}
-
-      <i
-        className={`bi ${icon}`}
-        aria-hidden="true"
-      />
-
-
-      {/* Texto opcional */}
-
-      {label && (
-
-        <span
-          className="private-icon-button-label"
-        >
-          {label}
-        </span>
-
-      )}
-
-    </>
-
-  );
-
-
-  /* ============================================================
-     DESHABILITADO
-     ============================================================ */
-
-  if (disabled) {
-
-    return (
-
-      <span
-        className={className}
-        aria-disabled="true"
-      >
-
-        {content}
-
-      </span>
-
-    );
-
-  }
-
-
-  /* ============================================================
-     NAVEGACIÓN
-     ============================================================ */
-
-  if (to) {
-
-    return (
-
-      <Link
-        to={to}
-        className={className}
-        aria-label={ariaLabel || label}
-        onClick={onClick}
-      >
-
-        {content}
-
-      </Link>
-
-    );
-
-  }
-
-
-  /* ============================================================
-     BOTÓN / ACCIÓN
-     ============================================================ */
-
   return (
 
     <button
-      type="button"
-      className={className}
-      aria-label={ariaLabel || label}
+      type={type}
+      className={buttonClassName}
+      disabled={disabled}
       onClick={onClick}
+      onPointerDown={onPointerDown}
     >
 
-      {content}
+      {icon && (
+        <i className={icon}></i>
+      )}
+
+      {children && (
+        <span className="private-icon-button-label">
+          {children}
+        </span>
+      )}
 
     </button>
 
   );
 
 }
+
+export default PrivateIconButton;

@@ -1,0 +1,874 @@
+/* ============================================================
+   PRIVATE SIDEBAR
+   ============================================================ */
+
+.private-sidebar {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 280px;
+
+  height: 100vh;
+
+  box-sizing: border-box;
+
+  z-index: 1100;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border-right:
+    1px solid
+    rgba(22, 119, 255, 0.15);
+
+  box-shadow:
+    8px 0 30px
+    rgba(0, 0, 0, 0.08);
+
+  transform:
+    translateX(-266px);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  overflow: hidden;
+
+  touch-action: pan-y;
+
+  user-select: none;
+
+}
+
+
+/* ============================================================
+   ABIERTO
+   ============================================================ */
+
+.private-sidebar.open {
+
+  box-shadow:
+    8px 0 40px
+    rgba(0, 0, 0, 0.16);
+
+}
+
+
+/* ============================================================
+   ARRASTRANDO
+   ============================================================ */
+
+.private-sidebar.dragging {
+
+  transition: none;
+
+  cursor: grabbing;
+
+}
+
+
+/* ============================================================
+   CABECERA
+   ============================================================ */
+
+.private-sidebar-header {
+
+  min-height: 76px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding:
+    0 18px;
+
+  border-bottom:
+    1px solid
+    rgba(22, 119, 255, 0.10);
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   BRAND
+   ============================================================ */
+
+.private-sidebar-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+
+.private-sidebar-brand-icon {
+
+  width: 38px;
+
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    rgba(22, 119, 255, 0.10);
+
+  color:
+    #1677ff;
+
+  font-size: 18px;
+
+}
+
+
+.private-sidebar-brand strong {
+
+  display: block;
+
+  color:
+    #1f1f1f;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+}
+
+
+.private-sidebar-brand span {
+
+  display: block;
+
+  margin-top: 2px;
+
+  color:
+    #888;
+
+  font-size: 11px;
+
+}
+
+
+/* ============================================================
+   BOTÓN CERRAR
+   ============================================================ */
+
+.private-sidebar-close {
+
+  width: 34px;
+
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background:
+    transparent;
+
+  color:
+    #777;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+
+}
+
+
+.private-sidebar-close:hover {
+
+  background:
+    rgba(22, 119, 255, 0.08);
+
+  color:
+    #1677ff;
+
+  transform:
+    translateX(-2px);
+
+}
+
+
+/* ============================================================
+   NAVEGACIÓN
+   ============================================================ */
+
+.private-sidebar-nav {
+
+  flex: 1;
+
+  padding:
+    14px 12px;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+}
+
+
+/* ============================================================
+   ITEM
+   ============================================================ */
+
+.private-sidebar-item {
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 53px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 4px;
+
+  padding:
+    0 10px;
+
+  box-sizing: border-box;
+
+  border: 1px solid transparent;
+
+  border-radius: 12px;
+
+  background:
+    transparent;
+
+  color:
+    #555;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  text-align: left;
+
+  cursor: default;
+
+}
+
+
+/* ============================================================
+   ITEM ACTIVO
+   ============================================================ */
+
+.private-sidebar-item.active {
+
+  color:
+    #1677ff;
+
+}
+
+
+/* ============================================================
+   INDICADOR ACTIVO
+   ============================================================ */
+
+.private-sidebar-item.active::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: -1px;
+
+  top: 7px;
+
+  bottom: 7px;
+
+  width: 3px;
+
+  border-radius:
+    0 3px 3px 0;
+
+  background:
+    #1677ff;
+
+  box-shadow:
+    0 0 8px
+    rgba(22, 119, 255, 0.45);
+
+}
+
+
+/* ============================================================
+   ICONO — PRIVATE ICON BUTTON
+   ============================================================ */
+
+.private-sidebar-icon {
+
+  flex-shrink: 0;
+
+}
+
+
+/*
+ * El texto es completamente pasivo.
+ * El único elemento clickeable de cada opción
+ * es PrivateIconButton.
+ */
+
+.private-sidebar-item-text {
+
+  white-space: nowrap;
+
+  cursor: default;
+
+  pointer-events: none;
+
+  user-select: none;
+
+}
+
+
+/* ============================================================
+   DIVISOR
+   ============================================================ */
+
+.private-sidebar-divider {
+
+  height: 1px;
+
+  margin:
+    10px 8px;
+
+  background:
+    rgba(22, 119, 255, 0.10);
+
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.private-sidebar-footer {
+
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    0 15px;
+
+  border-top:
+    1px solid
+    rgba(22, 119, 255, 0.10);
+
+  color:
+    #999;
+
+  font-size: 10px;
+
+  letter-spacing:
+    0.04em;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ============================================================
+   HANDLE
+   ============================================================ */
+
+.private-sidebar-handle {
+
+  position: absolute;
+
+  top: 50%;
+
+  right: 3px;
+
+  width: 4px;
+
+  height: 64px;
+
+  transform:
+    translateY(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  pointer-events: none;
+
+}
+
+
+.private-sidebar-handle span {
+
+  width: 3px;
+
+  height: 38px;
+
+  border-radius: 4px;
+
+  background:
+    rgba(22, 119, 255, 0.28);
+
+  box-shadow:
+    0 0 8px
+    rgba(22, 119, 255, 0.12);
+
+}
+
+
+/* ============================================================
+   BOTÓN SUPERIOR
+   ============================================================ */
+
+.private-sidebar-toggle {
+
+  position: fixed;
+
+  top: 8px;
+
+  left: 18px;
+
+  width: 48px;
+
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(22, 119, 255, 0.18);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.90);
+
+  color:
+    #1677ff;
+
+  box-shadow:
+    0 4px 18px
+    rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+
+  z-index: 1200;
+
+  font-size: 19px;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.25s ease;
+
+}
+
+
+/* ============================================================
+   TOGGLE HOVER
+   ============================================================ */
+
+.private-sidebar-toggle:hover {
+
+  background:
+    rgba(22, 119, 255, 0.08);
+
+  border-color:
+    rgba(22, 119, 255, 0.30);
+
+  transform:
+    translateY(-1px);
+
+}
+
+
+/* ============================================================
+   TOGGLE ACTIVO
+   ============================================================ */
+
+.private-sidebar-toggle.active {
+
+  left: 298px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border-color:
+    rgba(22, 119, 255, 0.20);
+
+}
+
+
+/* ============================================================
+   OVERLAY
+   ============================================================ */
+
+.private-sidebar-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1050;
+
+  background:
+    rgba(0, 0, 0, 0.18);
+
+  backdrop-filter:
+    blur(2px);
+
+  animation:
+    privateSidebarOverlayIn
+    0.25s
+    ease;
+
+}
+
+
+/* ============================================================
+   ANIMACIÓN OVERLAY
+   ============================================================ */
+
+@keyframes privateSidebarOverlayIn {
+
+  from {
+
+    opacity: 0;
+
+  }
+
+  to {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+.private-dark
+.private-sidebar {
+
+  background:
+    rgba(20, 20, 24, 0.97);
+
+  border-right-color:
+    rgba(22, 119, 255, 0.18);
+
+  box-shadow:
+    8px 0 35px
+    rgba(0, 0, 0, 0.35);
+
+}
+
+
+.private-dark
+.private-sidebar-brand strong {
+
+  color:
+    #f2f2f2;
+
+}
+
+
+.private-dark
+.private-sidebar-brand span {
+
+  color:
+    #888;
+
+}
+
+
+.private-dark
+.private-sidebar-item {
+
+  color:
+    #aaa;
+
+}
+
+
+.private-dark
+.private-sidebar-item.active {
+
+  color:
+    #4d9aff;
+
+}
+
+
+.private-dark
+.private-sidebar-close {
+
+  color:
+    #aaa;
+
+}
+
+
+.private-dark
+.private-sidebar-close:hover {
+
+  background:
+    rgba(22, 119, 255, 0.12);
+
+  color:
+    #4d9aff;
+
+}
+
+
+.private-dark
+.private-sidebar-toggle {
+
+  background:
+    rgba(25, 25, 30, 0.94);
+
+  border-color:
+    rgba(22, 119, 255, 0.22);
+
+  color:
+    #4d9aff;
+
+}
+
+
+.private-dark
+.private-sidebar-toggle.active {
+
+  background:
+    rgba(25, 25, 30, 0.98);
+
+}
+
+
+.private-dark
+.private-sidebar-footer {
+
+  color:
+    #777;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .private-sidebar-toggle {
+
+    top: 8px;
+
+    left: 14px;
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 11px;
+
+  }
+
+
+  .private-sidebar-header {
+
+    min-height: 70px;
+
+    padding:
+      0 15px;
+
+  }
+
+
+  .private-sidebar-nav {
+
+    padding:
+      12px 10px;
+
+  }
+
+
+  .private-sidebar-item {
+
+    min-height: 53px;
+
+    margin-bottom: 4px;
+
+  }
+
+}
+
+
+/* ============================================================
+   REDUCIR MOVIMIENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .private-sidebar,
+  .private-sidebar-toggle,
+  .private-sidebar-close,
+  .private-sidebar-overlay {
+
+    animation: none;
+
+    transition: none;
+
+  }
+
+}
+
+/* ============================================================
+   BARRIDO DE LUZ — TOGGLE HAMBURGUESA / X
+   ============================================================ */
+
+.private-sidebar-toggle {
+
+  position: fixed;
+
+  overflow: hidden;
+
+}
+
+
+/* Capa de luz */
+
+.private-sidebar-toggle::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -120%;
+
+  width: 60%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  transform:
+    skewX(-20deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.65),
+      transparent
+    );
+
+}
+
+
+/* Barrido */
+
+.private-sidebar-toggle:hover::after {
+
+  animation:
+    privateSidebarLightSweep
+    0.65s
+    ease;
+
+}
+
+
+@keyframes privateSidebarLightSweep {
+
+  from {
+
+    left: -120%;
+
+  }
+
+  to {
+
+    left: 160%;
+
+  }
+
+}
+
+/* ============================================================
+   SOCIAL TOOLTIP — SIDEBAR
+   ============================================================ */
+
+.private-sidebar-social {
+
+  width: 100%;
+
+  min-height: 250px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin:
+    4px 0 12px;
+
+  flex-shrink: 0;
+
+}
+

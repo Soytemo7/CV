@@ -21,6 +21,7 @@ import ThemeToggle
   from "../components/common/ThemeToggle.jsx";
 
 import "../styles/private/private-layout.css";
+import PrivateSidebar from "../components/private/PrivateSidebar";
 
 
 function PrivateContent({ children }) {
@@ -154,6 +155,13 @@ function PrivateLayout({ children }) {
             }`
           }
         >
+
+        {/* ==================================================
+            SIDEBAR PRIVADO
+            ================================================== */}
+
+        <PrivateSidebar />
+
 
           {/* ==================================================
               HEADER PRIVADO
