@@ -27,6 +27,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import CertificateLogin
   from "../components/auth/CertificateLogin";
 
+import MouseParticleTrail from "../components/common/MouseParticleTrail";
+
 
 function Login() {
 
@@ -888,6 +890,8 @@ function Login() {
           : "light"
       }`}
     >
+
+      <MouseParticleTrail />
 
 
       <ThemeToggle

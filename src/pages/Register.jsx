@@ -13,6 +13,7 @@ import {
   LoadingOutlined
 } from "@ant-design/icons";
 import { GoogleLogin } from "@react-oauth/google";
+import MouseParticleTrail from "../components/common/MouseParticleTrail";
 
 function Register() {
 
@@ -610,6 +611,8 @@ function Register() {
         isDark={isDark}
         setIsDark={setIsDark}
       />
+
+      <MouseParticleTrail />
 
 
       {/*------------------------------------------------------------

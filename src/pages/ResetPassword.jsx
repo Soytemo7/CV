@@ -14,6 +14,7 @@ import { resetPassword } from "../services/authService.js";
 import "../styles/login.css";
 
 import ThemeToggle from "../components/common/ThemeToggle";
+import MouseParticleTrail from "../components/common/MouseParticleTrail";
 
 
 function ResetPassword() {
@@ -613,6 +614,8 @@ function ResetPassword() {
         isDark={isDark}
         setIsDark={setIsDark}
       />
+
+       <MouseParticleTrail />
 
 
       {/*------------------------------------------------------------

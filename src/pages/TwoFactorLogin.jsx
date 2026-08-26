@@ -20,6 +20,7 @@ import ThemeToggle
   from "../components/common/ThemeToggle";
 
 import "../styles/private/two-factor.css";
+import MouseParticleTrail from "../components/common/MouseParticleTrail";
 
 
 function TwoFactorLogin() {
@@ -402,6 +403,8 @@ function TwoFactorLogin() {
         isDark={isDark}
         setIsDark={setIsDark}
       />
+
+       <MouseParticleTrail />
 
 
       <div className="login-container login-container2">

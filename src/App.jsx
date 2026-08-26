@@ -89,7 +89,7 @@ function App() {
                 <Academic />
                 <Services />
                 <Books />
-                <Contact />
+                <Contact />                
               </MainLayout>
             }
           />
@@ -188,6 +188,7 @@ function App() {
           />
 
         </Routes>
+        
 
       </NotificationProvider>
 

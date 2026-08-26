@@ -11,6 +11,7 @@ import {
 import { verifyEmail } from "../services/authService.js";
 import { useNotification } from "../hooks/useNotification";
 import ThemeToggle from "../components/common/ThemeToggle";
+import MouseParticleTrail from "../components/common/MouseParticleTrail";
 
 import "../styles/login.css";
 
@@ -150,6 +151,8 @@ function VerifyEmail() {
         isDark={isDark}
         setIsDark={setIsDark}
       />
+
+       <MouseParticleTrail />
 
 
       {/*------------------------------------------------------------

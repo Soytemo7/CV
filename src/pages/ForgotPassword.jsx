@@ -15,6 +15,8 @@ import "../styles/login.css";
 
 import ThemeToggle from "../components/common/ThemeToggle";
 
+import MouseParticleTrail from "../components/common/MouseParticleTrail";
+
 
 function ForgotPassword() {
 
@@ -322,6 +324,8 @@ function ForgotPassword() {
         isDark={isDark}
         setIsDark={setIsDark}
       />
+
+      <MouseParticleTrail />
 
 
       {/*------------------------------------------------------------

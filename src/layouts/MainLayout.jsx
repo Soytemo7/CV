@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollTop from "../components/common/ScrollTop";
 import ThemeToggle from "../components/common/ThemeToggle";
+import ManuelAI
+  from "../components/ai/ManuelAI.jsx";
 
 import useAOS from "../hooks/useAOS";
 import usePureCounter from "../hooks/usePureCounter";
@@ -39,7 +41,9 @@ function MainLayout({ children, isDark, setIsDark }) {
 
       <Footer isDark={isDark} />
 
-      <ScrollTop isDark={isDark} />
+      <ScrollTop isDark={isDark} /> 
+
+       <ManuelAI />     
     </>
   );
 }
