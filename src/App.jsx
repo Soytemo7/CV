@@ -37,12 +37,37 @@ import TwoFactorLogin
 
 import { AuthProvider } from "./context/AuthContext.jsx";
 
+import AcademicVideo
+  from "./pages/academic/AcademicVideo";
+
+import AdminLayout
+  from "./layouts/AdminLayout.jsx";
+
+import AdminDashboard
+  from "./pages/admin/Dashboard.jsx";
+
+import AdminUsers
+  from "./pages/admin/AdminUsers.jsx";
+
+import AdminCourses
+  from "./pages/admin/AdminCourses.jsx";
+
+import AdminCourseContentPage
+  from "./pages/admin/AdminCourseContentPage.jsx";
+
+  import AdminLessonsPage
+  from "./pages/admin/AdminLessonsPage.jsx";
+
+  import AdminVideoPage
+  from "./pages/admin/AdminVideoPage.jsx";
+
 
 function App() {
 
   const [isDark, setIsDark] = useState(() => {
 
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme =
+      localStorage.getItem("theme");
 
     return savedTheme === "dark";
 
@@ -64,7 +89,9 @@ function App() {
 
 
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter
+      basename={import.meta.env.BASE_URL}
+    >
 
       <NotificationProvider>
 
@@ -72,7 +99,9 @@ function App() {
 
         <Routes>
 
-          {/* CV — SPA pública */}
+          {/* =========================================================
+              CV — SPA PÚBLICA
+              ========================================================= */}
 
           <Route
             path="/"
@@ -89,13 +118,15 @@ function App() {
                 <Academic />
                 <Services />
                 <Books />
-                <Contact />                
+                <Contact />
               </MainLayout>
             }
           />
 
 
-          {/* Login */}
+          {/* =========================================================
+              LOGIN
+              ========================================================= */}
 
           <Route
             path="/login"
@@ -106,15 +137,18 @@ function App() {
             }
           />
 
+
           <Route
-          path="/two-factor"
-          element={
-            <TwoFactorLogin />
-          }
-        />
+            path="/two-factor"
+            element={
+              <TwoFactorLogin />
+            }
+          />
 
 
-          {/* Registro */}
+          {/* =========================================================
+              REGISTRO
+              ========================================================= */}
 
           <Route
             path="/register"
@@ -125,32 +159,46 @@ function App() {
             }
           />
 
-          {/* Verificación de correo */}
+
+          {/* =========================================================
+              VERIFICACIÓN DE CORREO
+              ========================================================= */}
 
           <Route
             path="/verify-email"
-            element={<VerifyEmail />}
+            element={
+              <VerifyEmail />
+            }
           />
 
-          {/* Recuperación de contraseña */}
+
+          {/* =========================================================
+              RECUPERACIÓN DE CONTRASEÑA
+              ========================================================= */}
 
           <Route
             path="/forgot-password"
-            element={<ForgotPassword />}
+            element={
+              <ForgotPassword />
+            }
           />
 
 
-          {/* Restablecer contraseña */}
+          {/* =========================================================
+              RESTABLECER CONTRASEÑA
+              ========================================================= */}
 
           <Route
             path="/reset-password"
-            element={<ResetPassword />}
+            element={
+              <ResetPassword />
+            }
           />
 
 
-            {/* =========================================================
-            ZONA PRIVADA
-            ========================================================= */}
+          {/* =========================================================
+              ZONA PRIVADA
+              ========================================================= */}
 
           <Route
             path="/dashboard"
@@ -161,6 +209,7 @@ function App() {
             }
           />
 
+
           <Route
             path="/dashboard/profile"
             element={
@@ -169,6 +218,7 @@ function App() {
               </PrivateLayout>
             }
           />
+
 
           <Route
             path="/dashboard/security"
@@ -180,15 +230,137 @@ function App() {
           />
 
 
-          {/* Cualquier ruta inexistente */}
+          {/* =========================================================
+              ÁREA ACADÉMICA
+              ========================================================= */}
+
+          <Route
+            path="/academic/video"
+            element={
+              <PrivateLayout>
+                <AcademicVideo />
+              </PrivateLayout>
+            }
+          />
+
+
+          {/* =========================================================
+              ÁREA ADMINISTRATIVA
+              ========================================================= */}
+
+          <Route
+            path="/admin"
+            element={
+              <AdminLayout>
+                <AdminDashboard />
+              </AdminLayout>
+            }
+          />
+
+
+          <Route
+            path="/admin/users"
+            element={
+              <AdminLayout>
+                <AdminUsers />
+              </AdminLayout>
+            }
+          />
+
+
+          {/* =========================================================
+              CURSOS
+              ========================================================= */}
+
+          <Route
+            path="/admin/courses"
+            element={
+              <AdminLayout>
+                <AdminCourses />
+              </AdminLayout>
+            }
+          />
+
+
+          {/* =========================================================
+              CONTENIDO ACADÉMICO DEL CURSO
+              
+              Curso
+                ↓
+              Módulos
+                ↓
+              Lecciones
+                ↓
+              Videos
+              ========================================================= */}
+
+          <Route
+            path="/admin/courses/:courseId/content"
+            element={
+              <AdminLayout>
+                <AdminCourseContentPage />
+              </AdminLayout>
+            }
+          />
+
+
+          {/* =========================================================
+              PERFIL ADMINISTRATIVO
+              ========================================================= */}
+
+          <Route
+            path="/admin/profile"
+            element={
+              <AdminLayout>
+                <Profile />
+              </AdminLayout>
+            }
+          />
+
+
+          <Route
+            path="/admin/security"
+            element={
+              <AdminLayout>
+                <Security />
+              </AdminLayout>
+            }
+          />
+
+          <Route
+            path="/admin/courses/:courseId/content/module/:moduleId/lessons"
+            element={
+              <AdminLayout>
+                <AdminLessonsPage />
+              </AdminLayout>
+            }
+          />
+
+          <Route
+            path="/admin/courses/:courseId/content/module/:moduleId/lessons/:lessonId/video"
+            element={
+              <AdminLayout>
+                <AdminVideoPage />
+              </AdminLayout>
+            }
+          />
+
+
+          {/* =========================================================
+              CUALQUIER RUTA INEXISTENTE
+              ========================================================= */}
 
           <Route
             path="*"
-            element={<Navigate to="/" replace />}
+            element={
+              <Navigate
+                to="/"
+                replace
+              />
+            }
           />
 
         </Routes>
-        
 
       </NotificationProvider>
 

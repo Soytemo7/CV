@@ -1,0 +1,1212 @@
+/* ============================================================
+   ADMIN COURSES
+   Ajustes específicos del módulo de cursos.
+   ============================================================ */
+
+.private-dark .admin-users-panel {
+  background-color: #000000;
+}
+
+.admin-users-panel {
+  background-color: #ffffff;
+}
+
+
+/* ============================================================
+   MODAL — OVERLAY
+   ============================================================ */
+
+.admin-courses-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.5rem;
+
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.admin-courses-modal {
+  width: min(100%, 500px);
+  max-height: calc(100vh - 3rem);
+
+  overflow-y: auto;
+
+  padding: 2rem;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.35);
+
+  animation: adminCoursesModalIn 0.18s ease-out;
+}
+
+
+/* ============================================================
+   ICONO
+   ============================================================ */
+
+.admin-courses-modal-icon {
+  width: 58px;
+  height: 58px;
+
+  margin-bottom: 1.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.06);
+
+  font-size: 1.6rem;
+}
+
+
+/* ============================================================
+   CONTENIDO
+   ============================================================ */
+
+.admin-courses-modal-content h2 {
+  margin: 0 0 0.65rem;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.admin-courses-modal-content > p {
+  margin: 0 0 1.25rem;
+
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   CURSO SELECCIONADO
+   ============================================================ */
+
+.admin-courses-modal-course {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.85rem;
+
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.045);
+}
+
+.admin-courses-modal-course > i {
+  flex-shrink: 0;
+
+  font-size: 1.25rem;
+}
+
+.admin-courses-modal-course > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.3rem;
+}
+
+.admin-courses-modal-course strong {
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.admin-courses-modal-course span {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+
+/* ============================================================
+   ACCIONES
+   ============================================================ */
+
+.admin-courses-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 0.75rem;
+
+  margin-top: 1.5rem;
+}
+
+
+/* ============================================================
+   MODAL — ELIMINAR
+   ============================================================ */
+
+.admin-courses-delete-modal .admin-courses-modal-icon {
+  background: rgba(220, 53, 69, 0.10);
+}
+
+
+/* ============================================================
+   ANIMACIÓN
+   ============================================================ */
+
+@keyframes adminCoursesModalIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* ============================================================
+   MODO OSCURO — MODAL
+   ============================================================ */
+
+.private-dark .admin-courses-modal {
+  background: #111111;
+  color: #ffffff;
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.65);
+}
+
+.private-dark .admin-courses-modal-icon {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.private-dark .admin-courses-delete-modal .admin-courses-modal-icon {
+  background: rgba(220, 53, 69, 0.16);
+}
+
+.private-dark .admin-courses-modal-course {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.private-dark .admin-courses-modal-course span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+
+/* ============================================================
+   FORMULARIO DE CURSOS — CAMPOS EN MODO OSCURO
+   ============================================================ */
+
+.private-dark .admin-promotion-modal input,
+.private-dark .admin-promotion-modal textarea {
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.private-dark .admin-promotion-modal input:focus,
+.private-dark .admin-promotion-modal textarea:focus {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(22, 119, 255, 0.55);
+}
+
+.private-dark .admin-promotion-modal input::placeholder,
+.private-dark .admin-promotion-modal textarea::placeholder {
+  color: rgba(255, 255, 255, 0.50);
+}
+
+
+/* ============================================================
+   RESULTADOS — CONTADOR
+   ============================================================ */
+
+.admin-courses-results-count {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  width: fit-content;
+
+  padding: 0.45rem 0.8rem;
+
+  border: 1px solid rgba(22, 119, 255, 0.16);
+  border-radius: 999px;
+
+  background: rgba(22, 119, 255, 0.06);
+
+  color: inherit;
+
+  box-shadow:
+    0 0 0 1px rgba(22, 119, 255, 0.03),
+    0 0 14px rgba(22, 119, 255, 0.05);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.admin-courses-results-count > i {
+  font-size: 0.9rem;
+
+  color: #1677ff;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(22, 119, 255, 0.45)
+    );
+
+  animation:
+    adminCoursesResultsPulse
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+.admin-courses-results-count strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  color: #1677ff;
+}
+
+.admin-courses-results-count > span {
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  opacity: 0.75;
+}
+
+.admin-courses-results-count:hover {
+  transform: translateY(-1px);
+
+  background: rgba(22, 119, 255, 0.10);
+
+  border-color: rgba(22, 119, 255, 0.28);
+
+  box-shadow:
+    0 0 0 1px rgba(22, 119, 255, 0.06),
+    0 0 20px rgba(22, 119, 255, 0.12);
+}
+
+
+/* ============================================================
+   ANIMACIÓN — CONTADOR
+   ============================================================ */
+
+@keyframes adminCoursesResultsPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+
+/* ============================================================
+   MODO OSCURO — CONTADOR
+   ============================================================ */
+
+.private-dark .admin-courses-results-count {
+  border-color: rgba(22, 119, 255, 0.22);
+
+  background: rgba(22, 119, 255, 0.08);
+
+  box-shadow:
+    0 0 0 1px rgba(22, 119, 255, 0.04),
+    0 0 18px rgba(22, 119, 255, 0.08);
+}
+
+.private-dark .admin-courses-results-count > span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .admin-courses-modal-overlay {
+    padding: 1rem;
+  }
+
+  .admin-courses-modal {
+    padding: 1.5rem;
+
+    border-radius: 14px;
+  }
+
+  .admin-courses-modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .admin-courses-modal-actions button {
+    width: 100%;
+
+    justify-content: center;
+  }
+}
+
+
+/* ============================================================
+   ACCESIBILIDAD — REDUCIR MOVIMIENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-courses-results-count,
+  .admin-courses-results-count > i {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   CONTENIDO ACADÉMICO — MÓDULOS
+   ============================================================ */
+
+.admin-courses-content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1.5rem;
+}
+
+.admin-courses-content-header p {
+  margin: 0.65rem 0 0;
+
+  opacity: 0.72;
+}
+
+
+/* ============================================================
+   LISTA DE MÓDULOS
+   ============================================================ */
+
+.admin-courses-modules-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+
+/* ============================================================
+   MÓDULO
+   ============================================================ */
+
+.admin-courses-module-card {
+  position: relative;
+
+  display: flex;
+
+  gap: 1rem;
+
+  padding: 1.25rem;
+
+  border-radius: 14px;
+
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.admin-courses-module-number {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(22, 119, 255, 0.10);
+
+  color: #1677ff;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.admin-courses-module-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.admin-courses-module-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+
+.admin-courses-module-header h3 {
+  margin: 0;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.admin-courses-module-header p {
+  margin: 0.45rem 0 0;
+
+  line-height: 1.45;
+
+  opacity: 0.72;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   ACCIONES DEL MÓDULO
+   ============================================================ */
+
+.admin-courses-module-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+
+/* ============================================================
+   LECCIONES
+   ============================================================ */
+
+.admin-courses-module-lessons {
+  margin-top: 1rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid rgba(128, 128, 128, 0.16);
+}
+
+.admin-courses-module-lessons-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 0.75rem;
+}
+
+.admin-courses-module-lessons-header > span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  opacity: 0.78;
+}
+
+.admin-courses-lesson-preview {
+  display: flex;
+  align-items: center;
+
+  gap: 0.6rem;
+
+  padding: 0.65rem 0.75rem;
+
+  border-radius: 8px;
+
+  background: rgba(128, 128, 128, 0.06);
+
+  font-size: 0.85rem;
+}
+
+.admin-courses-lesson-preview + .admin-courses-lesson-preview {
+  margin-top: 0.4rem;
+}
+
+.admin-courses-no-lessons {
+  margin: 0;
+
+  font-size: 0.85rem;
+
+  opacity: 0.58;
+}
+
+
+/* ============================================================
+   ESTADO VACÍO
+   ============================================================ */
+
+.admin-courses-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 3rem 1.5rem;
+
+  text-align: center;
+
+  border-radius: 14px;
+
+  background: rgba(128, 128, 128, 0.04);
+}
+
+.admin-courses-empty h3 {
+  margin: 1rem 0 0.5rem;
+
+  font-size: 1.05rem;
+}
+
+.admin-courses-empty p {
+  max-width: 480px;
+
+  margin: 0 0 1.25rem;
+
+  line-height: 1.5;
+
+  opacity: 0.68;
+}
+
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+.private-dark .admin-courses-module-card {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.private-dark .admin-courses-module-number {
+  background: rgba(22, 119, 255, 0.14);
+}
+
+.private-dark .admin-courses-lesson-preview {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.private-dark .admin-courses-empty {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .admin-courses-content-header {
+    align-items: flex-start;
+  }
+
+  .admin-courses-module-card {
+    flex-direction: column;
+  }
+
+  .admin-courses-module-header {
+    flex-direction: column;
+  }
+
+  .admin-courses-module-actions {
+    width: 100%;
+  }
+
+  .admin-courses-module-actions button {
+    flex: 1;
+  }
+
+  .admin-courses-module-lessons-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
+
+/* ============================================================
+   FORMULARIO DE MÓDULO — CAMPOS
+   ============================================================ */
+
+.admin-promotion-modal-content > label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.45rem;
+
+  margin-top: 1rem;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.admin-promotion-modal-content > label input,
+.admin-promotion-modal-content > label textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 0.75rem 0.85rem;
+
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: inherit;
+
+  font: inherit;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-promotion-modal-content > label textarea {
+  min-height: 100px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+.admin-promotion-modal-content > label input:focus,
+.admin-promotion-modal-content > label textarea:focus {
+  border-color: rgba(22, 119, 255, 0.55);
+
+  box-shadow:
+    0 0 0 3px rgba(22, 119, 255, 0.10);
+}
+
+
+/* ============================================================
+   MODO OSCURO — CAMPOS DEL FORMULARIO
+   ============================================================ */
+
+.private-dark .admin-promotion-modal-content > label {
+  color: #ffffff;
+}
+
+.private-dark .admin-promotion-modal-content > label input,
+.private-dark .admin-promotion-modal-content > label textarea {
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.private-dark .admin-promotion-modal-content > label input:focus,
+.private-dark .admin-promotion-modal-content > label textarea:focus {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(22, 119, 255, 0.55);
+}
+
+.private-dark .admin-promotion-modal-content > label input::placeholder,
+.private-dark .admin-promotion-modal-content > label textarea::placeholder {
+  color: rgba(255, 255, 255, 0.50);
+}
+
+/* ============================================================
+   LECCIONES
+   ============================================================ */
+
+.admin-courses-lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.admin-courses-lesson-card {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+
+  padding: 18px;
+
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.private-dark .admin-courses-lesson-card {
+  background-color: #111111;
+  border-color: #374151;
+}
+
+
+.admin-courses-lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.private-dark .admin-courses-lesson-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+
+.admin-courses-lesson-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 52px;
+  height: 52px;
+
+  border-radius: 10px;
+
+  background-color: #f3f4f6;
+  color: #1f2937;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+.private-dark .admin-courses-lesson-number {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
+
+.admin-courses-lesson-content {
+  flex: 1;
+  min-width: 0;
+}
+
+
+.admin-courses-lesson-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+
+.admin-courses-lesson-header h3 {
+  margin: 0;
+
+  color: #1f2937;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+.private-dark .admin-courses-lesson-header h3 {
+  color: #ffffff;
+}
+
+
+.admin-courses-lesson-header p {
+  margin: 6px 0 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+.private-dark .admin-courses-lesson-header p {
+  color: #d1d5db;
+}
+
+
+/* ============================================================
+   VIDEOS DE LA LECCIÓN
+   ============================================================ */
+
+.admin-courses-lesson-videos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 16px;
+  padding-top: 12px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+.private-dark .admin-courses-lesson-videos {
+  border-top-color: #374151;
+}
+
+
+.admin-courses-lesson-videos > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #4b5563;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.private-dark .admin-courses-lesson-videos > span:first-child {
+  color: #d1d5db;
+}
+
+
+.admin-courses-lesson-videos > span:first-child i {
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   FORMULARIO DE LECCIÓN
+   ============================================================ */
+
+.admin-users-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  margin-bottom: 18px;
+}
+
+
+.admin-users-form-group label {
+  color: #374151;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.private-dark .admin-users-form-group label {
+  color: #e5e7eb;
+}
+
+
+.admin-users-form-group input,
+.admin-users-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  color: #1f2937;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.private-dark .admin-users-form-group input,
+.private-dark .admin-users-form-group textarea {
+  border-color: #4b5563;
+  background-color: #111827;
+  color: #ffffff;
+}
+
+
+.admin-users-form-group input:focus,
+.admin-users-form-group textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+
+.admin-users-form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .admin-courses-lesson-card {
+    gap: 14px;
+    padding: 15px;
+  }
+
+
+  .admin-courses-lesson-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+
+  .admin-courses-module-actions {
+    align-self: flex-end;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .admin-courses-lesson-card {
+    flex-direction: column;
+  }
+
+
+  .admin-courses-lesson-number {
+    flex: none;
+    width: 52px;
+  }
+
+
+  .admin-courses-lesson-videos {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
+
+/* ============================================================
+   CONTENIDO DE LA LECCIÓN
+   ============================================================ */
+
+.admin-courses-lesson-card {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  padding: 1.25rem;
+
+  border-radius: 14px;
+
+  background: rgba(0, 0, 0, 0.025);
+}
+
+
+/* ============================================================
+   NÚMERO
+   ============================================================ */
+
+.admin-courses-lesson-number {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(22, 119, 255, 0.10);
+
+  color: #1677ff;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   CONTENIDO
+   ============================================================ */
+
+.admin-courses-lesson-content {
+  min-width: 0;
+  flex: 1;
+}
+
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+
+.admin-courses-lesson-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+
+
+.admin-courses-lesson-header h3 {
+  margin: 0;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+
+.admin-courses-lesson-header p {
+  margin: 0.45rem 0 0;
+
+  line-height: 1.45;
+
+  opacity: 0.72;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   VIDEOS
+   ============================================================ */
+
+.admin-courses-lesson-videos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+
+  border-top: 1px solid rgba(128, 128, 128, 0.16);
+}
+
+
+.admin-courses-lesson-videos > span:first-child {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  opacity: 0.78;
+}
+
+
+.admin-courses-lesson-videos > span:first-child i {
+  color: #1677ff;
+
+  font-size: 0.95rem;
+}
+
+
+.admin-courses-lesson-videos
+.admin-courses-no-lessons {
+  margin: 0;
+
+  font-size: 0.8rem;
+
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+.private-dark .admin-courses-lesson-card {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+
+.private-dark .admin-courses-lesson-number {
+  background: rgba(22, 119, 255, 0.14);
+
+  color: #4da3ff;
+}
+
+
+.private-dark .admin-courses-lesson-videos {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+
+.private-dark .admin-courses-lesson-videos > span:first-child {
+  color: #ffffff;
+}
+
+
+.private-dark .admin-courses-lesson-videos > span:first-child i {
+  color: #4da3ff;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .admin-courses-lesson-card {
+    flex-direction: column;
+  }
+
+
+  .admin-courses-lesson-header {
+    flex-direction: column;
+  }
+
+
+  .admin-courses-lesson-videos {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+}

@@ -57,6 +57,20 @@ function Login() {
   const navigate =
     useNavigate();
 
+  const redirectAfterLogin = (user) => {
+
+    if (user?.role === "admin") {
+
+      navigate("/admin/");
+
+      return;
+
+    }
+
+    navigate("/dashboard");
+
+  };
+
 
   // ==========================================================
   // THEME
@@ -227,8 +241,8 @@ function Login() {
        * Login completado.
        */
 
-      navigate(
-        "/dashboard"
+      redirectAfterLogin(
+        data?.user
       );
 
     };
@@ -290,8 +304,8 @@ function Login() {
         });
 
 
-        navigate(
-          "/dashboard"
+        redirectAfterLogin(
+          data?.user
         );
 
       } catch (error) {
@@ -611,8 +625,8 @@ function Login() {
 
         setTimeout(() => {
 
-          navigate(
-            "/dashboard"
+          redirectAfterLogin(
+            data?.user
           );
 
         }, 700);
@@ -772,8 +786,8 @@ function Login() {
 
         setTimeout(() => {
 
-          navigate(
-            "/dashboard"
+         redirectAfterLogin(
+            data?.user
           );
 
         }, 700);

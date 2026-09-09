@@ -1,0 +1,657 @@
+/* ============================================================
+   ADMIN
+   Estilos exclusivos del área administrativa.
+   ============================================================ */
+
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.admin-layout {
+
+  position: relative;
+
+  width: 100%;
+
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.admin-header {
+
+  z-index: 1000;
+
+}
+
+
+.admin-header-right {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 0.75rem;
+
+  width: 100%;
+
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+.admin-main {
+
+  position: relative;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.admin-sidebar {
+
+  z-index: 1200;
+
+}
+
+
+.admin-sidebar-toggle {
+
+  z-index: 1300;
+
+}
+
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+.admin-dashboard {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  padding-left: 32px;
+
+  padding-right: 32px;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   GRID
+   ============================================================ */
+
+.admin-dashboard-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px, 1fr)
+    );
+
+  gap: 1.25rem;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   GRID — MODO CLARO
+   ============================================================ */
+
+.private-light .admin-dashboard-grid {
+
+  background-color:
+    #ffffff;
+
+  color:
+    #222222;
+
+}
+
+
+/* ============================================================
+   GRID — MODO OSCURO
+   ============================================================ */
+
+.private-dark .admin-dashboard-grid {
+
+  background-color:
+    #111111;
+
+  color:
+    #ffffff;
+
+}
+
+
+/* ============================================================
+   TARJETAS
+   ============================================================ */
+
+.admin-dashboard-card.private-card {
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  min-height: 190px;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+
+/* ============================================================
+   TARJETAS — MODO CLARO
+   ============================================================ */
+
+.private-light
+.admin-dashboard-card.private-card {
+
+  background:
+    #ffffff !important;
+
+  background-color:
+    #ffffff !important;
+
+  color:
+    #1f2937 !important;
+
+  border:
+    1px solid
+    rgba(
+      0,
+      0,
+      0,
+      0.08
+    ) !important;
+
+}
+
+
+/* ============================================================
+   CONTENIDO TARJETAS — CLARO
+   ============================================================ */
+
+.private-light
+.admin-dashboard-card.private-card
+.private-card-header {
+
+  color:
+    #1f2937 !important;
+
+}
+
+
+.private-light
+.admin-dashboard-card.private-card
+.private-card-header h2 {
+
+  color:
+    #1f2937 !important;
+
+}
+
+
+.private-light
+.admin-dashboard-card.private-card
+.private-card-header p {
+
+  color:
+    #6b7280 !important;
+
+}
+
+
+/* ============================================================
+   FOOTER TARJETAS — CLARO
+   ============================================================ */
+
+.private-light
+.admin-dashboard-card.private-card
+.admin-dashboard-card-footer {
+
+  color:
+    #374151 !important;
+
+}
+
+
+.private-light
+.admin-dashboard-card.private-card
+.admin-dashboard-card-footer i {
+
+  color:
+    #374151 !important;
+
+}
+
+
+/* ============================================================
+   TARJETAS — MODO OSCURO
+   ============================================================ */
+
+.private-dark
+.admin-dashboard-card.private-card {
+
+  background:
+    #000000 !important;
+
+  background-color:
+    #000000 !important;
+
+  color:
+    #ffffff !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.10
+    ) !important;
+
+}
+
+
+/* ============================================================
+   CONTENIDO TARJETAS — OSCURO
+   ============================================================ */
+
+.private-dark
+.admin-dashboard-card.private-card
+.private-card-header {
+
+  color:
+    #ffffff !important;
+
+}
+
+
+.private-dark
+.admin-dashboard-card.private-card
+.private-card-header h2 {
+
+  color:
+    #ffffff !important;
+
+}
+
+
+.private-dark
+.admin-dashboard-card.private-card
+.private-card-header p {
+
+  color:
+    #d1d5db !important;
+
+}
+
+
+/* ============================================================
+   FOOTER TARJETAS — OSCURO
+   ============================================================ */
+
+.private-dark
+.admin-dashboard-card.private-card
+.admin-dashboard-card-footer {
+
+  color:
+    #ffffff !important;
+
+}
+
+
+.private-dark
+.admin-dashboard-card.private-card
+.admin-dashboard-card-footer i {
+
+  color:
+    #ffffff !important;
+
+}
+
+
+/* ============================================================
+   ICONOS
+   ============================================================ */
+
+.private-light
+.admin-dashboard-card.private-card
+.private-card-icon {
+
+  color:
+    inherit;
+
+}
+
+
+.private-dark
+.admin-dashboard-card.private-card
+.private-card-icon {
+
+  color:
+    inherit;
+
+}
+
+
+/* ============================================================
+   HOVER — CLARO
+   ============================================================ */
+
+.private-light
+.admin-dashboard-card.private-card:hover {
+
+  transform:
+    translateY(-3px);
+
+  background:
+    #ffffff !important;
+
+  background-color:
+    #ffffff !important;
+
+  box-shadow:
+    0 10px 25px
+    rgba(
+      0,
+      0,
+      0,
+      0.10
+    );
+
+}
+
+
+/* ============================================================
+   HOVER — OSCURO
+   ============================================================ */
+
+.private-dark
+.admin-dashboard-card.private-card:hover {
+
+  transform:
+    translateY(-3px);
+
+  background:
+    #000000 !important;
+
+  background-color:
+    #000000 !important;
+
+  box-shadow:
+    0 10px 25px
+    rgba(
+      0,
+      0,
+      0,
+      0.60
+    );
+
+}
+
+
+/* ============================================================
+   FOCUS
+   ============================================================ */
+
+.admin-dashboard-card.private-card:focus-visible {
+
+  outline:
+    2px solid
+    currentColor;
+
+  outline-offset:
+    3px;
+
+}
+
+
+/* ============================================================
+   FOOTER DE TARJETA
+   ============================================================ */
+
+.admin-dashboard-card-footer {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top:
+    1.5rem;
+
+  font-size:
+    0.9rem;
+
+  font-weight:
+    600;
+
+}
+
+
+.admin-dashboard-card-footer i {
+
+  font-size:
+    1rem;
+
+}
+
+
+/* ============================================================
+   INFORMACIÓN
+   ============================================================ */
+
+.admin-dashboard-info {
+
+  margin-top:
+    1.5rem;
+
+}
+
+
+/* ============================================================
+   INFORMACIÓN — CLARO
+   ============================================================ */
+
+.private-light
+.admin-dashboard-info {
+
+  color:
+    #1f2937;
+
+}
+
+
+.private-light
+.admin-dashboard-info h2 {
+
+  color:
+    #1f2937;
+
+}
+
+
+.private-light
+.admin-dashboard-info p {
+
+  color:
+    #6b7280;
+
+}
+
+
+/* ============================================================
+   INFORMACIÓN — OSCURO
+   ============================================================ */
+
+.private-dark
+.admin-dashboard-info {
+
+  color:
+    #ffffff;
+
+}
+
+
+.private-dark
+.admin-dashboard-info h2 {
+
+  color:
+    #ffffff;
+
+}
+
+
+.private-dark
+.admin-dashboard-info p {
+
+  color:
+    #d1d5db;
+
+}
+
+
+/* ============================================================
+   CONTENIDO INFORMACIÓN
+   ============================================================ */
+
+.admin-dashboard-info-content {
+
+  margin-top:
+    1rem;
+
+}
+
+
+.admin-dashboard-info-content p {
+
+  margin:
+    0;
+
+  line-height:
+    1.7;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .admin-dashboard {
+
+    padding-left:
+      20px;
+
+    padding-right:
+      20px;
+
+  }
+
+
+  .admin-dashboard-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .admin-header-right {
+
+    gap:
+      0.5rem;
+
+  }
+
+}
+
+
+/* ============================================================
+   MÓVIL PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .admin-dashboard {
+
+    padding-left:
+      12px;
+
+    padding-right:
+      12px;
+
+  }
+
+}
+
+/* ============================================================
+   INFORMACIÓN ADMIN — MODO OSCURO
+   ============================================================ */
+
+.private-dark
+.admin-dashboard-info.private-card {
+
+  background:
+    #000000 !important;
+
+  background-color:
+    #000000 !important;
+
+  color:
+    #ffffff !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.10
+    ) !important;
+
+}

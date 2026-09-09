@@ -25,23 +25,46 @@ function Footer({ isDark }) {
 
         <div className="social-links d-flex justify-content-center">
 
+          {/*================================================
+          # FACEBOOK
+          =================================================*/}
+
           <a
             href="https://www.facebook.com/manuelcuauhtemoc.parraflores.9/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Facebook"
           >
             <i className="bi bi-facebook"></i>
           </a>
 
 
+          {/*================================================
+          # INSTAGRAM
+          =================================================*/}
+
           <a
             href="https://www.instagram.com/manuelcuauhtemoc/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Instagram"
           >
             <i className="bi bi-instagram"></i>
           </a>
 
+
+          {/*================================================
+          # GITHUB
+          =================================================*/}
+
+          <a
+            href="https://github.com/soytemo7"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <i className="bi bi-github"></i>
+          </a>
 
         </div>
 
@@ -112,4 +135,3 @@ function Footer({ isDark }) {
 }
 
 export default Footer;
-

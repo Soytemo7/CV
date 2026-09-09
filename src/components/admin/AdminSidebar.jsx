@@ -1,7 +1,6 @@
 import {
   useEffect,
   useState,
-  useContext
 } from "react";
 
 import {
@@ -9,21 +8,20 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import "../../styles/private/private-sidebar.css";
 import PrivateIconButton
   from "../common/PrivateIconButton.jsx";
-import SocialTooltip from "../common/SocialTooltip.jsx";
-import { AuthContext } from "../../context/AuthContext.jsx";
 
-function PrivateSidebar() {
+import SocialTooltip
+  from "../common/SocialTooltip.jsx";
 
-  const navigate = useNavigate();
 
-  const location = useLocation();
+function AdminSidebar() {
 
-    const {
-      user
-    } = useContext(AuthContext);
+  const navigate =
+    useNavigate();
+
+  const location =
+    useLocation();
 
 
   /*
@@ -33,6 +31,7 @@ function PrivateSidebar() {
   */
 
   const SIDEBAR_WIDTH = 280;
+
   const PEEK_WIDTH = 14;
 
 
@@ -44,19 +43,21 @@ function PrivateSidebar() {
 
   const [
     open,
-    setOpen
+    setOpen,
   ] = useState(false);
+
 
   const [
     dragOffset,
-    setDragOffset
+    setDragOffset,
   ] = useState(
     -(SIDEBAR_WIDTH - PEEK_WIDTH)
   );
 
+
   const [
     dragging,
-    setDragging
+    setDragging,
   ] = useState(false);
 
 
@@ -68,12 +69,13 @@ function PrivateSidebar() {
 
   const [
     dragStartX,
-    setDragStartX
+    setDragStartX,
   ] = useState(null);
+
 
   const [
     dragStartOffset,
-    setDragStartOffset
+    setDragStartOffset,
   ] = useState(0);
 
 
@@ -112,7 +114,9 @@ function PrivateSidebar() {
 
     setOpen(false);
 
-    setDragOffset(closedOffset);
+    setDragOffset(
+      closedOffset
+    );
 
   };
 
@@ -231,6 +235,7 @@ function PrivateSidebar() {
     setDragStartX(
       event.clientX
     );
+
 
     setDragStartOffset(
       open
@@ -418,7 +423,19 @@ function PrivateSidebar() {
 
   const isActive = (path) => {
 
-    return location.pathname === path;
+    if (path === "/admin") {
+
+      return location.pathname === "/admin";
+
+    }
+
+
+    return (
+      location.pathname === path ||
+      location.pathname.startsWith(
+        `${path}/`
+      )
+    );
 
   };
 
@@ -458,13 +475,13 @@ function PrivateSidebar() {
             open
               ? "active"
               : ""
-          }`
+          } admin-sidebar-toggle`
         }
         onClick={toggleSidebar}
         aria-label={
           open
-            ? "Cerrar menú"
-            : "Abrir menú"
+            ? "Cerrar menú administrativo"
+            : "Abrir menú administrativo"
         }
         aria-expanded={open}
       >
@@ -488,7 +505,7 @@ function PrivateSidebar() {
 
       <aside
         className={
-          `private-sidebar ${
+          `private-sidebar admin-sidebar ${
             open
               ? "open"
               : ""
@@ -517,29 +534,25 @@ function PrivateSidebar() {
             CABECERA
             ================================================== */}
 
-        <div
-          className="private-sidebar-header"
-        >
+        <div className="private-sidebar-header">
 
-          <div
-            className="private-sidebar-brand"
-          >
+          <div className="private-sidebar-brand">
 
             <PrivateIconButton
-                icon="bi bi-grid-1x2"
-                color="yellow"
-                className="private-sidebar-brand-icon"
-                />
+              icon="bi bi-speedometer2"
+              color="yellow"
+              className="private-sidebar-brand-icon"
+            />
 
 
             <div>
 
               <strong>
-                Menú
+                Administración
               </strong>
 
               <span>
-                Área privada
+                Panel administrativo
               </span>
 
             </div>
@@ -567,195 +580,298 @@ function PrivateSidebar() {
 
         <nav
           className="private-sidebar-nav"
-          aria-label="Menú privado"
+          aria-label="Menú administrativo"
         >
 
-             <div className="private-sidebar-social">
+          {/* ==================================================
+              SOCIAL
+              ================================================== */}
+
+          <div className="private-sidebar-social">
 
             <SocialTooltip />
+
             <div className="private-sidebar-social-space"></div>
 
-        </div>
-        <div
-            className="private-sidebar-divider"
-          ></div>
+          </div>
+
+
+          <div className="private-sidebar-divider"></div>
+
 
           {/* ==================================================
               DASHBOARD
               ================================================== */}
 
-            <div
-                className={
-                    `private-sidebar-item ${
-                    isActive("/dashboard")
-                        ? "active"
-                        : ""
-                    }`
-                }
-                >
-
-                <PrivateIconButton
-                    icon="bi bi-grid"
-                    color="blue"
-                    onPointerDown={(event) => {
-                    event.stopPropagation();
-  }}
-                    onClick={() =>
-                    handleNavigate("/dashboard")
-                    }
-                    aria-label="Dashboard"
-                    className="private-sidebar-icon"
-                />
-
-                <span className="private-sidebar-item-text">
-                    Dashboard
-                </span>
-
-                </div>
-
-          {/* ==================================================
-              PERFIL
-              ================================================== */}
-
-        <div
+          <div
             className={
-                `private-sidebar-item ${
-                isActive("/dashboard/profile")
-                    ? "active"
-                    : ""
-                }`
+              `private-sidebar-item ${
+                isActive("/admin")
+                  ? "active"
+                  : ""
+              }`
             }
-            >
+          >
 
             <PrivateIconButton
-                icon="bi bi-person"
-                color="blue"
-                onPointerDown={(event) => {
-                    event.stopPropagation();
-                }}
-                onClick={() =>
-                handleNavigate("/dashboard/profile")
-                }
-                aria-label="Mi perfil"
-                className="private-sidebar-icon"
+              icon="bi bi-speedometer2"
+              color="blue"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/admin")
+              }
+              aria-label="Dashboard administrativo"
+              className="private-sidebar-icon"
             />
 
             <span className="private-sidebar-item-text">
-                Mi perfil
+              Dashboard
             </span>
 
-            </div>
+          </div>
 
 
           {/* ==================================================
-              SEGURIDAD
+              USUARIOS
               ================================================== */}
 
           <div
             className={
-                `private-sidebar-item ${
-                isActive("/dashboard/security")
-                    ? "active"
-                    : ""
-                }`
+              `private-sidebar-item ${
+                isActive("/admin/users")
+                  ? "active"
+                  : ""
+              }`
             }
-            >
+          >
 
             <PrivateIconButton
-                icon="bi bi-shield-lock"
-                color="red"
-                onPointerDown={(event) => {
-                    event.stopPropagation();
-                }}
-                onClick={() =>
-                handleNavigate("/dashboard/security")
-                }
-                aria-label="Seguridad"
-                className="private-sidebar-icon"
+              icon="bi bi-people"
+              color="blue"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/admin/users")
+              }
+              aria-label="Usuarios"
+              className="private-sidebar-icon"
             />
 
             <span className="private-sidebar-item-text">
-                Seguridad
+              Usuarios
             </span>
 
-            </div>
+          </div>
+
+
+          {/* ==================================================
+              CURSOS
+              ================================================== */}
 
           <div
-            className="private-sidebar-divider"
-          ></div>
-
-
-                    {/* ==================================================
-                    ADMINISTRACIÓN
-                    SOLO ADMINISTRADORES
-                    ================================================== */}
-
-                {user?.role === "admin" && (
-
-                  <div
-                    className={
-                      `private-sidebar-item ${
-                        isActive("/admin")
-                          ? "active"
-                          : ""
-                      }`
-                    }
-                  >
-
-                    <PrivateIconButton
-                      icon="bi bi-shield-check"
-                      color="yellow"
-                      onPointerDown={(event) => {
-                        event.stopPropagation();
-                      }}
-                      onClick={() =>
-                        handleNavigate("/admin")
-                      }
-                      aria-label="Administración"
-                      className="private-sidebar-icon"
-                    />
-
-                    <span className="private-sidebar-item-text">
-                      Área de Administración
-                    </span>
-
-                  </div>
-
-                )}
-
-            {/* ==================================================
-            VOLVER A MI CV
-            ================================================== */}
-
-            <div
             className={
-                `private-sidebar-item ${
+              `private-sidebar-item ${
+                isActive("/admin/courses")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-mortarboard"
+              color="blue"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/admin/courses")
+              }
+              aria-label="Cursos"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Cursos
+            </span>
+
+          </div>
+
+
+          {/* ==================================================
+              INSCRIPCIONES
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/admin/enrollments")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-person-check"
+              color="green"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/admin/enrollments")
+              }
+              aria-label="Inscripciones"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Inscripciones
+            </span>
+
+          </div>
+
+
+          {/* ==================================================
+              EVALUACIONES
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/admin/assessments")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-clipboard-check"
+              color="yellow"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/admin/assessments")
+              }
+              aria-label="Evaluaciones"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Evaluaciones
+            </span>
+
+          </div>
+
+
+          {/* ==================================================
+              CERTIFICADOS
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/admin/certificates")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-patch-check"
+              color="green"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/admin/certificates")
+              }
+              aria-label="Certificados"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Certificados
+            </span>
+
+          </div>
+
+
+          <div className="private-sidebar-divider"></div>
+
+
+          {/* ==================================================
+              VOLVER AL DASHBOARD DE USUARIO
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/dashboard")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-person"
+              color="blue"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate("/dashboard")
+              }
+              aria-label="Área de usuario"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Área de usuario
+            </span>
+
+          </div>
+
+
+          {/* ==================================================
+              VOLVER AL CV
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
                 isActive("/")
-                    ? "active"
-                    : ""
-                }`
+                  ? "active"
+                  : ""
+              }`
             }
-            >
+          >
 
             <PrivateIconButton
-                icon="bi bi-house"
-                color="green"
-                onPointerDown={(event) => {
-                    event.stopPropagation();
-                }}
-                onClick={() =>
+              icon="bi bi-house"
+              color="green"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
                 handleNavigate("/")
-                }
-                aria-label="Volver a mi CV"
-                className="private-sidebar-icon"
+              }
+              aria-label="Volver a mi CV"
+              className="private-sidebar-icon"
             />
 
             <span className="private-sidebar-item-text">
-                Volver a mi CV
+              Volver a mi CV
             </span>
 
-            </div>
-        
+          </div>
 
         </nav>
 
@@ -764,12 +880,10 @@ function PrivateSidebar() {
             FOOTER
             ================================================== */}
 
-        <div
-          className="private-sidebar-footer"
-        >
+        <div className="private-sidebar-footer">
 
           <span>
-            Navegación privada
+            Administración
           </span>
 
         </div>
@@ -812,4 +926,4 @@ function PrivateSidebar() {
 }
 
 
-export default PrivateSidebar;
+export default AdminSidebar;

@@ -107,7 +107,7 @@
 
 
 /*==============================================================
-# FACEBOOK COLOR
+# FACEBOOK
 ==============================================================*/
 
 .hero-social-item a[data-social="facebook"] {
@@ -122,7 +122,7 @@
 
 
 /*==============================================================
-# INSTAGRAM COLOR
+# INSTAGRAM
 ==============================================================*/
 
 .hero-social-item a[data-social="instagram"] {
@@ -142,6 +142,21 @@
       #e1306c,
       #fd1f1f
     );
+}
+
+
+/*==============================================================
+# GITHUB
+==============================================================*/
+
+.hero-social-item a[data-social="github"] {
+  --social-color: #6f42c1;
+}
+
+
+.hero-social-item a[data-social="github"]
+.hero-social-filled {
+  background: #6f42c1;
 }
 
 
@@ -231,8 +246,8 @@
 # TOOLTIP FACEBOOK
 ==============================================================*/
 
-.hero-social-item:nth-child(1)
-.hero-social-tooltip {
+.hero-social-item a[data-social="facebook"]
++ .hero-social-tooltip {
   background: #1877f2;
 }
 
@@ -241,8 +256,8 @@
 # TOOLTIP INSTAGRAM
 ==============================================================*/
 
-.hero-social-item:nth-child(2)
-.hero-social-tooltip {
+.hero-social-item a[data-social="instagram"]
++ .hero-social-tooltip {
   background:
     linear-gradient(
       45deg,
@@ -253,6 +268,16 @@
       #e1306c,
       #fd1f1f
     );
+}
+
+
+/*==============================================================
+# TOOLTIP GITHUB
+==============================================================*/
+
+.hero-social-item a[data-social="github"]
++ .hero-social-tooltip {
+  background: #6f42c1;
 }
 
 

@@ -136,6 +136,14 @@ function ProfileDropdown() {
 
 
   /*==============================================================
+  # Determinar contexto administrativo
+  ==============================================================*/
+
+  const isAdmin =
+    user?.role === "admin";
+
+
+  /*==============================================================
   # Avatar
   ==============================================================*/
 
@@ -166,7 +174,11 @@ function ProfileDropdown() {
 
     setOpen(false);
 
-    navigate("/dashboard");
+    navigate(
+      isAdmin
+        ? "/admin"
+        : "/dashboard"
+    );
 
   };
 
@@ -205,7 +217,11 @@ function ProfileDropdown() {
 
     setOpen(false);
 
-    navigate("/dashboard/profile");
+    navigate(
+      isAdmin
+        ? "/admin/profile"
+        : "/dashboard/profile"
+    );
 
   };
 
@@ -218,7 +234,11 @@ function ProfileDropdown() {
 
     setOpen(false);
 
-    navigate("/dashboard/security");
+    navigate(
+      isAdmin
+        ? "/admin/security"
+        : "/dashboard/security"
+    );
 
   };
 

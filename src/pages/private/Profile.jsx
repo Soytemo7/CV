@@ -102,6 +102,21 @@ function Profile() {
           <div className="private-info-item">
 
             <span>
+              Tipo de usuario
+            </span>
+
+            <strong>
+              {user?.role === "admin"
+                ? "Administrador"
+                : "Usuario"}
+            </strong>
+
+          </div>
+
+
+          <div className="private-info-item">
+
+            <span>
               Estado
             </span>
 

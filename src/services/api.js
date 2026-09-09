@@ -144,4 +144,64 @@ export const deleteUserPasskey =
 
   };
 
+  // ============================================================
+// ADMIN — USUARIOS
+// ============================================================
+
+// ------------------------------------------------------------
+// Obtener usuarios de la plataforma
+// ------------------------------------------------------------
+
+export const getAdminUsers =
+  async () => {
+
+    return await api(
+      "/api/admin/users",
+      {
+        method:
+          "GET"
+      }
+    );
+
+  };
+
+export const promoteAdminUser = async (uid) => {
+  return await api(
+    `/api/admin/users/${encodeURIComponent(uid)}/role`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        role: "admin"
+      })
+    }
+  );
+};
+
+// ------------------------------------------------------------
+// Convertir administrador → usuario
+// ------------------------------------------------------------
+
+export const demoteAdminUser =
+  async (
+    uid
+  ) => {
+
+    return await api(
+      `/api/admin/users/${encodeURIComponent(
+        uid
+      )}/role`,
+      {
+        method:
+          "PATCH",
+
+        body:
+          JSON.stringify({
+            role:
+              "user"
+          })
+      }
+    );
+
+  };
+
 export default api;

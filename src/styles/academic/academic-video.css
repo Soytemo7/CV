@@ -1,0 +1,376 @@
+/* ============================================================
+
+   ACADEMIC VIDEO
+
+   ============================================================ */
+
+.academic-video-container {
+
+  position: relative;
+
+  width: 60%;
+
+  aspect-ratio: 16 / 9;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #000;
+
+}
+
+
+/* ============================================================
+
+   YOUTUBE IFRAME
+
+   ============================================================ */
+
+.academic-video-container .academic-video-iframe {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  border: 0;
+
+}
+
+
+/* ============================================================
+
+   ESTADOS
+
+   ============================================================ */
+
+.academic-video-status-container {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  margin-top: 18px;
+
+}
+
+
+.academic-video-status-group {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+}
+
+
+/* ============================================================
+
+   ESTADO DEL REPRODUCTOR
+
+   ============================================================ */
+
+/* Reproduciendo */
+
+.academic-status-playing {
+
+  color: #198754;
+
+}
+
+.academic-status-playing .private-session-status-dot {
+
+  background: #198754;
+
+}
+
+
+/* En pausa */
+
+.academic-status-paused {
+
+  color: #b58105;
+
+}
+
+.academic-status-paused .private-session-status-dot {
+
+  background: #b58105;
+
+}
+
+
+/* ============================================================
+
+   ESTADO ACADÉMICO
+
+   ============================================================ */
+
+/* Completado */
+
+.academic-status-completed {
+
+  color: #198754;
+
+}
+
+.academic-status-completed .private-session-status-dot {
+
+  background: #198754;
+
+}
+
+
+/* No completado */
+
+.academic-status-not-completed {
+
+  color: #dc3545;
+
+}
+
+.academic-status-not-completed .private-session-status-dot {
+
+  background: #dc3545;
+
+}
+
+
+/* ============================================================
+
+   TIEMPO
+
+   ============================================================ */
+
+.academic-video-time {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 3px;
+
+}
+
+
+.academic-video-time span:first-child {
+
+  font-size: 12px;
+
+  opacity: 0.55;
+
+}
+
+
+.academic-video-time span:last-child {
+
+  font-size: 11px;
+
+  opacity: 0.6;
+
+}
+
+
+/* ============================================================
+
+   PROGRESO
+
+   ============================================================ */
+
+.academic-video-progress {
+
+  margin-top: 16px;
+
+}
+
+
+.academic-video-progress-labels {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 7px;
+
+  font-size: 11px;
+
+  opacity: 0.6;
+
+}
+
+
+.academic-video-progress-track {
+
+  width: 100%;
+
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(128, 128, 128, 0.16);
+
+}
+
+
+.academic-video-progress-bar {
+
+  width: 0;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: #1677ff;
+
+  transition: width 0.25s ease;
+
+}
+
+
+.academic-video-progress-bar.academic-video-progress-completed {
+
+  background: #198754;
+
+}
+
+
+/* ============================================================
+
+   CONTROLES
+
+   ============================================================ */
+
+.academic-video-controls {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 18px;
+
+}
+
+
+/* ============================================================
+
+   INFORMACIÓN
+
+   ============================================================ */
+
+.academic-video-information {
+
+  margin-top: 14px;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+
+  opacity: 0.5;
+
+}
+
+
+/* ============================================================
+
+   TABLET
+
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .academic-video-container {
+
+    width: 75%;
+
+  }
+
+}
+
+
+/* ============================================================
+
+   MÓVIL
+
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .academic-video-container {
+
+    width: 100%;
+
+    border-radius: 10px;
+
+  }
+
+
+  .academic-video-status-container {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+
+  .academic-video-time {
+
+    align-items: flex-start;
+
+  }
+
+}
+
+
+/* ============================================================
+
+   MÓVIL PEQUEÑO
+
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .academic-video-container {
+
+    border-radius: 8px;
+
+  }
+
+
+  .academic-video-progress-labels {
+
+    flex-direction: column;
+
+    gap: 3px;
+
+  }
+
+}
