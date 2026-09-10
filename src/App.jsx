@@ -61,6 +61,12 @@ import AdminCourseContentPage
   import AdminVideoPage
   from "./pages/admin/AdminVideoPage.jsx";
 
+  import AdminCourseStructure
+  from "./pages/admin/AdminCourseStructure.jsx";
+
+  import AdminEnrollmentsPage
+  from "./pages/admin/AdminEnrollmentsPage.jsx";
+
 
 function App() {
 
@@ -280,6 +286,15 @@ function App() {
               </AdminLayout>
             }
           />
+          
+          <Route
+            path="/admin/course-structure"
+            element={
+              <AdminLayout>
+                <AdminCourseStructure />
+              </AdminLayout>
+            }
+          />
 
 
           {/* =========================================================
@@ -341,6 +356,15 @@ function App() {
             element={
               <AdminLayout>
                 <AdminVideoPage />
+              </AdminLayout>
+            }
+          />
+
+          <Route
+            path="/admin/enrollments"
+            element={
+              <AdminLayout>
+                <AdminEnrollmentsPage />
               </AdminLayout>
             }
           />

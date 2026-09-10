@@ -97,18 +97,6 @@ const AdminModuleForm = ({
           }
         );
 
-        notification.success({
-          title: "¡Módulo actualizado!",
-          description:
-            "La información del módulo se actualizó correctamente.",
-          placement: "topRight",
-          duration: 8,
-          showProgress: true,
-          pauseOnHover: true,
-          closable: true,
-          className: "welcome-notification",
-        });
-
       } else {
 
         savedModule = await createModule({
@@ -116,18 +104,6 @@ const AdminModuleForm = ({
           title: title.trim(),
           description: description.trim(),
           order: Number(order)
-        });
-
-        notification.success({
-          title: "¡Módulo creado!",
-          description:
-            "El módulo se creó correctamente.",
-          placement: "topRight",
-          duration: 8,
-          showProgress: true,
-          pauseOnHover: true,
-          closable: true,
-          className: "welcome-notification",
         });
 
       }
@@ -263,7 +239,6 @@ const AdminModuleForm = ({
 
           </label>
 
-     
 
           {/* ================================================
               ERROR

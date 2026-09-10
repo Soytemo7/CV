@@ -700,6 +700,47 @@ function AdminSidebar() {
 
           </div>
 
+          {/* ==================================================
+              ESTRUCTURA DE CURSOS
+              ================================================== */}
+
+            <div
+              className={
+                `private-sidebar-item ${
+                  isActive(
+                    "/admin/course-structure"
+                  )
+                    ? "active"
+                    : ""
+                }`
+              }
+            >
+
+              <PrivateIconButton
+                icon="bi bi-diagram-3"
+                color="blue"
+                onPointerDown={(event) => {
+                  event.stopPropagation();
+                }}
+                onClick={() =>
+                  handleNavigate(
+                    "/admin/course-structure"
+                  )
+                }
+                aria-label="Estructura de cursos"
+                className="private-sidebar-icon"
+              />
+
+              <span
+                className="
+                  private-sidebar-item-text
+                "
+              >
+                Estructura de cursos
+              </span>
+
+            </div>
+
 
           {/* ==================================================
               INSCRIPCIONES

@@ -1,0 +1,1890 @@
+/* ============================================================
+   ADMIN COURSE STRUCTURE
+   Vista integral jerárquica de cursos.
+   ============================================================ */
+
+
+/* ============================================================
+   SELECTOR
+   ============================================================ */
+
+.admin-course-structure-selector {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 1.5rem;
+
+  border-radius: 16px;
+}
+
+
+.admin-course-structure-selector::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #1677ff,
+    #4da3ff
+  );
+
+  box-shadow:
+    0 0 16px
+    rgba(22, 119, 255, 0.45);
+}
+
+
+.admin-course-structure-selector-header {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 1.35rem;
+}
+
+
+/* ============================================================
+   SELECTOR — ICONO
+   Misma estética visual que el 01 de módulo.
+   ============================================================ */
+
+.admin-course-structure-selector-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 1.25rem;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-selector-header span {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  color: #1677ff;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+
+.admin-course-structure-selector-header h2 {
+  margin: 0;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+
+.admin-course-structure-select-container {
+  position: relative;
+}
+
+
+.admin-course-structure-select-container label {
+  display: block;
+
+  margin-bottom: 0.5rem;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+.admin-course-structure-select-wrapper {
+  position: relative;
+}
+
+
+.admin-course-structure-select {
+  width: 100%;
+  min-height: 52px;
+
+  box-sizing: border-box;
+
+  padding:
+    0.8rem
+    3rem
+    0.8rem
+    1rem;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 1px solid rgba(22, 119, 255, 0.20);
+  border-radius: 10px;
+
+  background-color: #ffffff;
+
+  color: #1f2937;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.admin-course-structure-select:hover {
+  border-color: rgba(22, 119, 255, 0.45);
+
+  box-shadow:
+    0 5px 18px
+    rgba(22, 119, 255, 0.08);
+}
+
+
+.admin-course-structure-select:focus {
+  border-color: #1677ff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(22, 119, 255, 0.12),
+    0 8px 24px
+    rgba(22, 119, 255, 0.08);
+}
+
+
+.admin-course-structure-select:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+}
+
+
+.admin-course-structure-select option {
+  background: #ffffff;
+
+  color: #1f2937;
+
+  font-weight: 500;
+}
+
+
+.admin-course-structure-select-arrow {
+  position: absolute;
+
+  top: 50%;
+  right: 1rem;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+
+  color: #1677ff;
+
+  font-size: 1rem;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.admin-course-structure-select-wrapper:focus-within
+.admin-course-structure-select-arrow {
+  transform:
+    translateY(-50%)
+    rotate(180deg);
+}
+
+
+/* ============================================================
+   SELECTOR — MODO OSCURO
+   ============================================================ */
+
+.private-dark .admin-course-structure-selector {
+  background: #000000;
+}
+
+
+.private-dark .admin-course-structure-selector-icon {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.18),
+      rgba(22, 119, 255, 0.08)
+    );
+
+  color: #4da3ff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(77, 163, 255, 0.12);
+}
+
+
+.private-dark .admin-course-structure-select-container label {
+  color: #e5e7eb;
+}
+
+
+.private-dark .admin-course-structure-select {
+  background-color: #111827;
+
+  color: #ffffff;
+
+  border-color:
+    rgba(77, 163, 255, 0.35);
+
+  box-shadow:
+    0 4px 16px
+    rgba(0, 0, 0, 0.35);
+}
+
+
+.private-dark .admin-course-structure-select:hover {
+  background-color: #151d2b;
+
+  border-color:
+    rgba(77, 163, 255, 0.60);
+
+  box-shadow:
+    0 6px 22px
+    rgba(0, 0, 0, 0.45),
+    0 0 16px
+    rgba(22, 119, 255, 0.08);
+}
+
+
+.private-dark .admin-course-structure-select:focus {
+  background-color: #111827;
+
+  color: #ffffff;
+
+  border-color: #4da3ff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(22, 119, 255, 0.18),
+    0 0 22px
+    rgba(22, 119, 255, 0.12);
+}
+
+
+.private-dark .admin-course-structure-select option {
+  background-color: #111827;
+
+  color: #ffffff;
+}
+
+
+.private-dark .admin-course-structure-select-arrow {
+  color: #4da3ff;
+}
+
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.admin-course-structure-error {
+  margin-top: 1rem;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.admin-course-structure-loading {
+  margin-top: 1rem;
+
+  padding: 3rem 1.5rem;
+}
+
+
+.admin-course-structure-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   LOADING — ICONO
+   ============================================================ */
+
+.admin-course-structure-loading-icon {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 1rem;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 1.6rem;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+
+  animation:
+    adminCourseStructureLoadingPulse
+    1.6s
+    ease-in-out
+    infinite;
+}
+
+
+.admin-course-structure-loading-content h3 {
+  margin: 0 0 0.45rem;
+
+  font-size: 1.1rem;
+}
+
+
+.admin-course-structure-loading-content p {
+  margin: 0;
+
+  opacity: 0.65;
+}
+
+
+.admin-course-structure-loading-line {
+  width: min(100%, 280px);
+  height: 3px;
+
+  margin-top: 1.5rem;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(128, 128, 128, 0.15);
+}
+
+
+.admin-course-structure-loading-line span {
+  display: block;
+
+  width: 35%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: #1677ff;
+
+  box-shadow:
+    0 0 12px
+    rgba(22, 119, 255, 0.55);
+
+  animation:
+    adminCourseStructureLoadingBar
+    1.4s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes adminCourseStructureLoadingPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: scale(1.08);
+
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes adminCourseStructureLoadingBar {
+
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(400%);
+  }
+
+}
+
+
+/* ============================================================
+   CURSO
+   ============================================================ */
+
+.admin-course-structure {
+  margin-top: 1rem;
+
+  overflow: hidden;
+}
+
+
+.admin-course-structure-course {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 1.25rem;
+
+  padding: 1.75rem;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.08),
+      rgba(22, 119, 255, 0.02)
+    );
+
+  border: 1px solid
+    rgba(22, 119, 255, 0.12);
+}
+
+
+.admin-course-structure-course::after {
+  content: "";
+
+  position: absolute;
+
+  top: -80px;
+  right: -80px;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(22, 119, 255, 0.07);
+
+  filter: blur(4px);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   CURSO — ICONO
+   ============================================================ */
+
+.admin-course-structure-course-icon {
+  position: relative;
+  z-index: 1;
+
+  width: 64px;
+  height: 64px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 1.6rem;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-course-info {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+}
+
+
+.admin-course-structure-course-info > span {
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  color: #1677ff;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 0.10em;
+}
+
+
+.admin-course-structure-course-info h2 {
+  margin: 0;
+
+  font-size: 1.45rem;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+.admin-course-structure-course-info p {
+  margin: 0.55rem 0 0;
+
+  max-width: 850px;
+
+  line-height: 1.55;
+
+  opacity: 0.68;
+}
+
+
+/* ============================================================
+   RESUMEN
+   ============================================================ */
+
+.admin-course-structure-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 1px;
+
+  margin-top: 1rem;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(128, 128, 128, 0.14);
+
+  border-radius: 14px;
+
+  background:
+    rgba(128, 128, 128, 0.12);
+}
+
+
+.admin-course-structure-summary-item {
+  display: flex;
+  align-items: center;
+
+  gap: 0.85rem;
+
+  min-height: 82px;
+
+  padding: 1rem 1.25rem;
+
+  background: #ffffff;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.admin-course-structure-summary-item:hover {
+  background:
+    rgba(22, 119, 255, 0.035);
+}
+
+
+/* ============================================================
+   RESUMEN — ICONO
+   ============================================================ */
+
+.admin-course-structure-summary-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 1rem;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-summary-item strong {
+  display: block;
+
+  font-size: 1.25rem;
+  font-weight: 800;
+
+  line-height: 1.1;
+}
+
+
+.admin-course-structure-summary-item span {
+  display: block;
+
+  margin-top: 0.25rem;
+
+  font-size: 0.78rem;
+
+  opacity: 0.62;
+}
+
+
+/* ============================================================
+   RESUMEN — MODO OSCURO
+   ============================================================ */
+
+.private-dark .admin-course-structure-course {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.12),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border-color:
+    rgba(77, 163, 255, 0.16);
+}
+
+
+.private-dark .admin-course-structure-summary {
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border-color:
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.private-dark .admin-course-structure-summary-item {
+  background: #111111;
+}
+
+
+.private-dark .admin-course-structure-summary-item:hover {
+  background:
+    rgba(22, 119, 255, 0.07);
+}
+
+
+.private-dark .admin-course-structure-summary-icon {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.18),
+      rgba(22, 119, 255, 0.08)
+    );
+
+  color: #4da3ff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(77, 163, 255, 0.12);
+}
+
+
+/* ============================================================
+   MÓDULOS
+   ============================================================ */
+
+.admin-course-structure-modules {
+  position: relative;
+
+  margin-top: 1.5rem;
+}
+
+
+.admin-course-structure-module {
+  position: relative;
+
+  margin-bottom: 1.25rem;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(128, 128, 128, 0.16);
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0, 0, 0, 0.04);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+.admin-course-structure-module:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(22, 119, 255, 0.20);
+
+  box-shadow:
+    0 12px 32px
+    rgba(0, 0, 0, 0.08),
+    0 0 0 1px
+    rgba(22, 119, 255, 0.03);
+}
+
+
+.admin-course-structure-module-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 1.25rem 1.35rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.055),
+      rgba(22, 119, 255, 0.015)
+    );
+
+  border-bottom:
+    1px solid
+    rgba(128, 128, 128, 0.12);
+}
+
+
+/* ============================================================
+   MÓDULO — 01
+   REFERENCIA VISUAL
+   ============================================================ */
+
+.admin-course-structure-module-number {
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-module-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.admin-course-structure-module-label {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  color: #1677ff;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+
+.admin-course-structure-module-info h3 {
+  margin: 0;
+
+  font-size: 1.08rem;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+.admin-course-structure-module-info p {
+  margin: 0.4rem 0 0;
+
+  line-height: 1.45;
+
+  font-size: 0.88rem;
+
+  opacity: 0.66;
+}
+
+
+.admin-course-structure-module-count {
+  display: flex;
+  align-items: center;
+
+  gap: 0.35rem;
+
+  flex-shrink: 0;
+
+  padding:
+    0.45rem
+    0.7rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(22, 119, 255, 0.07);
+
+  color: #1677ff;
+
+  font-size: 0.75rem;
+}
+
+
+.admin-course-structure-module-count i {
+  font-size: 0.85rem;
+}
+
+
+.admin-course-structure-module-count strong {
+  font-size: 0.85rem;
+}
+
+
+.admin-course-structure-module-count span {
+  opacity: 0.75;
+}
+
+
+/* ============================================================
+   LECCIONES
+   ============================================================ */
+
+.admin-course-structure-lessons {
+  position: relative;
+
+  padding:
+    1.25rem
+    1.35rem
+    1.35rem
+    4.5rem;
+}
+
+
+.admin-course-structure-lessons::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0.5rem;
+  bottom: 1.5rem;
+
+  left: 2.25rem;
+
+  width: 2px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(22, 119, 255, 0.32),
+      rgba(22, 119, 255, 0.05)
+    );
+}
+
+
+.admin-course-structure-lesson {
+  position: relative;
+
+  display: flex;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+
+  padding: 1.1rem;
+
+  border:
+    1px solid
+    rgba(128, 128, 128, 0.13);
+
+  border-radius: 13px;
+
+  background:
+    rgba(128, 128, 128, 0.025);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+
+.admin-course-structure-lesson:last-child {
+  margin-bottom: 0;
+}
+
+
+.admin-course-structure-lesson:hover {
+  transform: translateX(3px);
+
+  border-color:
+    rgba(22, 119, 255, 0.20);
+
+  background:
+    rgba(22, 119, 255, 0.025);
+
+  box-shadow:
+    0 7px 22px
+    rgba(0, 0, 0, 0.05);
+}
+
+
+/* ============================================================
+   LECCIÓN — 01
+   Misma estética que el número de módulo.
+   ============================================================ */
+
+.admin-course-structure-lesson-marker {
+  position: relative;
+  z-index: 2;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: -3.15rem;
+
+  border:
+    3px solid
+    #ffffff;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-lesson-content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.admin-course-structure-lesson-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+
+
+.admin-course-structure-lesson-label {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  color: #1677ff;
+
+  font-size: 0.67rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+
+.admin-course-structure-lesson-header h4 {
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+.admin-course-structure-lesson-description {
+  margin: 0.55rem 0 0;
+
+  line-height: 1.55;
+
+  font-size: 0.87rem;
+
+  opacity: 0.68;
+}
+
+
+.admin-course-structure-video-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.35rem;
+
+  flex-shrink: 0;
+
+  padding:
+    0.35rem
+    0.6rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(25, 135, 84, 0.09);
+
+  color: #198754;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+
+.admin-course-structure-video-status i {
+  font-size: 0.72rem;
+}
+
+
+/* ============================================================
+   VIDEO
+   ============================================================ */
+
+.admin-course-structure-video {
+  display: flex;
+
+  gap: 1rem;
+
+  margin-top: 1rem;
+
+  padding: 1rem;
+
+  border:
+    1px solid
+    rgba(22, 119, 255, 0.16);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.07),
+      rgba(22, 119, 255, 0.025)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.admin-course-structure-video:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(22, 119, 255, 0.30);
+
+  box-shadow:
+    0 8px 25px
+    rgba(22, 119, 255, 0.08),
+    0 0 18px
+    rgba(22, 119, 255, 0.04);
+}
+
+
+/* ============================================================
+   VIDEO — ICONO
+   Misma estética que el 01 de módulo.
+   ============================================================ */
+
+.admin-course-structure-video-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 1.3rem;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-video-content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.admin-course-structure-video-label {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  color: #1677ff;
+
+  font-size: 0.65rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+
+.admin-course-structure-video-content h5 {
+  margin: 0;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+.admin-course-structure-video-content > p {
+  margin: 0.4rem 0 0;
+
+  line-height: 1.5;
+
+  font-size: 0.83rem;
+
+  opacity: 0.66;
+}
+
+
+.admin-course-structure-video-meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.6rem;
+
+  margin-top: 0.8rem;
+}
+
+
+.admin-course-structure-video-meta-item {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  min-height: 30px;
+
+  padding:
+    0.3rem
+    0.55rem;
+
+  border:
+    1px solid
+    rgba(128, 128, 128, 0.14);
+
+  border-radius: 7px;
+
+  background:
+    rgba(128, 128, 128, 0.045);
+
+  font-size: 0.72rem;
+}
+
+
+.admin-course-structure-video-meta-item > i {
+  color: #1677ff;
+
+  font-size: 0.85rem;
+}
+
+
+.admin-course-structure-video-meta-item > span {
+  font-weight: 700;
+
+  opacity: 0.72;
+}
+
+
+.admin-course-structure-video-meta-item code {
+  padding:
+    0.15rem
+    0.35rem;
+
+  border-radius: 4px;
+
+  background:
+    rgba(22, 119, 255, 0.07);
+
+  color: #1677ff;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  font-size: 0.7rem;
+}
+
+
+.admin-course-structure-video-meta-item strong {
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   SIN VIDEO
+   ============================================================ */
+
+.admin-course-structure-no-video {
+  display: flex;
+  align-items: center;
+
+  gap: 0.6rem;
+
+  margin-top: 0.9rem;
+
+  padding: 0.7rem 0.8rem;
+
+  border:
+    1px dashed
+    rgba(128, 128, 128, 0.25);
+
+  border-radius: 8px;
+
+  font-size: 0.78rem;
+
+  opacity: 0.62;
+}
+
+
+.admin-course-structure-no-video i {
+  color: #1677ff;
+}
+
+
+/* ============================================================
+   SIN LECCIONES
+   ============================================================ */
+
+.admin-course-structure-no-lessons {
+  display: flex;
+  align-items: center;
+
+  gap: 0.6rem;
+
+  padding: 0.9rem;
+
+  border:
+    1px dashed
+    rgba(128, 128, 128, 0.22);
+
+  border-radius: 9px;
+
+  font-size: 0.8rem;
+
+  opacity: 0.62;
+}
+
+
+.admin-course-structure-no-lessons i {
+  color: #1677ff;
+}
+
+
+/* ============================================================
+   ESTADO VACÍO
+   ============================================================ */
+
+.admin-course-structure-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 1.5rem;
+
+  padding: 3rem 1.5rem;
+
+  text-align: center;
+
+  border:
+    1px dashed
+    rgba(128, 128, 128, 0.20);
+
+  border-radius: 14px;
+
+  background:
+    rgba(128, 128, 128, 0.025);
+}
+
+
+.admin-course-structure-empty-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.16),
+      rgba(22, 119, 255, 0.07)
+    );
+
+  color: #1677ff;
+
+  font-size: 1.35rem;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(22, 119, 255, 0.10);
+}
+
+
+.admin-course-structure-empty h3 {
+  margin: 1rem 0 0.4rem;
+
+  font-size: 1.05rem;
+}
+
+
+.admin-course-structure-empty p {
+  max-width: 450px;
+
+  margin: 0;
+
+  line-height: 1.5;
+
+  font-size: 0.85rem;
+
+  opacity: 0.65;
+}
+
+
+/* ============================================================
+   MODO OSCURO — MÓDULOS
+   ============================================================ */
+
+.private-dark .admin-course-structure-module {
+  background: #111111;
+
+  border-color:
+    rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 8px 28px
+    rgba(0, 0, 0, 0.30);
+}
+
+
+.private-dark .admin-course-structure-module:hover {
+  border-color:
+    rgba(77, 163, 255, 0.25);
+
+  box-shadow:
+    0 14px 35px
+    rgba(0, 0, 0, 0.45),
+    0 0 20px
+    rgba(22, 119, 255, 0.05);
+}
+
+
+.private-dark .admin-course-structure-module-header {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.10),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border-bottom-color:
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.private-dark .admin-course-structure-module-number {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.18),
+      rgba(22, 119, 255, 0.08)
+    );
+
+  color: #4da3ff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(77, 163, 255, 0.12);
+}
+
+
+.private-dark .admin-course-structure-module-count {
+  background:
+    rgba(22, 119, 255, 0.12);
+
+  color: #4da3ff;
+}
+
+
+/* ============================================================
+   MODO OSCURO — LECCIONES
+   ============================================================ */
+
+.private-dark .admin-course-structure-lessons::before {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(77, 163, 255, 0.45),
+      rgba(77, 163, 255, 0.05)
+    );
+}
+
+
+.private-dark .admin-course-structure-lesson {
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border-color:
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.private-dark .admin-course-structure-lesson:hover {
+  background:
+    rgba(22, 119, 255, 0.055);
+
+  border-color:
+    rgba(77, 163, 255, 0.22);
+
+  box-shadow:
+    0 8px 24px
+    rgba(0, 0, 0, 0.28);
+}
+
+
+.private-dark .admin-course-structure-lesson-marker {
+  border-color: #111111;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.18),
+      rgba(22, 119, 255, 0.08)
+    );
+
+  color: #4da3ff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(77, 163, 255, 0.12);
+}
+
+
+.private-dark .admin-course-structure-video-status {
+  background:
+    rgba(25, 135, 84, 0.14);
+
+  color: #5dd39e;
+}
+
+
+/* ============================================================
+   MODO OSCURO — VIDEO
+   ============================================================ */
+
+.private-dark .admin-course-structure-video {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.11),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border-color:
+    rgba(77, 163, 255, 0.18);
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255, 255, 255, 0.025);
+}
+
+
+.private-dark .admin-course-structure-video:hover {
+  border-color:
+    rgba(77, 163, 255, 0.32);
+
+  box-shadow:
+    0 10px 28px
+    rgba(0, 0, 0, 0.30),
+    0 0 18px
+    rgba(22, 119, 255, 0.07);
+}
+
+
+.private-dark .admin-course-structure-video-icon {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 119, 255, 0.18),
+      rgba(22, 119, 255, 0.08)
+    );
+
+  color: #4da3ff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(77, 163, 255, 0.12);
+}
+
+
+.private-dark .admin-course-structure-video-meta-item {
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border-color:
+    rgba(255, 255, 255, 0.09);
+}
+
+
+.private-dark .admin-course-structure-video-meta-item > i {
+  color: #4da3ff;
+}
+
+
+.private-dark .admin-course-structure-video-meta-item code {
+  background:
+    rgba(22, 119, 255, 0.10);
+
+  color: #6bb4ff;
+}
+
+
+.private-dark .admin-course-structure-no-video,
+.private-dark .admin-course-structure-no-lessons {
+  border-color:
+    rgba(255, 255, 255, 0.14);
+}
+
+
+/* ============================================================
+   MODO OSCURO — VACÍO
+   ============================================================ */
+
+.private-dark .admin-course-structure-empty {
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  border-color:
+    rgba(255, 255, 255, 0.12);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .admin-course-structure-summary {
+    grid-template-columns: 1fr;
+  }
+
+
+  .admin-course-structure-summary-item {
+    min-height: 68px;
+  }
+
+
+  .admin-course-structure-module-header {
+    align-items: flex-start;
+  }
+
+
+  .admin-course-structure-module-count {
+    margin-left: auto;
+  }
+
+
+  .admin-course-structure-lesson-header {
+    flex-direction: column;
+  }
+
+
+  .admin-course-structure-video-status {
+    align-self: flex-start;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .admin-course-structure-selector {
+    padding: 1.15rem;
+  }
+
+
+  .admin-course-structure-selector-header {
+    align-items: flex-start;
+  }
+
+
+  .admin-course-structure-course {
+    align-items: flex-start;
+
+    padding: 1.25rem;
+
+    gap: 1rem;
+  }
+
+
+  .admin-course-structure-course-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 13px;
+
+    font-size: 1.3rem;
+  }
+
+
+  .admin-course-structure-course-info h2 {
+    font-size: 1.15rem;
+  }
+
+
+  .admin-course-structure-module-header {
+    flex-wrap: wrap;
+
+    padding: 1rem;
+  }
+
+
+  .admin-course-structure-module-count {
+    width: fit-content;
+
+    margin-left: 0;
+  }
+
+
+  .admin-course-structure-lessons {
+    padding:
+      1rem
+      1rem
+      1rem
+      3.5rem;
+  }
+
+
+  .admin-course-structure-lessons::before {
+    left: 1.75rem;
+  }
+
+
+  .admin-course-structure-lesson {
+    gap: 0.75rem;
+
+    padding: 0.9rem;
+  }
+
+
+  .admin-course-structure-lesson-marker {
+    width: 36px;
+    height: 36px;
+
+    margin-left: -2.7rem;
+
+    font-size: 0.65rem;
+  }
+
+
+  .admin-course-structure-video {
+    flex-direction: column;
+  }
+
+
+  .admin-course-structure-video-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+
+  .admin-course-structure-video-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+
+@media (max-width: 420px) {
+
+  .admin-course-structure-selector-header h2 {
+    font-size: 0.95rem;
+  }
+
+
+  .admin-course-structure-course {
+    flex-direction: column;
+  }
+
+
+  .admin-course-structure-module-number {
+    width: 44px;
+    height: 44px;
+  }
+
+
+  .admin-course-structure-module-info h3 {
+    font-size: 0.98rem;
+  }
+
+}
+
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .admin-course-structure-selector *,
+  .admin-course-structure-module *,
+  .admin-course-structure-lesson *,
+  .admin-course-structure-video *,
+  .admin-course-structure-loading * {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+}

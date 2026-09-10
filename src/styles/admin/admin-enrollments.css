@@ -1,0 +1,698 @@
+/*
+ * ==========================================================
+ * ADMIN ENROLLMENTS
+ * ==========================================================
+ */
+
+.admin-enrollments-container {
+  width: 100%;
+}
+
+
+/*
+ * ==========================================================
+ * ESTADÍSTICAS
+ * ==========================================================
+ */
+
+.admin-enrollments-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: 18px 24px;
+  margin-bottom: 20px;
+}
+
+.admin-enrollments-stats
+.admin-enrollments-stat-card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 20px;
+}
+
+.admin-enrollments-stats
+.admin-enrollments-stat-card:not(:last-child) {
+  border-right: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.admin-enrollments-stats
+.admin-enrollments-stat-card
+.private-card-icon {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.admin-enrollments-stats
+.admin-enrollments-stat-card > div:last-child {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.admin-enrollments-stats
+.admin-enrollments-stat-card
+span,
+.admin-enrollments-stats
+.admin-enrollments-stat-card
+strong {
+  white-space: nowrap;
+}
+
+
+/*
+ * ==========================================================
+ * TARJETA PRINCIPAL
+ * ==========================================================
+ */
+
+.admin-enrollments-card {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/*
+ * ==========================================================
+ * ENCABEZADO
+ * ==========================================================
+ */
+
+.admin-enrollments-card
+.private-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.admin-enrollments-card
+.private-card-header > div:last-child {
+  min-width: 0;
+}
+
+.admin-enrollments-card
+.private-card-header h2 {
+  margin: 0 0 4px;
+}
+
+.admin-enrollments-card
+.private-card-header p {
+  margin: 0;
+}
+
+
+/*
+ * ==========================================================
+ * FILTROS
+ * ==========================================================
+ */
+
+.admin-enrollments-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.admin-enrollments-search {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 280px;
+}
+
+.admin-enrollments-search > i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.admin-enrollments-search input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px 0 42px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.admin-enrollments-filters select {
+  flex: 0 0 260px;
+  width: 260px;
+  height: 44px;
+  padding: 0 38px 0 14px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.admin-enrollments-filters
+.admin-users-view-button {
+  flex: 0 0 auto;
+  height: 44px;
+  white-space: nowrap;
+}
+
+
+/*
+ * ==========================================================
+ * ERROR
+ * ==========================================================
+ */
+
+.admin-enrollments-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+
+/*
+ * ==========================================================
+ * CONTENEDOR DE TABLA
+ * ==========================================================
+ */
+
+.admin-enrollments-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+
+/*
+ * ==========================================================
+ * TABLA
+ * ==========================================================
+ */
+
+.admin-enrollments-table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+}
+
+
+/*
+ * ==========================================================
+ * ENCABEZADOS
+ * ==========================================================
+ */
+
+.admin-enrollments-table thead th {
+  padding: 14px 16px;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+
+/*
+ * ==========================================================
+ * CELDAS
+ * ==========================================================
+ */
+
+.admin-enrollments-table tbody td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.16);
+}
+
+.admin-enrollments-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/*
+ * ==========================================================
+ * ALUMNO
+ * ==========================================================
+ */
+
+.admin-enrollments-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 210px;
+}
+
+.admin-enrollments-user > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.admin-enrollments-user strong {
+  white-space: nowrap;
+}
+
+.admin-enrollments-user span {
+  font-size: 0.82rem;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 190px;
+}
+
+
+/*
+ * ==========================================================
+ * AVATAR
+ * ==========================================================
+ */
+
+.admin-enrollments-avatar,
+.admin-enrollments-avatar-placeholder {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+}
+
+.admin-enrollments-avatar {
+  object-fit: cover;
+}
+
+.admin-enrollments-avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+ * ==========================================================
+ * CURSO
+ * ==========================================================
+ */
+
+.admin-enrollments-table td:nth-child(2) {
+  min-width: 180px;
+}
+
+.admin-enrollments-table td:nth-child(2) strong {
+  display: block;
+  line-height: 1.35;
+}
+
+
+/*
+ * ==========================================================
+ * FECHA
+ * ==========================================================
+ */
+
+.admin-enrollments-table td:nth-child(3) {
+  white-space: nowrap;
+}
+
+
+/*
+ * ==========================================================
+ * PROGRESO
+ * ==========================================================
+ */
+
+.admin-enrollments-progress {
+  width: 120px;
+}
+
+.admin-enrollments-progress-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+}
+
+.admin-enrollments-progress-track {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(128, 128, 128, 0.20);
+}
+
+.admin-enrollments-progress-fill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 999px;
+
+  /* COLOR BASE */
+  background: #3b82f6;
+
+  transition:
+    width 0.4s ease,
+    background-color 0.3s ease;
+}
+
+
+/*
+ * ==========================================================
+ * COLOR SEGÚN AVANCE
+ * ==========================================================
+ */
+
+.admin-enrollments-progress-fill.is-low {
+  background: #ef4444;
+}
+
+.admin-enrollments-progress-fill.is-medium {
+  background: #f59e0b;
+}
+
+.admin-enrollments-progress-fill.is-high {
+  background: #3b82f6;
+}
+
+.admin-enrollments-progress-fill.is-complete {
+  background: #22c55e;
+}
+
+/*
+ * ==========================================================
+ * EXAMEN
+ * ==========================================================
+ */
+
+.admin-enrollments-exam {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.admin-enrollments-exam strong {
+  font-size: 0.95rem;
+}
+
+.admin-enrollments-exam span {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.admin-enrollments-exam .is-approved {
+  opacity: 0.9;
+}
+
+.admin-enrollments-exam .is-rejected {
+  opacity: 0.9;
+}
+
+
+/*
+ * ==========================================================
+ * BADGES
+ * ==========================================================
+ */
+
+.admin-enrollments-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.admin-enrollments-muted {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  opacity: 0.6;
+}
+
+
+/*
+ * ==========================================================
+ * DETALLE
+ * ==========================================================
+ */
+
+.admin-enrollments-table td:last-child {
+  width: 70px;
+  text-align: center;
+}
+
+.admin-enrollments-table td:last-child
+.private-icon-button {
+  margin: 0 auto;
+}
+
+
+/*
+ * ==========================================================
+ * ESTADOS HOVER
+ * ==========================================================
+ */
+
+.admin-enrollments-table tbody tr {
+  transition:
+    background-color 0.2s ease;
+}
+
+.admin-enrollments-table tbody tr:hover {
+  background: rgba(128, 128, 128, 0.06);
+}
+
+
+/*
+ * ==========================================================
+ * ESTADO VACÍO
+ * ==========================================================
+ */
+
+.admin-enrollments-empty {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.admin-enrollments-empty i {
+  font-size: 2rem;
+  opacity: 0.55;
+}
+
+.admin-enrollments-empty h3,
+.admin-enrollments-empty p {
+  margin: 0;
+}
+
+
+/*
+ * ==========================================================
+ * RESPONSIVE — TABLET
+ * ==========================================================
+ */
+
+@media (max-width: 1000px) {
+
+  .admin-enrollments-filters {
+    flex-wrap: wrap;
+  }
+
+  .admin-enrollments-search {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .admin-enrollments-filters select {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+}
+
+
+/*
+ * ==========================================================
+ * RESPONSIVE — ESTADÍSTICAS
+ * ==========================================================
+ */
+
+@media (max-width: 768px) {
+
+  .admin-enrollments-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    padding: 16px;
+  }
+
+  .admin-enrollments-stats
+  .admin-enrollments-stat-card {
+    flex: 1 1 50%;
+    justify-content: flex-start;
+    padding: 10px 16px;
+  }
+
+  .admin-enrollments-stats
+  .admin-enrollments-stat-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .admin-enrollments-stats
+  .admin-enrollments-stat-card:nth-child(1),
+  .admin-enrollments-stats
+  .admin-enrollments-stat-card:nth-child(2) {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  }
+
+}
+
+
+/*
+ * ==========================================================
+ * RESPONSIVE — MÓVIL
+ * ==========================================================
+ */
+
+@media (max-width: 480px) {
+
+  .admin-enrollments-stats {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-enrollments-stats
+  .admin-enrollments-stat-card {
+    flex: none;
+    width: 100%;
+    justify-content: flex-start;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  }
+
+  .admin-enrollments-stats
+  .admin-enrollments-stat-card:last-child {
+    border-bottom: none;
+  }
+
+  .admin-enrollments-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-enrollments-search,
+  .admin-enrollments-filters select,
+  .admin-enrollments-filters .admin-users-view-button {
+    width: 100%;
+    flex: none;
+  }
+
+}
+
+/*
+ * ==========================================================
+ * INPUT Y SELECT — TEMA
+ * ==========================================================
+ */
+
+.admin-enrollments-search input,
+.admin-enrollments-filters select {
+  color: inherit;
+  background: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.30);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-enrollments-search input::placeholder {
+  color: inherit;
+  opacity: 0.55;
+}
+
+.admin-enrollments-search input:focus,
+.admin-enrollments-filters select:focus {
+  outline: none;
+  border-color: rgba(128, 128, 128, 0.55);
+}
+
+
+/*
+ * ==========================================================
+ * MODO OSCURO
+ * ==========================================================
+ */
+
+.dark-background
+.admin-enrollments-search input,
+.dark-background
+.admin-enrollments-filters select,
+.private-dark
+.admin-enrollments-search input,
+.private-dark
+.admin-enrollments-filters select {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-background
+.admin-enrollments-search input::placeholder,
+.private-dark
+.admin-enrollments-search input::placeholder {
+  color: #ffffff;
+  opacity: 0.55;
+}
+
+.dark-background
+.admin-enrollments-search input:focus,
+.dark-background
+.admin-enrollments-filters select:focus,
+.private-dark
+.admin-enrollments-search input:focus,
+.private-dark
+.admin-enrollments-filters select:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+
+/*
+ * ==========================================================
+ * OPCIONES DEL SELECT
+ * ==========================================================
+ */
+
+.dark-background
+.admin-enrollments-filters select option,
+.private-dark
+.admin-enrollments-filters select option {
+  background: #1f1f1f;
+  color: #ffffff;
+}

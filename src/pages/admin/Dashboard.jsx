@@ -131,6 +131,48 @@ function Dashboard() {
 
         </Link>
 
+          {/* ======================================================
+            ESTRUCTURA DEL CURSO
+            ====================================================== */}
+        
+       <Link
+          to="/admin/course-structure"
+          className="private-card admin-dashboard-card"
+        >
+          <div className="private-card-header">
+
+            <div className="private-card-icon">
+
+              <i className="bi bi-diagram-3"></i>
+
+            </div>
+
+            <div>
+
+              <h2>
+                Estructura de cursos
+              </h2>
+
+              <p>
+                Vista integral del contenido académico
+              </p>
+
+            </div>
+
+          </div>
+
+          <div className="admin-dashboard-card-footer">
+
+            <span>
+              Ver estructura
+            </span>
+
+            <i className="bi bi-arrow-right"></i>
+
+          </div>
+
+        </Link>
+
 
         {/* ======================================================
             INSCRIPCIONES

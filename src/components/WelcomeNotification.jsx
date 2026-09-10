@@ -191,6 +191,20 @@ function WelcomeNotification() {
 
       },
 
+      "/admin/course-structure": {
+        title:
+          "Estructura de cursos",
+        description:
+          "Consulta en una sola vista la estructura completa de un curso, incluyendo módulos, lecciones y videos.",
+      },
+
+      "/admin/enrollments": {
+        title:
+          "Inscripciones",
+        description:
+          "Consulta y da seguimiento al avance académico de los alumnos inscritos en los cursos.",
+      },
+
     };
 
 

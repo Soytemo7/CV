@@ -1,0 +1,2134 @@
+/*
+ * ==========================================================
+ * ADMIN ENROLLMENT DETAIL
+ * ==========================================================
+ */
+
+
+/*
+ * ==========================================================
+ * OVERLAY
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.68);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  animation:
+    adminEnrollmentOverlayIn
+    0.25s ease
+    both;
+}
+
+
+/*
+ * ==========================================================
+ * MODAL
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-modal {
+  --enrollment-detail-bg: #ffffff;
+  --enrollment-detail-surface: rgba(128, 128, 128, 0.045);
+  --enrollment-detail-surface-strong: rgba(128, 128, 128, 0.035);
+  --enrollment-detail-border: rgba(128, 128, 128, 0.18);
+  --enrollment-detail-divider: rgba(128, 128, 128, 0.14);
+
+  position: relative;
+
+  width: min(1100px, 100%);
+  max-height: calc(100vh - 48px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: var(--enrollment-detail-bg);
+
+  color: inherit;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.30);
+
+  animation:
+    adminEnrollmentModalIn
+    0.3s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+/*
+ * ==========================================================
+ * HEADER
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-header {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 26px;
+
+  border-bottom:
+    1px solid
+    var(--enrollment-detail-border);
+
+  background: var(--enrollment-detail-bg);
+}
+
+
+.admin-enrollment-detail-header-main {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+.admin-enrollment-detail-header-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: rgba(59, 130, 246, 0.10);
+
+  font-size: 1.25rem;
+
+  color: #3b82f6;
+}
+
+
+.admin-enrollment-detail-eyebrow {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0.60;
+}
+
+
+.admin-enrollment-detail-header h2 {
+  margin: 0;
+
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+
+.admin-enrollment-detail-header p {
+  margin: 4px 0 0;
+
+  font-size: 0.85rem;
+
+  opacity: 0.65;
+}
+
+
+.admin-enrollment-detail-close {
+  flex-shrink: 0;
+}
+
+
+/*
+ * ==========================================================
+ * CONTENIDO
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-content {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 24px 26px 28px;
+
+  background: var(--enrollment-detail-bg);
+
+  scrollbar-width: thin;
+}
+
+
+/*
+ * ==========================================================
+ * ALUMNO
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-student {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 17px 18px;
+
+  margin-bottom: 18px;
+
+  border:
+    1px solid
+    var(--enrollment-detail-border);
+
+  border-radius: 14px;
+
+  background:
+    var(--enrollment-detail-surface);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.admin-enrollment-detail-student:hover {
+  transform: translateY(-1px);
+
+  border-color:
+    rgba(59, 130, 246, 0.25);
+}
+
+
+.admin-enrollment-detail-student-avatar {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+}
+
+
+.admin-enrollment-detail-student-avatar img,
+.admin-enrollment-detail-student-avatar > div {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+}
+
+
+.admin-enrollment-detail-student-avatar img {
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.admin-enrollment-detail-student-avatar > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(59, 130, 246, 0.12);
+
+  color: #3b82f6;
+
+  font-size: 1.4rem;
+}
+
+
+.admin-enrollment-detail-student-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.admin-enrollment-detail-student-info > span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  font-size: 0.66rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0.55;
+}
+
+
+.admin-enrollment-detail-student-info h3 {
+  margin: 0;
+
+  font-size: 1rem;
+}
+
+
+.admin-enrollment-detail-student-info p {
+  margin: 2px 0;
+
+  font-size: 0.82rem;
+
+  opacity: 0.70;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.admin-enrollment-detail-student-info small {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 0.68rem;
+
+  opacity: 0.50;
+}
+
+
+.admin-enrollment-detail-status {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+
+.admin-enrollment-detail-status.is-completed {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+}
+
+
+.admin-enrollment-detail-status.is-progress {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+}
+
+
+/*
+ * ==========================================================
+ * RESUMEN
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  margin-bottom: 18px;
+
+  border:
+    1px solid
+    var(--enrollment-detail-border);
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  background: var(--enrollment-detail-bg);
+}
+
+
+.admin-enrollment-detail-summary-item {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 15px 16px;
+
+  background: var(--enrollment-detail-bg);
+}
+
+
+.admin-enrollment-detail-summary-item
++ .admin-enrollment-detail-summary-item {
+  border-left:
+    1px solid
+    var(--enrollment-detail-divider);
+}
+
+
+.admin-enrollment-detail-summary-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    rgba(59, 130, 246, 0.09);
+
+  color: #3b82f6;
+}
+
+
+.admin-enrollment-detail-summary-item > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.admin-enrollment-detail-summary-item span {
+  font-size: 0.63rem;
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+
+  opacity: 0.50;
+}
+
+
+.admin-enrollment-detail-summary-item strong {
+  display: block;
+
+  font-size: 0.82rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/*
+ * ==========================================================
+ * PROGRESO GENERAL
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-progress-card {
+  margin-bottom: 28px;
+
+  padding: 17px 18px;
+
+  border:
+    1px solid
+    var(--enrollment-detail-border);
+
+  border-radius: 14px;
+
+  background:
+    var(--enrollment-detail-surface-strong);
+}
+
+
+.admin-enrollment-detail-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 12px;
+}
+
+
+.admin-enrollment-detail-progress-header > div:first-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.admin-enrollment-detail-section-label {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  opacity: 0.55;
+}
+
+
+.admin-enrollment-detail-section-label i {
+  color: #3b82f6;
+}
+
+
+.admin-enrollment-detail-progress-header strong {
+  font-size: 0.88rem;
+}
+
+
+.admin-enrollment-detail-progress-header > b {
+  font-size: 1.35rem;
+}
+
+
+.admin-enrollment-detail-progress-track {
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(128, 128, 128, 0.18);
+}
+
+
+.admin-enrollment-detail-progress-fill {
+  height: 100%;
+
+  min-width: 2px;
+
+  border-radius: inherit;
+
+  transition:
+    width 0.5s ease,
+    background-color 0.3s ease;
+}
+
+
+.admin-enrollment-detail-progress-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 8px;
+
+  font-size: 0.72rem;
+
+  opacity: 0.60;
+}
+
+
+.admin-enrollment-detail-progress-footer
+.is-complete {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #22c55e;
+
+  font-weight: 700;
+
+  opacity: 1;
+}
+
+
+/*
+ * ==========================================================
+ * SECCIONES
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-section {
+  margin-top: 28px;
+
+  background: transparent;
+}
+
+
+.admin-enrollment-detail-section-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 13px;
+}
+
+
+.admin-enrollment-detail-section-heading-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background:
+    rgba(59, 130, 246, 0.09);
+
+  color: #3b82f6;
+}
+
+
+.admin-enrollment-detail-section-heading h3 {
+  margin: 0;
+
+  font-size: 0.95rem;
+}
+
+
+.admin-enrollment-detail-section-heading p {
+  margin: 2px 0 0;
+
+  font-size: 0.75rem;
+
+  opacity: 0.55;
+}
+
+
+/*
+ * ==========================================================
+ * MÓDULOS
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-modules {
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+
+  background: transparent;
+}
+
+
+.admin-enrollment-detail-module {
+  padding: 15px 16px;
+
+  border:
+    1px solid
+    var(--enrollment-detail-border);
+
+  border-radius: 13px;
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.admin-enrollment-detail-module:hover {
+  border-color:
+    rgba(59, 130, 246, 0.25);
+
+  transform: translateY(-1px);
+}
+
+
+.admin-enrollment-detail-module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+.admin-enrollment-detail-module-header > div:first-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.admin-enrollment-detail-module-header span {
+  font-size: 0.62rem;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  opacity: 0.50;
+}
+
+
+.admin-enrollment-detail-module-header strong {
+  font-size: 0.88rem;
+}
+
+
+.admin-enrollment-detail-module-percentage b {
+  font-size: 0.95rem;
+}
+
+
+.admin-enrollment-detail-module-track {
+  width: 100%;
+  height: 5px;
+
+  margin-top: 11px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(128, 128, 128, 0.17);
+}
+
+
+.admin-enrollment-detail-module-fill {
+  height: 100%;
+
+  min-width: 2px;
+
+  border-radius: inherit;
+
+  transition:
+    width 0.4s ease;
+}
+
+
+/*
+ * ==========================================================
+ * LECCIONES
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-lessons {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 12px;
+
+  border-top:
+    1px solid
+    var(--enrollment-detail-divider);
+
+  background: transparent;
+}
+
+
+.admin-enrollment-detail-lesson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 11px 2px;
+
+  border-bottom:
+    1px solid
+    var(--enrollment-detail-divider);
+
+  background: transparent;
+}
+
+
+.admin-enrollment-detail-lesson:last-child {
+  border-bottom: none;
+}
+
+
+.admin-enrollment-detail-lesson-main {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  flex: 1;
+}
+
+
+.admin-enrollment-detail-lesson-icon {
+  width: 29px;
+  height: 29px;
+  min-width: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background:
+    rgba(128, 128, 128, 0.10);
+
+  font-size: 0.72rem;
+
+  opacity: 0.75;
+}
+
+
+.admin-enrollment-detail-lesson-main > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.admin-enrollment-detail-lesson-main strong {
+  font-size: 0.79rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.admin-enrollment-detail-lesson-main span {
+  font-size: 0.67rem;
+
+  opacity: 0.55;
+}
+
+
+.admin-enrollment-detail-lesson-progress {
+  width: 105px;
+  min-width: 105px;
+}
+
+
+.admin-enrollment-detail-lesson-progress > span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  text-align: right;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+
+.admin-enrollment-detail-lesson-progress > div {
+  width: 100%;
+  height: 4px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(128, 128, 128, 0.16);
+}
+
+
+.admin-enrollment-detail-lesson-progress > div > div {
+  height: 100%;
+
+  min-width: 2px;
+
+  border-radius: inherit;
+}
+
+
+/*
+ * ==========================================================
+ * EXAMEN
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-attempts {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  background: transparent;
+}
+
+
+.admin-enrollment-detail-attempt {
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 12px 14px;
+
+  border:
+    1px solid
+    var(--enrollment-detail-border);
+
+  border-radius: 11px;
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.admin-enrollment-detail-attempt:hover {
+  transform: translateX(2px);
+
+  border-color:
+    rgba(59, 130, 246, 0.25);
+}
+
+
+.admin-enrollment-detail-attempt-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    rgba(59, 130, 246, 0.09);
+
+  color: #3b82f6;
+}
+
+
+.admin-enrollment-detail-attempt-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.admin-enrollment-detail-attempt-info strong {
+  font-size: 0.78rem;
+}
+
+
+.admin-enrollment-detail-attempt-info span {
+  font-size: 0.66rem;
+
+  opacity: 0.55;
+}
+
+
+.admin-enrollment-detail-attempt-score {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 1px;
+}
+
+
+.admin-enrollment-detail-attempt-score strong {
+  font-size: 0.9rem;
+}
+
+
+.admin-enrollment-detail-attempt-score span {
+  font-size: 0.61rem;
+
+  opacity: 0.50;
+}
+
+
+.admin-enrollment-detail-attempt-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+.admin-enrollment-detail-attempt-status.is-approved {
+  background:
+    rgba(34, 197, 94, 0.11);
+
+  color: #16a34a;
+}
+
+
+.admin-enrollment-detail-attempt-status.is-rejected {
+  background:
+    rgba(239, 68, 68, 0.11);
+
+  color: #dc2626;
+}
+
+
+/*
+ * ==========================================================
+ * CONSTANCIA
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-certificate {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 15px;
+
+  border:
+    1px solid
+    rgba(34, 197, 94, 0.22);
+
+  border-radius: 13px;
+
+  background:
+    rgba(34, 197, 94, 0.055);
+}
+
+
+.admin-enrollment-detail-certificate-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    rgba(34, 197, 94, 0.12);
+
+  color: #16a34a;
+
+  font-size: 1.25rem;
+}
+
+
+.admin-enrollment-detail-certificate-info {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.admin-enrollment-detail-certificate-info strong {
+  font-size: 0.84rem;
+}
+
+
+.admin-enrollment-detail-certificate-info span {
+  font-size: 0.76rem;
+
+  opacity: 0.70;
+}
+
+
+.admin-enrollment-detail-certificate-info small {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 0.66rem;
+
+  opacity: 0.55;
+}
+
+
+.admin-enrollment-detail-certificate-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(34, 197, 94, 0.11);
+
+  color: #16a34a;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+
+/*
+ * ==========================================================
+ * VACÍO
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-empty {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 16px;
+
+  border:
+    1px dashed
+    var(--enrollment-detail-border);
+
+  border-radius: 11px;
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  opacity: 0.65;
+}
+
+
+.admin-enrollment-detail-empty > div {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    rgba(128, 128, 128, 0.08);
+}
+
+
+.admin-enrollment-detail-empty span {
+  font-size: 0.75rem;
+}
+
+
+/*
+ * ==========================================================
+ * FOOTER
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-footer {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 15px 26px;
+
+  border-top:
+    1px solid
+    var(--enrollment-detail-border);
+
+  background:
+    var(--enrollment-detail-bg);
+}
+
+
+.admin-enrollment-detail-footer > div {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 0.65rem;
+
+  opacity: 0.50;
+}
+
+
+.admin-enrollment-detail-footer strong {
+  max-width: 260px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-weight: 500;
+}
+
+
+/*
+ * ==========================================================
+ * LOADING
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-loading {
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  text-align: center;
+
+  background: var(--enrollment-detail-bg);
+}
+
+
+.admin-enrollment-detail-loading-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 15px;
+
+  background:
+    rgba(59, 130, 246, 0.10);
+
+  color: #3b82f6;
+
+  font-size: 1.5rem;
+
+  animation:
+    adminEnrollmentPulse
+    1.4s
+    ease-in-out
+    infinite;
+}
+
+
+.admin-enrollment-detail-loading h3 {
+  margin: 0 0 5px;
+}
+
+
+.admin-enrollment-detail-loading p {
+  margin: 0;
+
+  font-size: 0.8rem;
+
+  opacity: 0.60;
+}
+
+
+/*
+ * ==========================================================
+ * COLORES DE PROGRESO
+ * ==========================================================
+ */
+
+.admin-enrollment-detail-progress-fill.is-low,
+.admin-enrollment-detail-module-fill.is-low,
+.admin-enrollment-detail-lesson-progress
+.is-low {
+  background: #ef4444;
+}
+
+
+.admin-enrollment-detail-progress-fill.is-medium,
+.admin-enrollment-detail-module-fill.is-medium,
+.admin-enrollment-detail-lesson-progress
+.is-medium {
+  background: #f59e0b;
+}
+
+
+.admin-enrollment-detail-progress-fill.is-high,
+.admin-enrollment-detail-module-fill.is-high,
+.admin-enrollment-detail-lesson-progress
+.is-high {
+  background: #3b82f6;
+}
+
+
+.admin-enrollment-detail-progress-fill.is-complete,
+.admin-enrollment-detail-module-fill.is-complete,
+.admin-enrollment-detail-lesson-progress
+.is-complete {
+  background: #22c55e;
+}
+
+
+/*
+ * ==========================================================
+ * MODO OSCURO
+ * ==========================================================
+ *
+ * IMPORTANTE:
+ * Aquí no dependemos de que cada hijo detecte el tema.
+ * Cambiamos las variables en el MODAL y todos los elementos
+ * internos utilizan esas variables.
+ *
+ * ==========================================================
+ */
+
+.dark-background .admin-enrollment-detail-modal,
+.private-dark .admin-enrollment-detail-modal,
+.admin-enrollment-detail-modal.dark-background,
+.admin-enrollment-detail-modal.private-dark {
+
+  --enrollment-detail-bg: #181818;
+  --enrollment-detail-surface: rgba(255, 255, 255, 0.045);
+  --enrollment-detail-surface-strong: rgba(255, 255, 255, 0.035);
+  --enrollment-detail-border: rgba(255, 255, 255, 0.10);
+  --enrollment-detail-divider: rgba(255, 255, 255, 0.08);
+
+  background:
+    #181818;
+
+  color:
+    #ffffff;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.60);
+}
+
+
+/*
+ * ==========================================================
+ * REFUERZO DE SUPERFICIES OSCURAS
+ * ==========================================================
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-content,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-content,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-content,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-content {
+
+  background:
+    var(--enrollment-detail-bg);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-header,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-header,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-header,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-header {
+
+  background:
+    var(--enrollment-detail-bg);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-footer,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-footer,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-footer,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-footer {
+
+  background:
+    var(--enrollment-detail-bg);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-summary,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-summary {
+
+  background:
+    var(--enrollment-detail-bg);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-summary-item,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-summary-item {
+
+  background:
+    var(--enrollment-detail-bg);
+}
+
+
+/*
+ * ==========================================================
+ * BORDES EN MODO OSCURO
+ * ==========================================================
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item
++ .admin-enrollment-detail-summary-item,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item
++ .admin-enrollment-detail-summary-item,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-summary-item
++ .admin-enrollment-detail-summary-item,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-summary-item
++ .admin-enrollment-detail-summary-item {
+
+  border-left-color:
+    var(--enrollment-detail-divider);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item:nth-child(3),
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item:nth-child(4),
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item:nth-child(3),
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item:nth-child(4),
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-summary-item:nth-child(3),
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-summary-item:nth-child(4),
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-summary-item:nth-child(3),
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-summary-item:nth-child(4) {
+
+  border-top-color:
+    var(--enrollment-detail-divider);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-student,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-student,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-student,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-student {
+
+  background:
+    var(--enrollment-detail-surface);
+
+  border-color:
+    var(--enrollment-detail-border);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-progress-card,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-progress-card,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-progress-card,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-progress-card {
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  border-color:
+    var(--enrollment-detail-border);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-module,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-module,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-module,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-module {
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  border-color:
+    var(--enrollment-detail-border);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-attempt,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-attempt,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-attempt,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-attempt {
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  border-color:
+    var(--enrollment-detail-border);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-empty,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-empty,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-empty,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-empty {
+
+  background:
+    var(--enrollment-detail-surface-strong);
+
+  border-color:
+    var(--enrollment-detail-border);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-lessons,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-lessons,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-lessons,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-lessons {
+
+  background:
+    transparent;
+
+  border-top-color:
+    var(--enrollment-detail-divider);
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-lesson,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-lesson,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-lesson,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-lesson {
+
+  background:
+    transparent;
+
+  border-bottom-color:
+    var(--enrollment-detail-divider);
+}
+
+
+/*
+ * ==========================================================
+ * RESPONSIVE
+ * ==========================================================
+ */
+
+@media (max-width: 900px) {
+
+  .admin-enrollment-detail-summary {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-enrollment-detail-summary-item:nth-child(3) {
+    border-left: none;
+    border-top:
+      1px solid
+      var(--enrollment-detail-divider);
+  }
+
+  .admin-enrollment-detail-summary-item:nth-child(4) {
+    border-top:
+      1px solid
+      var(--enrollment-detail-divider);
+  }
+
+  .admin-enrollment-detail-attempt {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr)
+      auto;
+  }
+
+  .admin-enrollment-detail-attempt-status {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+
+}
+
+
+/*
+ * ==========================================================
+ * TABLET
+ * ==========================================================
+ */
+
+@media (max-width: 700px) {
+
+  .admin-enrollment-detail-overlay {
+    padding: 12px;
+  }
+
+  .admin-enrollment-detail-modal {
+    max-height: calc(100vh - 24px);
+    border-radius: 15px;
+  }
+
+  .admin-enrollment-detail-header {
+    padding: 17px;
+  }
+
+  .admin-enrollment-detail-content {
+    padding: 17px;
+  }
+
+  .admin-enrollment-detail-footer {
+    padding: 13px 17px;
+  }
+
+  .admin-enrollment-detail-student {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .admin-enrollment-detail-status {
+    margin-left: 71px;
+  }
+
+  .admin-enrollment-detail-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-enrollment-detail-summary-item {
+    border-left: none !important;
+
+    border-top:
+      1px solid
+      var(--enrollment-detail-divider);
+  }
+
+  .admin-enrollment-detail-summary-item:first-child {
+    border-top: none;
+  }
+
+}
+
+
+/*
+ * ==========================================================
+ * MÓVIL
+ * ==========================================================
+ */
+
+@media (max-width: 480px) {
+
+  .admin-enrollment-detail-overlay {
+    padding: 0;
+  }
+
+  .admin-enrollment-detail-modal {
+    width: 100%;
+    max-height: 100vh;
+
+    border-radius: 0;
+  }
+
+  .admin-enrollment-detail-header-main {
+    gap: 10px;
+  }
+
+  .admin-enrollment-detail-header-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .admin-enrollment-detail-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .admin-enrollment-detail-header p {
+    display: none;
+  }
+
+  .admin-enrollment-detail-content {
+    padding: 14px;
+  }
+
+  .admin-enrollment-detail-student {
+    padding: 14px;
+  }
+
+  .admin-enrollment-detail-student-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  .admin-enrollment-detail-status {
+    width: 100%;
+    margin-left: 0;
+
+    justify-content: center;
+  }
+
+  .admin-enrollment-detail-progress-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-enrollment-detail-lesson {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-enrollment-detail-lesson-progress {
+    width: 100%;
+  }
+
+  .admin-enrollment-detail-lesson-progress > span {
+    text-align: left;
+  }
+
+  .admin-enrollment-detail-attempt {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+
+    gap: 10px;
+  }
+
+  .admin-enrollment-detail-attempt-score {
+    align-items: flex-start;
+    grid-column: 2;
+  }
+
+  .admin-enrollment-detail-attempt-status {
+    grid-column: 2;
+  }
+
+  .admin-enrollment-detail-certificate {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .admin-enrollment-detail-certificate-status {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-enrollment-detail-footer > div {
+    display: none;
+  }
+
+  .admin-enrollment-detail-footer {
+    justify-content: flex-end;
+  }
+
+}
+
+
+/*
+ * ==========================================================
+ * ANIMACIONES
+ * ==========================================================
+ */
+
+@keyframes adminEnrollmentOverlayIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes adminEnrollmentModalIn {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(18px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes adminEnrollmentPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.70;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+}
+
+/*
+ * ==========================================================
+ * TIPOGRAFÍA — MODO OSCURO
+ * ==========================================================
+ */
+
+.dark-background .admin-enrollment-detail-modal,
+.private-dark .admin-enrollment-detail-modal,
+.admin-enrollment-detail-modal.dark-background,
+.admin-enrollment-detail-modal.private-dark {
+
+  color: #f5f5f5;
+}
+
+
+/*
+ * TÍTULOS PRINCIPALES
+ */
+
+.dark-background .admin-enrollment-detail-modal h2,
+.dark-background .admin-enrollment-detail-modal h3,
+.dark-background .admin-enrollment-detail-modal strong,
+.private-dark .admin-enrollment-detail-modal h2,
+.private-dark .admin-enrollment-detail-modal h3,
+.private-dark .admin-enrollment-detail-modal strong,
+.admin-enrollment-detail-modal.dark-background h2,
+.admin-enrollment-detail-modal.dark-background h3,
+.admin-enrollment-detail-modal.dark-background strong,
+.admin-enrollment-detail-modal.private-dark h2,
+.admin-enrollment-detail-modal.private-dark h3,
+.admin-enrollment-detail-modal.private-dark strong {
+
+  color: #f5f5f5;
+}
+
+
+/*
+ * TEXTO NORMAL
+ */
+
+.dark-background .admin-enrollment-detail-modal p,
+.dark-background .admin-enrollment-detail-modal span,
+.dark-background .admin-enrollment-detail-modal small,
+.dark-background .admin-enrollment-detail-modal b,
+.private-dark .admin-enrollment-detail-modal p,
+.private-dark .admin-enrollment-detail-modal span,
+.private-dark .admin-enrollment-detail-modal small,
+.private-dark .admin-enrollment-detail-modal b,
+.admin-enrollment-detail-modal.dark-background p,
+.admin-enrollment-detail-modal.dark-background span,
+.admin-enrollment-detail-modal.dark-background small,
+.admin-enrollment-detail-modal.dark-background b,
+.admin-enrollment-detail-modal.private-dark p,
+.admin-enrollment-detail-modal.private-dark span,
+.admin-enrollment-detail-modal.private-dark small,
+.admin-enrollment-detail-modal.private-dark b {
+
+  color: #e5e5e5;
+}
+
+
+/*
+ * TEXTOS SECUNDARIOS
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-eyebrow,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-student-info > span,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-section-label,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-eyebrow,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-student-info > span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-section-label,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-eyebrow,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-student-info > span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-section-label,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-eyebrow,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-student-info > span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-section-label {
+
+  color: #a8a8a8;
+}
+
+
+/*
+ * EMAIL / UID / FECHAS / DESCRIPCIONES
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-student-info p,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-student-info small,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-section-heading p,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-lesson-main span,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-attempt-info span,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-attempt-score span,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-certificate-info small,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-student-info p,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-student-info small,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-section-heading p,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-lesson-main span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-attempt-info span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-attempt-score span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-certificate-info small,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-student-info p,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-student-info small,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-section-heading p,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-lesson-main span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-attempt-info span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-attempt-score span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-certificate-info small,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-student-info p,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-student-info small,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-section-heading p,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-lesson-main span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-attempt-info span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-attempt-score span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-certificate-info small {
+
+  color: #b8b8b8;
+}
+
+
+/*
+ * ETIQUETAS DE RESUMEN
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-summary-item span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-summary-item span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-summary-item span {
+
+  color: #a8a8a8;
+}
+
+
+/*
+ * FOOTER / TEXTO AUXILIAR
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-footer > div,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-footer > div,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-footer > div,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-footer > div {
+
+  color: #999999;
+}
+
+
+/*
+ * NOMBRES DE MÓDULOS
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-module-header span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-module-header span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-module-header span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-module-header span {
+
+  color: #a8a8a8;
+}
+
+
+/*
+ * PORCENTAJES
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-module-percentage b,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-progress-header > b,
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-lesson-progress > span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-module-percentage b,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-progress-header > b,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-lesson-progress > span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-module-percentage b,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-progress-header > b,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-lesson-progress > span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-module-percentage b,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-progress-header > b,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-lesson-progress > span {
+
+  color: #f5f5f5;
+}
+
+
+/*
+ * TEXTO DEL CERTIFICADO
+ */
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-certificate-info strong,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-certificate-info strong,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-certificate-info strong,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-certificate-info strong {
+
+  color: #f5f5f5;
+}
+
+
+.dark-background .admin-enrollment-detail-modal
+.admin-enrollment-detail-certificate-info span,
+.private-dark .admin-enrollment-detail-modal
+.admin-enrollment-detail-certificate-info span,
+.admin-enrollment-detail-modal.dark-background
+.admin-enrollment-detail-certificate-info span,
+.admin-enrollment-detail-modal.private-dark
+.admin-enrollment-detail-certificate-info span {
+
+  color: #d0d0d0;
+}
