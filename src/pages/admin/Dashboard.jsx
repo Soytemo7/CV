@@ -27,7 +27,8 @@ function Dashboard() {
 
         <p>
           Gestiona desde un solo lugar los usuarios,
-          cursos, inscripciones, evaluaciones y certificados
+          cursos, estructura académica, exámenes,
+          inscripciones, evaluaciones y certificados
           de la plataforma académica.
         </p>
 
@@ -219,13 +220,56 @@ function Dashboard() {
 
         </Link>
 
+        {/* ======================================================
+            EXÁMENES
+            ====================================================== */}
+
+        <Link
+          to="/admin/exams"
+          className="private-card admin-dashboard-card"
+        >
+
+          <div className="private-card-header">
+
+            <div className="private-card-icon">
+
+              <i className="bi bi-file-earmark-text"></i>
+
+            </div>
+
+            <div>
+
+              <h2>
+                Exámenes
+              </h2>
+
+              <p>
+                Configuración de evaluaciones
+              </p>
+
+            </div>
+
+          </div>
+
+          <div className="admin-dashboard-card-footer">
+
+            <span>
+              Configurar exámenes
+            </span>
+
+            <i className="bi bi-arrow-right"></i>
+
+          </div>
+
+        </Link>
+
 
         {/* ======================================================
             EVALUACIONES
             ====================================================== */}
 
         <Link
-          to="/admin/assessments"
+          to="/admin/evaluaciones"
           className="private-card admin-dashboard-card"
         >
 

@@ -1,0 +1,2078 @@
+/* ============================================================
+   ADMIN — EXÁMENES
+
+   Archivo: admin-exams.css
+
+   ============================================================ */
+
+:root {
+  --exam-primary: #0f4c5c;
+  --exam-primary-dark: #083642;
+
+  --exam-accent: #2a9d8f;
+  --exam-accent-dark: #1f776d;
+
+  --exam-blue: #2563eb;
+  --exam-blue-dark: #1d4ed8;
+
+  --exam-success: #198754;
+  --exam-warning: #d39e00;
+  --exam-danger: #dc3545;
+
+  --exam-light-bg: #f7f9fc;
+  --exam-light-card: #ffffff;
+  --exam-light-border: #e6eaf0;
+  --exam-light-text: #1f2937;
+  --exam-light-muted: #6b7280;
+
+  --exam-dark-bg: #10141a;
+  --exam-dark-card: #171c23;
+  --exam-dark-card-soft: #1d232c;
+  --exam-dark-border: rgba(255, 255, 255, 0.09);
+  --exam-dark-text: #f5f7fa;
+  --exam-dark-muted: #b8c0cc;
+
+  --exam-radius: 18px;
+  --exam-radius-small: 12px;
+
+  --exam-shadow:
+    0 14px 40px rgba(15, 23, 42, 0.08);
+
+  --exam-shadow-dark:
+    0 14px 40px rgba(0, 0, 0, 0.28);
+}
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+.admin-exams-page {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-bottom: 60px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.admin-exams-page .private-page-header {
+  margin-bottom: 30px;
+}
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+
+.admin-exams-summary {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 28px;
+}
+
+.admin-exams-stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 112px;
+  padding: 22px;
+  border-radius: var(--exam-radius);
+  background: var(--exam-light-card);
+  border: 1px solid var(--exam-light-border);
+  box-shadow: var(--exam-shadow);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.admin-exams-stat:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 45px rgba(
+      15,
+      23,
+      42,
+      0.12
+    );
+}
+
+.admin-exams-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background:
+    rgba(37, 99, 235, 0.10);
+  color:
+    var(--exam-blue);
+  font-size: 22px;
+}
+
+.admin-exams-stat > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-exams-stat span {
+  color:
+    var(--exam-light-muted);
+  font-size: 13px;
+}
+
+.admin-exams-stat strong {
+  color:
+    var(--exam-light-text);
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.admin-exams-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 1400px;
+  margin:
+    0 auto 24px;
+}
+
+.admin-exams-error span {
+  flex: 1;
+}
+
+.admin-exams-error button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ============================================================
+   LIST
+   ============================================================ */
+
+.admin-exams-list {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+/* ============================================================
+   LIST HEADER
+   ============================================================ */
+
+.admin-exams-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 18px;
+}
+
+.admin-exams-list-header h2 {
+  margin:
+    4px 0 4px;
+  color:
+    var(--exam-light-text);
+  font-size: 24px;
+}
+
+.admin-exams-list-header p {
+  margin: 0;
+  color:
+    var(--exam-light-muted);
+  font-size: 14px;
+}
+
+/* ============================================================
+   GRID
+   ============================================================ */
+
+.admin-exams-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  width: 100%;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+
+.admin-exams-card {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+  border-radius:
+    var(--exam-radius);
+  background:
+    var(--exam-light-card);
+  border:
+    1px solid var(--exam-light-border);
+  box-shadow:
+    var(--exam-shadow);
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.admin-exams-card:hover {
+  transform:
+    translateY(-3px);
+  box-shadow:
+    0 18px 45px rgba(
+      15,
+      23,
+      42,
+      0.12
+    );
+}
+
+.admin-exams-card-icon {
+  flex-shrink: 0;
+}
+
+.admin-exams-card-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.admin-exams-card-course {
+  display: block;
+  margin-bottom: 5px;
+  color:
+    var(--exam-blue);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-exams-card h3 {
+  margin:
+    0 0 8px;
+  color:
+    var(--exam-light-text);
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.admin-exams-card p {
+  margin:
+    0 0 18px;
+  color:
+    var(--exam-light-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   META
+   ============================================================ */
+
+.admin-exams-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-bottom: 18px;
+}
+
+.admin-exams-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color:
+    var(--exam-light-muted);
+  font-size: 13px;
+}
+
+.admin-exams-card-meta i {
+  font-size: 14px;
+}
+
+.admin-exams-status {
+  font-weight: 600;
+}
+
+.admin-exams-status.active {
+  color:
+    var(--exam-success) !important;
+}
+
+.admin-exams-status.pending {
+  color:
+    var(--exam-warning) !important;
+}
+
+/* ============================================================
+   CARD ACTIONS
+   ============================================================ */
+
+.admin-exams-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-exams-card-actions button {
+  min-height: 40px;
+}
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+
+.admin-exams-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 40px;
+  text-align: center;
+  border-radius:
+    var(--exam-radius);
+  background:
+    var(--exam-light-card);
+  border:
+    1px solid var(--exam-light-border);
+}
+
+.admin-exams-empty-icon {
+  margin-bottom: 18px;
+}
+
+.admin-exams-empty h3 {
+  margin:
+    0 0 8px;
+  color:
+    var(--exam-light-text);
+  font-size: 20px;
+}
+
+.admin-exams-empty p {
+  max-width: 520px;
+  margin:
+    0 0 22px;
+  color:
+    var(--exam-light-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
+
+.admin-exams-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  min-height: 300px;
+  box-sizing: border-box;
+  margin-inline: auto;
+  padding: 45px 30px;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    var(--exam-radius);
+  background:
+    var(--exam-light-card);
+  box-shadow:
+    var(--exam-shadow);
+  color:
+    var(--exam-light-muted);
+  text-align: center;
+}
+
+.admin-exams-state::before {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 18px;
+  border:
+    3px solid
+    rgba(
+      37,
+      99,
+      235,
+      0.15
+    );
+  border-top-color:
+    var(--exam-blue);
+  border-radius:
+    50%;
+  animation:
+    adminExamsLoadingSpin
+    0.8s linear infinite;
+}
+
+.admin-exams-state::after {
+  content:
+    "Preparando la configuración académica...";
+  display: block;
+  margin-top: 8px;
+  color:
+    var(--exam-light-muted);
+  font-size: 13px;
+}
+
+@keyframes adminExamsLoadingSpin {
+  to {
+    transform:
+      rotate(360deg);
+  }
+}
+
+/* ============================================================
+   MODAL OVERLAY
+   ============================================================ */
+
+.admin-exams-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    rgba(8, 15, 25, 0.68);
+  backdrop-filter:
+    blur(7px);
+  animation:
+    adminExamOverlayIn
+    0.2s ease both;
+}
+
+@keyframes adminExamOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.admin-exams-modal {
+  position: relative;
+  width:
+    min(620px, 100%);
+  max-height:
+    calc(100vh - 48px);
+  overflow-y: auto;
+  border-radius:
+    22px;
+  background:
+    var(--exam-light-card);
+  border:
+    1px solid var(--exam-light-border);
+  box-shadow:
+    0 30px 80px rgba(
+      0,
+      0,
+      0,
+      0.24
+    );
+  animation:
+    adminExamModalIn
+    0.25s
+    ease
+    both;
+}
+
+@keyframes adminExamModalIn {
+  from {
+    opacity: 0;
+    transform:
+      translateY(16px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* ============================================================
+   MODAL HEADER
+   ============================================================ */
+
+.admin-exams-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding:
+    24px 26px 20px;
+  border-bottom:
+    1px solid var(--exam-light-border);
+}
+
+.admin-exams-modal-header h2 {
+  margin:
+    5px 0 0;
+  color:
+    var(--exam-light-text);
+  font-size: 24px;
+}
+
+.admin-exams-modal-header p {
+  margin:
+    7px 0 0;
+  color:
+    var(--exam-light-muted);
+  font-size: 13px;
+}
+
+.admin-exams-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 10px;
+  background:
+    rgba(108, 117, 125, 0.10);
+  color:
+    var(--exam-light-muted);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-exams-modal-close:hover {
+  background:
+    rgba(220, 53, 69, 0.10);
+  color:
+    var(--exam-danger);
+  transform:
+    rotate(3deg);
+}
+
+.admin-exams-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.admin-exams-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 26px;
+}
+
+.admin-exams-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-exams-field label {
+  color:
+    var(--exam-light-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.admin-exams-field input,
+.admin-exams-field textarea,
+.admin-exams-field select {
+  width: 100%;
+  box-sizing: border-box;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    11px;
+  background:
+    #fff;
+  color:
+    var(--exam-light-text);
+  padding:
+    12px 13px;
+  font:
+    inherit;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-exams-field textarea {
+  resize: vertical;
+  min-height:
+    110px;
+  line-height:
+    1.55;
+}
+
+.admin-exams-field input:focus,
+.admin-exams-field textarea:focus,
+.admin-exams-field select:focus {
+  border-color:
+    var(--exam-blue);
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      37,
+      99,
+      235,
+      0.12
+    );
+}
+
+.admin-exams-field-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* ============================================================
+   READONLY
+   ============================================================ */
+
+.admin-exams-readonly {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 45px;
+  padding:
+    11px 13px;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    11px;
+  background:
+    var(--exam-light-bg);
+  color:
+    var(--exam-light-text);
+  font-size: 14px;
+}
+
+.admin-exams-readonly i {
+  color:
+    var(--exam-blue);
+}
+
+/* ============================================================
+   FORM ERROR
+   ============================================================ */
+
+.admin-exams-form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding:
+    12px 14px;
+  border-radius:
+    11px;
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      0.08
+    );
+  color:
+    var(--exam-danger);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   MODAL ACTIONS
+   ============================================================ */
+
+.admin-exams-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 4px 26px 26px;
+}
+
+/* ============================================================
+   DELETE QUESTION MODAL
+   ============================================================ */
+
+.admin-exams-delete-modal {
+  width:
+    min(560px, 100%);
+}
+
+.admin-exams-delete-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding:
+    30px 26px 10px;
+  text-align: center;
+}
+
+.admin-exams-delete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      0.10
+    );
+  color:
+    var(--exam-danger);
+  font-size: 27px;
+}
+
+.admin-exams-delete-message {
+  width: 100%;
+}
+
+.admin-exams-delete-message h3 {
+  margin:
+    0 0 7px;
+  color:
+    var(--exam-light-text);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.admin-exams-delete-message p {
+  max-width: 440px;
+  margin:
+    0 auto;
+  color:
+    var(--exam-light-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-exams-delete-question {
+  width: 100%;
+  box-sizing: border-box;
+  padding:
+    15px 16px;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    12px;
+  background:
+    var(--exam-light-bg);
+  text-align: left;
+}
+
+.admin-exams-delete-question-label {
+  display: block;
+  margin-bottom: 6px;
+  color:
+    var(--exam-light-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing:
+    0.04em;
+  text-transform:
+    uppercase;
+}
+
+.admin-exams-delete-question p {
+  margin: 0;
+  color:
+    var(--exam-light-text);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap:
+    anywhere;
+}
+
+.admin-exams-delete-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding:
+    11px 14px;
+  border-radius:
+    10px;
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      0.07
+    );
+  color:
+    var(--exam-danger);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-exams-delete-confirm {
+  background: rgba(220, 53, 69, 0.12) !important;
+  color: #991b1b !important;
+  border: 1px solid rgba(220, 53, 69, 0.35);
+}
+
+.admin-exams-delete-confirm:hover {
+  background: rgba(220, 53, 69, 0.20) !important;
+  color: #991b1b !important;
+}
+
+.admin-exams-delete-confirm:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   QUESTIONS MODAL
+   ============================================================ */
+
+.admin-exams-questions-modal {
+  width:
+    min(1100px, 100%);
+  max-height:
+    calc(100vh - 40px);
+  overflow-y: auto;
+  border-radius:
+    22px;
+  background:
+    var(--exam-light-card);
+  border:
+    1px solid var(--exam-light-border);
+  box-shadow:
+    0 30px 90px rgba(
+      0,
+      0,
+      0,
+      0.28
+    );
+}
+
+/* ============================================================
+   QUESTIONS TOOLBAR
+   ============================================================ */
+
+.admin-exams-questions-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding:
+    18px 26px;
+  border-bottom:
+    1px solid var(--exam-light-border);
+}
+
+.admin-exams-questions-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-exams-questions-toolbar strong {
+  color:
+    var(--exam-light-text);
+  font-size: 17px;
+}
+
+.admin-exams-questions-toolbar span {
+  color:
+    var(--exam-light-muted);
+  font-size: 13px;
+}
+
+/* ============================================================
+   QUESTIONS LIST
+   ============================================================ */
+
+.admin-exams-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding:
+    24px 26px;
+}
+
+.admin-exams-question-card {
+  display: flex;
+  gap: 18px;
+  padding: 20px;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    16px;
+  background:
+    var(--exam-light-card);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-exams-question-card:hover {
+  transform:
+    translateY(-2px);
+  box-shadow:
+    0 12px 30px
+    rgba(
+      15,
+      23,
+      42,
+      0.08
+    );
+}
+
+.admin-exams-question-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius:
+    13px;
+  background:
+    rgba(
+      37,
+      99,
+      235,
+      0.10
+    );
+  color:
+    var(--exam-blue);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.admin-exams-question-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-exams-question-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin-exams-question-header h3 {
+  margin:
+    0 0 9px;
+  color:
+    var(--exam-light-text);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.admin-exams-question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.admin-exams-question-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color:
+    var(--exam-light-muted);
+  font-size: 12px;
+}
+
+.admin-exams-question-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.admin-exams-question-actions button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   OPTIONS VIEW
+   ============================================================ */
+
+.admin-exams-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.admin-exams-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding:
+    10px 12px;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    10px;
+  background:
+    var(--exam-light-bg);
+}
+
+.admin-exams-option.correct {
+  border-color:
+    rgba(
+      25,
+      135,
+      84,
+      0.35
+    );
+  background:
+    rgba(
+      25,
+      135,
+      84,
+      0.07
+    );
+}
+
+.admin-exams-option-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius:
+    8px;
+  background:
+    rgba(
+      37,
+      99,
+      235,
+      0.10
+    );
+  color:
+    var(--exam-blue);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.admin-exams-option-text {
+  flex: 1;
+  min-width: 0;
+  color:
+    var(--exam-light-text);
+  font-size: 13px;
+  overflow-wrap:
+    anywhere;
+}
+
+.admin-exams-option-correct {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  color:
+    var(--exam-success);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   QUESTIONS EMPTY
+   ============================================================ */
+
+.admin-exams-questions-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding:
+    40px 26px;
+  text-align: center;
+}
+
+.admin-exams-questions-empty h3 {
+  margin:
+    0 0 8px;
+  color:
+    var(--exam-light-text);
+  font-size: 20px;
+}
+
+.admin-exams-questions-empty p {
+  max-width: 520px;
+  margin:
+    0 0 22px;
+  color:
+    var(--exam-light-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   QUESTIONS FOOTER
+   ============================================================ */
+
+.admin-exams-questions-footer {
+  display: flex;
+  justify-content: flex-start;
+  padding:
+    18px 26px;
+  border-top:
+    1px solid var(--exam-light-border);
+}
+
+/* ============================================================
+   OPTIONS EDITOR
+   ============================================================ */
+
+.admin-exams-options-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 5px;
+}
+
+.admin-exams-options-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.admin-exams-options-header h3 {
+  margin:
+    0 0 4px;
+  color:
+    var(--exam-light-text);
+  font-size: 17px;
+}
+
+.admin-exams-options-header p {
+  margin: 0;
+  color:
+    var(--exam-light-muted);
+  font-size: 12px;
+}
+
+.admin-exams-edit-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-exams-edit-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding:
+    9px 10px;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    11px;
+  background:
+    var(--exam-light-bg);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.admin-exams-edit-option.correct {
+  border-color:
+    rgba(
+      25,
+      135,
+      84,
+      0.40
+    );
+  background:
+    rgba(
+      25,
+      135,
+      84,
+      0.07
+    );
+}
+
+.admin-exams-correct-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 0;
+  background:
+    transparent;
+  color:
+    #8b95a5;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.admin-exams-correct-button.selected {
+  color:
+    var(--exam-success);
+}
+
+.admin-exams-option-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  flex-shrink: 0;
+  color:
+    var(--exam-blue);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.admin-exams-edit-option input {
+  flex: 1;
+  min-width: 0;
+  border:
+    1px solid var(--exam-light-border);
+  border-radius:
+    9px;
+  background:
+    #fff;
+  color:
+    var(--exam-light-text);
+  padding:
+    9px 11px;
+  outline: none;
+}
+
+.admin-exams-edit-option input:focus {
+  border-color:
+    var(--exam-blue);
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      37,
+      99,
+      235,
+      0.10
+    );
+}
+
+.admin-exams-option-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 8px;
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      0.07
+    );
+  color:
+    var(--exam-danger);
+  cursor: pointer;
+}
+
+.admin-exams-option-delete:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   DELETE MODAL — DARK
+   ============================================================ */
+
+body:has(.private-dark)
+.admin-exams-delete-message h3 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark)
+.admin-exams-delete-message p {
+  color:
+    var(--exam-dark-muted);
+}
+
+body:has(.private-dark)
+.admin-exams-delete-question {
+  background:
+    var(--exam-dark-card-soft);
+  border-color:
+    var(--exam-dark-border);
+}
+
+body:has(.private-dark)
+.admin-exams-delete-question-label {
+  color:
+    var(--exam-dark-muted);
+}
+
+body:has(.private-dark)
+.admin-exams-delete-question p {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark)
+.admin-exams-delete-warning {
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      0.12
+    );
+  color:
+    #ff6b7a;
+}
+
+body:has(.private-dark)
+.admin-exams-delete-icon {
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      0.14
+    );
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+/*
+ * El modo oscuro se detecta desde cualquier elemento superior
+ * que tenga la clase .private-dark.
+ *
+ * Esto evita depender de que .private-dark esté directamente
+ * sobre .admin-exams-page.
+ */
+
+/* PAGE */
+
+body:has(.private-dark) .admin-exams-page {
+  color:
+    var(--exam-dark-text);
+}
+
+/* HEADER */
+
+body:has(.private-dark) .admin-exams-page .private-page-header {
+  color:
+    var(--exam-dark-text);
+}
+
+body:has(.private-dark) .admin-exams-page .private-page-header h1 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-page .private-page-header p {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   SUMMARY — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-summary {
+  background:
+    transparent;
+}
+
+body:has(.private-dark) .admin-exams-stat,
+body:has(.private-dark) .admin-exams-stat.private-card {
+  background:
+    var(--exam-dark-card) !important;
+  border-color:
+    var(--exam-dark-border) !important;
+  color:
+    var(--exam-dark-text);
+  box-shadow:
+    var(--exam-shadow-dark) !important;
+}
+
+body:has(.private-dark) .admin-exams-stat span {
+  color:
+    var(--exam-dark-muted) !important;
+}
+
+body:has(.private-dark) .admin-exams-stat strong {
+  color:
+    #ffffff !important;
+}
+
+body:has(.private-dark) .admin-exams-stat-icon {
+  background:
+    rgba(
+      37,
+      99,
+      235,
+      0.16
+    );
+  color:
+    #60a5fa;
+}
+
+/* ============================================================
+   ERROR — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-error {
+  color:
+    var(--exam-dark-text);
+}
+
+/* ============================================================
+   LIST — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-list {
+  background:
+    transparent;
+}
+
+body:has(.private-dark) .admin-exams-list-header {
+  color:
+    var(--exam-dark-text);
+}
+
+body:has(.private-dark) .admin-exams-list-header h2 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-list-header p {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   CARDS — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-card {
+  background:
+    var(--exam-dark-card) !important;
+  border-color:
+    var(--exam-dark-border) !important;
+  box-shadow:
+    var(--exam-shadow-dark);
+}
+
+body:has(.private-dark) .admin-exams-card h3 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-card p {
+  color:
+    var(--exam-dark-muted);
+}
+
+body:has(.private-dark) .admin-exams-card-meta span {
+  color:
+    var(--exam-dark-muted);
+}
+
+body:has(.private-dark) .admin-exams-card-course {
+  color:
+    #60a5fa;
+}
+
+/* ============================================================
+   EMPTY — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-empty {
+  background:
+    var(--exam-dark-card) !important;
+  border-color:
+    var(--exam-dark-border) !important;
+}
+
+body:has(.private-dark) .admin-exams-empty h3 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-empty p {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   LOADING — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-state {
+  background:
+    var(--exam-dark-card) !important;
+  border-color:
+    var(--exam-dark-border) !important;
+  box-shadow:
+    var(--exam-shadow-dark) !important;
+  color:
+    var(--exam-dark-text);
+}
+
+body:has(.private-dark) .admin-exams-state::before {
+  border-color:
+    rgba(
+      96,
+      165,
+      250,
+      0.16
+    );
+  border-top-color:
+    #60a5fa;
+}
+
+body:has(.private-dark) .admin-exams-state::after {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   MODAL — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-modal,
+body:has(.private-dark) .admin-exams-questions-modal {
+  background:
+    var(--exam-dark-card);
+  border-color:
+    var(--exam-dark-border);
+  box-shadow:
+    var(--exam-shadow-dark);
+}
+
+body:has(.private-dark) .admin-exams-modal-header {
+  border-bottom-color:
+    var(--exam-dark-border);
+}
+
+body:has(.private-dark) .admin-exams-modal-header h2 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-modal-header p {
+  color:
+    var(--exam-dark-muted);
+}
+
+body:has(.private-dark) .admin-exams-modal-close {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   FORM — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-field label {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-field input,
+body:has(.private-dark) .admin-exams-field textarea,
+body:has(.private-dark) .admin-exams-field select,
+body:has(.private-dark) .admin-exams-edit-option input {
+  background:
+    var(--exam-dark-card-soft) !important;
+  border-color:
+    var(--exam-dark-border) !important;
+  color:
+    #ffffff !important;
+}
+
+body:has(.private-dark) .admin-exams-field input::placeholder,
+body:has(.private-dark) .admin-exams-field textarea::placeholder,
+body:has(.private-dark) .admin-exams-edit-option input::placeholder {
+  color:
+    #8993a1;
+}
+
+body:has(.private-dark) .admin-exams-readonly {
+  background:
+    var(--exam-dark-card-soft);
+  border-color:
+    var(--exam-dark-border);
+  color:
+    #ffffff;
+}
+
+/* ============================================================
+   QUESTIONS TOOLBAR — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-questions-toolbar {
+  border-bottom-color:
+    var(--exam-dark-border);
+}
+
+body:has(.private-dark) .admin-exams-questions-toolbar strong {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-questions-toolbar span {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   QUESTION CARDS — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-question-card {
+  background:
+    var(--exam-dark-card);
+  border-color:
+    var(--exam-dark-border);
+}
+
+body:has(.private-dark) .admin-exams-question-header h3 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-question-meta span {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   OPTIONS — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-option {
+  background:
+    var(--exam-dark-card-soft);
+  border-color:
+    var(--exam-dark-border);
+}
+
+body:has(.private-dark) .admin-exams-option.correct {
+  background:
+    rgba(
+      25,
+      135,
+      84,
+      0.12
+    );
+  border-color:
+    rgba(
+      25,
+      135,
+      84,
+      0.35
+    );
+}
+
+body:has(.private-dark) .admin-exams-option-text {
+  color:
+    #ffffff;
+}
+
+/* ============================================================
+   QUESTIONS EMPTY — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-questions-empty h3 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-questions-empty p {
+  color:
+    var(--exam-dark-muted);
+}
+
+/* ============================================================
+   QUESTIONS FOOTER — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-questions-footer {
+  border-top-color:
+    var(--exam-dark-border);
+}
+
+/* ============================================================
+   OPTIONS EDITOR — DARK
+   ============================================================ */
+
+body:has(.private-dark) .admin-exams-options-header h3 {
+  color:
+    #ffffff;
+}
+
+body:has(.private-dark) .admin-exams-options-header p {
+  color:
+    var(--exam-dark-muted);
+}
+
+body:has(.private-dark) .admin-exams-edit-option {
+  background:
+    var(--exam-dark-card-soft);
+  border-color:
+    var(--exam-dark-border);
+}
+
+body:has(.private-dark) .admin-exams-edit-option.correct {
+  background:
+    rgba(
+      25,
+      135,
+      84,
+      0.12
+    );
+  border-color:
+    rgba(
+      25,
+      135,
+      84,
+      0.35
+    );
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 1000px) {
+  .admin-exams-summary {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .admin-exams-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 768
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .admin-exams-page {
+    width:
+      calc(100% - 32px);
+  }
+
+  .admin-exams-summary {
+    grid-template-columns:
+      1fr;
+    gap: 14px;
+  }
+
+  .admin-exams-stat {
+    min-height: 92px;
+  }
+
+  .admin-exams-state {
+    min-height: 260px;
+    padding:
+      40px 24px;
+  }
+
+  .admin-exams-modal-overlay {
+    align-items: flex-start;
+    padding:
+      16px;
+  }
+
+  .admin-exams-modal,
+  .admin-exams-questions-modal {
+    max-height:
+      calc(100vh - 32px);
+    border-radius:
+      18px;
+  }
+
+  .admin-exams-question-header {
+    flex-direction: column;
+  }
+
+  .admin-exams-question-actions {
+    align-self: flex-end;
+  }
+
+  .admin-exams-questions-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-exams-options-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .admin-exams-page {
+    width:
+      calc(100% - 24px);
+  }
+
+  .admin-exams-card {
+    flex-direction: column;
+    padding:
+      20px;
+  }
+
+  .admin-exams-card-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .admin-exams-card-actions {
+    flex-direction: column;
+  }
+
+  .admin-exams-card-actions button {
+    width: 100%;
+  }
+
+  .admin-exams-field-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .admin-exams-modal-header {
+    padding:
+      20px;
+  }
+
+  .admin-exams-form {
+    padding:
+      20px;
+  }
+
+  .admin-exams-modal-actions {
+    padding:
+      4px 20px 20px;
+  }
+
+  .admin-exams-delete-content {
+    padding:
+      25px 20px 8px;
+  }
+
+  .admin-exams-delete-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .admin-exams-delete-message h3 {
+    font-size: 18px;
+  }
+
+  .admin-exams-delete-message p {
+    font-size: 13px;
+  }
+
+  .admin-exams-questions-list {
+    padding:
+      18px;
+  }
+
+  .admin-exams-question-card {
+    flex-direction: column;
+    padding:
+      16px;
+  }
+
+  .admin-exams-question-number {
+    width: 42px;
+    height: 42px;
+  }
+
+  .admin-exams-question-actions {
+    width: 100%;
+  }
+
+  .admin-exams-question-actions button {
+    flex: 1;
+  }
+
+  .admin-exams-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .admin-exams-modal-actions button {
+    width: 100%;
+  }
+
+  .admin-exams-edit-option {
+    flex-wrap: wrap;
+  }
+
+  .admin-exams-edit-option input {
+    width:
+      calc(100% - 95px);
+  }
+}
+
+/* ============================================================
+   MOBILE PEQUEÑO
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .admin-exams-page {
+    width:
+      calc(100% - 18px);
+  }
+
+  .admin-exams-stat {
+    padding:
+      17px;
+  }
+
+  .admin-exams-stat-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .admin-exams-stat strong {
+    font-size: 24px;
+  }
+
+  .admin-exams-card {
+    padding:
+      17px;
+  }
+
+  .admin-exams-card h3 {
+    font-size: 18px;
+  }
+
+  .admin-exams-modal-overlay {
+    padding:
+      8px;
+  }
+
+  .admin-exams-modal,
+  .admin-exams-questions-modal {
+    max-height:
+      calc(100vh - 16px);
+    border-radius:
+      15px;
+  }
+
+  .admin-exams-modal-header {
+    padding:
+      17px;
+  }
+
+  .admin-exams-form {
+    padding:
+      17px;
+  }
+
+  .admin-exams-modal-actions {
+    padding:
+      4px 17px 17px;
+  }
+
+  .admin-exams-delete-content {
+    padding:
+      22px 17px 6px;
+  }
+
+  .admin-exams-delete-question {
+    padding:
+      13px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-exams-card,
+  .admin-exams-stat,
+  .admin-exams-question-card,
+  .admin-exams-modal-close,
+  .admin-exams-modal,
+  .admin-exams-modal-overlay,
+  .admin-exams-state::before {
+    transition: none;
+    animation: none;
+  }
+}

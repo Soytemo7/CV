@@ -775,6 +775,39 @@ function AdminSidebar() {
 
           </div>
 
+          {/* ==================================================
+              EXAMENES
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/admin/exams")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+            <PrivateIconButton
+              icon="bi bi-file-earmark-text"
+              color="purple"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate(
+                  "/admin/exams"
+                )
+              }
+              aria-label="Exámenes"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Exámenes
+            </span>
+          </div>
+
 
           {/* ==================================================
               EVALUACIONES
@@ -783,7 +816,7 @@ function AdminSidebar() {
           <div
             className={
               `private-sidebar-item ${
-                isActive("/admin/assessments")
+                isActive("/admin/evaluaciones")
                   ? "active"
                   : ""
               }`
@@ -797,7 +830,7 @@ function AdminSidebar() {
                 event.stopPropagation();
               }}
               onClick={() =>
-                handleNavigate("/admin/assessments")
+                handleNavigate("/admin/evaluaciones")
               }
               aria-label="Evaluaciones"
               className="private-sidebar-icon"

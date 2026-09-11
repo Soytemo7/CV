@@ -67,6 +67,11 @@ import AdminCourseContentPage
   import AdminEnrollmentsPage
   from "./pages/admin/AdminEnrollmentsPage.jsx";
 
+  import AdminAssessments from "./pages/admin/AdminAssessments.jsx";
+
+  import AdminExamsPage
+  from "./pages/admin/AdminExamsPage.jsx";
+
 
 function App() {
 
@@ -365,6 +370,24 @@ function App() {
             element={
               <AdminLayout>
                 <AdminEnrollmentsPage />
+              </AdminLayout>
+            }
+          />
+
+          <Route
+            path="/admin/evaluaciones"
+            element={
+              <AdminLayout>
+                <AdminAssessments />
+              </AdminLayout>
+            }
+          />
+
+          <Route
+            path="/admin/exams"
+            element={
+              <AdminLayout>
+                <AdminExamsPage  />
               </AdminLayout>
             }
           />

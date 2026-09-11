@@ -205,6 +205,21 @@ function WelcomeNotification() {
           "Consulta y da seguimiento al avance académico de los alumnos inscritos en los cursos.",
       },
 
+        "/admin/evaluaciones": {
+        title:
+          "Evaluaciones",
+        description:
+          "Consulta y seguimiento de exámenes y resultados académicos.",
+      },
+
+      "/admin/exams": {
+        title:
+          "Exámenes",
+
+        description:
+          "Crea y configura los exámenes, preguntas, opciones, respuestas correctas y puntuación de los cursos.",
+      },
+
     };
 
 
@@ -259,7 +274,7 @@ function WelcomeNotification() {
         description:
           "Administra los módulos que forman parte de este curso académico.",
 
-      };
+      };      
 
     }
 

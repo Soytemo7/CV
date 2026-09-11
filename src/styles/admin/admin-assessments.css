@@ -1,0 +1,888 @@
+/* ============================================================
+   ADMIN — EVALUACIONES
+   ============================================================ */
+
+.admin-assessments-page {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+.admin-assessments-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+.admin-assessments-content {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ============================================================
+   ESTADÍSTICAS
+   ============================================================ */
+
+.admin-assessments-stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.admin-assessments-stat-card {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(
+    --private-card-bg,
+    rgba(255, 255, 255, 0.04)
+  );
+  border: 1px solid rgba(127, 127, 127, 0.12);
+  color: inherit;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-assessments-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 110, 253, 0.22);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.admin-assessments-stat-card > div:last-child {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-assessments-stat-card strong {
+  order: 1;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  color: inherit;
+  font-weight: 800;
+}
+
+.admin-assessments-stat-card span {
+  order: 2;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  color: inherit;
+  opacity: 0.72;
+  white-space: nowrap;
+}
+
+.admin-assessments-stat-card .private-card-icon {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  margin: 0;
+}
+
+.admin-assessments-stat-card.approved .private-card-icon {
+  color: #198754;
+  background: rgba(25, 135, 84, 0.1);
+}
+
+.admin-assessments-stat-card.failed .private-card-icon {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.admin-assessments-stat-card.pending .private-card-icon {
+  color: #b58100;
+  background: rgba(255, 193, 7, 0.12);
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+.admin-assessments-toolbar {
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 14px;
+  background: var(
+    --private-card-bg,
+    rgba(255, 255, 255, 0.04)
+  );
+  border: 1px solid rgba(127, 127, 127, 0.12);
+  color: inherit;
+}
+
+.admin-assessments-filter-group {
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.admin-assessments-filter-group label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.admin-assessments-filter-group select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(127, 127, 127, 0.22);
+  background: transparent;
+  color: inherit;
+  outline: none;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-assessments-filter-group select:hover {
+  border-color: rgba(13, 110, 253, 0.35);
+}
+
+.admin-assessments-filter-group select:focus {
+  border-color: rgba(13, 110, 253, 0.55);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.admin-assessments-filter-group select option {
+  color: #212529;
+  background: #ffffff;
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+
+.admin-assessments-tabs {
+  margin-left: auto;
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.3rem;
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.08);
+  border: 1px solid rgba(127, 127, 127, 0.1);
+}
+
+.admin-assessments-tabs button {
+  min-height: 38px;
+  padding: 0 0.9rem;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-assessments-tabs button:hover {
+  background: rgba(13, 110, 253, 0.08);
+  transform: translateY(-1px);
+}
+
+.admin-assessments-tabs button.active {
+  background: rgba(13, 110, 253, 0.13);
+  color: #0d6efd;
+}
+
+.admin-assessments-tabs button i {
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   PANEL
+   ============================================================ */
+
+.admin-assessments-panel {
+  width: 100%;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(
+    --private-card-bg,
+    rgba(255, 255, 255, 0.04)
+  );
+  border: 1px solid rgba(127, 127, 127, 0.1);
+  color: inherit;
+}
+
+/* ============================================================
+   ENCABEZADO DE RESULTADOS
+   ============================================================ */
+
+.admin-assessments-panel .admin-users-results-header {
+  margin-bottom: 0.9rem;
+}
+
+.admin-assessments-panel .admin-courses-results-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.admin-assessments-panel .admin-courses-results-count > i {
+  font-size: 1rem;
+  color: #0d6efd;
+}
+
+.admin-assessments-panel .admin-courses-results-count strong {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.admin-assessments-panel .admin-courses-results-count span {
+  opacity: 0.72;
+}
+
+/* ============================================================
+   TABLA
+   ============================================================ */
+
+.admin-assessments-table {
+  min-width: 1050px;
+}
+
+.admin-assessments-table th,
+.admin-assessments-table td {
+  vertical-align: middle;
+}
+
+.admin-assessments-table tbody tr {
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-assessments-table tbody tr:hover {
+  background: rgba(13, 110, 253, 0.035);
+}
+
+.admin-assessments-table th {
+  white-space: nowrap;
+}
+
+.admin-assessments-table td {
+  color: inherit;
+}
+
+/* ============================================================
+   DATOS DEL EXAMEN
+   ============================================================ */
+
+.admin-assessments-table
+  .admin-users-user-info
+  strong {
+  display: block;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.admin-assessments-table
+  .admin-users-user-info
+  small {
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.35;
+}
+
+.admin-assessments-course {
+  display: inline-flex;
+  align-items: center;
+  max-width: 240px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.admin-assessments-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 30px;
+  padding: 0 0.55rem;
+  border-radius: 8px;
+  background: rgba(13, 110, 253, 0.08);
+  border: 1px solid rgba(13, 110, 253, 0.1);
+  color: inherit;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-assessments-score {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  min-height: 32px;
+  padding: 0 0.65rem;
+  border-radius: 8px;
+  background: rgba(13, 110, 253, 0.08);
+  border: 1px solid rgba(13, 110, 253, 0.12);
+  color: inherit;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   FECHAS
+   ============================================================ */
+
+.admin-assessments-table .admin-users-date {
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+/* ============================================================
+   RESULTADOS
+   ============================================================ */
+
+.admin-assessments-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-assessments-result i {
+  font-size: 0.85rem;
+}
+
+.admin-assessments-result.approved {
+  color: #198754;
+  background: rgba(25, 135, 84, 0.1);
+  border-color: rgba(25, 135, 84, 0.15);
+}
+
+.admin-assessments-result.failed {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+  border-color: rgba(220, 53, 69, 0.15);
+}
+
+.admin-assessments-result.pending {
+  color: #b58100;
+  background: rgba(255, 193, 7, 0.12);
+  border-color: rgba(255, 193, 7, 0.18);
+}
+
+/* ============================================================
+   BOTONES DE ACCIÓN
+   ============================================================ */
+
+.admin-assessments-table .admin-users-view-button {
+  white-space: nowrap;
+}
+
+.admin-assessments-table .admin-users-view-button i {
+  margin-right: 0.3rem;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.admin-assessments-container
+  .admin-promotion-modal.admin-assessments-modal {
+  width: min(1400px, calc(100vw - 2rem));
+  max-width: 1400px;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  color: inherit;
+}
+
+.admin-assessments-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.admin-assessments-modal-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 9px;
+  background: rgba(127, 127, 127, 0.08);
+  border: 1px solid rgba(127, 127, 127, 0.1);
+  color: inherit;
+  font-size: 0.82rem;
+}
+
+.admin-assessments-modal-meta i {
+  color: #0d6efd;
+}
+
+/* ============================================================
+   PREGUNTAS
+   ============================================================ */
+
+.admin-assessments-question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.admin-assessments-question {
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.045);
+  border: 1px solid rgba(127, 127, 127, 0.1);
+  color: inherit;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-assessments-question:hover {
+  background: rgba(13, 110, 253, 0.035);
+  border-color: rgba(13, 110, 253, 0.16);
+}
+
+.admin-assessments-question-heading {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: start;
+}
+
+.admin-assessments-question-heading > span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(13, 110, 253, 0.1);
+  color: inherit;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.admin-assessments-question-heading strong {
+  line-height: 1.45;
+  color: inherit;
+}
+
+.admin-assessments-question-heading small {
+  color: inherit;
+  opacity: 0.65;
+  white-space: nowrap;
+  font-size: 0.76rem;
+}
+
+/* ============================================================
+   OPCIONES
+   ============================================================ */
+
+.admin-assessments-options {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-assessments-options > div {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 9px;
+  background: rgba(127, 127, 127, 0.06);
+  border: 1px solid transparent;
+  color: inherit;
+  transition: 0.2s ease;
+}
+
+.admin-assessments-options > div:hover {
+  border-color: rgba(127, 127, 127, 0.14);
+}
+
+.admin-assessments-options > div.correct {
+  background: rgba(25, 135, 84, 0.1);
+  border-color: rgba(25, 135, 84, 0.16);
+}
+
+.admin-assessments-options > div.correct i {
+  color: #198754;
+}
+
+.admin-assessments-options small {
+  margin-left: auto;
+  color: #198754;
+  font-weight: 700;
+}
+
+/* ============================================================
+   RESUMEN DE RESULTADO
+   ============================================================ */
+
+.admin-assessments-result-summary {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.admin-assessments-result-summary > div {
+  min-width: 0;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: rgba(127, 127, 127, 0.06);
+  border: 1px solid rgba(127, 127, 127, 0.1);
+  color: inherit;
+}
+
+.admin-assessments-result-summary span {
+  display: block;
+  color: inherit;
+  font-size: 0.72rem;
+  opacity: 0.65;
+  margin-bottom: 0.25rem;
+}
+
+.admin-assessments-result-summary strong {
+  display: block;
+  color: inherit;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+.admin-assessments-result-summary .is-approved {
+  color: #198754;
+}
+
+.admin-assessments-result-summary .is-failed {
+  color: #dc3545;
+}
+
+/* ============================================================
+   RESPUESTAS
+   ============================================================ */
+
+.admin-assessments-answer-detail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+}
+
+.admin-assessments-answer-detail .answer {
+  padding: 0.75rem;
+  border-radius: 9px;
+  background: rgba(127, 127, 127, 0.06);
+  border: 1px solid rgba(127, 127, 127, 0.1);
+  color: inherit;
+}
+
+.admin-assessments-answer-detail .answer.incorrect {
+  background: rgba(220, 53, 69, 0.08);
+  border-color: rgba(220, 53, 69, 0.15);
+}
+
+.admin-assessments-answer-detail .answer.correct,
+.admin-assessments-answer-detail .correct-reference {
+  background: rgba(25, 135, 84, 0.08);
+  border-color: rgba(25, 135, 84, 0.15);
+}
+
+.admin-assessments-answer-detail span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: inherit;
+  font-size: 0.72rem;
+  opacity: 0.65;
+}
+
+.admin-assessments-answer-detail strong {
+  display: block;
+  color: inherit;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.admin-assessments-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+}
+
+.admin-assessments-loading-card {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: var(--private-card-bg, #fff);
+  border: 1px solid rgba(127, 127, 127, 0.15);
+  color: inherit;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.admin-assessments-loading-card i {
+  animation: admin-assessments-spin 1s linear infinite;
+}
+
+@keyframes admin-assessments-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+.dark-background
+  .admin-assessments-container {
+  color: #f1f3f5;
+}
+
+.dark-background
+  .admin-assessments-container
+  .admin-assessments-stat-card,
+.dark-background
+  .admin-assessments-container
+  .admin-assessments-toolbar,
+.dark-background
+  .admin-assessments-container
+  .admin-assessments-panel {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+.dark-background
+  .admin-assessments-filter-group
+  label,
+.dark-background
+  .admin-assessments-filter-group
+  select,
+.dark-background
+  .admin-assessments-tabs
+  button {
+  color: #f1f3f5;
+}
+
+.dark-background
+  .admin-assessments-filter-group
+  select {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.dark-background
+  .admin-assessments-filter-group
+  select
+  option {
+  color: #212529;
+  background: #ffffff;
+}
+
+.dark-background
+  .admin-assessments-tabs {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-background
+  .admin-assessments-tabs
+  button.active {
+  color: #6ea8fe;
+  background: rgba(13, 110, 253, 0.18);
+}
+
+.dark-background
+  .admin-assessments-table
+  tbody
+  tr:hover {
+  background: rgba(13, 110, 253, 0.06);
+}
+
+.dark-background
+  .admin-assessments-modal-meta
+  span,
+.dark-background
+  .admin-assessments-result-summary
+  > div,
+.dark-background
+  .admin-assessments-answer-detail
+  .answer {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-background
+  .admin-assessments-question {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-background
+  .admin-assessments-options
+  > div {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dark-background
+  .admin-assessments-options
+  > div.correct {
+  background: rgba(25, 135, 84, 0.14);
+}
+
+.dark-background
+  .admin-assessments-result-summary
+  > div {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dark-background
+  .admin-assessments-answer-detail
+  .answer {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dark-background
+  .admin-assessments-loading-card {
+  color: #f1f3f5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1400px) {
+  .admin-assessments-container
+    .admin-promotion-modal.admin-assessments-modal {
+    width: calc(100vw - 2rem);
+    max-width: none;
+  }
+}
+
+@media (max-width: 1250px) {
+  .admin-assessments-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .admin-assessments-result-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .admin-assessments-toolbar {
+    align-items: stretch;
+  }
+
+  .admin-assessments-filter-group {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .admin-assessments-tabs {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .admin-assessments-tabs button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .admin-assessments-result-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-assessments-answer-detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-assessments-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-assessments-stat-card {
+    padding: 0.85rem;
+  }
+
+  .admin-assessments-stat-card .private-card-icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .admin-assessments-stat-card strong {
+    font-size: 1.15rem;
+  }
+
+  .admin-assessments-question-heading {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .admin-assessments-question-heading small {
+    grid-column: 2;
+  }
+
+  .admin-assessments-course {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 420px) {
+  .admin-assessments-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-assessments-result-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-assessments-tabs {
+    flex-direction: column;
+  }
+
+  .admin-assessments-tabs button {
+    width: 100%;
+  }
+}
