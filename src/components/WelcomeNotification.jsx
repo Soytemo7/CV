@@ -232,21 +232,7 @@ function WelcomeNotification() {
         .replace(/\/+$/, "") || "/";
 
 
-    /* ========================================================
-       DIAGNÓSTICO
-       ======================================================== */
-
-    console.log(
-      "📍 WelcomeNotification pathname:",
-      location.pathname
-    );
-
-    console.log(
-      "📍 WelcomeNotification pathname normalizado:",
-      pathname
-    );
-
-
+    
     /* ========================================================
        OBTENER NOTIFICACIÓN
        ======================================================== */
@@ -325,12 +311,6 @@ function WelcomeNotification() {
       };
 
     }
-
-
-    console.log(
-      "📍 WelcomeNotification actual:",
-      currentNotification
-    );
 
 
     /* ========================================================

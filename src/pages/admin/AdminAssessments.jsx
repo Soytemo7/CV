@@ -6,6 +6,10 @@ import {
 } from "react";
 
 import {
+  useNavigate
+} from "react-router-dom";
+
+import {
   getAssessmentSummary,
   getAdminExams,
   getAdminAttempts,
@@ -153,6 +157,9 @@ const AdminAssessments =
       selectedAttempt,
       setSelectedAttempt,
     ] = useState(null);
+
+      const navigate =
+      useNavigate();
 
     /**
      * ========================================================
@@ -373,6 +380,42 @@ const AdminAssessments =
 
     return (
       <div className="admin-assessments-container admin-users-header">
+
+         <header className="private-page-header">
+
+          <button
+            type="button"
+            className="admin-users-view-button"
+            onClick={() =>
+              navigate("/admin")
+            }
+          >
+
+            <i
+              className="bi bi-arrow-left"
+              aria-hidden="true"
+            ></i>
+
+            Volver al panel
+
+          </button>
+
+
+          <span className="private-page-eyebrow">
+            Administración académica
+          </span>
+
+          <h1>
+            Evaluaciones
+          </h1>
+
+          <p>
+            Consulta y seguimiento de exámenes,
+            intentos y resultados de los alumnos.
+          </p>
+
+        </header>
+
 
         {/* ==================================================
             ESTADÍSTICAS

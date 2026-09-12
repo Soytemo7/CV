@@ -10,6 +10,10 @@ import {
 } from "react";
 
 import {
+  useNavigate
+} from "react-router-dom";
+
+import {
   getAdminCourses
 } from "../../services/admin/courseService.js";
 
@@ -36,6 +40,9 @@ import "../../styles/privateIconButton.css";
 
 
 function AdminCourseStructure() {
+
+  const navigate =
+    useNavigate();
 
       const notification =
     useContext(NotificationContext);
@@ -413,7 +420,25 @@ function AdminCourseStructure() {
           ENCABEZADO
           ======================================================== */}
 
-      <header className="private-page-header">
+        <header className="private-page-header">
+
+        <button
+          type="button"
+          className="admin-users-view-button"
+          onClick={() =>
+            navigate("/admin")
+          }
+        >
+
+          <i
+            className="bi bi-arrow-left"
+            aria-hidden="true"
+          ></i>
+
+          Volver al panel
+
+        </button>
+
 
         <span className="private-page-eyebrow">
           Administración académica

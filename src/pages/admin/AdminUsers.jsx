@@ -11,6 +11,10 @@ import {
   useState
 } from "react";
 
+import {
+  useNavigate
+} from "react-router-dom";
+
 import AdminUsersFilters
   from "../../components/admin/users/AdminUsersFilters.jsx";
 
@@ -98,6 +102,9 @@ function AdminUsers() {
     changingRoleUser,
     setChangingRoleUser
   ] = useState(null);
+
+  const navigate =
+  useNavigate();
 
 
   /*
@@ -793,22 +800,58 @@ function AdminUsers() {
           ENCABEZADO
           ====================================================== */}
 
-      <div className="private-page-header">
+      <header className="admin-users-header">
 
-        <span className="private-page-eyebrow">
-          Administración
-        </span>
+      <button
+        type="button"
+        className="admin-users-view-button"
+        onClick={() =>
+          navigate("/admin")
+        }
+      >
 
-        <h1>
-          Usuarios
-        </h1>
+        <i
+          className="bi bi-arrow-left"
+          aria-hidden="true"
+        ></i>
 
-        <p>
-          Consulta y supervisa las cuentas registradas
-          en la plataforma.
-        </p>
+        Volver al panel
+
+      </button>
+
+
+      <div className="admin-users-title">
+
+        <div
+          className="
+            admin-users-title-icon
+            private-icon-button
+            private-icon-button-blue
+          "
+          aria-hidden="true"
+        >
+
+          <i className="bi bi-people"></i>
+
+        </div>
+
+
+        <div>
+
+          <h1>
+            Usuarios
+          </h1>
+
+          <p>
+            Consulta y supervisa las cuentas registradas
+            en la plataforma.
+          </p>
+
+        </div>
 
       </div>
+
+    </header>
 
 
       {/* ======================================================

@@ -172,53 +172,7 @@ function Dashboard() {
 
           </div>
 
-        </Link>
-
-
-        {/* ======================================================
-            INSCRIPCIONES
-            ====================================================== */}
-
-        <Link
-          to="/admin/enrollments"
-          className="private-card admin-dashboard-card"
-        >
-
-          <div className="private-card-header">
-
-            <div className="private-card-icon">
-
-              <i className="bi bi-person-check"></i>
-
-            </div>
-
-
-            <div>
-
-              <h2>
-                Inscripciones
-              </h2>
-
-              <p>
-                Seguimiento de alumnos
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div className="admin-dashboard-card-footer">
-
-            <span>
-              Ver inscripciones
-            </span>
-
-            <i className="bi bi-arrow-right"></i>
-
-          </div>
-
-        </Link>
+        </Link>     
 
         {/* ======================================================
             EXÁMENES
@@ -309,13 +263,12 @@ function Dashboard() {
 
         </Link>
 
-
-        {/* ======================================================
-            CERTIFICADOS
+           {/* ======================================================
+            INSCRIPCIONES
             ====================================================== */}
 
         <Link
-          to="/admin/certificates"
+          to="/admin/enrollments"
           className="private-card admin-dashboard-card"
         >
 
@@ -323,7 +276,7 @@ function Dashboard() {
 
             <div className="private-card-icon">
 
-              <i className="bi bi-patch-check"></i>
+              <i className="bi bi-person-check"></i>
 
             </div>
 
@@ -331,29 +284,28 @@ function Dashboard() {
             <div>
 
               <h2>
-                Certificados
+                Inscripciones
               </h2>
 
               <p>
-                Certificación académica
+                Seguimiento de alumnos
               </p>
 
             </div>
 
           </div>
 
-
           <div className="admin-dashboard-card-footer">
 
             <span>
-              Gestionar certificados
+              Ver inscripciones
             </span>
 
             <i className="bi bi-arrow-right"></i>
 
           </div>
 
-        </Link>
+        </Link>      
 
       </section>
 

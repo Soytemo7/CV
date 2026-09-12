@@ -944,7 +944,25 @@ function AdminCourses() {
           ENCABEZADO
           ======================================================== */}
 
-      <header className="private-page-header">
+        <header className="private-page-header">
+
+        <button
+          type="button"
+          className="admin-users-view-button"
+          onClick={() =>
+            navigate("/admin")
+          }
+        >
+
+          <i
+            className="bi bi-arrow-left"
+            aria-hidden="true"
+          ></i>
+
+          Volver al panel
+
+        </button>
+
 
         <h1>
           Cursos

@@ -742,38 +742,7 @@ function AdminSidebar() {
             </div>
 
 
-          {/* ==================================================
-              INSCRIPCIONES
-              ================================================== */}
-
-          <div
-            className={
-              `private-sidebar-item ${
-                isActive("/admin/enrollments")
-                  ? "active"
-                  : ""
-              }`
-            }
-          >
-
-            <PrivateIconButton
-              icon="bi bi-person-check"
-              color="green"
-              onPointerDown={(event) => {
-                event.stopPropagation();
-              }}
-              onClick={() =>
-                handleNavigate("/admin/enrollments")
-              }
-              aria-label="Inscripciones"
-              className="private-sidebar-icon"
-            />
-
-            <span className="private-sidebar-item-text">
-              Inscripciones
-            </span>
-
-          </div>
+      
 
           {/* ==================================================
               EXAMENES
@@ -840,17 +809,16 @@ function AdminSidebar() {
               Evaluaciones
             </span>
 
-          </div>
+          </div>       
 
-
-          {/* ==================================================
-              CERTIFICADOS
+              {/* ==================================================
+              INSCRIPCIONES
               ================================================== */}
 
           <div
             className={
               `private-sidebar-item ${
-                isActive("/admin/certificates")
+                isActive("/admin/enrollments")
                   ? "active"
                   : ""
               }`
@@ -858,20 +826,20 @@ function AdminSidebar() {
           >
 
             <PrivateIconButton
-              icon="bi bi-patch-check"
+              icon="bi bi-person-check"
               color="green"
               onPointerDown={(event) => {
                 event.stopPropagation();
               }}
               onClick={() =>
-                handleNavigate("/admin/certificates")
+                handleNavigate("/admin/enrollments")
               }
-              aria-label="Certificados"
+              aria-label="Inscripciones"
               className="private-sidebar-icon"
             />
 
             <span className="private-sidebar-item-text">
-              Certificados
+              Inscripciones
             </span>
 
           </div>

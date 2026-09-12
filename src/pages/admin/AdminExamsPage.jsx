@@ -5,6 +5,10 @@ import {
 } from "react";
 
 import {
+  useNavigate
+} from "react-router-dom";
+
+import {
   createExam,
   getAdminCourses,
   getAdminExamByCourse,
@@ -81,6 +85,9 @@ const AdminExamsPage = () => {
 
   const [questionToDelete, setQuestionToDelete] =
     useState(null);
+
+      const navigate =
+    useNavigate();
 
   /* ==========================================================
      NOTIFICACIONES
@@ -615,20 +622,40 @@ const AdminExamsPage = () => {
           CABECERA
           ====================================================== */}
 
-      <header className="private-page-header">
-        <span className="private-page-eyebrow">
-          Administración académica
-        </span>
+        <header className="private-page-header">
 
-        <h1>
-          Exámenes
-        </h1>
+          <button
+            type="button"
+            className="admin-users-view-button"
+            onClick={() =>
+              navigate("/admin")
+            }
+          >
 
-        <p>
-          Crea y configura los exámenes finales
-          de los cursos académicos.
-        </p>
-      </header>
+            <i
+              className="bi bi-arrow-left"
+              aria-hidden="true"
+            ></i>
+
+            Volver al panel
+
+          </button>
+
+
+          <span className="private-page-eyebrow">
+            Administración académica
+          </span>
+
+          <h1>
+            Exámenes
+          </h1>
+
+          <p>
+            Crea y configura los exámenes finales
+            de los cursos académicos.
+          </p>
+
+        </header>
 
       {/* ======================================================
           RESUMEN
