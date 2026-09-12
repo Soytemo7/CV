@@ -1,0 +1,376 @@
+/* ============================================================
+   USER — DASHBOARD
+   Últimos cursos publicados
+   ============================================================ */
+
+
+/* ============================================================
+   CONTENEDOR
+   ============================================================ */
+
+.user-dashboard-published-courses {
+  width: 100%;
+}
+
+
+/* ============================================================
+   GRID DE CURSOS
+   ============================================================ */
+
+.user-dashboard-published-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 20px;
+
+  width: 100%;
+
+}
+
+
+/* ============================================================
+   TARJETA
+   ============================================================ */
+
+.user-dashboard-published-card {
+
+  position: relative;
+
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 210px;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(248, 250, 252, 0.96)
+    );
+
+  box-shadow:
+    0 8px 24px
+    rgba(15, 23, 42, 0.07);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+}
+
+
+/* ============================================================
+   CONTENIDO SOBRE EL BORDE ANIMADO
+   ============================================================ */
+
+.user-dashboard-published-card > * {
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.user-dashboard-published-card:hover {
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 14px 32px
+    rgba(15, 23, 42, 0.12);
+
+}
+
+
+/* ============================================================
+   CONTENIDO
+   ============================================================ */
+
+.user-dashboard-published-content {
+
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+
+}
+
+
+.user-dashboard-published-title {
+
+  margin: 0;
+
+  color:
+    #172033;
+
+  font-size: 19px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+
+}
+
+
+.user-dashboard-published-description {
+
+  display: -webkit-box;
+
+  margin:
+    9px
+    0
+    0;
+
+  overflow: hidden;
+
+  color:
+    #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 3;
+
+}
+
+
+/* ============================================================
+   PIE DE TARJETA
+   ============================================================ */
+
+.user-dashboard-published-footer {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 22px;
+
+}
+
+
+.user-dashboard-published-status {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color:
+    #16a34a;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+}
+
+
+.user-dashboard-published-status i {
+
+  font-size: 13px;
+
+}
+
+
+.user-dashboard-published-action {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color:
+    #2563eb;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+
+}
+
+
+.user-dashboard-published-action:hover {
+
+  gap: 10px;
+
+  color:
+    #1d4ed8;
+
+}
+
+
+.user-dashboard-published-action i {
+
+  font-size: 13px;
+
+}
+
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+.private-dark
+.user-dashboard-published-card {
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(30, 41, 59, 0.96),
+      rgba(15, 23, 42, 0.98)
+    );
+
+  box-shadow:
+    0 8px 24px
+    rgba(0, 0, 0, 0.20);
+
+}
+
+
+.private-dark
+.user-dashboard-published-card:hover {
+
+  box-shadow:
+    0 14px 32px
+    rgba(0, 0, 0, 0.30);
+
+}
+
+
+.private-dark
+.user-dashboard-published-title {
+
+  color:
+    #f8fafc;
+
+}
+
+
+.private-dark
+.user-dashboard-published-description {
+
+  color:
+    #94a3b8;
+
+}
+
+
+.private-dark
+.user-dashboard-published-status {
+
+  color:
+    #4ade80;
+
+}
+
+
+.private-dark
+.user-dashboard-published-action {
+
+  color:
+    #60a5fa;
+
+}
+
+
+.private-dark
+.user-dashboard-published-action:hover {
+
+  color:
+    #93c5fd;
+
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .user-dashboard-published-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+}
+
+
+/* ============================================================
+   MÓVIL
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .user-dashboard-published-card {
+
+    min-height: 190px;
+
+    padding: 20px;
+
+  }
+
+
+  .user-dashboard-published-title {
+
+    font-size: 17px;
+
+  }
+
+
+  .user-dashboard-published-description {
+
+    font-size: 13px;
+
+  }
+
+
+  .user-dashboard-published-footer {
+
+    margin-top: 18px;
+
+  }
+
+}

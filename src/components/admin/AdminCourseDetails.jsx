@@ -130,7 +130,18 @@ function AdminCourseDetails({
 
           <div className="admin-user-details-avatar">
 
-            <i className="bi bi-journal-bookmark"></i>
+            {
+              course.imageUrl
+                ? (
+                  <img
+                    src={course.imageUrl}
+                    alt={`Imagen del curso ${course.title || ""}`}
+                  />
+                )
+                : (
+                  <i className="bi bi-journal-bookmark"></i>
+                )
+            }
 
           </div>
 
@@ -175,6 +186,20 @@ function AdminCourseDetails({
             <strong>
               {course.description ||
                 "Sin descripción"}
+            </strong>
+
+          </div>
+
+
+          <div className="admin-user-details-item">
+
+            <span>
+              Imagen
+            </span>
+
+            <strong>
+              {course.imageUrl ||
+                "Sin imagen"}
             </strong>
 
           </div>

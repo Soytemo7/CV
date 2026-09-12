@@ -220,6 +220,16 @@ function WelcomeNotification() {
           "Crea y configura los exámenes, preguntas, opciones, respuestas correctas y puntuación de los cursos.",
       },
 
+      "/dashboard/courses": {
+
+        title:
+          "Área académica",
+
+        description:
+          "Consulta los cursos disponibles y da seguimiento a tu avance académico.",
+
+      },
+
     };
 
 

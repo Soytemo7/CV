@@ -20,7 +20,8 @@ function AdminCourseForm({
 
   const [form, setForm] = useState({
     title: "",
-    description: ""
+    description: "",
+    imageUrl: ""
   });
 
 
@@ -35,7 +36,10 @@ function AdminCourseForm({
         course?.title || "",
 
       description:
-        course?.description || ""
+        course?.description || "",
+
+      imageUrl:
+        course?.imageUrl || ""
     });
 
   }, [course]);
@@ -73,7 +77,10 @@ function AdminCourseForm({
         form.title.trim(),
 
       description:
-        form.description.trim()
+        form.description.trim(),
+
+      imageUrl:
+        form.imageUrl.trim()
     });
 
   };
@@ -206,6 +213,35 @@ function AdminCourseForm({
                   font: "inherit",
                   resize: "vertical"
                 }}
+              />
+
+            </div>
+
+
+            {/* ==================================================
+                IMAGEN DEL CURSO
+                ================================================== */}
+
+            <div
+              className="admin-users-filter"
+              style={{
+                marginTop: "1rem"
+              }}
+            >
+
+              <label htmlFor="course-image-url">
+                URL de imagen
+              </label>
+
+              <input
+                id="course-image-url"
+                name="imageUrl"
+                type="url"
+                value={form.imageUrl}
+                onChange={handleChange}
+                maxLength={2000}
+                disabled={loading}
+                placeholder="https://ejemplo.com/imagen.jpg"
               />
 
             </div>

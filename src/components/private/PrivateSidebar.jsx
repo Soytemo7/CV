@@ -4,26 +4,44 @@ import {
   useContext
 } from "react";
 
+
 import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
 
+
 import "../../styles/private/private-sidebar.css";
+
+
 import PrivateIconButton
   from "../common/PrivateIconButton.jsx";
-import SocialTooltip from "../common/SocialTooltip.jsx";
-import { AuthContext } from "../../context/AuthContext.jsx";
+
+
+import SocialTooltip
+  from "../common/SocialTooltip.jsx";
+
+
+import {
+  AuthContext
+} from "../../context/AuthContext.jsx";
+
 
 function PrivateSidebar() {
 
-  const navigate = useNavigate();
+  const navigate =
+    useNavigate();
 
-  const location = useLocation();
 
-    const {
-      user
-    } = useContext(AuthContext);
+  const location =
+    useLocation();
+
+
+  const {
+    user
+  } = useContext(
+    AuthContext
+  );
 
 
   /*
@@ -32,8 +50,12 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const SIDEBAR_WIDTH = 280;
-  const PEEK_WIDTH = 14;
+  const SIDEBAR_WIDTH =
+    280;
+
+
+  const PEEK_WIDTH =
+    14;
 
 
   /*
@@ -47,12 +69,14 @@ function PrivateSidebar() {
     setOpen
   ] = useState(false);
 
+
   const [
     dragOffset,
     setDragOffset
   ] = useState(
     -(SIDEBAR_WIDTH - PEEK_WIDTH)
   );
+
 
   const [
     dragging,
@@ -70,6 +94,7 @@ function PrivateSidebar() {
     dragStartX,
     setDragStartX
   ] = useState(null);
+
 
   const [
     dragStartOffset,
@@ -112,7 +137,9 @@ function PrivateSidebar() {
 
     setOpen(false);
 
-    setDragOffset(closedOffset);
+    setDragOffset(
+      closedOffset
+    );
 
   };
 
@@ -146,15 +173,19 @@ function PrivateSidebar() {
 
   useEffect(() => {
 
-    const handleEscape = (event) => {
+    const handleEscape =
+      (event) => {
 
-      if (event.key === "Escape") {
+        if (
+          event.key ===
+          "Escape"
+        ) {
 
-        closeSidebar();
+          closeSidebar();
 
-      }
+        }
 
-    };
+      };
 
 
     document.addEventListener(
@@ -214,36 +245,40 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const handlePointerDown = (event) => {
+  const handlePointerDown =
+    (event) => {
 
-    if (
-      event.pointerType === "mouse" &&
-      event.button !== 0
-    ) {
+      if (
+        event.pointerType ===
+          "mouse" &&
+        event.button !== 0
+      ) {
 
-      return;
+        return;
 
-    }
-
-
-    setDragging(true);
-
-    setDragStartX(
-      event.clientX
-    );
-
-    setDragStartOffset(
-      open
-        ? 0
-        : closedOffset
-    );
+      }
 
 
-    event.currentTarget.setPointerCapture(
-      event.pointerId
-    );
+      setDragging(true);
 
-  };
+
+      setDragStartX(
+        event.clientX
+      );
+
+
+      setDragStartOffset(
+        open
+          ? 0
+          : closedOffset
+      );
+
+
+      event.currentTarget.setPointerCapture(
+        event.pointerId
+      );
+
+    };
 
 
   /*
@@ -252,43 +287,44 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const handlePointerMove = (event) => {
+  const handlePointerMove =
+    (event) => {
 
-    if (
-      !dragging ||
-      dragStartX === null
-    ) {
+      if (
+        !dragging ||
+        dragStartX === null
+      ) {
 
-      return;
+        return;
 
-    }
-
-
-    const delta =
-      event.clientX -
-      dragStartX;
+      }
 
 
-    let nextOffset =
-      dragStartOffset +
-      delta;
+      const delta =
+        event.clientX -
+        dragStartX;
 
 
-    nextOffset =
-      Math.max(
-        closedOffset,
-        Math.min(
-          0,
-          nextOffset
-        )
+      let nextOffset =
+        dragStartOffset +
+        delta;
+
+
+      nextOffset =
+        Math.max(
+          closedOffset,
+          Math.min(
+            0,
+            nextOffset
+          )
+        );
+
+
+      setDragOffset(
+        nextOffset
       );
 
-
-    setDragOffset(
-      nextOffset
-    );
-
-  };
+    };
 
 
   /*
@@ -297,72 +333,75 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const handlePointerUp = (event) => {
-
-    if (
-      !dragging ||
-      dragStartX === null
-    ) {
-
-      return;
-
-    }
-
-
-    const delta =
-      event.clientX -
-      dragStartX;
-
-
-    const finalOffset =
-      dragStartOffset +
-      delta;
-
-
-    const threshold =
-      SIDEBAR_WIDTH * 0.35;
-
-
-    if (!open) {
+  const handlePointerUp =
+    (event) => {
 
       if (
-        finalOffset >
-        closedOffset + threshold
+        !dragging ||
+        dragStartX === null
       ) {
 
-        openSidebar();
-
-      } else {
-
-        closeSidebar();
+        return;
 
       }
 
-    } else {
 
-      if (
-        finalOffset <
-        -threshold
-      ) {
+      const delta =
+        event.clientX -
+        dragStartX;
 
-        closeSidebar();
+
+      const finalOffset =
+        dragStartOffset +
+        delta;
+
+
+      const threshold =
+        SIDEBAR_WIDTH *
+        0.35;
+
+
+      if (!open) {
+
+        if (
+          finalOffset >
+          closedOffset +
+            threshold
+        ) {
+
+          openSidebar();
+
+        } else {
+
+          closeSidebar();
+
+        }
 
       } else {
 
-        openSidebar();
+        if (
+          finalOffset <
+          -threshold
+        ) {
+
+          closeSidebar();
+
+        } else {
+
+          openSidebar();
+
+        }
 
       }
 
-    }
 
+      setDragging(false);
 
-    setDragging(false);
+      setDragStartX(null);
 
-    setDragStartX(null);
+      setDragStartOffset(0);
 
-    setDragStartOffset(0);
-
-  };
+    };
 
 
   /*
@@ -371,28 +410,29 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const handlePointerCancel = () => {
+  const handlePointerCancel =
+    () => {
 
-    setDragging(false);
+      setDragging(false);
 
-    setDragStartX(null);
+      setDragStartX(null);
 
-    setDragStartOffset(0);
+      setDragStartOffset(0);
 
 
-    if (open) {
+      if (open) {
 
-      setDragOffset(0);
+        setDragOffset(0);
 
-    } else {
+      } else {
 
-      setDragOffset(
-        closedOffset
-      );
+        setDragOffset(
+          closedOffset
+        );
 
-    }
+      }
 
-  };
+    };
 
 
   /*
@@ -401,13 +441,14 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const handleNavigate = (path) => {
+  const handleNavigate =
+    (path) => {
 
-    closeSidebar();
+      closeSidebar();
 
-    navigate(path);
+      navigate(path);
 
-  };
+    };
 
 
   /*
@@ -416,11 +457,15 @@ function PrivateSidebar() {
   ============================================================
   */
 
-  const isActive = (path) => {
+  const isActive =
+    (path) => {
 
-    return location.pathname === path;
+      return (
+        location.pathname ===
+        path
+      );
 
-  };
+    };
 
 
   /*
@@ -460,13 +505,17 @@ function PrivateSidebar() {
               : ""
           }`
         }
-        onClick={toggleSidebar}
+        onClick={
+          toggleSidebar
+        }
         aria-label={
           open
             ? "Cerrar menú"
             : "Abrir menú"
         }
-        aria-expanded={open}
+        aria-expanded={
+          open
+        }
       >
 
         <i
@@ -498,7 +547,9 @@ function PrivateSidebar() {
               : ""
           }`
         }
-        style={sidebarStyle}
+        style={
+          sidebarStyle
+        }
         onPointerDown={
           handlePointerDown
         }
@@ -526,10 +577,10 @@ function PrivateSidebar() {
           >
 
             <PrivateIconButton
-                icon="bi bi-grid-1x2"
-                color="yellow"
-                className="private-sidebar-brand-icon"
-                />
+              icon="bi bi-grid-1x2"
+              color="yellow"
+              className="private-sidebar-brand-icon"
+            />
 
 
             <div>
@@ -537,6 +588,7 @@ function PrivateSidebar() {
               <strong>
                 Menú
               </strong>
+
 
               <span>
                 Área privada
@@ -550,11 +602,15 @@ function PrivateSidebar() {
           <button
             type="button"
             className="private-sidebar-close"
-            onClick={closeSidebar}
+            onClick={
+              closeSidebar
+            }
             aria-label="Cerrar menú"
           >
 
-            <i className="bi bi-chevron-left"></i>
+            <i
+              className="bi bi-chevron-left"
+            ></i>
 
           </button>
 
@@ -570,81 +626,170 @@ function PrivateSidebar() {
           aria-label="Menú privado"
         >
 
-             <div className="private-sidebar-social">
+          <div
+            className="private-sidebar-social"
+          >
 
             <SocialTooltip />
-            <div className="private-sidebar-social-space"></div>
 
-        </div>
-        <div
+
+            <div
+              className="private-sidebar-social-space"
+            ></div>
+
+          </div>
+
+
+          <div
             className="private-sidebar-divider"
           ></div>
+
 
           {/* ==================================================
               DASHBOARD
               ================================================== */}
 
-            <div
-                className={
-                    `private-sidebar-item ${
-                    isActive("/dashboard")
-                        ? "active"
-                        : ""
-                    }`
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive(
+                  "/dashboard"
+                )
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-grid"
+              color="blue"
+              onPointerDown={
+                (event) => {
+                  event.stopPropagation();
                 }
-                >
+              }
+              onClick={() =>
+                handleNavigate(
+                  "/dashboard"
+                )
+              }
+              aria-label="Dashboard"
+              className="private-sidebar-icon"
+            />
 
-                <PrivateIconButton
-                    icon="bi bi-grid"
-                    color="blue"
-                    onPointerDown={(event) => {
-                    event.stopPropagation();
-  }}
-                    onClick={() =>
-                    handleNavigate("/dashboard")
-                    }
-                    aria-label="Dashboard"
-                    className="private-sidebar-icon"
-                />
 
-                <span className="private-sidebar-item-text">
-                    Dashboard
-                </span>
+            <span
+              className="private-sidebar-item-text"
+            >
+              Dashboard
+            </span>
 
-                </div>
+          </div>
+
+
+          {/* ==================================================
+              SEPARADOR — ÁREA ACADÉMICA
+              ================================================== */}
+
+          <div
+            className="private-sidebar-divider"
+          ></div>
+
+
+          {/* ==================================================
+              TODOS LOS CURSOS
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive(
+                  "/dashboard/courses"
+                )
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-mortarboard"
+              color="blue"
+              onPointerDown={
+                (event) => {
+                  event.stopPropagation();
+                }
+              }
+              onClick={() =>
+                handleNavigate(
+                  "/dashboard/courses"
+                )
+              }
+              aria-label="Todos los cursos"
+              className="private-sidebar-icon"
+            />
+
+
+            <span
+              className="private-sidebar-item-text"
+            >
+              Todos los cursos
+            </span>
+
+          </div>
+
+
+          {/* ==================================================
+              SEPARADOR — PERFIL
+              ================================================== */}
+
+          <div
+            className="private-sidebar-divider"
+          ></div>
+
 
           {/* ==================================================
               PERFIL
               ================================================== */}
 
-        <div
+          <div
             className={
-                `private-sidebar-item ${
-                isActive("/dashboard/profile")
-                    ? "active"
-                    : ""
-                }`
+              `private-sidebar-item ${
+                isActive(
+                  "/dashboard/profile"
+                )
+                  ? "active"
+                  : ""
+              }`
             }
-            >
+          >
 
             <PrivateIconButton
-                icon="bi bi-person"
-                color="blue"
-                onPointerDown={(event) => {
-                    event.stopPropagation();
-                }}
-                onClick={() =>
-                handleNavigate("/dashboard/profile")
+              icon="bi bi-person"
+              color="blue"
+              onPointerDown={
+                (event) => {
+                  event.stopPropagation();
                 }
-                aria-label="Mi perfil"
-                className="private-sidebar-icon"
+              }
+              onClick={() =>
+                handleNavigate(
+                  "/dashboard/profile"
+                )
+              }
+              aria-label="Mi perfil"
+              className="private-sidebar-icon"
             />
 
-            <span className="private-sidebar-item-text">
-                Mi perfil
+
+            <span
+              className="private-sidebar-item-text"
+            >
+              Mi perfil
             </span>
 
-            </div>
+          </div>
 
 
           {/* ==================================================
@@ -653,109 +798,137 @@ function PrivateSidebar() {
 
           <div
             className={
-                `private-sidebar-item ${
-                isActive("/dashboard/security")
-                    ? "active"
-                    : ""
-                }`
+              `private-sidebar-item ${
+                isActive(
+                  "/dashboard/security"
+                )
+                  ? "active"
+                  : ""
+              }`
             }
-            >
+          >
 
             <PrivateIconButton
-                icon="bi bi-shield-lock"
-                color="red"
-                onPointerDown={(event) => {
-                    event.stopPropagation();
-                }}
-                onClick={() =>
-                handleNavigate("/dashboard/security")
+              icon="bi bi-shield-lock"
+              color="red"
+              onPointerDown={
+                (event) => {
+                  event.stopPropagation();
                 }
-                aria-label="Seguridad"
-                className="private-sidebar-icon"
+              }
+              onClick={() =>
+                handleNavigate(
+                  "/dashboard/security"
+                )
+              }
+              aria-label="Seguridad"
+              className="private-sidebar-icon"
             />
 
-            <span className="private-sidebar-item-text">
-                Seguridad
+
+            <span
+              className="private-sidebar-item-text"
+            >
+              Seguridad
             </span>
 
-            </div>
+          </div>
+
+
+          {/* ==================================================
+              SEPARADOR — ADMINISTRACIÓN
+              ================================================== */}
 
           <div
             className="private-sidebar-divider"
           ></div>
 
 
-                    {/* ==================================================
-                    ADMINISTRACIÓN
-                    SOLO ADMINISTRADORES
-                    ================================================== */}
+          {/* ==================================================
+              ADMINISTRACIÓN
+              SOLO ADMINISTRADORES
+              ================================================== */}
 
-                {user?.role === "admin" && (
-
-                  <div
-                    className={
-                      `private-sidebar-item ${
-                        isActive("/admin")
-                          ? "active"
-                          : ""
-                      }`
-                    }
-                  >
-
-                    <PrivateIconButton
-                      icon="bi bi-shield-check"
-                      color="yellow"
-                      onPointerDown={(event) => {
-                        event.stopPropagation();
-                      }}
-                      onClick={() =>
-                        handleNavigate("/admin")
-                      }
-                      aria-label="Administración"
-                      className="private-sidebar-icon"
-                    />
-
-                    <span className="private-sidebar-item-text">
-                      Área de Administración
-                    </span>
-
-                  </div>
-
-                )}
-
-            {/* ==================================================
-            VOLVER A MI CV
-            ================================================== */}
+          {user?.role === "admin" && (
 
             <div
-            className={
+              className={
                 `private-sidebar-item ${
-                isActive("/")
+                  isActive(
+                    "/admin"
+                  )
                     ? "active"
                     : ""
                 }`
-            }
+              }
             >
 
-            <PrivateIconButton
-                icon="bi bi-house"
-                color="green"
-                onPointerDown={(event) => {
+              <PrivateIconButton
+                icon="bi bi-shield-check"
+                color="yellow"
+                onPointerDown={
+                  (event) => {
                     event.stopPropagation();
-                }}
-                onClick={() =>
-                handleNavigate("/")
+                  }
                 }
-                aria-label="Volver a mi CV"
+                onClick={() =>
+                  handleNavigate(
+                    "/admin"
+                  )
+                }
+                aria-label="Administración"
                 className="private-sidebar-icon"
-            />
+              />
 
-            <span className="private-sidebar-item-text">
-                Volver a mi CV
-            </span>
+
+              <span
+                className="private-sidebar-item-text"
+              >
+                Área de Administración
+              </span>
 
             </div>
-        
+
+          )}
+
+
+          {/* ==================================================
+              VOLVER A MI CV
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-house"
+              color="green"
+              onPointerDown={
+                (event) => {
+                  event.stopPropagation();
+                }
+              }
+              onClick={() =>
+                handleNavigate("/")
+              }
+              aria-label="Volver a mi CV"
+              className="private-sidebar-icon"
+            />
+
+
+            <span
+              className="private-sidebar-item-text"
+            >
+              Volver a mi CV
+            </span>
+
+          </div>
 
         </nav>
 
@@ -799,7 +972,9 @@ function PrivateSidebar() {
 
         <div
           className="private-sidebar-overlay"
-          onClick={closeSidebar}
+          onClick={
+            closeSidebar
+          }
           aria-hidden="true"
         ></div>
 

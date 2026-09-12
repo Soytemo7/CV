@@ -32,17 +32,6 @@ import MouseParticleTrail from "../components/common/MouseParticleTrail";
 
 function Login() {
 
-  console.log(
-    "URL:",
-    window.location.origin
-  );
-
-  console.log(
-    "localStorage:",
-    { ...localStorage }
-  );
-
-
   const {
     login,
     loginWithGoogle,
@@ -198,13 +187,7 @@ function Login() {
   // ==========================================================
 
   const handleCertificateSuccess =
-    (data) => {
-
-      console.log(
-        "✅ Certificado correcto:",
-        data
-      );
-
+    (data) => {    
 
       /*
        * Cerramos el modal antes de continuar.
@@ -267,13 +250,7 @@ function Login() {
 
         const data =
           await loginWithPasskey();
-
-
-        console.log(
-          "✅ Passkey correcto:",
-          data
-        );
-
+      
 
         notification.success({
 
@@ -308,12 +285,7 @@ function Login() {
           data?.user
         );
 
-      } catch (error) {
-
-        console.error(
-          "❌ Error Passkey:",
-          error
-        );
+      } catch (error) {      
 
 
         let description =
@@ -559,13 +531,7 @@ function Login() {
           await login(
             email,
             password
-          );
-
-
-        console.log(
-          "✅ Login correcto:",
-          data
-        );
+          );      
 
 
         if (
@@ -634,12 +600,7 @@ function Login() {
 
       } catch (error) {
 
-        console.error(
-          "❌ Error login:",
-          error
-        );
-
-
+      
         setCurrentStep(1);
 
         setStepStatus(
@@ -722,13 +683,7 @@ function Login() {
             credentialResponse.credential
           );
 
-
-        console.log(
-          "✅ Google correcto:",
-          data
-        );
-
-
+      
         if (
           data?.requiresTwoFactor &&
           data?.challenge
@@ -793,12 +748,7 @@ function Login() {
         }, 700);
 
 
-      } catch (error) {
-
-        console.error(
-          "❌ Error Google:",
-          error
-        );
+      } catch (error) {       
 
 
         setCurrentStep(1);

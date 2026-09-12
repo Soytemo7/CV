@@ -94,6 +94,7 @@ export const updateCourseStatus =
           status
         })
       }
+
     );
 
   };
@@ -114,6 +115,27 @@ export const deleteCourse =
       )}`,
       {
         method: "DELETE"
+      }
+    );
+
+  };
+
+
+// ============================================================
+// CATÁLOGO — CURSOS PUBLICADOS
+// ============================================================
+
+// ------------------------------------------------------------
+// Obtener cursos publicados
+// ------------------------------------------------------------
+
+export const getPublishedCourses =
+  async () => {
+
+    return await api(
+      "/api/academic/courses",
+      {
+        method: "GET"
       }
     );
 

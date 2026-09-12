@@ -72,6 +72,9 @@ import AdminCourseContentPage
   import AdminExamsPage
   from "./pages/admin/AdminExamsPage.jsx";
 
+  import DashboardCourses
+  from "./pages/DashboardCourses.jsx";
+
 
 function App() {
 
@@ -250,6 +253,15 @@ function App() {
             element={
               <PrivateLayout>
                 <AcademicVideo />
+              </PrivateLayout>
+            }
+          />
+
+           <Route
+            path="/dashboard/courses"
+            element={
+              <PrivateLayout>
+                <DashboardCourses  />
               </PrivateLayout>
             }
           />
