@@ -1006,3 +1006,274 @@ button::after {
 .dashboard-courses-empty p {
   color: #94a3b8 !important;
 }
+
+/* ============================================================
+   OCULTAR CONTORNO DEL CATÁLOGO AL ABRIR UN MODAL
+   ============================================================ */
+
+.dashboard-courses-section-card:has(
+  .dashboard-course-structure-modal-overlay
+),
+.dashboard-courses-section-card:has(
+  .dashboard-enroll-modal-overlay
+) {
+  animation: none;
+}
+
+.dashboard-courses-section-card:has(
+  .dashboard-course-structure-modal-overlay
+)::before,
+.dashboard-courses-section-card:has(
+  .dashboard-course-structure-modal-overlay
+)::after,
+.dashboard-courses-section-card:has(
+  .dashboard-enroll-modal-overlay
+)::before,
+.dashboard-courses-section-card:has(
+  .dashboard-enroll-modal-overlay
+)::after {
+  display: none;
+}
+
+/* ============================================================
+   ESTRUCTURA — LECCIONES
+   ============================================================ */
+
+.dashboard-course-structure-lessons {
+  margin-top: 18px;
+  margin-left: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* ============================================================
+   ESTRUCTURA — LECCIÓN
+   ============================================================ */
+
+.dashboard-course-structure-lesson {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 123, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(0, 123, 255, 0.04);
+}
+
+
+.dashboard-course-structure-lesson-content {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.dashboard-course-structure-lesson-content > span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #00a6d6;
+}
+
+
+.dashboard-course-structure-lesson-content > strong {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--text-primary, #222);
+}
+
+
+/* ============================================================
+   ESTRUCTURA — VIDEOS
+   ============================================================ */
+
+.dashboard-course-structure-videos {
+  margin-top: 12px;
+  margin-left: 12px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 2px solid rgba(220, 53, 69, 0.22);
+}
+
+
+.dashboard-course-structure-video {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(220, 53, 69, 0.14);
+  border-radius: 10px;
+  background: rgba(220, 53, 69, 0.035);
+}
+
+
+.dashboard-course-structure-video-content {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+
+.dashboard-course-structure-video-content > span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #dc3545;
+}
+
+
+.dashboard-course-structure-video-content > strong {
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--text-primary, #222);
+}
+
+
+.dashboard-course-structure-video-content > small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  font-size: 0.76rem;
+  color: var(--text-secondary, #6c757d);
+}
+
+
+.dashboard-course-structure-video-content > small i {
+  font-size: 0.75rem;
+}
+
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+.dark
+.dashboard-course-structure-lesson,
+.dark
+.dashboard-course-structure-video {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+.dark
+.dashboard-course-structure-lesson-content > strong,
+.dark
+.dashboard-course-structure-video-content > strong {
+  color: #f1f5f9;
+}
+
+
+.dark
+.dashboard-course-structure-video-content > small {
+  color: #aab4c3;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .dashboard-course-structure-lessons {
+    margin-left: 20px;
+  }
+
+
+  .dashboard-course-structure-lesson {
+    padding: 12px;
+  }
+
+
+  .dashboard-course-structure-videos {
+    margin-left: 4px;
+    padding-left: 12px;
+  }
+
+
+  .dashboard-course-structure-video {
+    padding: 9px;
+  }
+
+}
+
+/* ============================================================
+   ESTRUCTURA — IMAGEN PRINCIPAL DEL CURSO
+   ============================================================ */
+
+.dashboard-course-structure-course-image {
+  width: 100%;
+  min-height: 420px;
+  height: calc(100vh - 250px);
+  max-height: 600px;
+
+  margin-bottom: 28px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(0, 123, 255, 0.18);
+  border-radius: 14px;
+
+  background: #f1f4f8;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.10);
+}
+
+
+.dashboard-course-structure-course-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+.private-dark
+.dashboard-course-structure-course-image {
+  background: #151515;
+
+  border-color: rgba(255, 255, 255, 0.10);
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .dashboard-course-structure-course-image {
+    min-height: 300px;
+
+    height: calc(100vh - 280px);
+
+    max-height: 500px;
+
+    margin-bottom: 22px;
+
+    border-radius: 12px;
+  }
+
+}

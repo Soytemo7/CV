@@ -37,3 +37,26 @@ export const enrollInCourse =
     );
 
   };
+
+  export const getCourseById =
+  async (
+    courseId
+  ) => {
+
+    if (!courseId) {
+
+      throw new Error(
+        "El identificador del curso es obligatorio."
+      );
+
+    }
+
+
+    return await api(
+      `/api/academic/courses/${courseId}`,
+      {
+        method: "GET"
+      }
+    );
+
+  };

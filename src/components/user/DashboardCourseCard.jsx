@@ -6,6 +6,15 @@ import {
   useState
 } from "react";
 
+import {
+  getCourseById
+} from "../../services/user/courseService.js";
+
+import DashboardCourseStructureModal
+  from "./DashboardCourseStructureModal.jsx";
+
+import "../../styles/user/dashboardAcademicCourse.css";
+
 
 function DashboardCourseCard({
   course,
@@ -24,6 +33,30 @@ function DashboardCourseCard({
   ] = useState(false);
 
 
+  const [
+    showStructureModal,
+    setShowStructureModal
+  ] = useState(false);
+
+
+  const [
+    courseStructure,
+    setCourseStructure
+  ] = useState(null);
+
+
+  const [
+    loadingStructure,
+    setLoadingStructure
+  ] = useState(false);
+
+
+  const [
+    structureError,
+    setStructureError
+  ] = useState("");
+
+
   const status =
     enrollment?.status ||
     null;
@@ -37,6 +70,10 @@ function DashboardCourseCard({
     status === "EN_PROGRESO";
 
 
+  /* ==========================================================
+     ABRIR CURSO
+     ========================================================== */
+
   const handleOpenCourse = () => {
 
     navigate(
@@ -45,6 +82,10 @@ function DashboardCourseCard({
 
   };
 
+
+  /* ==========================================================
+     INSCRIPCIÓN
+     ========================================================== */
 
   const handleEnroll = () => {
 
@@ -70,7 +111,7 @@ function DashboardCourseCard({
   };
 
 
-    const handleConfirmEnroll = async () => {
+  const handleConfirmEnroll = async () => {
 
     if (enrolling) {
       return;
@@ -93,13 +134,91 @@ function DashboardCourseCard({
 
   };
 
+
+  /* ==========================================================
+     ESTRUCTURA DEL CURSO
+     ========================================================== */
+
+  const handleOpenStructure = async () => {
+
+    setShowStructureModal(true);
+
+    setStructureError("");
+
+
+    if (courseStructure) {
+      return;
+    }
+
+
+    try {
+
+      setLoadingStructure(true);
+
+
+      const response =
+        await getCourseById(
+          course.id
+        );
+
+
+      const structure =
+        response?.data ||
+        response;
+
+
+      setCourseStructure(
+        structure
+      );
+
+    } catch (error) {
+
+      setStructureError(
+        error?.message ||
+        "No fue posible obtener la estructura del curso."
+      );
+
+    } finally {
+
+      setLoadingStructure(false);
+
+    }
+
+  };
+
+
+  const handleCloseStructure = () => {
+
+    if (loadingStructure) {
+      return;
+    }
+
+
+    setShowStructureModal(false);
+
+  };
+
+
   return (
 
     <>
 
-      <article className="dashboard-course-card animated-border">
+      <article
+        className={`dashboard-course-card ${
+          !showEnrollModal && !showStructureModal
+            ? "animated-border"
+            : ""
+        }`}
+      >
 
-        <div className="dashboard-course-card-icon">
+        <div
+          className="
+            private-icon-button
+            private-icon-button-blue
+            dashboard-course-card-icon
+          "
+          aria-hidden="true"
+        >
 
           <i
             className="bi bi-mortarboard"
@@ -192,12 +311,18 @@ function DashboardCourseCard({
 
         <div className="dashboard-course-card-action">
 
+          {/* ==================================================
+             CURSO COMPLETADO
+             ================================================== */}
+
           {isCompleted ? (
 
             <button
               type="button"
               className="user-dashboard-secondary-button"
-              disabled
+              onClick={
+                handleOpenCourse
+              }
             >
 
               <i
@@ -213,6 +338,10 @@ function DashboardCourseCard({
             </button>
 
           ) : isInProgress ? (
+
+            /* ==================================================
+               CURSO EN PROGRESO
+               ================================================== */
 
             <button
               type="button"
@@ -235,6 +364,10 @@ function DashboardCourseCard({
             </button>
 
           ) : (
+
+            /* ==================================================
+               CURSO DISPONIBLE
+               ================================================== */
 
             <button
               type="button"
@@ -265,10 +398,39 @@ function DashboardCourseCard({
 
           )}
 
+
+          {/* ==================================================
+             VER ESTRUCTURA
+             ================================================== */}
+
+          <button
+            type="button"
+            className="dashboard-course-card-structure-button"
+            onClick={
+              handleOpenStructure
+            }
+          >
+
+            <i
+              className="bi bi-list-ul"
+              aria-hidden="true"
+            ></i>
+
+
+            <span>
+              Ver estructura
+            </span>
+
+          </button>
+
         </div>
 
       </article>
 
+
+      {/* ======================================================
+         MODAL — INSCRIPCIÓN
+         ====================================================== */}
 
       {showEnrollModal && (
 
@@ -292,10 +454,6 @@ function DashboardCourseCard({
               event.stopPropagation();
             }}
           >
-
-            {/* ==================================================
-                HEADER
-                ================================================== */}
 
             <header className="dashboard-enroll-modal-header">
 
@@ -338,10 +496,6 @@ function DashboardCourseCard({
             </header>
 
 
-            {/* ==================================================
-                CONTENIDO
-                ================================================== */}
-
             <div className="dashboard-enroll-modal-body">
 
               <div className="dashboard-enroll-modal-info">
@@ -374,10 +528,6 @@ function DashboardCourseCard({
 
             </div>
 
-
-            {/* ==================================================
-                FOOTER
-                ================================================== */}
 
             <footer className="dashboard-enroll-modal-footer">
 
@@ -434,6 +584,23 @@ function DashboardCourseCard({
           </div>
 
         </div>
+
+      )}
+
+
+      {/* ======================================================
+         MODAL — ESTRUCTURA DEL CURSO
+         ====================================================== */}
+
+      {showStructureModal && (
+
+        <DashboardCourseStructureModal
+          course={course}
+          courseStructure={courseStructure}
+          loadingStructure={loadingStructure}
+          structureError={structureError}
+          onClose={handleCloseStructure}
+        />
 
       )}
 

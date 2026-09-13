@@ -75,6 +75,9 @@ import AdminCourseContentPage
   import DashboardCourses
   from "./pages/DashboardCourses.jsx";
 
+  import DashboardAcademicCourse
+  from "./pages/DashboardAcademicCourse.jsx";
+
 
 function App() {
 
@@ -262,6 +265,15 @@ function App() {
             element={
               <PrivateLayout>
                 <DashboardCourses  />
+              </PrivateLayout>
+            }
+          />
+
+          <Route
+            path="/dashboard/academic/courses/:courseId"
+            element={
+              <PrivateLayout>
+                <DashboardAcademicCourse   />
               </PrivateLayout>
             }
           />

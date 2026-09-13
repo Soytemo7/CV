@@ -13,6 +13,10 @@ import {
   useLocation
 } from "react-router-dom";
 
+import {
+  getAcademicCourse
+} from "../services/user/academicCourseService.js";
+
 import "../styles/welcome-notification.css";
 
 
@@ -41,13 +45,10 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/": {
-
         title:
           "¡Bienvenido!",
-
         description:
           "Bienvenido a mi CV profesional.",
-
       },
 
 
@@ -56,46 +57,31 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/login": {
-
         title:
           "Inicio de sesión",
-
         description:
           "Bienvenido al área de acceso.",
-
       },
-
 
       "/register": {
-
         title:
           "Crear cuenta",
-
         description:
           "Regístrate para acceder al sistema.",
-
       },
-
 
       "/forgot-password": {
-
         title:
           "Recuperar contraseña",
-
         description:
           "Solicita un enlace para recuperar el acceso a tu cuenta.",
-
       },
 
-
       "/reset-password": {
-
         title:
           "Restablecer contraseña",
-
         description:
           "Establece una nueva contraseña para tu cuenta.",
-
       },
 
 
@@ -104,35 +90,24 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/dashboard": {
-
         title:
           "Panel de control",
-
         description:
           "Bienvenido a tu panel de control.",
-
       },
-
 
       "/dashboard/profile": {
-
         title:
           "Mi perfil",
-
         description:
           "Consulta la información asociada a tu cuenta.",
-
       },
 
-
       "/dashboard/security": {
-
         title:
           "Seguridad",
-
         description:
           "Administra los dispositivos, accesos y sesiones asociadas a tu cuenta.",
-
       },
 
 
@@ -141,24 +116,17 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/admin": {
-
         title:
           "Panel administrativo",
-
         description:
           "Bienvenido al área de administración.",
-
       },
 
-
       "/admin/users": {
-
         title:
           "Administración de usuarios",
-
         description:
           "Consulta y administra las cuentas registradas en la plataforma.",
-
       },
 
 
@@ -167,13 +135,10 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/admin/courses": {
-
         title:
           "Administración de cursos",
-
         description:
           "Consulta, crea y administra los cursos académicos de la plataforma.",
-
       },
 
 
@@ -182,13 +147,10 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/academic/video": {
-
         title:
           "Video de la lección",
-
         description:
           "Reproduce el contenido académico para registrar tu avance en la lección.",
-
       },
 
       "/admin/course-structure": {
@@ -205,7 +167,7 @@ function WelcomeNotification() {
           "Consulta y da seguimiento al avance académico de los alumnos inscritos en los cursos.",
       },
 
-        "/admin/evaluaciones": {
+      "/admin/evaluaciones": {
         title:
           "Evaluaciones",
         description:
@@ -215,19 +177,15 @@ function WelcomeNotification() {
       "/admin/exams": {
         title:
           "Exámenes",
-
         description:
           "Crea y configura los exámenes, preguntas, opciones, respuestas correctas y puntuación de los cursos.",
       },
 
       "/dashboard/courses": {
-
         title:
           "Área académica",
-
         description:
           "Consulta los cursos disponibles y da seguimiento a tu avance académico.",
-
       },
 
     };
@@ -242,7 +200,6 @@ function WelcomeNotification() {
         .replace(/\/+$/, "") || "/";
 
 
-    
     /* ========================================================
        OBTENER NOTIFICACIÓN
        ======================================================== */
@@ -263,14 +220,11 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
-
         title:
           "Contenido del curso",
-
         description:
           "Administra los módulos que forman parte de este curso académico.",
-
-      };      
+      };
 
     }
 
@@ -287,13 +241,10 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
-
         title:
           "Lecciones del módulo",
-
         description:
           "Administra las lecciones que forman parte de este módulo académico.",
-
       };
 
     }
@@ -311,14 +262,104 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
-
         title:
           "Video de la lección",
-
         description:
           "Administra el contenido multimedia asociado a esta lección.",
-
       };
+
+    }
+
+
+    /* ========================================================
+       CURSO ACADÉMICO → BIENVENIDA AL CURSO
+       ======================================================== */
+
+    const academicCourseMatch =
+      pathname.match(
+        /^\/dashboard\/academic\/courses\/([^/]+)$/
+      );
+
+
+    if (
+      !currentNotification &&
+      academicCourseMatch
+    ) {
+
+      const courseId =
+        academicCourseMatch[1];
+
+
+      const loadCourseNotification =
+        async () => {
+
+          try {
+
+            const courseResponse =
+              await getAcademicCourse(
+                courseId
+              );
+
+
+            const course =
+              courseResponse?.course ||
+              courseResponse?.data ||
+              courseResponse;
+
+
+            api.destroy();
+
+
+            api.info({
+
+              title:
+                "¡Bienvenido al curso!",
+
+              description:
+                `Has ingresado al curso "${course?.title}". Aquí podrás consultar sus módulos, lecciones y dar seguimiento a tu avance académico.`,
+
+              placement:
+                window.innerWidth <= 576
+                  ? "bottom"
+                  : "bottomRight",
+
+              duration:
+                8,
+
+              showProgress:
+                true,
+
+              pauseOnHover:
+                true,
+
+              closable:
+                true,
+
+              stack: {
+                threshold:
+                  3,
+              },
+
+              className:
+                "welcome-notification",
+
+            });
+
+          } catch (error) {
+
+            console.error(
+              "Error al cargar el curso:",
+              error
+            );
+
+          }
+
+        };
+
+
+      loadCourseNotification();
+
+      return;
 
     }
 
@@ -373,10 +414,8 @@ function WelcomeNotification() {
         true,
 
       stack: {
-
         threshold:
           3,
-
       },
 
       className:
@@ -385,10 +424,8 @@ function WelcomeNotification() {
     });
 
   }, [
-
     location.pathname,
     api
-
   ]);
 
 
