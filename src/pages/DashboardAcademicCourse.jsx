@@ -16,6 +16,9 @@ import DashboardAcademicCourseModule
 import DashboardAcademicCourseExam
   from "../components/user/DashboardAcademicCourseExam.jsx";
 
+import DashboardAcademicCourseCertificate
+  from "../components/user/DashboardAcademicCourseCertificate.jsx";
+
 import {
   getAcademicCourse,
   getAcademicCourseEnrollment,
@@ -26,6 +29,10 @@ import {
 import {
   useNotification
 } from "../hooks/useNotification.js";
+
+import {
+  startAcademicAssessmentAttempt
+} from "../services/user/academicAssessmentService.js";
 
 import "../styles/animated-border.css";
 import "../styles/privateIconButton.css";
@@ -70,6 +77,11 @@ function DashboardAcademicCourse() {
     exam,
     setExam
   ] = useState(null);
+
+   const [
+            assessment,
+            setAssessment
+          ] = useState(null);
 
 
   const [
@@ -178,8 +190,13 @@ function DashboardAcademicCourse() {
 
           const examData =
             examResponse?.exam ||
-            examResponse?.data ||
-            examResponse ||
+            examResponse?.data?.exam ||
+            null;
+
+
+          const assessmentData =
+            examResponse?.assessment ||
+            examResponse?.data?.assessment ||
             null;
 
 
@@ -206,6 +223,10 @@ function DashboardAcademicCourse() {
             examData
           );
 
+         
+          setAssessment(
+            assessmentData
+          );
 
         } catch (requestError) {
 
@@ -496,22 +517,29 @@ function DashboardAcademicCourse() {
     };
 
 
-  /* ============================================================
+    /* ============================================================
      ABRIR EXAMEN
      ============================================================ */
 
   const handleOpenExam =
     async () => {
 
-      if (!examUnlocked) {
+      if (
+        !examUnlocked ||
+        assessment?.passed === true
+      ) {
 
         notification.warning({
 
           message:
-            "Examen bloqueado",
+            assessment?.passed === true
+              ? "Examen ya aprobado"
+              : "Examen bloqueado",
 
           description:
-            "Completa todos los videos del curso antes de presentar el examen."
+            assessment?.passed === true
+              ? "Ya aprobaste este examen. No es posible iniciar otro intento."
+              : "Completa todos los videos del curso antes de presentar el examen."
 
         });
 
@@ -542,50 +570,16 @@ function DashboardAcademicCourse() {
         setExamLoading(true);
 
 
-        /*
-         * El intento lo crea el backend.
-         *
-         * La pantalla de evaluación existente
-         * recibirá el examId/attemptId mediante
-         * navegación.
-         *
-         * El endpoint de inicio pertenece al
-         * módulo Assessment.
-         */
-
         const response =
-          await fetch(
-            `${import.meta.env.VITE_API_URL}/api/academic/assessment/exam/${exam.id}/attempt`,
-            {
-              method: "POST",
-              credentials: "include",
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-              body: JSON.stringify({})
-            }
+          await startAcademicAssessmentAttempt(
+            exam.id
           );
-
-
-        const data =
-          await response.json();
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            data?.error ||
-            "No fue posible iniciar el examen."
-          );
-
-        }
 
 
         const attempt =
-          data?.attempt ||
-          data?.data?.attempt ||
-          data?.data ||
+          response?.attempt ||
+          response?.data?.attempt ||
+          response?.data ||
           null;
 
 
@@ -636,7 +630,6 @@ function DashboardAcademicCourse() {
       }
 
     };
-
 
   /* ============================================================
      LOADING
@@ -1092,6 +1085,7 @@ function DashboardAcademicCourse() {
 
           <DashboardAcademicCourseExam
             exam={exam}
+            assessment={assessment}
             unlocked={
               examUnlocked
             }
@@ -1102,6 +1096,14 @@ function DashboardAcademicCourse() {
               handleOpenExam
             }
           />
+
+          {assessment?.passed === true && (
+
+            <DashboardAcademicCourseCertificate
+              course={course}
+            />
+
+          )}
 
         </section>
 

@@ -13,6 +13,10 @@ import {
   saveVideoProgress,
 } from "../../services/academic/videoProgressService";
 
+import {
+  completeAcademicVideo
+} from "../../services/user/academicVideoProgressService.js";
+
 import NotificationContext from "../../context/NotificationContext";
 
 import {
@@ -22,6 +26,8 @@ import {
 import "../../styles/academic/academic-video.css";
 
 
+
+
 const COMPLETION_THRESHOLD = 0.90;
 const SEEK_TOLERANCE = 1.5;
 const AUTOSAVE_INTERVAL = 5000;
@@ -29,8 +35,11 @@ const STARTUP_GRACE_MS = 2000;
 const ACADEMIC_PLAYBACK_RATE = 1;
 
 
+
+
 const AcademicVideoPlayer = ({
   videoId,
+  youtubeId,
   courseId,
   moduleId,
   lessonId,
@@ -41,17 +50,6 @@ const AcademicVideoPlayer = ({
   /*
    * ==========================================================
    * AUTENTICACIÓN
-   * ==========================================================
-   *
-   * El usuario ya se encuentra dentro de una ruta privada.
-   *
-   * El uid corresponde al usuario autenticado mediante Firebase.
-   *
-   * NO se obtiene del localStorage.
-   * NO se envía al backend desde este servicio.
-   *
-   * Solamente se utiliza para separar el progreso local
-   * de cada usuario.
    * ==========================================================
    */
 
@@ -104,6 +102,14 @@ const AcademicVideoPlayer = ({
   const lastSavedPositionRef =
     useRef(0);
 
+  /*
+   * Evita mandar más de un PATCH al backend
+   * para el mismo video.
+   */
+
+  const backendCompletionSentRef =
+    useRef(false);
+
   const progressKeyRef =
     useRef({
       uid:
@@ -125,18 +131,6 @@ const AcademicVideoPlayer = ({
   /*
    * ==========================================================
    * IDENTIDAD DEL VIDEO ACTUAL
-   * ==========================================================
-   *
-   * La identidad completa ahora es:
-   *
-   * usuario
-   *   └── curso
-   *        └── módulo
-   *             └── lección
-   *                  └── video
-   *
-   * Esto evita que dos usuarios del mismo navegador
-   * compartan accidentalmente el mismo progreso local.
    * ==========================================================
    */
 
@@ -163,6 +157,43 @@ const AcademicVideoPlayer = ({
     moduleId,
     lessonId,
     videoId,
+  ]);
+
+
+  /*
+   * Cada vez que cambia el video,
+   * el PATCH de finalización vuelve a estar disponible
+   * para ese nuevo video.
+   */
+
+  useEffect(() => {
+
+    backendCompletionSentRef.current =
+      false;
+
+    initializedRef.current =
+      false;
+
+    positionRef.current =
+      0;
+
+    maxWatchedRef.current =
+      0;
+
+    durationRef.current =
+      0;
+
+    completedRef.current =
+      false;
+
+    lastSavedPositionRef.current =
+      0;
+
+    savedProgressRef.current =
+      null;
+
+  }, [
+    videoId
   ]);
 
 
@@ -196,7 +227,7 @@ const AcademicVideoPlayer = ({
 
   /*
    * ==========================================================
-   * CARGAR PROGRESO DEL VIDEO ACTUAL
+   * CARGAR PROGRESO LOCAL DEL VIDEO ACTUAL
    * ==========================================================
    */
 
@@ -277,15 +308,6 @@ const AcademicVideoPlayer = ({
    * ==========================================================
    * VELOCIDAD ACADÉMICA FIJA
    * ==========================================================
-   *
-   * YouTube puede permitir que el usuario cambie la velocidad
-   * desde sus controles.
-   *
-   * La plataforma académica siempre debe permanecer en 1×.
-   *
-   * Esta función solamente modifica la velocidad.
-   * No modifica posición, progreso ni acreditación.
-   * ==========================================================
    */
 
   const enforceAcademicPlaybackRate =
@@ -330,7 +352,17 @@ const AcademicVideoPlayer = ({
 
   /*
    * ==========================================================
-   * GUARDAR PROGRESO
+   * GUARDAR PROGRESO LOCAL
+   * ==========================================================
+   *
+   * IMPORTANTE:
+   *
+   * Esta función solamente guarda en localStorage.
+   *
+   * NO comunica el avance al backend.
+   *
+   * El backend solamente será notificado
+   * cuando el video alcance el 90%.
    * ==========================================================
    */
 
@@ -346,10 +378,6 @@ const AcademicVideoPlayer = ({
 
         }
 
-
-        /*
-         * No guardar nunca progreso sin usuario autenticado.
-         */
 
         if (
           !user?.uid
@@ -441,6 +469,122 @@ const AcademicVideoPlayer = ({
 
   /*
    * ==========================================================
+   * AVISAR AL BACKEND QUE EL VIDEO ESTÁ COMPLETADO
+   * ==========================================================
+   *
+   * ESTA ES LA ÚNICA FUNCIÓN QUE ENVÍA EL PATCH.
+   *
+   * Se ejecuta únicamente cuando el reproductor
+   * alcanza el 90%.
+   * ==========================================================
+   */
+
+  const notifyBackendCompletion =
+    useCallback(
+      async () => {
+
+        if (
+          backendCompletionSentRef.current
+        ) {
+
+          return;
+
+        }
+
+
+        if (
+          !videoId
+        ) {
+
+          console.error(
+            "No se puede registrar la finalización: falta videoId."
+          );
+
+          return;
+
+        }
+
+
+        const currentPosition =
+          Math.max(
+            0,
+            Number(
+              positionRef.current
+            ) || 0
+          );
+
+
+        const currentMaxWatched =
+          Math.max(
+            0,
+            Number(
+              maxWatchedRef.current
+            ) || currentPosition
+          );
+
+
+        try {
+
+          await completeAcademicVideo(
+            videoId,
+            {
+              position:
+                currentPosition,
+
+              maxWatched:
+                currentMaxWatched,
+            }
+          );
+
+
+          backendCompletionSentRef.current =
+            true;
+
+
+          console.log(
+            "Video académico completado correctamente en el backend:",
+            videoId
+          );
+
+        } catch (requestError) {
+
+          console.error(
+            "Error registrando la finalización del video en el backend:",
+            requestError
+          );
+
+
+          if (
+            notification
+          ) {
+
+            notification.error({
+
+              title:
+                "No fue posible registrar la finalización",
+
+              description:
+                "El avance quedó guardado localmente, pero no fue posible actualizar el servidor.",
+
+              placement:
+                "topRight",
+
+            });
+
+          }
+
+        }
+
+      },
+      [
+        videoId,
+        notification,
+      ]
+    );
+
+
+  /*
+   * ==========================================================
    * READY DE YOUTUBE
    * ==========================================================
    */
@@ -456,11 +600,6 @@ const AcademicVideoPlayer = ({
         playerRef.current =
           player;
 
-
-        /*
-         * Fijar velocidad académica inmediatamente
-         * al inicializar el reproductor.
-         */
 
         enforceAcademicPlaybackRate(
           player
@@ -494,8 +633,7 @@ const AcademicVideoPlayer = ({
 
 
         /*
-         * Obtener el progreso correspondiente
-         * EXACTAMENTE al usuario y video actual.
+         * Obtener progreso local.
          */
 
         const saved =
@@ -556,7 +694,7 @@ const AcademicVideoPlayer = ({
 
 
         /*
-         * Reinicializar referencias del video.
+         * Reinicializar referencias.
          */
 
         positionRef.current =
@@ -576,9 +714,22 @@ const AcademicVideoPlayer = ({
 
 
         /*
-         * Actualizar estado solamente como
-         * consecuencia del evento externo onReady.
+         * Si localStorage ya dice que está completado,
+         * no volvemos a mandar PATCH.
+         *
+         * El backend ya debería haber sido informado
+         * cuando se completó originalmente.
          */
+
+        if (
+          savedCompleted
+        ) {
+
+          backendCompletionSentRef.current =
+            true;
+
+        }
+
 
         setPosition(
           savedPosition
@@ -617,18 +768,13 @@ const AcademicVideoPlayer = ({
         }
 
 
-        /*
-         * Dar margen a YouTube para terminar
-         * de estabilizar la posición.
-         */
-
         startupUntilRef.current =
           Date.now() +
           STARTUP_GRACE_MS;
 
 
         /*
-         * El video siempre comienza pausado.
+         * El video comienza pausado.
          */
 
         try {
@@ -639,11 +785,6 @@ const AcademicVideoPlayer = ({
           // Ignorar.
         }
 
-
-        /*
-         * Volver a asegurar 1× después de
-         * la inicialización completa.
-         */
 
         enforceAcademicPlaybackRate(
           player
@@ -672,11 +813,7 @@ const AcademicVideoPlayer = ({
 
   /*
    * ==========================================================
-   * CAMBIO DE VELOCIDAD YOUTUBE
-   * ==========================================================
-   *
-   * Si el usuario intenta seleccionar 1.25×, 1.5×, 2×, etc.,
-   * YouTube devuelve el reproductor inmediatamente a 1×.
+   * CAMBIO DE VELOCIDAD
    * ==========================================================
    */
 
@@ -729,11 +866,6 @@ const AcademicVideoPlayer = ({
           YT.PlayerState.PLAYING
         ) {
 
-          /*
-           * Asegurar 1× cada vez que comienza
-           * o vuelve a comenzar la reproducción.
-           */
-
           enforceAcademicPlaybackRate(
             player
           );
@@ -742,6 +874,7 @@ const AcademicVideoPlayer = ({
           setPlaying(
             true
           );
+
 
           return;
 
@@ -782,6 +915,12 @@ const AcademicVideoPlayer = ({
             // Ignorar.
           }
 
+
+          /*
+           * Solamente localStorage.
+           *
+           * NO PATCH.
+           */
 
           persistProgress(
             true
@@ -838,33 +977,30 @@ const AcademicVideoPlayer = ({
           }
 
 
-          completedRef.current =
-            true;
-
-
-          setCompleted(
-            true
-          );
-
+          /*
+           * IMPORTANTE:
+           *
+           * NO marcamos completed aquí.
+           *
+           * La acreditación solamente ocurre
+           * cuando se alcanza el 90%.
+           *
+           * Si el 90% ya fue detectado anteriormente,
+           * completedRef ya es true y el backend
+           * ya recibió su PATCH.
+           */
 
           persistProgress(
             true
           );
 
 
-          /*
-           * NOTIFICACIÓN AL FINALIZAR REALMENTE
-           * EL VIDEO.
-           *
-           * Este bloque es independiente de la
-           * notificación del 90%.
-           */
-
           if (
             notification
           ) {
 
             notification.success({
+
               title:
                 "Video finalizado",
 
@@ -873,6 +1009,7 @@ const AcademicVideoPlayer = ({
 
               placement:
                 "topRight",
+
             });
 
           }
@@ -914,10 +1051,6 @@ const AcademicVideoPlayer = ({
 
         try {
 
-          /*
-           * Siempre establecer 1× antes de reproducir.
-           */
-
           enforceAcademicPlaybackRate(
             player
           );
@@ -936,14 +1069,10 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Si ya estaba completado y se encuentra
+           * Si ya está completado y se encuentra
            * físicamente al final, comenzar nuevamente.
            *
-           * NO se elimina:
-           *
-           * - completed
-           * - maxWatched
-           * - progreso académico
+           * NO se elimina la acreditación.
            */
 
           if (
@@ -1056,6 +1185,7 @@ const AcademicVideoPlayer = ({
         ) {
 
           notification.success({
+
             title:
               "Avance guardado",
 
@@ -1064,6 +1194,7 @@ const AcademicVideoPlayer = ({
 
             placement:
               "topRight",
+
           });
 
         }
@@ -1110,14 +1241,7 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * ==================================================
-           * VELOCIDAD ACADÉMICA
-           * ==================================================
-           *
-           * Comprobación periódica adicional.
-           *
-           * Si YouTube llegara a cambiar internamente
-           * la velocidad, se vuelve a imponer 1×.
+           * VELOCIDAD
            */
 
           enforceAcademicPlaybackRate(
@@ -1173,7 +1297,7 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Protección inicial de YouTube.
+           * PROTECCIÓN INICIAL
            */
 
           if (
@@ -1196,8 +1320,9 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Si ya está completado,
-           * permitimos recorrer libremente.
+           * SI YA ESTÁ COMPLETADO
+           *
+           * Puede recorrer libremente.
            */
 
           if (
@@ -1235,7 +1360,7 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Posición máxima académicamente permitida.
+           * POSICIÓN MÁXIMA ACADÉMICAMENTE PERMITIDA
            */
 
           const allowedPosition =
@@ -1243,7 +1368,7 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Evitar adelantar.
+           * EVITAR ADELANTAR
            */
 
           if (
@@ -1279,7 +1404,7 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Actualizar posición actual.
+           * ACTUALIZAR POSICIÓN
            */
 
           positionRef.current =
@@ -1292,7 +1417,7 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Actualizar máximo recorrido.
+           * ACTUALIZAR MÁXIMO RECORRIDO
            */
 
           if (
@@ -1312,9 +1437,12 @@ const AcademicVideoPlayer = ({
 
 
           /*
-           * Determinar completado al alcanzar 90%.
+           * ==================================================
+           * COMPLETAR AL 90 %
+           * ==================================================
            *
-           * ESTE BLOQUE SE MANTIENE SIN CAMBIOS.
+           * ESTE ES EL ÚNICO PUNTO QUE ACREDITA
+           * ACADÉMICAMENTE EL VIDEO.
            */
 
           if (
@@ -1332,6 +1460,11 @@ const AcademicVideoPlayer = ({
               !completedRef.current
             ) {
 
+              /*
+               * Primero marcar localmente
+               * como completado.
+               */
+
               completedRef.current =
                 true;
 
@@ -1341,16 +1474,40 @@ const AcademicVideoPlayer = ({
               );
 
 
+              /*
+               * Guardar inmediatamente
+               * en localStorage.
+               */
+
               persistProgress(
                 true
               );
 
+
+              /*
+               * =================================================
+               * PATCH AL BACKEND
+               * =================================================
+               *
+               * AQUÍ es donde se comunica oficialmente
+               * la finalización.
+               *
+               * Solo se ejecuta una vez por video.
+               */
+
+              notifyBackendCompletion();
+
+
+              /*
+               * NOTIFICACIÓN DE COMPLETADO
+               */
 
               if (
                 notification
               ) {
 
                 notification.success({
+
                   title:
                     "Lección completada",
 
@@ -1359,6 +1516,7 @@ const AcademicVideoPlayer = ({
 
                   placement:
                     "topRight",
+
                 });
 
               }
@@ -1385,12 +1543,18 @@ const AcademicVideoPlayer = ({
     persistProgress,
     notification,
     enforceAcademicPlaybackRate,
+    notifyBackendCompletion,
   ]);
 
 
   /*
    * ==========================================================
-   * AUTOGUARDADO
+   * AUTOGUARDADO LOCAL
+   * ==========================================================
+   *
+   * Sigue funcionando cada 5 segundos.
+   *
+   * NO manda nada al backend.
    * ==========================================================
    */
 
@@ -1433,6 +1597,11 @@ const AcademicVideoPlayer = ({
   /*
    * ==========================================================
    * GUARDAR AL SALIR
+   * ==========================================================
+   *
+   * Solamente localStorage.
+   *
+   * NO PATCH.
    * ==========================================================
    */
 
@@ -1578,7 +1747,7 @@ const AcademicVideoPlayer = ({
       >
 
         <YouTube
-          videoId={videoId}
+          videoId={youtubeId}
           opts={playerOptions}
           onReady={handlePlayerReady}
           onStateChange={handlePlayerStateChange}
@@ -1592,7 +1761,7 @@ const AcademicVideoPlayer = ({
 
 
       {/* ======================================================
-          ESTADO DEL REPRODUCTOR Y ESTADO ACADÉMICO
+          ESTADO DEL REPRODUCTOR
           ====================================================== */}
 
       <div
@@ -1719,7 +1888,7 @@ const AcademicVideoPlayer = ({
 
 
       {/* ======================================================
-          CONTROLES PROPIOS
+          CONTROLES
           ====================================================== */}
 
       <div

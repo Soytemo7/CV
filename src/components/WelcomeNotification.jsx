@@ -153,6 +153,23 @@ function WelcomeNotification() {
           "Reproduce el contenido académico para registrar tu avance en la lección.",
       },
 
+
+      /* ======================================================
+         ÁREA ACADÉMICA — CURSOS USUARIO
+         ====================================================== */
+
+      "/dashboard/courses": {
+        title:
+          "Área académica",
+        description:
+          "Consulta los cursos disponibles y da seguimiento a tu avance académico.",
+      },
+
+
+      /* ======================================================
+         ADMINISTRACIÓN ACADÉMICA
+         ====================================================== */
+
       "/admin/course-structure": {
         title:
           "Estructura de cursos",
@@ -181,13 +198,6 @@ function WelcomeNotification() {
           "Crea y configura los exámenes, preguntas, opciones, respuestas correctas y puntuación de los cursos.",
       },
 
-      "/dashboard/courses": {
-        title:
-          "Área académica",
-        description:
-          "Consulta los cursos disponibles y da seguimiento a tu avance académico.",
-      },
-
     };
 
 
@@ -209,6 +219,46 @@ function WelcomeNotification() {
 
 
     /* ========================================================
+       VIDEO ACADÉMICO — RUTA DINÁMICA
+       ======================================================== */
+
+    if (
+      !currentNotification &&
+      /^\/dashboard\/academic\/lessons\/[^/]+$/.test(
+        pathname
+      )
+    ) {
+
+      currentNotification = {
+        title:
+          "Video de la lección",
+
+        description:
+          "Visualiza el video de esta lección para consultar su contenido y registrar tu avance académico.",
+      };
+
+    }
+
+    /* ========================================================
+        EVALUACIÓN ACADÉMICA — RUTA DINÁMICA
+        ======================================================== */
+
+      if (
+        !currentNotification &&
+        /^\/dashboard\/academic\/assessment\/[^/]+$/.test(
+          pathname
+        )
+      ) {
+        currentNotification = {
+          title:
+            "Evaluación académica",
+          description:
+            "Presenta la evaluación del curso y comprueba los conocimientos adquiridos.",
+        };
+      }
+
+
+    /* ========================================================
        CURSO → CONTENIDO / MÓDULOS
        ======================================================== */
 
@@ -222,6 +272,7 @@ function WelcomeNotification() {
       currentNotification = {
         title:
           "Contenido del curso",
+
         description:
           "Administra los módulos que forman parte de este curso académico.",
       };
@@ -243,6 +294,7 @@ function WelcomeNotification() {
       currentNotification = {
         title:
           "Lecciones del módulo",
+
         description:
           "Administra las lecciones que forman parte de este módulo académico.",
       };
@@ -251,7 +303,7 @@ function WelcomeNotification() {
 
 
     /* ========================================================
-       LECCIÓN → VIDEO
+       LECCIÓN → VIDEO ADMINISTRATIVO
        ======================================================== */
 
     else if (
@@ -264,6 +316,7 @@ function WelcomeNotification() {
       currentNotification = {
         title:
           "Video de la lección",
+
         description:
           "Administra el contenido multimedia asociado a esta lección.",
       };

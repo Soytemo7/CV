@@ -1,0 +1,2176 @@
+/* ============================================================
+   USER — DASHBOARD ACADEMIC COURSE
+   Navegación principal de un curso académico
+   ============================================================ */
+
+
+/* ============================================================
+   PÁGINA
+   ============================================================ */
+
+.academic-page {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-bottom: 40px;
+}
+
+
+/* ============================================================
+   ACCIONES SUPERIORES
+   ============================================================ */
+
+.academic-course-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.academic-course-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 10px 18px;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.08);
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.academic-course-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.academic-course-button:hover::before {
+  left: 150%;
+}
+
+.academic-course-button:hover {
+  color: #1d4ed8;
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.6);
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 18px rgba(37, 99, 235, 0.12);
+}
+
+.academic-course-button:active {
+  transform: translateY(0);
+}
+
+.academic-course-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.academic-course-button:disabled::before {
+  display: none;
+}
+
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+
+.academic-page > .private-page-header {
+  margin-bottom: 28px;
+}
+
+.academic-page .private-page-eyebrow {
+  color: #2563eb;
+}
+
+
+/* ============================================================
+   INFORMACIÓN PRINCIPAL DEL CURSO
+   ============================================================ */
+
+.academic-courses-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(280px, 0.85fr)
+    minmax(0, 1.5fr);
+  gap: 24px;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 34px;
+
+  /*
+   * Fondo propio del contenedor.
+   * Evita que el fondo global se vea detrás
+   * cuando el tema claro está activo.
+   */
+  background: #f8fafc;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 26px rgba(15, 23, 42, 0.04);
+}
+
+
+/* ============================================================
+   TARJETAS GENERALES
+   ============================================================ */
+
+.academic-course-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.06);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* ============================================================
+   IMAGEN DEL CURSO
+   ============================================================ */
+
+.academic-course-card-image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.academic-course-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.academic-course-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  transition:
+    transform 0.45s ease;
+}
+
+.academic-course-card-image:hover .academic-course-image img {
+  transform: scale(1.025);
+}
+
+
+/* ============================================================
+   CONTENIDO DEL CURSO
+   ============================================================ */
+
+.academic-course-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.academic-course-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  font-size: 1.35rem;
+}
+
+.academic-course-title {
+  margin: 0 0 12px;
+  color: #111827;
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.academic-course-description {
+  margin: 0 0 24px;
+  color: #64748b;
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   PROGRESO GENERAL
+   ============================================================ */
+
+.academic-course-progress {
+  width: 100%;
+  margin-top: auto;
+}
+
+.academic-course-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 9px;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.academic-course-progress-header strong {
+  color: #2563eb;
+  font-size: 0.95rem;
+}
+
+.academic-course-progress-bar {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.academic-course-progress-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #06b6d4
+  );
+  transition:
+    width 0.45s ease;
+}
+
+
+/* ============================================================
+   ESTADOS GENERALES
+   ============================================================ */
+
+.academic-state-card {
+  width: 100%;
+  padding: 28px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.05);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.academic-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  text-align: center;
+}
+
+.academic-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  background: rgba(100, 116, 139, 0.1);
+  color: #64748b;
+  font-size: 1.2rem;
+}
+
+.academic-empty strong {
+  margin-bottom: 6px;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.academic-empty span {
+  max-width: 520px;
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.academic-loading {
+  padding: 40px 20px;
+  color: #64748b;
+  text-align: center;
+}
+
+
+/* ============================================================
+   MÓDULOS
+   ============================================================ */
+
+.academic-modules {
+  width: 100%;
+  margin-top: 34px;
+
+  /*
+   * Fondo explícito para modo claro.
+   * Se conserva como contenedor exterior.
+   */
+  background: #f8fafc;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 26px rgba(15, 23, 42, 0.04);
+}
+
+.academic-modules > .private-page-header {
+  margin-bottom: 20px;
+}
+
+.academic-modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+
+/* ============================================================
+   MÓDULO
+   ============================================================ */
+
+.academic-course-module {
+  width: 100%;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 26px rgba(15, 23, 42, 0.05);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.academic-course-module-locked {
+  opacity: 0.82;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.16),
+    0 0 20px rgba(100, 116, 139, 0.08),
+    0 0 42px rgba(100, 116, 139, 0.035);
+  filter: saturate(0.78);
+}
+
+.academic-course-module-completed {
+  border-color:
+    rgba(34, 197, 94, 0.28);
+}
+
+
+/* ============================================================
+   HEADER DEL MÓDULO
+   ============================================================ */
+
+.academic-course-module-header {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.academic-course-module-info {
+  min-width: 0;
+}
+
+.academic-course-module-info h2 {
+  margin: 4px 0 6px;
+  color: #111827;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.academic-course-module-info p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   ESTADO DEL MÓDULO
+   ============================================================ */
+
+.academic-course-module-status,
+.academic-course-lesson-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.academic-course-module-status.available,
+.academic-course-lesson-status.available {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+}
+
+.academic-course-module-status.completed,
+.academic-course-lesson-status.completed {
+  background: rgba(34, 197, 94, 0.11);
+  color: #16a34a;
+}
+
+.academic-course-module-status.locked,
+.academic-course-lesson-status.locked {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+
+/* ============================================================
+   PROGRESO DEL MÓDULO
+   ============================================================ */
+
+.academic-course-module-progress {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top:
+    1px solid rgba(15, 23, 42, 0.08);
+}
+
+.academic-course-module-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.academic-course-module-progress-header strong {
+  color: #2563eb;
+}
+
+.academic-course-module-progress-bar {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.academic-course-module-progress-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #06b6d4
+  );
+  transition:
+    width 0.45s ease;
+}
+
+.academic-course-module-progress small {
+  display: block;
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 0.76rem;
+}
+
+
+/* ============================================================
+   LECCIONES DEL MÓDULO
+   ============================================================ */
+
+.academic-course-module-lessons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+
+/* ============================================================
+   LECCIÓN
+   ============================================================ */
+
+.academic-course-lesson {
+  width: 100%;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  background: #f8fafc;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.academic-course-lesson:hover {
+  border-color:
+    rgba(37, 99, 235, 0.18);
+  box-shadow:
+    0 5px 18px rgba(15, 23, 42, 0.04);
+}
+
+.academic-course-lesson-locked {
+  opacity: 0.72;
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.14),
+    0 0 17px rgba(100, 116, 139, 0.07),
+    0 0 34px rgba(100, 116, 139, 0.03);
+  filter: saturate(0.72);
+}
+
+.academic-course-lesson-completed {
+  border-color:
+    rgba(34, 197, 94, 0.22);
+}
+
+
+/* ============================================================
+   HEADER DE LECCIÓN
+   ============================================================ */
+
+.academic-course-lesson-header {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.academic-course-lesson-info {
+  min-width: 0;
+}
+
+.academic-course-lesson-label {
+  display: block;
+  margin-bottom: 3px;
+  color: #06b6d4;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.academic-course-lesson-info h3 {
+  margin: 0 0 5px;
+  color: #1e293b;
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.academic-course-lesson-info p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   PROGRESO DE LECCIÓN
+   ============================================================ */
+
+.academic-course-lesson-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top:
+    1px solid rgba(15, 23, 42, 0.07);
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.academic-course-lesson-progress strong {
+  color: #2563eb;
+}
+
+
+/* ============================================================
+   VIDEOS
+   ============================================================ */
+
+.academic-course-lesson-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.academic-course-video {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 11px 13px;
+  border:
+    1px solid rgba(15, 23, 42, 0.07);
+  border-radius: 11px;
+  background: #ffffff;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.academic-course-video:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color:
+    rgba(37, 99, 235, 0.28);
+  transform: translateY(-1px);
+  box-shadow:
+    0 5px 15px rgba(15, 23, 42, 0.05);
+}
+
+.academic-course-video:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.academic-course-video:disabled {
+  cursor: not-allowed;
+}
+
+.academic-course-video.locked {
+  opacity: 0.62;
+  box-shadow:
+    0 7px 20px rgba(15, 23, 42, 0.16),
+    0 0 15px rgba(100, 116, 139, 0.065),
+    0 0 30px rgba(100, 116, 139, 0.028);
+  filter: saturate(0.68);
+}
+
+.academic-course-video.completed {
+  border-color:
+    rgba(34, 197, 94, 0.2);
+}
+
+.academic-course-video-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.academic-course-video-label {
+  margin-bottom: 2px;
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.academic-course-video-content strong {
+  overflow: hidden;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 750;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.academic-course-video-content small {
+  margin-top: 3px;
+  overflow: hidden;
+  color: #64748b;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.academic-course-video-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.academic-course-video.completed .academic-course-video-action {
+  color: #16a34a;
+}
+
+
+/* ============================================================
+   LECCIÓN SIN VIDEOS
+   ============================================================ */
+
+.academic-course-video-empty {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px;
+  border:
+    1px dashed rgba(100, 116, 139, 0.25);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.academic-course-video-empty i {
+  font-size: 0.95rem;
+}
+
+
+/* ============================================================
+   EXAMEN FINAL
+   ============================================================ */
+
+.academic-course-exam {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  padding: 22px;
+  border:
+    1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 26px rgba(15, 23, 42, 0.05);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    opacity 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.academic-course-exam.available {
+  border-color:
+    rgba(37, 99, 235, 0.25);
+}
+
+.academic-course-exam-locked {
+  opacity: 0.76;
+  border-color:
+    rgba(239, 68, 68, 0.16);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.18),
+    0 0 22px rgba(100, 116, 139, 0.075),
+    0 0 44px rgba(100, 116, 139, 0.032);
+  filter: saturate(0.74);
+}
+
+.academic-course-exam-content {
+  min-width: 0;
+}
+
+.academic-course-exam-content h2 {
+  margin: 4px 0 6px;
+  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.academic-course-exam-content p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.academic-course-exam-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.academic-course-exam-status.available {
+  background:
+    rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+}
+
+.academic-course-exam-status.locked {
+  background:
+    rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.academic-course-exam > .academic-course-button {
+  min-width: 145px;
+}
+
+
+/* ============================================================
+   EXAMEN FINAL — ESTADO APROBADO
+   ============================================================ */
+
+.academic-course-exam.approved {
+  border-color:
+    rgba(34, 197, 94, 0.28);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34, 197, 94, 0.035),
+      #ffffff
+    );
+}
+
+.academic-course-exam.approved
+.academic-course-exam-status.available {
+  background:
+    rgba(34, 197, 94, 0.11);
+  color: #16a34a;
+}
+
+
+/* ============================================================
+   RESULTADO DEL EXAMEN
+   ============================================================ */
+
+.academic-course-exam-result {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.academic-course-exam-result > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 150px;
+  padding:
+    10px 14px;
+  border:
+    1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+  background:
+    rgba(248, 250, 252, 0.9);
+}
+
+.academic-course-exam-result span {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.academic-course-exam-result strong {
+  color: #111827;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   FECHA DE APROBACIÓN
+   ============================================================ */
+
+.academic-course-exam-approved-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.academic-course-exam-approved-date i {
+  color: #16a34a;
+}
+
+
+/* ============================================================
+   INTENTOS REALIZADOS
+   ============================================================ */
+
+.academic-course-exam-attempts {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.academic-course-exam-attempts i {
+  color: #2563eb;
+}
+
+.academic-course-exam-attempts strong {
+  color: #2563eb;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+
+/* ============================================================
+   CONTENEDORES EXTERIORES
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-courses-grid,
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-modules {
+  background: #0a0a0a;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+
+/* ============================================================
+   TARJETAS PRINCIPALES
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-card {
+  background: #111827;
+  border-color:
+    rgba(148, 163, 184, 0.16);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ============================================================
+   CONTENIDO DE TARJETAS
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-title {
+  color: #f8fafc;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-description {
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   ICONO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-icon {
+  background:
+    rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+
+/* ============================================================
+   PROGRESO GENERAL
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-progress-header {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-progress-header strong {
+  color: #60a5fa;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-progress-bar,
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-progress-bar {
+  background: #1e293b;
+}
+
+
+/* ============================================================
+   ESTADO GENERAL
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-state-card {
+  background: #111827;
+  border-color:
+    rgba(148, 163, 184, 0.14);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-empty strong {
+  color: #e2e8f0;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-empty span,
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-loading {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-empty-icon {
+  background:
+    rgba(148, 163, 184, 0.1);
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   MÓDULOS
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module {
+  background: #111827;
+  border-color:
+    rgba(148, 163, 184, 0.15);
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.25);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-completed {
+  border-color:
+    rgba(34, 197, 94, 0.28);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-info h2 {
+  color: #f1f5f9;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-info p {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-progress {
+  border-top-color:
+    rgba(148, 163, 184, 0.13);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-progress-header {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-progress small {
+  color: #64748b;
+}
+
+
+/* ============================================================
+   AURA DE MÓDULO BLOQUEADO — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module-locked {
+  opacity: 0.82;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.58),
+    0 0 28px rgba(148, 163, 184, 0.16),
+    0 0 58px rgba(148, 163, 184, 0.08),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.05);
+  filter: saturate(0.72);
+}
+
+
+/* ============================================================
+   ESTADO VACÍO DENTRO DEL MÓDULO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-module .academic-state-card {
+  background: #0f172a;
+  border-color:
+    rgba(148, 163, 184, 0.13);
+}
+
+
+/* ============================================================
+   LECCIONES
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson {
+  background: #0f172a;
+  border-color:
+    rgba(148, 163, 184, 0.13);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson:hover {
+  background: #111c2f;
+  border-color:
+    rgba(96, 165, 250, 0.25);
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.22);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson-completed {
+  border-color:
+    rgba(34, 197, 94, 0.24);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson-info h3 {
+  color: #e2e8f0;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson-info p {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson-progress {
+  border-top-color:
+    rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   AURA DE LECCIÓN BLOQUEADA — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-lesson-locked {
+  opacity: 0.72;
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(148, 163, 184, 0.14),
+    0 0 44px rgba(148, 163, 184, 0.065),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.04);
+  filter: saturate(0.68);
+}
+
+
+/* ============================================================
+   VIDEOS
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video {
+  background: #111827;
+  border-color:
+    rgba(148, 163, 184, 0.12);
+  color: #e2e8f0;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video:hover:not(:disabled) {
+  background: #172033;
+  border-color:
+    rgba(96, 165, 250, 0.3);
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video-content strong {
+  color: #e2e8f0;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video-content small {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video-label {
+  color: #64748b;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video-action {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video-empty {
+  border-color:
+    rgba(148, 163, 184, 0.2);
+  color: #64748b;
+}
+
+
+/* ============================================================
+   AURA DE VIDEO BLOQUEADO — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-video.locked {
+  opacity: 0.62;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(148, 163, 184, 0.13),
+    0 0 38px rgba(148, 163, 184, 0.055),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.035);
+  filter: saturate(0.62);
+}
+
+
+/* ============================================================
+   ENCABEZADOS DE LAS SECCIONES
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-modules .private-page-header h2 {
+  color: #f8fafc;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-modules .private-page-header p {
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   EXAMEN FINAL — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam {
+  background: #111827;
+  border-color:
+    rgba(96, 165, 250, 0.2);
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.25);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-locked {
+  opacity: 0.76;
+  background: #111827;
+  border-color:
+    rgba(248, 113, 113, 0.18);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.58),
+    0 0 30px rgba(148, 163, 184, 0.15),
+    0 0 60px rgba(148, 163, 184, 0.075),
+    inset 0 0 0 1px rgba(248, 113, 113, 0.04);
+  filter: saturate(0.68);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-content h2 {
+  color: #f1f5f9;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-content p {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-status.locked {
+  background:
+    rgba(239, 68, 68, 0.12);
+  color: #f87171;
+}
+
+
+/* ============================================================
+   EXAMEN — ICONO ROJO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam .private-icon-button-red {
+  color: #f87171;
+}
+
+
+/* ============================================================
+   EXAMEN — BOTÓN
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam .academic-course-button {
+  background:
+    rgba(59, 130, 246, 0.12);
+  border-color:
+    rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam .academic-course-button:disabled {
+  background:
+    rgba(71, 85, 105, 0.18);
+  border-color:
+    rgba(148, 163, 184, 0.18);
+  color: #64748b;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   EXAMEN APROBADO — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam.approved {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34, 197, 94, 0.06),
+      #111827
+    );
+  border-color:
+    rgba(74, 222, 128, 0.28);
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.25),
+    0 0 24px rgba(34, 197, 94, 0.035);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam.approved
+.academic-course-exam-status.available {
+  background:
+    rgba(34, 197, 94, 0.13);
+  color: #4ade80;
+}
+
+
+/* ============================================================
+   RESULTADO — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-result > div {
+  border-color:
+    rgba(148, 163, 184, 0.14);
+  background:
+    rgba(15, 23, 42, 0.7);
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-result span {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-result strong {
+  color: #f1f5f9;
+}
+
+
+/* ============================================================
+   FECHA — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-approved-date {
+  color: #94a3b8;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-exam-approved-date i {
+  color: #4ade80;
+}
+
+
+/* ============================================================
+   BOTÓN SUPERIOR — MODO OSCURO
+   ============================================================ */
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-button {
+  border-color:
+    rgba(96, 165, 250, 0.3);
+  background:
+    rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+}
+
+:is(
+  html.dark,
+  html.private-dark,
+  html[data-theme="dark"],
+  body.dark,
+  body.private-dark,
+  body[data-theme="dark"],
+  .dark,
+  .private-dark,
+  [data-theme="dark"]
+) .academic-course-button:hover {
+  border-color:
+    rgba(96, 165, 250, 0.55);
+  background:
+    rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+  box-shadow:
+    0 7px 18px rgba(37, 99, 235, 0.2);
+}
+
+
+/* ============================================================
+   RESPONSIVE — 1000 PX
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+  .academic-courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .academic-course-image {
+    min-height: 260px;
+  }
+
+  .academic-course-image img {
+    min-height: 260px;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE — 700 PX
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .academic-page {
+    padding-bottom: 28px;
+  }
+
+  .academic-course-actions {
+    margin-bottom: 18px;
+  }
+
+  .academic-course-card {
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  .academic-course-module {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .academic-courses-grid,
+  .academic-modules {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .academic-course-module-header,
+  .academic-course-lesson-header {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+  }
+
+  .academic-course-module-status,
+  .academic-course-lesson-status {
+    grid-column: 2;
+    justify-self: flex-start;
+  }
+
+  .academic-course-exam {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+  }
+
+  .academic-course-exam > .academic-course-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .academic-course-video {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+  }
+
+  .academic-course-video-action {
+    grid-column: 2;
+    justify-content: flex-start;
+  }
+
+  .academic-course-exam-result {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .academic-course-exam-result > div {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE — 480 PX
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .academic-course-actions {
+    width: 100%;
+  }
+
+  .academic-course-button {
+    width: 100%;
+  }
+
+  .academic-course-image,
+  .academic-course-image img {
+    min-height: 210px;
+  }
+
+  .academic-course-title {
+    font-size: 1.35rem;
+  }
+
+  .academic-courses-grid,
+  .academic-modules {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .academic-course-module-header,
+  .academic-course-lesson-header {
+    grid-template-columns: 1fr;
+  }
+
+  .academic-course-module-status,
+  .academic-course-lesson-status {
+    grid-column: auto;
+    justify-self: flex-start;
+  }
+
+  .academic-course-video {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+    padding: 10px;
+  }
+
+  .academic-course-video-content strong {
+    white-space: normal;
+  }
+
+  .academic-course-video-content small {
+    white-space: normal;
+  }
+
+  .academic-course-exam {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .academic-course-exam > .academic-course-button {
+    grid-column: auto;
+  }
+
+  .academic-course-exam-result {
+    gap: 7px;
+  }
+
+  .academic-course-exam-result > div {
+    padding:
+      9px 12px;
+  }
+}

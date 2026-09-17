@@ -78,6 +78,12 @@ import AdminCourseContentPage
   import DashboardAcademicCourse
   from "./pages/DashboardAcademicCourse.jsx";
 
+  import DashboardAcademicAssessment
+  from "./pages/DashboardAcademicAssessment.jsx";
+
+  import VerifyCertificate
+  from "./pages/VerifyCertificate.jsx";
+
 
 function App() {
 
@@ -212,6 +218,16 @@ function App() {
             }
           />
 
+          {/* =========================================================
+              VERIFICAR CERTIFICADO
+              ========================================================= */}
+          <Route
+          path="/verificar-constancia/:certificateNumber"
+          element={
+            <VerifyCertificate />
+          }
+        />
+
 
           {/* =========================================================
               ZONA PRIVADA
@@ -260,11 +276,29 @@ function App() {
             }
           />
 
+          <Route
+            path="/dashboard/academic/lessons/:lessonId"
+            element={
+              <PrivateLayout>
+                <AcademicVideo />
+              </PrivateLayout>
+            }
+          />
+
            <Route
             path="/dashboard/courses"
             element={
               <PrivateLayout>
                 <DashboardCourses  />
+              </PrivateLayout>
+            }
+          />
+
+          <Route
+            path="/dashboard/academic/assessment/:examId"
+            element={
+              <PrivateLayout>
+                <DashboardAcademicAssessment   />
               </PrivateLayout>
             }
           />

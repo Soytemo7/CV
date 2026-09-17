@@ -1,0 +1,129 @@
+/* ============================================================
+   USER — DASHBOARD ACADEMIC CERTIFICATE
+   ============================================================ */
+
+.academic-course-certificate {
+  border-color: rgba(34, 197, 94, 0.28);
+}
+
+.academic-course-certificate .private-icon-button-blue {
+  color: #22c55e;
+}
+
+.academic-course-certificate-description {
+  color: #16a34a;
+  opacity: 0.9;
+}
+
+.academic-course-certificate-button {
+  border-color: rgba(34, 197, 94, 0.45);
+  color: #16a34a;
+}
+
+.academic-course-certificate-button:hover:not(:disabled) {
+  border-color: #22c55e;
+  color: #15803d;
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.academic-course-certificate-result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.06);
+}
+
+.academic-course-certificate-result div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.academic-course-certificate-result span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+.academic-course-certificate-result strong {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+html.dark .academic-course-certificate,
+html.private-dark .academic-course-certificate,
+html[data-theme="dark"] .academic-course-certificate,
+body.dark .academic-course-certificate,
+body.private-dark .academic-course-certificate,
+body[data-theme="dark"] .academic-course-certificate {
+  border-color: rgba(74, 222, 128, 0.30);
+}
+
+html.dark .academic-course-certificate-description,
+html.private-dark .academic-course-certificate-description,
+html[data-theme="dark"] .academic-course-certificate-description,
+body.dark .academic-course-certificate-description,
+body.private-dark .academic-course-certificate-description,
+body[data-theme="dark"] .academic-course-certificate-description {
+  color: #4ade80;
+}
+
+html.dark .academic-course-certificate-button,
+html.private-dark .academic-course-certificate-button,
+html[data-theme="dark"] .academic-course-certificate-button,
+body.dark .academic-course-certificate-button,
+body.private-dark .academic-course-certificate-button,
+body[data-theme="dark"] .academic-course-certificate-button {
+  border-color: rgba(74, 222, 128, 0.42);
+  color: #4ade80;
+}
+
+html.dark .academic-course-certificate-button:hover:not(:disabled),
+html.private-dark .academic-course-certificate-button:hover:not(:disabled),
+html[data-theme="dark"] .academic-course-certificate-button:hover:not(:disabled),
+body.dark .academic-course-certificate-button:hover:not(:disabled),
+body.private-dark .academic-course-certificate-button:hover:not(:disabled),
+body[data-theme="dark"] .academic-course-certificate-button:hover:not(:disabled) {
+  border-color: #4ade80;
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.10);
+}
+
+html.dark .academic-course-certificate-result,
+html.private-dark .academic-course-certificate-result,
+html[data-theme="dark"] .academic-course-certificate-result,
+body.dark .academic-course-certificate-result,
+body.private-dark .academic-course-certificate-result,
+body[data-theme="dark"] .academic-course-certificate-result {
+  border-color: rgba(74, 222, 128, 0.22);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+html.dark .academic-course-certificate-result strong,
+html.private-dark .academic-course-certificate-result strong,
+html[data-theme="dark"] .academic-course-certificate-result strong,
+body.dark .academic-course-certificate-result strong,
+body.private-dark .academic-course-certificate-result strong,
+body[data-theme="dark"] .academic-course-certificate-result strong {
+  color: #4ade80;
+}
+
+html.dark .academic-course-certificate-result span,
+html.private-dark .academic-course-certificate-result span,
+html[data-theme="dark"] .academic-course-certificate-result span,
+body.dark .academic-course-certificate-result span,
+body.private-dark .academic-course-certificate-result span,
+body[data-theme="dark"] .academic-course-certificate-result span {
+  color: #ffffff;
+  opacity: 0.72;
+}
