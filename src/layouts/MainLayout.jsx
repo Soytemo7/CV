@@ -9,6 +9,8 @@ import ManuelAI
 import useAOS from "../hooks/useAOS";
 import usePureCounter from "../hooks/usePureCounter";
 
+import "../styles/certificate-verify-button.css";
+
 function MainLayout({ children, isDark, setIsDark }) {
 
   useAOS();
@@ -17,17 +19,45 @@ function MainLayout({ children, isDark, setIsDark }) {
   return (
     <>
 
-      <SEO/>
-      
+      <SEO />
+
       <Header
         isDark={isDark}
         setIsDark={setIsDark}
       />
 
-      <ThemeToggle
-        isDark={isDark}
-        setIsDark={setIsDark}
-      />
+      <div className="main-layout-controls">
+
+        <a
+          href={`${import.meta.env.BASE_URL}verificar-constancia`}
+          className={`certificate-verify-button ${
+            isDark
+              ? "dark"
+              : "light"
+          }`}
+          aria-label="Verificar constancia académica"
+          title="Verificar constancia"
+        >
+
+          <span className="certificate-verify-icon">
+            <i
+              className="bi bi-patch-check-fill"
+              aria-hidden="true"
+            />
+          </span>
+
+          <span className="certificate-verify-label">
+            VERIFICAR CONSTANCIA
+          </span>
+
+        </a>
+
+        <ThemeToggle
+          isDark={isDark}
+          setIsDark={setIsDark}
+        />
+
+      </div>
 
       <main
         className={`main ${
@@ -41,9 +71,10 @@ function MainLayout({ children, isDark, setIsDark }) {
 
       <Footer isDark={isDark} />
 
-      <ScrollTop isDark={isDark} /> 
+      <ScrollTop isDark={isDark} />
 
-       <ManuelAI />     
+      <ManuelAI />
+
     </>
   );
 }

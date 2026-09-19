@@ -13,7 +13,8 @@ import {
   logout as logoutRequest,
   logoutAll as logoutAllRequest,
   getActiveSessions as getActiveSessionsRequest,
-  logoutSession as logoutSessionRequest
+  logoutSession as logoutSessionRequest,
+  updateCertificateName as updateCertificateNameRequest,
 } from "../services/authService.js";
 
 import {
@@ -55,6 +56,43 @@ function AuthProvider({
     loading,
     setLoading
   ] = useState(checkOnMount);
+
+    const updateCertificateName =
+    async (certificateName) => {
+
+      const result =
+        await updateCertificateNameRequest(
+          certificateName
+        );
+
+
+      if (
+        result?.profile?.certificateName !== undefined
+      ) {
+
+        setUser(currentUser => {
+
+          if (!currentUser) {
+            return currentUser;
+          }
+
+          return {
+
+            ...currentUser,
+
+            certificateName:
+              result.profile.certificateName
+
+          };
+
+        });
+
+      }
+
+
+      return result;
+
+    };
 
   // ============================================================
 // OBTENER PASSKEYS
@@ -776,7 +814,9 @@ const loginWithPasskey =
 
         registerPasskey,
 
-        removePasskey
+        removePasskey,
+
+        updateCertificateName
 
       }}
     >

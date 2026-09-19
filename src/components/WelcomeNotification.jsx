@@ -1,5 +1,7 @@
 /* ============================================================
+
    WELCOME NOTIFICATION
+
    ============================================================ */
 
 import { useEffect } from "react";
@@ -45,10 +47,28 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/": {
+
         title:
           "¡Bienvenido!",
+
         description:
           "Bienvenido a mi CV profesional.",
+
+      },
+
+
+      /* ======================================================
+         VERIFICACIÓN PÚBLICA — BÚSQUEDA
+         ====================================================== */
+
+      "/verificar-constancia": {
+
+        title:
+          "Verificar constancia",
+
+        description:
+          "Ingresa el número de una constancia académica para comprobar su autenticidad.",
+
       },
 
 
@@ -57,31 +77,46 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/login": {
+
         title:
           "Inicio de sesión",
+
         description:
           "Bienvenido al área de acceso.",
+
       },
+
 
       "/register": {
+
         title:
           "Crear cuenta",
+
         description:
           "Regístrate para acceder al sistema.",
+
       },
+
 
       "/forgot-password": {
+
         title:
           "Recuperar contraseña",
+
         description:
           "Solicita un enlace para recuperar el acceso a tu cuenta.",
+
       },
 
+
       "/reset-password": {
+
         title:
           "Restablecer contraseña",
+
         description:
           "Establece una nueva contraseña para tu cuenta.",
+
       },
 
 
@@ -90,24 +125,35 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/dashboard": {
+
         title:
           "Panel de control",
+
         description:
           "Bienvenido a tu panel de control.",
+
       },
+
 
       "/dashboard/profile": {
+
         title:
           "Mi perfil",
+
         description:
           "Consulta la información asociada a tu cuenta.",
+
       },
 
+
       "/dashboard/security": {
+
         title:
           "Seguridad",
+
         description:
           "Administra los dispositivos, accesos y sesiones asociadas a tu cuenta.",
+
       },
 
 
@@ -116,17 +162,24 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/admin": {
+
         title:
           "Panel administrativo",
+
         description:
           "Bienvenido al área de administración.",
+
       },
 
+
       "/admin/users": {
+
         title:
           "Administración de usuarios",
+
         description:
           "Consulta y administra las cuentas registradas en la plataforma.",
+
       },
 
 
@@ -135,10 +188,13 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/admin/courses": {
+
         title:
           "Administración de cursos",
+
         description:
           "Consulta, crea y administra los cursos académicos de la plataforma.",
+
       },
 
 
@@ -147,10 +203,13 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/academic/video": {
+
         title:
           "Video de la lección",
+
         description:
           "Reproduce el contenido académico para registrar tu avance en la lección.",
+
       },
 
 
@@ -159,10 +218,13 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/dashboard/courses": {
+
         title:
           "Área académica",
+
         description:
           "Consulta los cursos disponibles y da seguimiento a tu avance académico.",
+
       },
 
 
@@ -171,31 +233,46 @@ function WelcomeNotification() {
          ====================================================== */
 
       "/admin/course-structure": {
+
         title:
           "Estructura de cursos",
+
         description:
           "Consulta en una sola vista la estructura completa de un curso, incluyendo módulos, lecciones y videos.",
+
       },
+
 
       "/admin/enrollments": {
+
         title:
           "Inscripciones",
+
         description:
           "Consulta y da seguimiento al avance académico de los alumnos inscritos en los cursos.",
+
       },
+
 
       "/admin/evaluaciones": {
+
         title:
           "Evaluaciones",
+
         description:
           "Consulta y seguimiento de exámenes y resultados académicos.",
+
       },
 
+
       "/admin/exams": {
+
         title:
           "Exámenes",
+
         description:
           "Crea y configura los exámenes, preguntas, opciones, respuestas correctas y puntuación de los cursos.",
+
       },
 
     };
@@ -219,6 +296,34 @@ function WelcomeNotification() {
 
 
     /* ========================================================
+       VERIFICACIÓN PÚBLICA — RESULTADO DINÁMICO
+       ======================================================== */
+
+    const certificateVerificationMatch =
+      pathname.match(
+        /^\/verificar-constancia\/[^/]+$/
+      );
+
+
+    if (
+      !currentNotification &&
+      certificateVerificationMatch
+    ) {
+
+      currentNotification = {
+
+        title:
+          "Resultado de verificación",
+
+        description:
+          "Consulta la información oficial asociada a esta constancia académica.",
+
+      };
+
+    }
+
+
+    /* ========================================================
        VIDEO ACADÉMICO — RUTA DINÁMICA
        ======================================================== */
 
@@ -230,32 +335,40 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
+
         title:
           "Video de la lección",
 
         description:
           "Visualiza el video de esta lección para consultar su contenido y registrar tu avance académico.",
+
       };
 
     }
 
-    /* ========================================================
-        EVALUACIÓN ACADÉMICA — RUTA DINÁMICA
-        ======================================================== */
 
-      if (
-        !currentNotification &&
-        /^\/dashboard\/academic\/assessment\/[^/]+$/.test(
-          pathname
-        )
-      ) {
-        currentNotification = {
-          title:
-            "Evaluación académica",
-          description:
-            "Presenta la evaluación del curso y comprueba los conocimientos adquiridos.",
-        };
-      }
+    /* ========================================================
+       EVALUACIÓN ACADÉMICA — RUTA DINÁMICA
+       ======================================================== */
+
+    if (
+      !currentNotification &&
+      /^\/dashboard\/academic\/assessment\/[^/]+$/.test(
+        pathname
+      )
+    ) {
+
+      currentNotification = {
+
+        title:
+          "Evaluación académica",
+
+        description:
+          "Presenta la evaluación del curso y comprueba los conocimientos adquiridos.",
+
+      };
+
+    }
 
 
     /* ========================================================
@@ -270,11 +383,13 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
+
         title:
           "Contenido del curso",
 
         description:
           "Administra los módulos que forman parte de este curso académico.",
+
       };
 
     }
@@ -292,11 +407,13 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
+
         title:
           "Lecciones del módulo",
 
         description:
           "Administra las lecciones que forman parte de este módulo académico.",
+
       };
 
     }
@@ -314,11 +431,13 @@ function WelcomeNotification() {
     ) {
 
       currentNotification = {
+
         title:
           "Video de la lección",
 
         description:
           "Administra el contenido multimedia asociado a esta lección.",
+
       };
 
     }
@@ -389,8 +508,10 @@ function WelcomeNotification() {
                 true,
 
               stack: {
+
                 threshold:
                   3,
+
               },
 
               className:
@@ -467,8 +588,10 @@ function WelcomeNotification() {
         true,
 
       stack: {
+
         threshold:
           3,
+
       },
 
       className:
@@ -477,8 +600,11 @@ function WelcomeNotification() {
     });
 
   }, [
+
     location.pathname,
+
     api
+
   ]);
 
 

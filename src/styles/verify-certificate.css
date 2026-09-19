@@ -1,0 +1,893 @@
+/* ============================================================
+
+   VERIFY CERTIFICATE
+
+   VERIFICACIÓN PÚBLICA DE CONSTANCIAS
+
+   ============================================================ */
+
+
+/* ============================================================
+   PÁGINA
+   ============================================================ */
+
+.verify-certificate-page {
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 120px 24px 60px;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+}
+
+
+/* ============================================================
+   MODO CLARO
+   ============================================================ */
+
+.verify-certificate-page.light {
+
+  background: #f5f7fa;
+  color: #222;
+
+}
+
+
+/* ============================================================
+   MODO OSCURO
+   ============================================================ */
+
+.verify-certificate-page.dark {
+
+  background: #171717;
+  color: #f2f2f2;
+
+}
+
+
+/* ============================================================
+   BOTÓN DE TEMA
+   ============================================================ */
+
+.verify-certificate-theme-toggle {
+
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  z-index: 9998;
+
+}
+
+
+/* ============================================================
+   TARJETA
+   ============================================================ */
+
+.verify-certificate-card {
+
+  position: relative;
+
+  width: 100%;
+  max-width: 760px;
+
+  padding: 42px;
+
+  border-radius: 24px;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+
+/* ============================================================
+   TARJETA — MODO CLARO
+   ============================================================ */
+
+.verify-certificate-page.light
+.verify-certificate-card {
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(15, 23, 42, 0.08);
+
+  box-shadow:
+    0 18px 50px
+    rgba(0, 0, 0, 0.08);
+
+}
+
+
+/* ============================================================
+   TARJETA — MODO OSCURO
+   ============================================================ */
+
+.verify-certificate-page.dark
+.verify-certificate-card {
+
+  background: #252525;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 18px 50px
+    rgba(0, 0, 0, 0.35);
+
+}
+
+
+/* ============================================================
+   ICONO PRINCIPAL
+   ============================================================ */
+
+.verify-certificate-icon {
+
+  width: 58px;
+  height: 58px;
+
+  margin-bottom: 24px;
+
+}
+
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+
+.verify-certificate-header {
+
+  width: 100%;
+
+  margin-bottom: 34px;
+
+}
+
+
+.verify-certificate-header h1 {
+
+  margin: 0 0 12px;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3rem
+    );
+
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-header h1 {
+
+  color: #1f2937;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-header h1 {
+
+  color: #ffffff;
+
+}
+
+
+.verify-certificate-header p {
+
+  max-width: 620px;
+
+  margin: 0;
+
+  font-size: 1rem;
+
+  line-height: 1.7;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-header p {
+
+  color: #5f6670;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-header p {
+
+  color: #c9c9c9;
+
+}
+
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+
+.verify-certificate-form {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 22px;
+
+}
+
+
+.verify-certificate-field {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+}
+
+
+/* ============================================================
+   ETIQUETA
+   ============================================================ */
+
+.verify-certificate-field label {
+
+  font-size: 0.88rem;
+
+  font-weight: 700;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-field label {
+
+  color: #1e293b;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-field label {
+
+  color: #cbd5e1;
+
+}
+
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+.verify-certificate-input-wrapper {
+
+  position: relative;
+
+  width: 100%;
+
+}
+
+
+.verify-certificate-input-wrapper > i {
+
+  position: absolute;
+
+  left: 17px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  font-size: 1.1rem;
+
+  color: #64748b;
+
+  pointer-events: none;
+
+}
+
+
+.verify-certificate-input-wrapper input {
+
+  width: 100%;
+
+  min-height: 54px;
+
+  padding:
+    0 18px 0 48px;
+
+  box-sizing: border-box;
+
+  border-radius: 13px;
+
+  border:
+    1px solid
+    rgba(15, 23, 42, 0.12);
+
+  outline: none;
+
+  background:
+    rgba(248, 250, 252, 0.95);
+
+  color: #0f172a;
+
+  font-family: inherit;
+
+  font-size: 1rem;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+}
+
+
+.verify-certificate-input-wrapper input::placeholder {
+
+  color: #94a3b8;
+
+}
+
+
+.verify-certificate-input-wrapper input:hover {
+
+  border-color:
+    rgba(59, 130, 246, 0.35);
+
+}
+
+
+.verify-certificate-input-wrapper input:focus {
+
+  border-color:
+    #3b82f6;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(59, 130, 246, 0.12);
+
+  background: #ffffff;
+
+}
+
+
+/* ============================================================
+   INPUT — MODO OSCURO
+   ============================================================ */
+
+.verify-certificate-page.dark
+.verify-certificate-input-wrapper input {
+
+  background: #171717;
+
+  border-color:
+    rgba(255, 255, 255, 0.10);
+
+  color: #f8fafc;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-input-wrapper input::placeholder {
+
+  color: #94a3b8;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-input-wrapper input:hover {
+
+  border-color:
+    rgba(96, 165, 250, 0.45);
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-input-wrapper input:focus {
+
+  background: #171717;
+
+  border-color:
+    #3b82f6;
+
+}
+
+
+/* ============================================================
+   BOTÓN
+   ============================================================ */
+
+.verify-certificate-submit {
+
+  width: 100%;
+
+  min-height: 52px;
+
+  justify-content: center;
+
+  margin-top: 2px;
+
+}
+
+
+/* ============================================================
+   INFORMACIÓN
+   ============================================================ */
+
+.verify-certificate-info {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 14px;
+
+  margin-top: 30px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background:
+    rgba(59, 130, 246, 0.07);
+
+  border:
+    1px solid
+    rgba(59, 130, 246, 0.12);
+
+}
+
+
+/* ============================================================
+   ICONO DE INFORMACIÓN
+   ============================================================ */
+
+.verify-certificate-info-icon {
+
+  flex:
+    0 0 auto;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    rgba(59, 130, 246, 0.12);
+
+  color: #2563eb;
+
+}
+
+
+.verify-certificate-info-icon i {
+
+  font-size: 1.15rem;
+
+}
+
+
+/* ============================================================
+   TÍTULO DE INFORMACIÓN
+   ============================================================ */
+
+.verify-certificate-info strong {
+
+  display: block;
+
+  margin-bottom: 14px;
+
+  font-size: 0.94rem;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-info strong {
+
+  color: #1e3a8a;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-info strong {
+
+  color: #93c5fd;
+
+}
+
+
+/* ============================================================
+   TEXTO DE INFORMACIÓN
+   ============================================================ */
+
+.verify-certificate-info p {
+
+  margin: 0;
+
+  font-size: 0.88rem;
+
+  line-height: 1.6;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-info p {
+
+  color: #64748b;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-info p {
+
+  color: #94a3b8;
+
+}
+
+
+/* ============================================================
+   BOTÓN VOLVER AL CV
+   ============================================================ */
+
+.verify-certificate-back-button {
+
+  margin-top: 24px;
+
+}
+
+
+/* ============================================================
+   PIE
+   ============================================================ */
+
+.verify-certificate-footer {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 24px;
+
+  text-align: center;
+
+  font-size: 0.78rem;
+
+  color: #94a3b8;
+
+}
+
+
+.verify-certificate-footer i {
+
+  font-size: 0.8rem;
+
+}
+
+
+/* ============================================================
+   RESULTADO DE VERIFICACIÓN
+   ============================================================ */
+
+.verify-certificate-result {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 16px;
+
+  margin-top: 30px;
+
+}
+
+
+.verify-certificate-result-item {
+
+  min-width: 0;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+
+}
+
+
+/* ============================================================
+   RESULTADO — MODO CLARO
+   ============================================================ */
+
+.verify-certificate-page.light
+.verify-certificate-result-item {
+
+  background: #f5f7fa;
+
+  border:
+    1px solid
+    #e3e6ea;
+
+}
+
+
+/* ============================================================
+   RESULTADO — MODO OSCURO
+   ============================================================ */
+
+.verify-certificate-page.dark
+.verify-certificate-result-item {
+
+  background: #1e1e1e;
+
+  border:
+    1px solid
+    #3d3d3d;
+
+}
+
+
+/* ============================================================
+   ETIQUETA DEL RESULTADO
+   ============================================================ */
+
+.verify-certificate-result-item span {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-result-item span {
+
+  color: #6b7280;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-result-item span {
+
+  color: #a9a9a9;
+
+}
+
+
+/* ============================================================
+   VALOR DEL RESULTADO
+   ============================================================ */
+
+.verify-certificate-result-item strong {
+
+  display: block;
+
+  overflow-wrap: anywhere;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+
+}
+
+
+.verify-certificate-page.light
+.verify-certificate-result-item strong {
+
+  color: #252a31;
+
+}
+
+
+.verify-certificate-page.dark
+.verify-certificate-result-item strong {
+
+  color: #ffffff;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .verify-certificate-page {
+
+    align-items: flex-start;
+
+    padding:
+      100px
+      16px
+      40px;
+
+  }
+
+
+  .verify-certificate-card {
+
+    padding:
+      30px
+      24px;
+
+  }
+
+
+  .verify-certificate-result {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .verify-certificate-header h1 {
+
+    font-size: 2.2rem;
+
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — MÓVIL
+   ============================================================ */
+
+@media (max-width: 576px) {
+
+  .verify-certificate-theme-toggle {
+
+    top: 15px;
+
+    right: 12px;
+
+  }
+
+
+  .verify-certificate-page {
+
+    padding:
+      90px
+      12px
+      30px;
+
+  }
+
+
+  .verify-certificate-card {
+
+    padding:
+      26px
+      18px;
+
+    border-radius: 20px;
+
+  }
+
+
+  .verify-certificate-icon {
+
+    width: 52px;
+    height: 52px;
+
+  }
+
+
+  .verify-certificate-header {
+
+    margin-bottom: 28px;
+
+  }
+
+
+  .verify-certificate-header h1 {
+
+    font-size: 1.85rem;
+
+  }
+
+
+  .verify-certificate-header p {
+
+    font-size: 0.92rem;
+
+  }
+
+
+  .verify-certificate-info {
+
+    padding: 15px;
+
+  }
+
+
+  .verify-certificate-info p {
+
+    font-size: 0.82rem;
+
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .verify-certificate-page,
+  .verify-certificate-card,
+  .verify-certificate-input-wrapper input,
+  .verify-certificate-result-item {
+
+    transition: none;
+
+  }
+
+}

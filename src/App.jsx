@@ -84,6 +84,9 @@ import AdminCourseContentPage
   import VerifyCertificate
   from "./pages/VerifyCertificate.jsx";
 
+  import VerifyCertificateSearch
+  from "./pages/VerifyCertificateSearch.jsx";
+
 
 function App() {
 
@@ -215,6 +218,16 @@ function App() {
             path="/reset-password"
             element={
               <ResetPassword />
+            }
+          />
+
+              {/* =========================================================
+              VERIFICAR CERTIFICADO UI
+              ========================================================= */}
+          <Route
+            path="/verificar-constancia"
+            element={
+              <VerifyCertificateSearch />
             }
           />
 

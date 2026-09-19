@@ -248,3 +248,26 @@ export const loginWithCertificate =
     );
 
   };
+
+  export const getProfile = async () => {
+  return await api(
+    "/api/profile"
+  );
+};
+
+
+export const updateCertificateName = async (
+  certificateName
+) => {
+
+  return await api(
+    "/api/profile/certificate-name",
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        certificateName
+      })
+    }
+  );
+
+};

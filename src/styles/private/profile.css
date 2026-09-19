@@ -3,21 +3,11 @@
    ============================================================ */
 
 .private-page-container {
-
-  width:
-    min(
-      1100px,
-      calc(100% - 48px)
-    );
-
+  width: min(1100px, calc(100% - 48px));
   margin: 0 auto;
-
   padding: 48px 0 64px;
-
   box-sizing: border-box;
-
   color: inherit;
-
 }
 
 
@@ -26,60 +16,34 @@
    ============================================================ */
 
 .private-page-header {
-
   margin-bottom: 32px;
-
 }
-
 
 .private-page-eyebrow {
-
   display: block;
-
   margin-bottom: 8px;
-
   font-size: 12px;
-
   font-weight: 600;
-
   text-transform: uppercase;
-
   letter-spacing: 0.08em;
-
   opacity: 0.55;
-
 }
-
 
 .private-page-header h1 {
-
   margin: 0;
-
   color: inherit;
-
   font-size: 32px;
-
   font-weight: 700;
-
   line-height: 1.2;
-
 }
 
-
 .private-page-header p {
-
   max-width: 680px;
-
   margin: 12px 0 0;
-
   color: inherit;
-
   font-size: 15px;
-
   line-height: 1.7;
-
   opacity: 0.65;
-
 }
 
 
@@ -88,41 +52,32 @@
    ============================================================ */
 
 .private-card {
-
   position: relative;
-
   margin-bottom: 24px;
-
   padding: 26px;
-
   border-radius: 16px;
-
   color: inherit;
-
   isolation: isolate;
 
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease;
-
 }
 
 
 /* ============================================================
-   BORDE ANIMADO — BASE
+   BORDE ANIMADO
    ============================================================ */
 
 .private-card::before {
-
   content: "";
 
   position: absolute;
-
   inset: 0;
+  z-index: 3;
 
   padding: 1px;
-
   border-radius: inherit;
 
   background:
@@ -150,14 +105,11 @@
 
   pointer-events: none;
 
-  z-index: 3;
-
   animation:
     securityCardBorderRun
     6s
     linear
     infinite;
-
 }
 
 
@@ -166,34 +118,24 @@
    ============================================================ */
 
 @property --security-card-angle {
-
   syntax: "<angle>";
-
   inherits: false;
-
   initial-value: 0deg;
-
 }
 
 
 /* ============================================================
-   ANIMACIÓN — RECORRIDO DEL BORDE
+   ANIMACIÓN — BORDE
    ============================================================ */
 
 @keyframes securityCardBorderRun {
 
   from {
-
-    --security-card-angle:
-      0deg;
-
+    --security-card-angle: 0deg;
   }
 
   to {
-
-    --security-card-angle:
-      360deg;
-
+    --security-card-angle: 360deg;
   }
 
 }
@@ -204,18 +146,13 @@
    ============================================================ */
 
 .private-light .private-card {
-
-  --security-card-border:
-    rgba(0, 0, 0, 0.08);
-
   background: #ffffff;
 
-  border:
-    1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.04);
-
+    0 8px 30px
+    rgba(0, 0, 0, 0.04);
 }
 
 
@@ -224,18 +161,13 @@
    ============================================================ */
 
 .private-dark .private-card {
-
-  --security-card-border:
-    rgba(255, 255, 255, 0.08);
-
   background: #181818;
 
-  border:
-    1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.18);
-
+    0 8px 30px
+    rgba(0, 0, 0, 0.18);
 }
 
 
@@ -244,15 +176,10 @@
    ============================================================ */
 
 .private-card-header {
-
   display: flex;
-
   align-items: center;
-
   gap: 14px;
-
   margin-bottom: 24px;
-
 }
 
 
@@ -261,20 +188,18 @@
    ============================================================ */
 
 .private-card-icon {
-
   position: relative;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 44px;
-
   height: 44px;
-
   flex-shrink: 0;
 
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
 
   border-radius: 12px;
 
@@ -283,44 +208,41 @@
 
   color: #1677ff;
 
-  overflow: hidden;
-
-  isolation: isolate;
-
   cursor: default;
 
   box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.08),
-    0 0 12px rgba(22, 119, 255, 0.08);
+    0 0 0 1px
+      rgba(22, 119, 255, 0.08),
+    0 0 12px
+      rgba(22, 119, 255, 0.08);
 
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
     background-color 0.35s ease;
-
 }
 
 
 /* ============================================================
-   ICONO DE TARJETA — HALO
+   ICONO — HALO
    ============================================================ */
 
 .private-card-icon::before {
-
   content: "";
 
   position: absolute;
-
   inset: 4px;
+
+  border: 1px solid
+    rgba(22, 119, 255, 0.22);
 
   border-radius: 10px;
 
-  border:
-    1px solid rgba(22, 119, 255, 0.22);
-
   box-shadow:
-    inset 0 0 10px rgba(22, 119, 255, 0.08),
-    0 0 10px rgba(22, 119, 255, 0.08);
+    inset 0 0 10px
+      rgba(22, 119, 255, 0.08),
+    0 0 10px
+      rgba(22, 119, 255, 0.08);
 
   opacity: 0.7;
 
@@ -333,26 +255,21 @@
   transition:
     opacity 0.35s ease,
     box-shadow 0.35s ease;
-
 }
 
 
 /* ============================================================
-   ICONO DE TARJETA — ESCANEO
+   ICONO — ESCANEO
    ============================================================ */
 
 .private-card-icon::after {
-
   content: "";
 
   position: absolute;
-
+  top: 0;
   left: -20%;
 
-  top: 0;
-
   width: 140%;
-
   height: 2px;
 
   background:
@@ -366,10 +283,10 @@
     );
 
   box-shadow:
-    0 0 8px rgba(22, 119, 255, 0.55);
+    0 0 8px
+    rgba(22, 119, 255, 0.55);
 
   opacity: 0;
-
   z-index: 2;
 
   animation:
@@ -377,18 +294,15 @@
     3.2s
     ease-in-out
     infinite;
-
 }
 
 
 /* ============================================================
-   ICONO DE TARJETA — ICONO
+   ICONO — GLIFO
    ============================================================ */
 
 .private-card-icon i {
-
   position: relative;
-
   z-index: 3;
 
   font-size: 21px;
@@ -408,16 +322,14 @@
   transition:
     transform 0.35s ease,
     filter 0.35s ease;
-
 }
 
 
 /* ============================================================
-   HOVER — ICONO DE TARJETA
+   HOVER — ICONO
    ============================================================ */
 
 .private-card-icon:hover {
-
   transform:
     translateY(-3px)
     scale(1.04);
@@ -426,40 +338,35 @@
     rgba(22, 119, 255, 0.15);
 
   box-shadow:
-    0 0 0 1px rgba(22, 119, 255, 0.18),
-    0 0 18px rgba(22, 119, 255, 0.22),
-    0 0 32px rgba(22, 119, 255, 0.10);
-
+    0 0 0 1px
+      rgba(22, 119, 255, 0.18),
+    0 0 18px
+      rgba(22, 119, 255, 0.22),
+    0 0 32px
+      rgba(22, 119, 255, 0.10);
 }
 
-
 .private-card-icon:hover::before {
-
   opacity: 1;
 
   box-shadow:
-    inset 0 0 14px rgba(22, 119, 255, 0.14),
-    0 0 16px rgba(22, 119, 255, 0.18);
-
+    inset 0 0 14px
+      rgba(22, 119, 255, 0.14),
+    0 0 16px
+      rgba(22, 119, 255, 0.18);
 }
 
-
 .private-card-icon:hover i {
-
-  transform:
-    scale(1.16);
+  transform: scale(1.16);
 
   filter:
     drop-shadow(
       0 0 7px
       rgba(22, 119, 255, 0.8)
     );
-
 }
 
-
 .private-card-icon:hover::after {
-
   opacity: 1;
 
   animation:
@@ -467,133 +374,93 @@
     1.2s
     ease-in-out
     infinite;
-
 }
 
 
 /* ============================================================
-   ANIMACIONES — ICONO TARJETA
+   ANIMACIONES — ICONO
    ============================================================ */
 
 @keyframes securityCardIconFloat {
 
   0%,
   100% {
-
     transform:
       translateY(0)
       scale(1);
-
   }
 
   50% {
-
     transform:
       translateY(-1px)
       scale(1.06);
-
   }
 
 }
-
 
 @keyframes securityIconPulse {
 
   0%,
   100% {
-
     opacity: 0.45;
-
-    transform:
-      scale(0.96);
-
+    transform: scale(0.96);
   }
 
   50% {
-
     opacity: 0.9;
-
-    transform:
-      scale(1);
-
+    transform: scale(1);
   }
 
 }
-
 
 @keyframes securityIconScan {
 
   0% {
-
     top: -10%;
-
     opacity: 0;
-
   }
 
   15% {
-
     opacity: 0.9;
-
   }
 
   50% {
-
     opacity: 0.75;
-
   }
 
   85% {
-
     opacity: 0.9;
-
   }
 
   100% {
-
     top: 110%;
-
     opacity: 0;
-
   }
 
 }
 
-
 @keyframes securityIconScanHover {
 
   0% {
-
     top: -10%;
-
     opacity: 0;
-
   }
 
   20% {
-
     opacity: 1;
-
   }
 
   50% {
-
     opacity: 0.9;
-
   }
 
   80% {
-
     opacity: 1;
-
   }
 
   100% {
-
     top: 110%;
-
     opacity: 0;
-
   }
 
 }
@@ -604,28 +471,17 @@
    ============================================================ */
 
 .private-card-header h2 {
-
   margin: 0;
-
   color: inherit;
-
   font-size: 18px;
-
   font-weight: 600;
-
 }
 
-
 .private-card-header p {
-
   margin: 4px 0 0;
-
   color: inherit;
-
   font-size: 13px;
-
   opacity: 0.55;
-
 }
 
 
@@ -634,25 +490,25 @@
    ============================================================ */
 
 .private-info-grid {
-
   display: grid;
-
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
-
   gap: 16px;
-
 }
 
-
 .private-info-item {
-
   padding: 16px;
 
+  border: 1px solid transparent;
   border-radius: 10px;
 
   color: inherit;
 
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
@@ -661,10 +517,23 @@
    ============================================================ */
 
 .private-light .private-info-item {
-
   background:
     rgba(0, 0, 0, 0.025);
+}
 
+.private-light .private-info-item:hover {
+  background:
+    rgba(22, 119, 255, 0.045);
+
+  border-color:
+    rgba(22, 119, 255, 0.18);
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 8px 20px
+    rgba(22, 119, 255, 0.08);
 }
 
 
@@ -673,64 +542,451 @@
    ============================================================ */
 
 .private-dark .private-info-item {
-
   background:
     rgba(255, 255, 255, 0.04);
-
 }
 
+.private-dark .private-info-item:hover {
+  background:
+    rgba(22, 119, 255, 0.07);
 
-.private-info-item span {
+  border-color:
+    rgba(22, 119, 255, 0.22);
 
-  display: block;
+  transform:
+    translateY(-3px);
 
-  margin-bottom: 6px;
-
-  color: inherit;
-
-  font-size: 12px;
-
-  opacity: 0.55;
-
-}
-
-
-.private-info-item strong {
-
-  display: block;
-
-  color: inherit;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  word-break: break-word;
-
+  box-shadow:
+    0 8px 20px
+    rgba(22, 119, 255, 0.10);
 }
 
 
 /* ============================================================
-   ESTADO
+   INFORMACIÓN — TEXTO
    ============================================================ */
 
-.private-status {
+.private-info-item span {
+  display: block;
+  margin-bottom: 6px;
 
-  display: flex !important;
+  color: inherit;
+  font-size: 12px;
+  opacity: 0.55;
+}
 
-  align-items: center;
+.private-info-item strong {
+  display: block;
 
-  gap: 6px;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 600;
 
-  color: #28a745 !important;
-
+  word-break: break-word;
 }
 
 
+/* ============================================================
+   ESTADO DE CUENTA
+   ============================================================ */
+
+.private-status {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+
+  color: #28a745 !important;
+}
+
 .private-status i {
-
   font-size: 12px;
+}
 
+
+/* ============================================================
+   NOMBRE OFICIAL
+   ============================================================ */
+
+.private-profile-certificate-name {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.private-profile-certificate-name label {
+  font-weight: 600;
+}
+
+.private-profile-certificate-name p {
+  margin: 0;
+  opacity: 0.75;
+}
+
+.private-profile-certificate-name button {
+  align-self: flex-start;
+}
+
+
+/* ============================================================
+   NOMBRE OFICIAL — INPUT
+   ============================================================ */
+
+.private-profile-certificate-name input {
+  width: 100%;
+  min-height: 42px;
+
+  padding: 10px 12px;
+  box-sizing: border-box;
+
+  border: 1px solid
+    rgba(0, 0, 0, 0.15);
+
+  border-radius: 9px;
+
+  background:
+    rgba(0, 0, 0, 0.025);
+
+  color: inherit;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.private-profile-certificate-name input::placeholder {
+  color: inherit;
+  opacity: 0.45;
+}
+
+.private-profile-certificate-name input:hover {
+  border-color:
+    rgba(22, 119, 255, 0.35);
+}
+
+.private-dark .private-profile-certificate-name input {
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border-color:
+    rgba(255, 255, 255, 0.14);
+
+  color: #ffffff;
+}
+
+.private-dark .private-profile-certificate-name input::placeholder {
+  color: #ffffff;
+  opacity: 0.45;
+}
+
+.private-dark .private-profile-certificate-name input:hover {
+  border-color:
+    rgba(22, 119, 255, 0.5);
+}
+
+.private-dark .private-profile-certificate-name input:focus {
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  border-color:
+    #1677ff;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(22, 119, 255, 0.12);
+}
+
+
+/* ============================================================
+   NOMBRE OFICIAL — ESTADO GUARDADO
+   ============================================================ */
+
+.private-profile-certificate-saved {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  width: 100%;
+  margin-top: 6px;
+  padding: 14px 16px;
+
+  box-sizing: border-box;
+
+  border: 1px solid
+    rgba(82, 196, 26, 0.25);
+
+  border-radius: 10px;
+
+  background:
+    rgba(82, 196, 26, 0.06);
+}
+
+.private-profile-certificate-saved > i {
+  flex: 0 0 auto;
+
+  margin-top: 1px;
+
+  font-size: 20px;
+  color: #52c41a;
+}
+
+.private-profile-certificate-saved > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.private-profile-certificate-saved strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  color: #389e0d;
+}
+
+.private-profile-certificate-saved span {
+  font-size: 13px;
+  line-height: 1.5;
+
+  color:
+    rgba(0, 0, 0, 0.58);
+}
+
+
+/* ============================================================
+   NOMBRE OFICIAL — ESTADO GUARDADO — OSCURO
+   ============================================================ */
+
+.private-dark .private-profile-certificate-saved {
+  border-color:
+    rgba(82, 196, 26, 0.3);
+
+  background:
+    rgba(82, 196, 26, 0.08);
+}
+
+.private-dark .private-profile-certificate-saved > i {
+  color: #73d13d;
+}
+
+.private-dark .private-profile-certificate-saved strong {
+  color: #95de64;
+}
+
+.private-dark .private-profile-certificate-saved span {
+  color:
+    rgba(255, 255, 255, 0.62);
+}
+
+
+/* ============================================================
+   MODAL — OVERLAY
+   ============================================================ */
+
+.private-profile-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+  box-sizing: border-box;
+
+  background:
+    rgba(0, 0, 0, 0.55);
+
+  backdrop-filter:
+    blur(6px);
+
+  -webkit-backdrop-filter:
+    blur(6px);
+}
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.private-profile-modal {
+  position: relative;
+
+  width: min(100%, 520px);
+  max-height: calc(100vh - 48px);
+
+  overflow-y: auto;
+
+  padding: 26px;
+  box-sizing: border-box;
+
+  border-radius: 16px;
+
+  color: inherit;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 24px 70px
+    rgba(0, 0, 0, 0.25);
+}
+
+.private-dark .private-profile-modal {
+  background: #181818;
+
+  box-shadow:
+    0 24px 70px
+    rgba(0, 0, 0, 0.55);
+}
+
+
+/* ============================================================
+   MODAL — HEADER
+   ============================================================ */
+
+.private-profile-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.private-profile-modal-header h2 {
+  margin: 0;
+
+  color: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+
+/* ============================================================
+   MODAL — CONTENIDO
+   ============================================================ */
+
+.private-profile-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.private-profile-modal-content p {
+  margin: 0;
+
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+
+/* ============================================================
+   MODAL — ICONO
+   ============================================================ */
+
+.private-profile-modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(22, 119, 255, 0.10);
+
+  color: #1677ff;
+  font-size: 22px;
+
+  box-shadow:
+    0 0 0 1px
+    rgba(22, 119, 255, 0.08);
+}
+
+
+/* ============================================================
+   MODAL — NOMBRE
+   ============================================================ */
+
+.private-profile-modal-name {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 16px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(0, 0, 0, 0.025);
+}
+
+.private-dark .private-profile-modal-name {
+  background:
+    rgba(255, 255, 255, 0.04);
+}
+
+.private-profile-modal-name span {
+  font-size: 12px;
+  opacity: 0.55;
+}
+
+.private-profile-modal-name strong {
+  color: inherit;
+  font-size: 15px;
+  font-weight: 600;
+
+  word-break: break-word;
+}
+
+
+/* ============================================================
+   MODAL — ADVERTENCIA
+   ============================================================ */
+
+.private-profile-modal-warning {
+  font-size: 13px !important;
+  opacity: 0.6 !important;
+}
+
+
+/* ============================================================
+   MODAL — ACCIONES
+   ============================================================ */
+
+.private-profile-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+  margin-top: 26px;
+}
+
+
+/* ============================================================
+   MODAL — BOTÓN CERRAR
+   ============================================================ */
+
+.private-profile-modal-header .app-button {
+  width: 42px;
+  min-width: 42px;
+  min-height: 42px;
+
+  padding: 10px;
 }
 
 
@@ -741,66 +997,71 @@
 @media (max-width: 768px) {
 
   .private-page-container {
-
-    width:
-      min(
-        calc(100% - 32px),
-        600px
-      );
-
+    width: min(calc(100% - 32px), 600px);
     padding-top: 32px;
-
   }
-
 
   .private-page-header h1 {
-
     font-size: 27px;
-
   }
-
 
   .private-info-grid {
-
     grid-template-columns: 1fr;
-
   }
 
-
   .private-card {
-
     padding: 20px;
-
   }
 
 }
 
 
-/* ============================================================
-   MÓVIL PEQUEÑO
-   ============================================================ */
-
 @media (max-width: 480px) {
 
   .private-page-container {
-
-    width:
-      calc(100% - 24px);
-
+    width: calc(100% - 24px);
   }
-
 
   .private-page-header h1 {
-
     font-size: 24px;
-
   }
 
-
   .private-card-header {
-
     align-items: flex-start;
+  }
 
+  .private-profile-certificate-saved {
+    padding: 13px 14px;
+  }
+
+  .private-profile-certificate-saved > i {
+    font-size: 18px;
+  }
+
+  .private-profile-certificate-saved strong {
+    font-size: 13px;
+  }
+
+  .private-profile-certificate-saved span {
+    font-size: 12px;
+  }
+
+  .private-profile-modal-overlay {
+    padding: 16px;
+  }
+
+  .private-profile-modal {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .private-profile-modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .private-profile-modal-actions .app-button {
+    width: 100%;
   }
 
 }
@@ -816,69 +1077,7 @@
   .private-card-icon::before,
   .private-card-icon::after,
   .private-card-icon i {
-
-    animation:
-      none;
-
+    animation: none;
   }
-
-}
-
-/* ============================================================
-   HOVER — INFORMACIÓN
-   ============================================================ */
-
-.private-info-item {
-
-  border:
-    1px solid transparent;
-
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-
-}
-
-
-/* ============================================================
-   HOVER — INFORMACIÓN — CLARO
-   ============================================================ */
-
-.private-light .private-info-item:hover {
-
-  background:
-    rgba(22, 119, 255, 0.045);
-
-  border-color:
-    rgba(22, 119, 255, 0.18);
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 8px 20px rgba(22, 119, 255, 0.08);
-
-}
-
-
-/* ============================================================
-   HOVER — INFORMACIÓN — OSCURO
-   ============================================================ */
-
-.private-dark .private-info-item:hover {
-
-  background:
-    rgba(22, 119, 255, 0.07);
-
-  border-color:
-    rgba(22, 119, 255, 0.22);
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 8px 20px rgba(22, 119, 255, 0.10);
 
 }
