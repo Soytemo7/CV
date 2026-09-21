@@ -844,8 +844,45 @@ function AdminSidebar() {
 
           </div>
 
+          {/* ==================================================
+              HISTORIAL ACADÉMICO
+              ================================================== */}
+
+          <div
+            className={
+              `private-sidebar-item ${
+                isActive("/admin/academic-events")
+                  ? "active"
+                  : ""
+              }`
+            }
+          >
+
+            <PrivateIconButton
+              icon="bi bi-clock-history"
+              color="blue"
+              onPointerDown={(event) => {
+                event.stopPropagation();
+              }}
+              onClick={() =>
+                handleNavigate(
+                  "/admin/academic-events"
+                )
+              }
+              aria-label="Historial académico"
+              className="private-sidebar-icon"
+            />
+
+            <span className="private-sidebar-item-text">
+              Historial académico
+            </span>
+
+          </div>
+
 
           <div className="private-sidebar-divider"></div>
+
+          
 
 
           {/* ==================================================

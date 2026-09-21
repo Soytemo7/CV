@@ -1,0 +1,71 @@
+/* ============================================================
+   ADMIN — DASHBOARD — ENCABEZADO
+   ============================================================ */
+
+.admin-dashboard
+.private-page-header {
+  margin-bottom: 32px;
+}
+
+.admin-dashboard
+.private-page-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3b82f6;
+}
+
+.admin-dashboard
+.private-page-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.admin-dashboard
+.private-page-header p {
+  max-width: 850px;
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: inherit;
+  opacity: 0.72;
+}
+
+/* MODO OSCURO */
+
+.dark
+.admin-dashboard
+.private-page-eyebrow {
+  color: #60a5fa;
+}
+
+.dark
+.admin-dashboard
+.private-page-header h1,
+.dark
+.admin-dashboard
+.private-page-header p {
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 576px) {
+
+  .admin-dashboard
+  .private-page-header h1 {
+    font-size: 2rem;
+  }
+
+  .admin-dashboard
+  .private-page-header p {
+    font-size: 0.88rem;
+  }
+
+}

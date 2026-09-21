@@ -87,6 +87,9 @@ import AdminCourseContentPage
   import VerifyCertificateSearch
   from "./pages/VerifyCertificateSearch.jsx";
 
+  import AdminAcademicEvents
+  from "./pages/admin/AdminAcademicEvents.jsx";
+
 
 function App() {
 
@@ -345,6 +348,15 @@ function App() {
             element={
               <AdminLayout>
                 <AdminUsers />
+              </AdminLayout>
+            }
+          />
+
+           <Route
+            path="/admin/academic-events"
+            element={
+              <AdminLayout>
+                <AdminAcademicEvents  />
               </AdminLayout>
             }
           />

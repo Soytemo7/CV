@@ -1,0 +1,1250 @@
+/* ============================================================
+
+   ADMIN — HISTORIAL ACADÉMICO
+
+   ============================================================ */
+
+.admin-academic-events-page {
+
+  width: 100%;
+
+  background: transparent;
+
+}
+
+
+/* ============================================================
+
+   PÁGINA — MODO CLARO
+
+   ============================================================ */
+
+.light
+
+.admin-academic-events-page {
+
+  background: transparent;
+
+  color: #252a31;
+
+}
+
+
+/* ============================================================
+
+   PÁGINA — MODO OSCURO
+
+   ============================================================ */
+
+.dark
+
+.admin-academic-events-page {
+
+  background: #111111;
+
+  color: #ffffff;
+
+}
+
+
+/* ============================================================
+
+   FILTROS
+
+   ============================================================ */
+
+.admin-academic-events-filters {
+
+  margin-top: 28px;
+
+}
+
+
+.admin-academic-events-filter-form {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+
+  margin-top: 24px;
+
+}
+
+
+.admin-academic-events-field {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+
+.admin-academic-events-field label {
+
+  font-size: 0.82rem;
+
+  font-weight: 700;
+
+  color: inherit;
+
+}
+
+
+.admin-academic-events-field input,
+
+.admin-academic-events-field select {
+
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 0 14px;
+
+  border-radius: 10px;
+
+  border: 1px solid
+    rgba(
+      127,
+      127,
+      127,
+      0.25
+    );
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.05
+  );
+
+  color: inherit;
+
+  font-family: inherit;
+
+  font-size: 0.92rem;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+}
+
+
+.admin-academic-events-field input:focus,
+
+.admin-academic-events-field select:focus {
+
+  border-color:
+    rgba(
+      59,
+      130,
+      246,
+      0.75
+    );
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      59,
+      130,
+      246,
+      0.12
+    );
+
+}
+
+
+.admin-academic-events-field select option {
+
+  background: #ffffff;
+
+  color: #222222;
+
+}
+
+
+.admin-academic-events-filter-actions {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 10px;
+
+}
+
+
+.admin-academic-events-filter-actions button {
+
+  min-height: 48px;
+
+}
+
+
+/* ============================================================
+
+   RESUMEN
+
+   ============================================================ */
+
+.admin-academic-events-summary {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 24px auto;
+
+  display: flex;
+
+  align-items: stretch;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  background: transparent;
+
+}
+
+
+/* ============================================================
+
+   RESUMEN — MODO OSCURO
+
+   ============================================================ */
+
+.dark
+
+.admin-academic-events-summary {
+
+  background: transparent;
+
+}
+
+
+/* ============================================================
+
+   TARJETA DEL RESUMEN
+
+   ============================================================ */
+
+.admin-academic-events-summary
+.admin-users-summary-card {
+
+  width: 320px;
+
+  max-width: 320px;
+
+  margin: 0;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+
+   RESUMEN — MODO CLARO
+
+   ============================================================ */
+
+.light
+
+.admin-academic-events-summary
+.admin-users-summary-card {
+
+  background: #ffffff !important;
+
+  color: #252a31;
+
+}
+
+
+/* ============================================================
+
+   RESUMEN — MODO OSCURO
+
+   ============================================================ */
+
+.dark
+
+.admin-academic-events-summary
+.admin-users-summary-card {
+
+  background: #1e1e1e !important;
+
+  color: #ffffff;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.10
+    );
+
+}
+
+
+.dark
+
+.admin-academic-events-summary
+.admin-users-summary-icon {
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-summary
+.admin-users-summary-content
+span {
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-summary
+.admin-users-summary-content
+strong {
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-summary
+.admin-users-summary-content
+small {
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.65
+    );
+
+}
+
+
+/* ============================================================
+
+   TABLA
+
+   ============================================================ */
+
+.admin-academic-events-table-wrapper {
+
+  width: 100%;
+
+  overflow-x: auto;
+
+  margin-top: 24px;
+
+  border-radius: 14px;
+
+}
+
+
+.admin-academic-events-table {
+
+  width: 100%;
+
+  min-width: 950px;
+
+  border-collapse: collapse;
+
+}
+
+
+/* ============================================================
+
+   ENCABEZADOS
+
+   ============================================================ */
+
+.admin-academic-events-table th {
+
+  padding: 14px 16px;
+
+  text-align: left;
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+}
+
+
+/* ============================================================
+
+   CELDAS
+
+   ============================================================ */
+
+.admin-academic-events-table td {
+
+  padding: 16px;
+
+  vertical-align: middle;
+
+  border-top: 1px solid
+    rgba(
+      127,
+      127,
+      127,
+      0.16
+    );
+
+}
+
+
+/* ============================================================
+
+   FILAS
+
+   ============================================================ */
+
+.admin-academic-events-table tbody tr {
+
+  transition:
+    background-color 0.2s ease;
+
+}
+
+
+.admin-academic-events-table tbody tr:hover {
+
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.04
+    );
+
+}
+
+
+/* ============================================================
+
+   TIPO DE EVENTO
+
+   ============================================================ */
+
+.admin-academic-events-type {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 0.84rem;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+}
+
+
+.admin-academic-events-type i {
+
+  font-size: 1rem;
+
+}
+
+
+/* ============================================================
+
+   COLORES DE EVENTOS
+
+   ============================================================ */
+
+.admin-academic-events-type.enrollment-created {
+
+  color: #3b82f6;
+
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      59,
+      130,
+      246,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+.admin-academic-events-type.video-completed {
+
+  color: #22c55e;
+
+  background:
+    rgba(
+      34,
+      197,
+      94,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      34,
+      197,
+      94,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+.admin-academic-events-type.exam-started {
+
+  color: #a855f7;
+
+  background:
+    rgba(
+      168,
+      85,
+      247,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      168,
+      85,
+      247,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+.admin-academic-events-type.exam-submitted {
+
+  color: #f59e0b;
+
+  background:
+    rgba(
+      245,
+      158,
+      11,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      245,
+      158,
+      11,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+.admin-academic-events-type.exam-passed {
+
+  color: #16a34a;
+
+  background:
+    rgba(
+      22,
+      163,
+      74,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      22,
+      163,
+      74,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+.admin-academic-events-type.exam-failed {
+
+  color: #ef4444;
+
+  background:
+    rgba(
+      239,
+      68,
+      68,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      239,
+      68,
+      68,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+.admin-academic-events-type.certificate-issued {
+
+  color: #06b6d4;
+
+  background:
+    rgba(
+      6,
+      182,
+      212,
+      0.10
+    );
+
+  border:
+    1px solid
+    rgba(
+      6,
+      182,
+      212,
+      0.22
+    );
+
+  padding: 5px 9px;
+
+  border-radius: 8px;
+
+}
+
+
+/* ============================================================
+
+   EVENTOS — BRILLO DEL ICONO
+
+   ============================================================ */
+
+.admin-academic-events-type.enrollment-created i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      59,
+      130,
+      246,
+      0.45
+    );
+
+}
+
+
+.admin-academic-events-type.video-completed i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      34,
+      197,
+      94,
+      0.45
+    );
+
+}
+
+
+.admin-academic-events-type.exam-started i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      168,
+      85,
+      247,
+      0.45
+    );
+
+}
+
+
+.admin-academic-events-type.exam-submitted i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      245,
+      158,
+      11,
+      0.45
+    );
+
+}
+
+
+.admin-academic-events-type.exam-passed i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      22,
+      163,
+      74,
+      0.45
+    );
+
+}
+
+
+.admin-academic-events-type.exam-failed i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      239,
+      68,
+      68,
+      0.45
+    );
+
+}
+
+
+.admin-academic-events-type.certificate-issued i {
+
+  text-shadow:
+    0 0 8px
+    rgba(
+      6,
+      182,
+      212,
+      0.45
+    );
+
+}
+
+
+/* ============================================================
+
+   DETALLE DEL EVENTO
+
+   ============================================================ */
+
+.admin-academic-events-detail {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+}
+
+
+.admin-academic-events-detail span {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 5px 8px;
+
+  border-radius: 7px;
+
+  background:
+    rgba(
+      127,
+      127,
+      127,
+      0.09
+    );
+
+  font-size: 0.72rem;
+
+  white-space: nowrap;
+
+}
+
+
+.admin-academic-events-detail i {
+
+  font-size: 0.75rem;
+
+}
+
+
+/* ============================================================
+
+   PAGINACIÓN
+
+   ============================================================ */
+
+.admin-academic-events-pagination {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 24px auto 0;
+
+  padding: 0 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  box-sizing: border-box;
+
+}
+
+
+.admin-academic-events-pagination > span {
+
+  min-width: 120px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 0.86rem;
+
+  color: inherit;
+
+  text-align: center;
+
+}
+
+
+.admin-academic-events-pagination > span strong {
+
+  margin-inline: 4px;
+
+}
+
+
+/* ============================================================
+
+   BOTONES DE PAGINACIÓN
+
+   ============================================================ */
+
+.admin-academic-events-pagination button {
+
+  width: auto !important;
+
+  min-width: 0 !important;
+
+  max-width: max-content;
+
+  min-height: 42px;
+
+  flex: 0 0 auto !important;
+
+  white-space: nowrap;
+
+}
+
+
+/* ============================================================
+
+   PAGINACIÓN — MODO OSCURO
+
+   ============================================================ */
+
+.dark
+
+.admin-academic-events-pagination {
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-pagination > span {
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-pagination > span strong {
+
+  color: #ffffff;
+
+}
+
+
+/* ============================================================
+
+   MODO CLARO
+
+   ============================================================ */
+
+.light
+
+.admin-academic-events-field input,
+
+.light
+
+.admin-academic-events-field select {
+
+  background: #ffffff;
+
+  color: #252a31;
+
+}
+
+
+.light
+
+.admin-academic-events-table {
+
+  color: #252a31;
+
+}
+
+
+.light
+
+.admin-academic-events-table th {
+
+  background: #f5f7fa;
+
+  color: #5f6670;
+
+}
+
+
+.light
+
+.admin-academic-events-table td {
+
+  border-color:
+    #e5e7eb;
+
+}
+
+
+/* ============================================================
+
+   MODO OSCURO
+
+   ============================================================ */
+
+.dark
+
+.admin-academic-events-field input,
+
+.dark
+
+.admin-academic-events-field select {
+
+  background: #1e1e1e;
+
+  color: #ffffff;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+}
+
+
+.dark
+
+.admin-academic-events-field select option {
+
+  background: #252525;
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-table {
+
+  color: #ffffff;
+
+}
+
+
+.dark
+
+.admin-academic-events-table th {
+
+  background: #1e1e1e;
+
+  color: #bcbcbc;
+
+}
+
+
+.dark
+
+.admin-academic-events-table td {
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+}
+
+
+/* ============================================================
+
+   DETALLE — MODO OSCURO
+
+   ============================================================ */
+
+.dark
+
+.admin-academic-events-detail span {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+
+  color: #dddddd;
+
+}
+
+
+/* ============================================================
+
+   RESPONSIVE
+
+   ============================================================ */
+
+@media (
+
+  max-width: 900px
+
+) {
+
+  .admin-academic-events-filter-form {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .admin-academic-events-filter-actions {
+
+    align-items: stretch;
+
+  }
+
+
+  .admin-academic-events-filter-actions button {
+
+    flex: 1;
+
+  }
+
+}
+
+
+@media (
+
+  max-width: 576px
+
+) {
+
+  .admin-academic-events-filter-actions {
+
+    flex-direction: column;
+
+  }
+
+
+  .admin-academic-events-summary {
+
+    display: flex;
+
+    width: 100%;
+
+    justify-content: center;
+
+  }
+
+
+  .admin-academic-events-summary
+  .admin-users-summary-card {
+
+    width: 100%;
+
+    max-width: none;
+
+  }
+
+
+  .admin-academic-events-pagination {
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding-inline: 12px;
+
+  }
+
+
+  .admin-academic-events-pagination > span {
+
+    min-width: auto;
+
+    font-size: 0.82rem;
+
+  }
+
+
+  .admin-academic-events-pagination button {
+
+    width: auto !important;
+
+    min-width: 0 !important;
+
+  }
+
+}
+
+
+/* ============================================================
+
+   REDUCCIÓN DE MOVIMIENTO
+
+   ============================================================ */
+
+@media (
+
+  prefers-reduced-motion: reduce
+
+) {
+
+  .admin-academic-events-field input,
+
+  .admin-academic-events-field select,
+
+  .admin-academic-events-table tbody tr {
+
+    transition: none;
+
+  }
+
+}
+
+
+/* VOLVER AL DASHBOARD — ALINEADO CON EL CONTENIDO */
+
+.admin-academic-events-page
+.admin-academic-events-back-button {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: max-content !important;
+  display: inline-flex !important;
+  margin-left: max(
+    20px,
+    calc(
+      (100% - 1400px) / 2 + 32px
+    )
+  ) !important;
+  margin-top: 0 !important;
+  padding: 10px 18px !important;
+  box-sizing: border-box;
+  flex: 0 0 auto !important;
+  white-space: nowrap;
+}

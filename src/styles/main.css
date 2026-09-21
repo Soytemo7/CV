@@ -66,6 +66,14 @@ body {
   font-family: var(--default-font);
 }
 
+html:has(.private-dark) {
+  background-color: #111111;
+}
+
+html:has(.private-light) {
+  background-color: #ffffff;
+}
+
 a {
   color: var(--accent-color);
   text-decoration: none;

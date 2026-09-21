@@ -2,6 +2,8 @@ import {
   Link,
 } from "react-router-dom";
 
+import "../../styles/admin/admin-dashboard.css";
+
 
 function Dashboard() {
 
@@ -263,6 +265,8 @@ function Dashboard() {
 
         </Link>
 
+        
+
            {/* ======================================================
             INSCRIPCIONES
             ====================================================== */}
@@ -305,9 +309,54 @@ function Dashboard() {
 
           </div>
 
-        </Link>      
+        </Link> 
 
-      </section>
+           {/* ======================================================
+            HISTORIAL ACADÉMICO
+            ====================================================== */}
+
+        <Link
+          to="/admin/academic-events"
+          className="private-card admin-dashboard-card"
+        >
+
+          <div className="private-card-header">
+
+            <div className="private-card-icon">
+
+              <i className="bi bi-clock-history"></i>
+
+            </div>
+
+
+            <div>
+
+              <h2>
+                Historial académico
+              </h2>
+
+              <p>
+                Trazabilidad de actividades académicas
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div className="admin-dashboard-card-footer">
+
+            <span>
+              Consultar historial
+            </span>
+
+            <i className="bi bi-arrow-right"></i>
+
+          </div>
+
+        </Link>     
+
+      </section>           
 
 
       {/* ========================================================

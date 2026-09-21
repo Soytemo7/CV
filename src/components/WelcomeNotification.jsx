@@ -275,6 +275,12 @@ function WelcomeNotification() {
 
       },
 
+      "/admin/academic-events": {
+        title: "Historial académico",
+        description:
+          "Consulta la trazabilidad de las actividades académicas registradas en la plataforma.",
+      },
+
     };
 
 
